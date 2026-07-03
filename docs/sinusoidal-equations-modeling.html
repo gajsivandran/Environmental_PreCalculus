@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 4 Functions and Graphs | Precalculus for Environmental Science: Foundations for Modeling</title>
+  <title>Chapter 11 Sinusoidal Equations &amp; Modeling | Precalculus for Environmental Science: Foundations for Modeling</title>
   <meta name="description" content="A textbook companion to prepare students for the University of Washington QSci 291 Environmental Calculus sequence" />
   <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 4 Functions and Graphs | Precalculus for Environmental Science: Foundations for Modeling" />
+  <meta property="og:title" content="Chapter 11 Sinusoidal Equations &amp; Modeling | Precalculus for Environmental Science: Foundations for Modeling" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="A textbook companion to prepare students for the University of Washington QSci 291 Environmental Calculus sequence" />
   <meta name="github-repo" content="gajsivandran/Precalculus_Environmental_Science" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 4 Functions and Graphs | Precalculus for Environmental Science: Foundations for Modeling" />
+  <meta name="twitter:title" content="Chapter 11 Sinusoidal Equations &amp; Modeling | Precalculus for Environmental Science: Foundations for Modeling" />
   
   <meta name="twitter:description" content="A textbook companion to prepare students for the University of Washington QSci 291 Environmental Calculus sequence" />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="lines-circles-linear-modeling.html"/>
-<link rel="next" href="quadratic-functions-optimization.html"/>
+<link rel="prev" href="trigonometric-functions.html"/>
+<link rel="next" href="precalculus-equation-sheet.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -398,213 +398,167 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="functions-and-graphs" class="section level1 hasAnchor" number="4">
-<h1><span class="header-section-number">Chapter 4</span> Functions and Graphs<a href="functions-and-graphs.html#functions-and-graphs" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div id="learning-objectives-2" class="section level2 hasAnchor" number="4.1">
-<h2><span class="header-section-number">4.1</span> Learning Objectives<a href="functions-and-graphs.html#learning-objectives-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="sinusoidal-equations-modeling" class="section level1 hasAnchor" number="11">
+<h1><span class="header-section-number">Chapter 11</span> Sinusoidal Equations &amp; Modeling<a href="sinusoidal-equations-modeling.html#sinusoidal-equations-modeling" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="learning-objectives-9" class="section level2 hasAnchor" number="11.1">
+<h2><span class="header-section-number">11.1</span> Learning Objectives<a href="sinusoidal-equations-modeling.html#learning-objectives-9" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>By the end of this chapter, you will be able to:</p>
 <ul>
-<li>Determine whether a relationship is a function from a graph, table, or equation.</li>
-<li>Identify the domain and range of a function in context.</li>
-<li>Read and interpret transformations of a graph.</li>
-<li>Build and evaluate piecewise (multipart) functions.</li>
+<li>Solve sinusoidal equations for specific input values.</li>
+<li>Carry out the full modeling workflow: data -&gt; equation -&gt; prediction.</li>
+<li>Synthesize precalculus tools across the course in a capstone project.</li>
 </ul>
 <hr />
 </div>
-<div id="function-definition-notation" class="section level2 hasAnchor" number="4.2">
-<h2><span class="header-section-number">4.2</span> Function Definition &amp; Notation<a href="functions-and-graphs.html#function-definition-notation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>A <strong>function</strong> is a rule that assigns exactly one output to each input. If <span class="math inline">\(x\)</span> is the input and <span class="math inline">\(y\)</span> is the output, we write <span class="math inline">\(y = f(x)\)</span>, read “<span class="math inline">\(f\)</span> of <span class="math inline">\(x\)</span>.” The name <span class="math inline">\(f\)</span> is arbitrary — you’ll often see functions named for what they represent, like <span class="math inline">\(C(t)\)</span> for concentration as a function of time, or <span class="math inline">\(T(h)\)</span> for temperature as a function of elevation.</p>
-<p>The defining rule — <strong>exactly one output per input</strong> — is what separates a function from a general relationship. If you can trace a vertical line through a graph and it crosses the curve more than once, the graph does <em>not</em> represent a function of <span class="math inline">\(x\)</span>, because that one input <span class="math inline">\(x\)</span> would correspond to more than one output.</p>
+<div id="solving-sinusoidal-equations" class="section level2 hasAnchor" number="11.2">
+<h2><span class="header-section-number">11.2</span> Solving Sinusoidal Equations<a href="sinusoidal-equations-modeling.html#solving-sinusoidal-equations" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Solving a sinusoidal equation for a specific input follows the same pattern as the inverse-trig worked example in Chapter 9: isolate the sine (or cosine) term, apply the inverse function, then finish the algebra. The one new wrinkle worth naming explicitly here: because sine and cosine repeat every cycle, a sinusoidal equation almost always has <strong>more than one valid solution</strong> within a given time span, even though the inverse function only ever returns one of them directly.</p>
+<div id="worked-example-two-solutions-one-cycle" class="section level3 hasAnchor" number="11.2.1">
+<h3><span class="header-section-number">11.2.1</span> Worked Example: Two Solutions, One Cycle<a href="sinusoidal-equations-modeling.html#worked-example-two-solutions-one-cycle" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Using the harbor tide model from Chapter 9, <span class="math inline">\(y(t) = 1.5\sin\left(\dfrac{\pi}{6}t\right)+2.5\)</span>, find <strong>all</strong> times <span class="math inline">\(t\)</span> between 0 and 12 hours when the tide is at 3.5 m.</p>
+<p><strong>Step 1 — Isolate and apply the inverse, as before.</strong></p>
+<p><span class="math display">\[
+\sin\left(\frac{\pi}{6}t\right) = \frac{1}{1.5} \approx 0.667 \quad\Rightarrow\quad \frac{\pi}{6}t = \sin^{-1}(0.667) \approx 0.730
+\]</span></p>
+<p><span class="math display">\[
+t \approx 0.730 \times \frac{6}{\pi} \approx 1.39 \text{ hours}
+\]</span></p>
+<p>This matches the single solution found in Chapter 9 — but it isn’t the only time in the 12-hour window when the tide hits 3.5 m.</p>
+<p><strong>Step 2 — Find the second solution using symmetry.</strong> Sine is symmetric about its peak: if <span class="math inline">\(\theta_0\)</span> is one solution to <span class="math inline">\(\sin(\theta) = k\)</span>, then <span class="math inline">\(\pi - \theta_0\)</span> is the other solution within one cycle. So:</p>
+<p><span class="math display">\[
+\frac{\pi}{6}t = \pi - 0.730 \approx 2.412 \quad\Rightarrow\quad t \approx 2.412\times\frac{6}{\pi}\approx 4.61 \text{ hours}
+\]</span></p>
+<p><strong>Step 3 — Interpret.</strong> The tide reaches 3.5 m <strong>twice</strong> in this 12-hour cycle: once around <span class="math inline">\(t\approx1.39\)</span> hours (rising toward high tide) and again around <span class="math inline">\(t\approx4.61\)</span> hours (falling back down from high tide). Reporting only the first answer from the inverse sine would have missed half the picture.</p>
 <div class="promptbox">
-<p><strong>Is It a Function?</strong></p>
-<p>A graph shows water depth in a tidal channel over the course of a day — depth on the vertical axis, time of day on the horizontal axis. Could two different times of day have the exact same depth? Does that make it <em>not</em> a function? Discuss with a partner why or why not.</p>
+<p><strong>Why Two Solutions?</strong></p>
+<p>Sketch (or picture) the tide curve from the example above. Mark the horizontal line <span class="math inline">\(y=3.5\)</span>. How many times does the curve cross that line between <span class="math inline">\(t=0\)</span> and <span class="math inline">\(t=12\)</span>? Does that match the two solutions found above?</p>
 <div class="writein">
 
 </div>
 </div>
-<div id="concept-check-function-vs.-non-function" class="section level3 unnumbered hasAnchor">
-<h3>Concept Check: Function vs. Non-Function<a href="functions-and-graphs.html#concept-check-function-vs.-non-function" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><strong>1. A table lists 5 different sampling dates and the nitrate concentration measured on each. Is concentration a function of date?</strong></p>
+</div>
+<div id="concept-check-solving-for-a-specific-time" class="section level3 unnumbered hasAnchor">
+<h3>Concept Check: Solving for a Specific Time<a href="sinusoidal-equations-modeling.html#concept-check-solving-for-a-specific-time" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>1. For <span class="math inline">\(y(t) = 4\sin(t)\)</span>, one solution to <span class="math inline">\(y(t)=2\)</span> is <span class="math inline">\(t = \sin^{-1}(0.5) = \pi/6\)</span>. What is the second solution within <span class="math inline">\(0\)</span> to <span class="math inline">\(2\pi\)</span>?</strong></p>
 <details>
 <summary>
 <strong>Click to reveal answer</strong>
 </summary>
-<p><strong>Yes</strong> — each date has exactly one recorded concentration. (Two different dates could, in principle, have the same concentration value — that’s fine. What would break the function rule is one date having two different recorded concentrations.)</p>
-</details>
-<p><strong>2. A graph plots elevation (vertical axis) against distance along a river channel that loops back on itself, so a single distance-along-the-channel value corresponds to two different elevations where the loop crosses itself. Is elevation a function of distance here?</strong></p>
-<details>
-<summary>
-<strong>Click to reveal answer</strong>
-</summary>
-<p><strong>No.</strong> One input (a given distance along the channel) maps to two different outputs (two different elevations), which violates the function rule.</p>
+<p>Using the symmetry rule: <span class="math inline">\(t = \pi - \pi/6 = 5\pi/6\)</span>.</p>
 </details>
 <hr />
 </div>
 </div>
-<div id="domain-range" class="section level2 hasAnchor" number="4.3">
-<h2><span class="header-section-number">4.3</span> Domain &amp; Range<a href="functions-and-graphs.html#domain-range" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>The <strong>domain</strong> of a function is the set of all valid inputs; the <strong>range</strong> is the set of all possible outputs. In environmental modeling, domain and range are rarely “all real numbers” — they’re restricted by what’s physically or practically meaningful.</p>
-<div id="worked-example-a-seasonal-population-function" class="section level3 hasAnchor" number="4.3.1">
-<h3><span class="header-section-number">4.3.1</span> Worked Example: A Seasonal Population Function<a href="functions-and-graphs.html#worked-example-a-seasonal-population-function" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Suppose a model <span class="math inline">\(P(t) = 200 + 15t\)</span> describes the population of a migratory bird species at a wetland, where <span class="math inline">\(t\)</span> is measured in weeks since the birds arrive in spring, and the birds are only present at the wetland for a 20-week season.</p>
-<ul>
-<li><strong>Domain:</strong> <span class="math inline">\(0 \le t \le 20\)</span> — the model has no meaning for <span class="math inline">\(t\)</span> outside the season, since the birds aren’t there at all.</li>
-<li><strong>Range:</strong> at <span class="math inline">\(t=0\)</span>, <span class="math inline">\(P=200\)</span>; at <span class="math inline">\(t=20\)</span>, <span class="math inline">\(P=200+15(20)=500\)</span>. So the range is <span class="math inline">\(200 \le P \le 500\)</span>.</li>
-</ul>
-<p>Notice that the <em>domain</em> is a restriction we impose based on context (the birds are only present for part of the year), while the <em>range</em> is a consequence we compute from the domain and the function rule.</p>
-<hr />
-</div>
-</div>
-<div id="graph-reading-transformations-introduction" class="section level2 hasAnchor" number="4.4">
-<h2><span class="header-section-number">4.4</span> Graph Reading &amp; Transformations (Introduction)<a href="functions-and-graphs.html#graph-reading-transformations-introduction" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Reading a graph well means being able to answer questions like: where is the function increasing or decreasing? Where is it at its highest or lowest? Does it cross the x-axis, and if so, what does that mean in context?</p>
-<p>You’ll also start noticing that many graphs are <em>shifted</em>, <em>stretched</em>, or <em>flipped</em> versions of a simpler graph — for example, a temperature curve shifted upward because of climate warming, or a dose-response curve stretched horizontally because a drug takes longer to act. We’ll formalize these transformations with algebra in Chapter 6; for now, practice describing them in words.</p>
-<div class="promptbox">
-<p><strong>Describing a Shift</strong></p>
-<p>Two years of daily temperature data are plotted on the same axes. The second year’s curve has exactly the same shape as the first year’s, just consistently 1.5°C higher at every point in time. How would you describe this transformation in one sentence?</p>
-<div class="writein">
-
-</div>
-</div>
-<hr />
-</div>
-<div id="multipart-piecewise-functions" class="section level2 hasAnchor" number="4.5">
-<h2><span class="header-section-number">4.5</span> Multipart (Piecewise) Functions<a href="functions-and-graphs.html#multipart-piecewise-functions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>A <strong>piecewise function</strong> is defined by different formulas on different parts of its domain. These show up constantly in environmental policy — tiered water rates, emissions penalties, and staged regulatory thresholds are all piecewise by design.</p>
-<div id="worked-example-a-tiered-water-rate" class="section level3 hasAnchor" number="4.5.1">
-<h3><span class="header-section-number">4.5.1</span> Worked Example: A Tiered Water Rate<a href="functions-and-graphs.html#worked-example-a-tiered-water-rate" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>A utility charges residential customers for water using a tiered structure:</p>
-<ul>
-<li><span class="math inline">\($2.00\)</span> per unit for the first 10 units used</li>
-<li><span class="math inline">\($3.50\)</span> per unit for any usage beyond 10 units</li>
-</ul>
-<p>If <span class="math inline">\(x\)</span> is units used and <span class="math inline">\(C(x)\)</span> is the total cost, this is:</p>
+<div id="the-full-modeling-workflow" class="section level2 hasAnchor" number="11.3">
+<h2><span class="header-section-number">11.3</span> The Full Modeling Workflow<a href="sinusoidal-equations-modeling.html#the-full-modeling-workflow" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Every chapter in this book has built a piece of the same workflow: take a real quantity, decide what family of function best matches how it behaves, fit that function’s parameters to data, and use the resulting equation to predict, interpret, or solve. This section walks through that workflow start to finish, on a single dataset.</p>
+<div id="worked-example-from-data-to-prediction" class="section level3 hasAnchor" number="11.3.1">
+<h3><span class="header-section-number">11.3.1</span> Worked Example: From Data to Prediction<a href="sinusoidal-equations-modeling.html#worked-example-from-data-to-prediction" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Suppose a research buoy records water temperature at the surface of a lake every month for a year, and the values trace out a clear seasonal cycle: a summer peak around 22°C and a winter low around 6°C, with the peak occurring near the start of August (month 8, if January is month 1).</p>
+<p><strong>Step 1 — Choose the function family.</strong> A repeating annual cycle is a strong signal for a <strong>sinusoidal function</strong> (Chapter 9), not linear, exponential, or rational — this is the “shape of change” recognition skill from the very first chapter of this book, now applied to real data.</p>
+<p><strong>Step 2 — Extract amplitude and vertical shift from the peak and trough.</strong></p>
 <p><span class="math display">\[
-C(x) = \begin{cases} 2.00x &amp; 0 \le x \le 10 \\ 20.00 + 3.50(x-10) &amp; x &gt; 10 \end{cases}
+D = \frac{22+6}{2} = 14, \qquad A = \frac{22-6}{2} = 8
 \]</span></p>
-<p>Notice the second piece starts from <span class="math inline">\(20.00\)</span> — the cost of the first 10 units at the first rate — and adds the higher rate only for units <em>beyond</em> the 10th.</p>
-<p><strong>Evaluating the function:</strong> How much does 15 units cost?</p>
-<p>Since <span class="math inline">\(15 &gt; 10\)</span>, use the second piece:</p>
+<p><strong>Step 3 — Set the period.</strong> One full annual cycle: period <span class="math inline">\(=12\)</span> months, so <span class="math inline">\(B = \dfrac{2\pi}{12} = \dfrac{\pi}{6}\)</span>.</p>
+<p><strong>Step 4 — Set the phase shift using the peak location.</strong> Sine reaches its maximum a quarter-cycle (3 months) after it crosses the midline going up. Since the peak is at month 8, the midline-crossing (going up) is at month 5, so <span class="math inline">\(C = 5\)</span>.</p>
+<p><strong>Step 5 — Assemble the model.</strong></p>
 <p><span class="math display">\[
-C(15) = 20.00 + 3.50(15-10) = 20.00 + 17.50 = 37.50
+T(t) = 8\sin\left(\frac{\pi}{6}(t-5)\right) + 14
 \]</span></p>
-<div class="figure"><span style="display:block;" id="fig:tiered-rate-plot"></span>
-<img src="precalculus-environmental-science_files/figure-html/tiered-rate-plot-1.png" alt="Line graph of total cost in dollars against water units used. The line is steeper past 10 units, showing a kink at the tier boundary where the per-unit rate increases from $2.00 to $3.50." width="672" />
+<p><strong>Step 6 — Use it to predict.</strong> What temperature does the model predict for month 11 (November)?</p>
+<p><span class="math display">\[
+T(11) = 8\sin\left(\frac{\pi}{6}(11-5)\right)+14 = 8\sin(\pi)+14 = 8(0)+14 = 14°C
+\]</span></p>
+<div class="figure"><span style="display:block;" id="fig:lake-temp-model-plot"></span>
+<img src="precalculus-environmental-science_files/figure-html/lake-temp-model-plot-1.png" alt="Smooth wave curve showing lake surface temperature across 12 months, peaking near month 8 at 22 degrees Celsius and reaching a low near month 2 at 6 degrees Celsius, with a marked point at month 11 showing a predicted temperature of 14 degrees Celsius." width="672" />
 <p class="caption">
-Figure 4.1: A tiered water rate structure as a piecewise function of usage.
+Figure 11.1: A fitted sinusoidal model of lake surface temperature across a year, with the November prediction marked.
 </p>
 </div>
-</div>
-<div id="concept-check-evaluating-piecewise-functions" class="section level3 unnumbered hasAnchor">
-<h3>Concept Check: Evaluating Piecewise Functions<a href="functions-and-graphs.html#concept-check-evaluating-piecewise-functions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><strong>1. Using the tiered rate function above, what is <span class="math inline">\(C(8)\)</span>?</strong></p>
-<details>
-<summary>
-<strong>Click to reveal answer</strong>
-</summary>
-<p>Since <span class="math inline">\(8 \le 10\)</span>, use the first piece: <span class="math inline">\(C(8) = 2.00(8) = 16.00\)</span>.</p>
-</details>
-<p><strong>2. Why does the second piece of the function subtract 10 from <span class="math inline">\(x\)</span> before multiplying by 3.50?</strong></p>
-<details>
-<summary>
-<strong>Click to reveal answer</strong>
-</summary>
-<p>Because the higher rate only applies to units <em>beyond</em> the first 10 — <span class="math inline">\((x - 10)\)</span> counts just the units in the second tier, not the full usage amount. Multiplying <span class="math inline">\(3.50\)</span> by the full <span class="math inline">\(x\)</span> would incorrectly charge the higher rate on the first 10 units too.</p>
-</details>
-<p><strong>3. What input value marks the boundary between the two pieces, and what happens to the cost right at that boundary?</strong></p>
-<details>
-<summary>
-<strong>Click to reveal answer</strong>
-</summary>
-<p><span class="math inline">\(x = 10\)</span>. Both pieces agree there: <span class="math inline">\(C(10) = 2.00(10) = 20.00\)</span> from the first piece, and <span class="math inline">\(20.00 + 3.50(10-10) = 20.00\)</span> from the second piece — the function is continuous (no jump) at the boundary, it just changes slope.</p>
-</details>
 <hr />
 </div>
 </div>
-<div id="practice-build-a-piecewise-model" class="section level2 hasAnchor" number="4.6">
-<h2><span class="header-section-number">4.6</span> Practice: Build a Piecewise Model<a href="functions-and-graphs.html#practice-build-a-piecewise-model" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="what-are-you-practicing-1" class="section level3 hasAnchor" number="4.6.1">
-<h3><span class="header-section-number">4.6.1</span> What Are You Practicing?<a href="functions-and-graphs.html#what-are-you-practicing-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Building a piecewise function from a verbal description of a tiered policy or threshold-based rule, then evaluating it at specific inputs.</p>
+<div id="capstone-case-study" class="section level2 hasAnchor" number="11.4">
+<h2><span class="header-section-number">11.4</span> Capstone Case Study<a href="sinusoidal-equations-modeling.html#capstone-case-study" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="promptbox">
+<p><strong>Putting It All Together</strong></p>
+<p>A watershed manager wants to predict the seasonal peak concentration of a nutrient that spikes each spring due to snowmelt runoff, then decays over the summer as flows subside. Using tools from across this book, sketch — in words — how you would approach this:</p>
+<ul>
+<li>What shape of function would you use for the <em>spring spike and rise</em>? (Chapter 4 or 9?)</li>
+<li>What shape of function would you use for the <em>summer decay</em>? (Chapter 6?)</li>
+<li>What would you need to know about the data to fit the parameters of your chosen function(s)?</li>
+</ul>
+<div class="writein tall">
+
 </div>
-<div id="how-to-approach-these-problems-1" class="section level3 hasAnchor" number="4.6.2">
-<h3><span class="header-section-number">4.6.2</span> How to Approach These Problems<a href="functions-and-graphs.html#how-to-approach-these-problems-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<ol style="list-style-type: decimal">
-<li>Identify each “tier” or condition and the rule that applies within it.</li>
-<li>Write each piece using the correct rule and the correct domain restriction.</li>
-<li>Make sure the pieces agree (or intentionally disagree) at the boundary, and check that against the real-world scenario.</li>
-<li>Evaluate by first checking which piece the input falls into.</li>
-</ol>
 </div>
-<div id="practice-problems-1" class="section level3 hasAnchor" number="4.6.3">
-<h3><span class="header-section-number">4.6.3</span> Practice Problems<a href="functions-and-graphs.html#practice-problems-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><strong>1.</strong> A carbon tax charges nothing on a company’s first 1,000 tons of emissions per year, then <span class="math inline">\($40\)</span> per ton for any emissions beyond that. Write <span class="math inline">\(T(x)\)</span>, the total tax owed, as a piecewise function of emissions <span class="math inline">\(x\)</span> (in tons), and find <span class="math inline">\(T(1500)\)</span>.</p>
+<hr />
+</div>
+<div id="practice-capstone-modeling-project" class="section level2 hasAnchor" number="11.5">
+<h2><span class="header-section-number">11.5</span> Practice: Capstone Modeling Project<a href="sinusoidal-equations-modeling.html#practice-capstone-modeling-project" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="what-youre-practicing" class="section level3 hasAnchor" number="11.5.1">
+<h3><span class="header-section-number">11.5.1</span> What You’re Practicing<a href="sinusoidal-equations-modeling.html#what-youre-practicing" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Choosing the right function family from the whole course based on a system’s described behavior, fitting parameters from given features (peak, trough, timing, rate), and using the resulting model to predict or solve.</p>
+</div>
+<div id="practice-problems-8" class="section level3 hasAnchor" number="11.5.2">
+<h3><span class="header-section-number">11.5.2</span> Practice Problems<a href="sinusoidal-equations-modeling.html#practice-problems-8" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>1.</strong> A river’s turbidity (cloudiness) rises sharply after each rainstorm and then decays back toward a clear baseline over the following days, in a pattern that repeats after every storm but doesn’t cycle on a fixed calendar schedule. Which function family from this book best matches a single post-storm decay — exponential, sinusoidal, or quadratic? Explain your reasoning in one sentence.</p>
 <details>
 <summary>
 <strong>Click to reveal solution</strong>
 </summary>
+<p><strong>Exponential.</strong> A single storm’s turbidity spike decaying back toward a baseline is a decay-toward-equilibrium pattern (like the lake temperature after a cold snap in Chapter 6) — it isn’t a repeating annual cycle (which would call for sinusoidal), and it isn’t described by a single symmetric peak the way a quadratic optimization problem is.</p>
+</details>
+<p><strong>2.</strong> A coastal air temperature cycles annually with a high of 26°C in July (month 7) and a low of 10°C in January (month 1). Build a sinusoidal model <span class="math inline">\(T(t)\)</span> for this cycle, and predict the temperature in April (month 4).</p>
+<details>
+<summary>
+<strong>Click to reveal solution</strong>
+</summary>
+<p><span class="math inline">\(D = \dfrac{26+10}{2}=18\)</span>, <span class="math inline">\(A=\dfrac{26-10}{2}=8\)</span>, period 12 months so <span class="math inline">\(B=\dfrac{\pi}{6}\)</span>. Peak at month 7 means midline-crossing (rising) at month 4, so <span class="math inline">\(C=4\)</span>:</p>
 <p><span class="math display">\[
-T(x) = \begin{cases} 0 &amp; 0 \le x \le 1000 \\ 40(x-1000) &amp; x &gt; 1000 \end{cases}
+T(t) = 8\sin\left(\frac{\pi}{6}(t-4)\right)+18
 \]</span></p>
-<p><span class="math inline">\(T(1500) = 40(500) = 20{,}000\)</span> dollars.</p>
-</details>
-<p><strong>2.</strong> A stream is classified “impaired” if its dissolved oxygen drops below 4 mg/L. Suppose oxygen level is modeled by <span class="math inline">\(O(t) = 8 - 0.5t\)</span> for <span class="math inline">\(t\)</span> in days during a pollution event, valid only while <span class="math inline">\(O(t) \ge 0\)</span>. What is the domain of this model, and at what day does the stream become impaired?</p>
-<details>
-<summary>
-<strong>Click to reveal solution</strong>
-</summary>
-<p>The model is only physically meaningful while oxygen is non-negative: <span class="math inline">\(8 - 0.5t \ge 0 \Rightarrow t \le 16\)</span>, so domain is <span class="math inline">\(0 \le t \le 16\)</span>. Impairment (<span class="math inline">\(O(t) &lt; 4\)</span>): <span class="math inline">\(8-0.5t &lt; 4 \Rightarrow t &gt; 8\)</span>, so the stream becomes impaired after day 8.</p>
+<p>At <span class="math inline">\(t=4\)</span>: <span class="math inline">\(T(4) = 8\sin(0)+18 = 18°C\)</span> — which makes sense, since month 4 was defined as the midline-crossing point itself.</p>
 </details>
 <hr />
 </div>
 </div>
-<div id="skills-drills-2" class="section level2 hasAnchor" number="4.7">
-<h2><span class="header-section-number">4.7</span> Skills Drills<a href="functions-and-graphs.html#skills-drills-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="evaluating-functions" class="section level3 hasAnchor" number="4.7.1">
-<h3><span class="header-section-number">4.7.1</span> Evaluating Functions<a href="functions-and-graphs.html#evaluating-functions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Given <span class="math inline">\(f(x) = 3x^2 - 2x + 1\)</span>, evaluate:</p>
+<div id="skills-drills-mixed-review" class="section level2 hasAnchor" number="11.6">
+<h2><span class="header-section-number">11.6</span> Skills Drills: Mixed Review<a href="sinusoidal-equations-modeling.html#skills-drills-mixed-review" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A short mixed set, spanning tools from across the whole course.</p>
 <ol style="list-style-type: decimal">
-<li><span class="math inline">\(f(0)\)</span></li>
-<li><span class="math inline">\(f(2)\)</span></li>
-<li><span class="math inline">\(f(-1)\)</span></li>
-<li><span class="math inline">\(f(a)\)</span> (leave in terms of <span class="math inline">\(a\)</span>)</li>
+<li>Convert 2.5 metric tons to kg. <em>(Chapter 1)</em></li>
+<li>Find the intersection of <span class="math inline">\(y=2x+3\)</span> and <span class="math inline">\(y=-x+9\)</span>. <em>(Chapter 2)</em></li>
+<li>Evaluate the piecewise function <span class="math inline">\(f(x) = \begin{cases}x^2 &amp; x&lt;0\\2x &amp; x\ge0\end{cases}\)</span> at <span class="math inline">\(x=-3\)</span> and <span class="math inline">\(x=3\)</span>. <em>(Chapter 3)</em></li>
+<li>Find the vertex of <span class="math inline">\(f(x) = -x^2+6x\)</span>. <em>(Chapter 4)</em></li>
+<li>Given <span class="math inline">\(f(x)=x+1\)</span>, <span class="math inline">\(g(x)=3x\)</span>, find <span class="math inline">\((g\circ f)(2)\)</span>. <em>(Chapter 5)</em></li>
+<li>Solve <span class="math inline">\(4^x = 64\)</span>. <em>(Chapter 6)</em></li>
+<li>Convert <span class="math inline">\(120°\)</span> to radians. <em>(Chapter 7)</em></li>
+<li>Evaluate <span class="math inline">\(\sin(\pi/3)\)</span> using the unit circle. <em>(Chapter 8)</em></li>
+<li>Find the period of <span class="math inline">\(f(t) = 5\sin\left(\dfrac{\pi}{4}t\right)\)</span>. <em>(Chapter 9)</em></li>
 </ol>
 <details>
 <summary>
 <strong>Click to reveal answers</strong>
 </summary>
 <ol style="list-style-type: decimal">
-<li><span class="math inline">\(1\)</span></li>
-<li><span class="math inline">\(3(4)-4+1 = 9\)</span></li>
-<li><span class="math inline">\(3(1)+2+1 = 6\)</span></li>
-<li><span class="math inline">\(3a^2-2a+1\)</span></li>
-</ol>
-</details>
-</div>
-<div id="sketching-from-a-table" class="section level3 hasAnchor" number="4.7.2">
-<h3><span class="header-section-number">4.7.2</span> Sketching From a Table<a href="functions-and-graphs.html#sketching-from-a-table" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>For each table, state whether <span class="math inline">\(y\)</span> is a function of <span class="math inline">\(x\)</span>, and explain why or why not.</p>
-<ol style="list-style-type: decimal">
-<li><span class="math inline">\(x: 1,2,3,4 \quad y: 5,7,5,9\)</span></li>
-<li><span class="math inline">\(x: 1,2,2,4 \quad y: 5,7,8,9\)</span></li>
-<li><span class="math inline">\(x: -1,0,1 \quad y: 2,2,2\)</span></li>
-</ol>
-<details>
-<summary>
-<strong>Click to reveal answers</strong>
-</summary>
-<ol style="list-style-type: decimal">
-<li><strong>Yes</strong> — each <span class="math inline">\(x\)</span> appears once, each with one <span class="math inline">\(y\)</span>.</li>
-<li><strong>No</strong> — <span class="math inline">\(x=2\)</span> appears twice with two different <span class="math inline">\(y\)</span> values (7 and 8).</li>
-<li><strong>Yes</strong> — a constant function is still a valid function; repeated <span class="math inline">\(y\)</span> values are fine as long as each <span class="math inline">\(x\)</span> has only one.</li>
+<li><span class="math inline">\(2500\)</span> kg</li>
+<li><span class="math inline">\(2x+3=-x+9 \Rightarrow x=2, y=7\)</span>: <span class="math inline">\((2,7)\)</span></li>
+<li><span class="math inline">\(f(-3)=9\)</span>, <span class="math inline">\(f(3)=6\)</span></li>
+<li><span class="math inline">\(x=3\)</span>, <span class="math inline">\(f(3) = -(3)^2+6(3) = -9+18 = 9\)</span>: vertex <span class="math inline">\((3,9)\)</span></li>
+<li><span class="math inline">\(f(2)=3\)</span>, <span class="math inline">\(g(3)=9\)</span></li>
+<li><span class="math inline">\(x=3\)</span></li>
+<li><span class="math inline">\(\dfrac{2\pi}{3}\)</span></li>
+<li><span class="math inline">\(\dfrac{\sqrt3}{2}\)</span></li>
+<li><span class="math inline">\(\dfrac{2\pi}{\pi/4}=8\)</span></li>
 </ol>
 </details>
 <hr />
 </div>
-</div>
-<div id="test-1-preview-1" class="section level2 unnumbered hasAnchor">
-<h2>Test 1 Preview<a href="functions-and-graphs.html#test-1-preview-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>This chapter concludes the material covered on Test 1 (Chapters 1–3). See the Test 1 Review chapter in the back matter for practice materials.</p>
+<div id="test-4-preview-2" class="section level2 unnumbered hasAnchor">
+<h2>Test 4 Preview<a href="sinusoidal-equations-modeling.html#test-4-preview-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>This chapter concludes the material covered on Test 4 (Chapters 8–10) — the last test of the course. There is no cumulative final exam.</p>
 
 </div>
 </div>
@@ -613,8 +567,8 @@ T(x) = \begin{cases} 0 &amp; 0 \le x \le 1000 \\ 40(x-1000) &amp; x &gt; 1000 \e
           </div>
         </div>
       </div>
-<a href="lines-circles-linear-modeling.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="quadratic-functions-optimization.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="trigonometric-functions.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="precalculus-equation-sheet.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

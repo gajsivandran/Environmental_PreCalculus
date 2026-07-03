@@ -13,34 +13,229 @@ By the end of this chapter, you will be able to:
 
 ## Composition of Functions
 
-*(Notation and evaluation; chained unit-conversion example — e.g. depth -> pressure -> oxygen solubility.)*
+**Function composition** means feeding the output of one function into another as its input. We write this as \((g \circ f)(x) = g(f(x))\) — read "\(g\) of \(f\) of \(x\)," and evaluated from the inside out: first apply \(f\), then apply \(g\) to *that* result.
+
+Composition shows up constantly in environmental science because measurements are often separated by several converted steps: raw sensor voltage becomes a concentration, a concentration becomes a risk score, a risk score becomes a policy decision. Each of these steps is a function, and the whole pipeline is their composition.
+
+### Worked Example: Depth, Pressure, and Oxygen Solubility
+
+In a lake, pressure increases with depth, and the amount of oxygen water can hold (its solubility) depends on that pressure. Suppose:
+
+$$
+P(d) = 1 + 0.1d \qquad \text{(pressure in atm, as a function of depth \(d\) in meters)}
+$$
+$$
+S(P) = 9 + 0.5P \qquad \text{(oxygen solubility in mg/L, as a function of pressure \(P\))}
+$$
+
+**Step 1 — Recognize this as a composition.** Solubility depends on pressure, and pressure depends on depth — so solubility as a function of *depth* is \(S(P(d))\), the composition \((S \circ P)(d)\).
+
+**Step 2 — Substitute \(P(d)\) into \(S\).**
+
+$$
+S(P(d)) = 9 + 0.5\big(1+0.1d\big) = 9 + 0.5 + 0.05d = 9.5 + 0.05d
+$$
+
+**Step 3 — Evaluate at a specific depth, say \(d = 20\) m.**
+
+$$
+S(P(20)) = 9.5 + 0.05(20) = 10.5 \text{ mg/L}
+$$
+
+**Step 4 — Interpret.** At 20 m depth, this model predicts an oxygen solubility of 10.5 mg/L — and we found it *without* separately computing pressure and then plugging it in by hand each time; the composed function \(9.5+0.05d\) directly converts depth to solubility in one step.
 
 ### Concept Check: Evaluating Composite Functions {-}
 
-*(To be drafted.)*
+**1. Given \(f(x) = x+3\) and \(g(x) = 2x\), find \((g \circ f)(4)\).**
+
+<details>
+<summary><strong>Click to reveal answer</strong></summary>
+
+First \(f(4) = 7\), then \(g(7) = 14\). So \((g\circ f)(4) = 14\).
+
+</details>
+
+**2. Using the same \(f\) and \(g\), find \((f \circ g)(4)\). Is it the same as \((g \circ f)(4)\)?**
+
+<details>
+<summary><strong>Click to reveal answer</strong></summary>
+
+First \(g(4)=8\), then \(f(8) = 11\). So \((f\circ g)(4) = 11\), which is **different** from \((g\circ f)(4) = 14\) — composition is generally not commutative; order matters.
+
+</details>
+
+---
 
 ## Inverse Functions
 
-*(Existence, finding an inverse, verifying inverse pairs.)*
+An **inverse function**, written \(f^{-1}\), "undoes" what \(f\) does: if \(f(a) = b\), then \(f^{-1}(b) = a\). Composing a function with its inverse (in either order) returns the original input: \(f^{-1}(f(x)) = x\).
 
-## Applications of Composition & Inverses
+Not every function has an inverse. A function only has an inverse if it's **one-to-one** — each output comes from exactly one input (the horizontal-line-test counterpart to the vertical-line test from Chapter 3). If a function is not one-to-one, you often can't uniquely reverse it, because a given output could have come from more than one input.
 
-*(Inverting a dosage/concentration model to solve for input given output.)*
+### Finding an Inverse Algebraically
+
+To find \(f^{-1}(x)\) from \(y = f(x)\):
+
+1. Swap \(x\) and \(y\).
+2. Solve the new equation for \(y\).
+3. That solved expression is \(f^{-1}(x)\).
+
+### Worked Example: Inverting a Dosage Model
+
+Suppose a fixed dose of a controlled substance leads to a measured blood concentration, modeled by:
+
+$$
+C(x) = 2x + 1
+$$
+
+where \(x\) is dose (mg) and \(C\) is resulting concentration (ng/mL). A clinician measures a concentration and wants to know what dose produced it — that requires the *inverse* function.
+
+**Step 1 — Write as \(y = 2x+1\), then swap \(x\) and \(y\).**
+
+$$
+x = 2y + 1
+$$
+
+**Step 2 — Solve for \(y\).**
+
+$$
+y = \frac{x-1}{2}
+$$
+
+**Step 3 — Write the inverse function.**
+
+$$
+C^{-1}(x) = \frac{x-1}{2}
+$$
+
+**Step 4 — Use it.** If a measured concentration is \(15\) ng/mL, the dose that produced it was \(C^{-1}(15) = \dfrac{15-1}{2} = 7\) mg.
+
+### Verifying an Inverse
+
+To check that two functions are really inverses, confirm that composing them (in either order) returns the original input. Using the example above:
+
+$$
+C\big(C^{-1}(x)\big) = 2\left(\frac{x-1}{2}\right)+1 = (x-1)+1 = x \ \checkmark
+$$
 
 ### Concept Check: Checking Inverse Pairs {-}
 
-*(To be drafted.)*
+**1. Verify that \(f(x) = 3x-6\) and \(g(x) = \dfrac{x}{3}+2\) are inverses by computing \(f(g(x))\).**
+
+<details>
+<summary><strong>Click to reveal answer</strong></summary>
+
+$$
+f(g(x)) = 3\left(\frac{x}{3}+2\right)-6 = x+6-6 = x \ \checkmark
+$$
+
+Since composing them returns \(x\), they are inverses.
+
+</details>
+
+**2. Does \(f(x) = x^2\) have an inverse over all real numbers? Why or why not?**
+
+<details>
+<summary><strong>Click to reveal answer</strong></summary>
+
+**No** — \(f(x)=x^2\) is not one-to-one over all real numbers, since, for example, both \(f(2)=4\) and \(f(-2)=4\) give the same output from two different inputs. There's no way to uniquely "undo" it without restricting the domain (e.g., to \(x \ge 0\)).
+
+</details>
+
+---
+
+## Applications of Composition & Inverses
+
+Composition and inverses are especially powerful together: composition builds a multi-step conversion pipeline, and the inverse lets you run that pipeline *backward* — going from a downstream measurement back to an upstream cause.
+
+::: promptbox
+
+**Running a Pipeline Backward**
+
+Recall the depth-to-solubility composition from earlier in this chapter: \(S(P(d)) = 9.5 + 0.05d\). If a diver measures an oxygen solubility of 11.0 mg/L, how would you find the depth that produced it? You don't need to solve it yet — just describe, in words, what algebraic step you'd take first.
+
+<div class="writein"></div>
+:::
+
+---
 
 ## Practice: Chained Environmental Conversion Model
 
-*(To be drafted.)*
+### What Are You Practicing?
+
+Composing multi-step environmental conversions, and inverting a composed function to work backward from a measured output to an unknown input.
+
+### How to Approach These Problems
+
+1. Identify each step of the pipeline as its own function.
+2. Compose them in the correct order — the *first* physical step is the innermost function.
+3. Simplify the composed function into a single expression.
+4. To invert, swap the input/output variables in the composed function and solve.
+
+### Practice Problems
+
+**1.** A sensor's raw voltage reading \(v\) converts to a temperature via \(T(v) = 0.5v + 10\), and that temperature affects a chemical reaction rate via \(R(T) = 2T - 5\). Find \(R(T(v))\) as a single function of \(v\), and evaluate it at \(v = 8\).
+
+<details>
+<summary><strong>Click to reveal solution</strong></summary>
+
+\(R(T(v)) = 2(0.5v+10)-5 = v+20-5 = v+15\). At \(v=8\): \(R(T(8)) = 8+15=23\).
+
+</details>
+
+**2.** Using the depth-to-solubility model \(S(d) = 9.5+0.05d\) from earlier, find \(S^{-1}(d)\), then use it to find what depth produces a solubility of 11.0 mg/L.
+
+<details>
+<summary><strong>Click to reveal solution</strong></summary>
+
+Swap and solve: \(d = 9.5+0.05y \Rightarrow y = \dfrac{d-9.5}{0.05}\), so \(S^{-1}(d) = \dfrac{d-9.5}{0.05}\). At \(d=11.0\): \(S^{-1}(11.0) = \dfrac{1.5}{0.05} = 30\) m.
+
+</details>
+
+---
 
 ## Skills Drills
 
 ### Finding Inverses Algebraically
 
-*(To be drafted.)*
+Find the inverse of each function.
+
+1. \(f(x) = x - 7\)
+2. \(f(x) = 4x\)
+3. \(f(x) = \dfrac{x}{5}+2\)
+4. \(f(x) = -3x+9\)
+
+<details>
+<summary><strong>Click to reveal answers</strong></summary>
+
+1. \(f^{-1}(x) = x+7\)
+2. \(f^{-1}(x) = \dfrac{x}{4}\)
+3. \(f^{-1}(x) = 5(x-2) = 5x-10\)
+4. \(f^{-1}(x) = \dfrac{9-x}{3}\)
+
+</details>
 
 ### Composition Practice
 
-*(To be drafted.)*
+Given \(f(x) = x+2\) and \(g(x) = x^2\), evaluate:
+
+1. \((f\circ g)(3)\)
+2. \((g\circ f)(3)\)
+3. \((f \circ g)(x)\), simplified
+4. \((g \circ f)(x)\), simplified
+
+<details>
+<summary><strong>Click to reveal answers</strong></summary>
+
+1. \(g(3)=9\), \(f(9)=11\)
+2. \(f(3)=5\), \(g(5)=25\)
+3. \((f\circ g)(x) = x^2+2\)
+4. \((g\circ f)(x) = (x+2)^2\)
+
+</details>
+
+---
+
+## Test 2 Preview {-}
+
+This chapter concludes the material covered on Test 2 (Chapters 4–5). See the Test 2 Review chapter in the back matter for practice materials.

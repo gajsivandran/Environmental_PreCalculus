@@ -1,4 +1,4 @@
-# Sinusoidal Equations, Modeling & Final Review
+# Sinusoidal Equations & Modeling
 
 ## Learning Objectives
 
@@ -12,24 +12,188 @@ By the end of this chapter, you will be able to:
 
 ## Solving Sinusoidal Equations
 
-*(Solving for specific t-values.)*
+Solving a sinusoidal equation for a specific input follows the same pattern as the inverse-trig worked example in Chapter 9: isolate the sine (or cosine) term, apply the inverse function, then finish the algebra. The one new wrinkle worth naming explicitly here: because sine and cosine repeat every cycle, a sinusoidal equation almost always has **more than one valid solution** within a given time span, even though the inverse function only ever returns one of them directly.
+
+### Worked Example: Two Solutions, One Cycle
+
+Using the harbor tide model from Chapter 9, \(y(t) = 1.5\sin\left(\dfrac{\pi}{6}t\right)+2.5\), find **all** times \(t\) between 0 and 12 hours when the tide is at 3.5 m.
+
+**Step 1 — Isolate and apply the inverse, as before.**
+
+$$
+\sin\left(\frac{\pi}{6}t\right) = \frac{1}{1.5} \approx 0.667 \quad\Rightarrow\quad \frac{\pi}{6}t = \sin^{-1}(0.667) \approx 0.730
+$$
+
+$$
+t \approx 0.730 \times \frac{6}{\pi} \approx 1.39 \text{ hours}
+$$
+
+This matches the single solution found in Chapter 9 — but it isn't the only time in the 12-hour window when the tide hits 3.5 m.
+
+**Step 2 — Find the second solution using symmetry.** Sine is symmetric about its peak: if \(\theta_0\) is one solution to \(\sin(\theta) = k\), then \(\pi - \theta_0\) is the other solution within one cycle. So:
+
+$$
+\frac{\pi}{6}t = \pi - 0.730 \approx 2.412 \quad\Rightarrow\quad t \approx 2.412\times\frac{6}{\pi}\approx 4.61 \text{ hours}
+$$
+
+**Step 3 — Interpret.** The tide reaches 3.5 m **twice** in this 12-hour cycle: once around \(t\approx1.39\) hours (rising toward high tide) and again around \(t\approx4.61\) hours (falling back down from high tide). Reporting only the first answer from the inverse sine would have missed half the picture.
+
+::: promptbox
+
+**Why Two Solutions?**
+
+Sketch (or picture) the tide curve from the example above. Mark the horizontal line \(y=3.5\). How many times does the curve cross that line between \(t=0\) and \(t=12\)? Does that match the two solutions found above?
+
+<div class="writein"></div>
+:::
 
 ### Concept Check: Solving for a Specific Time {-}
 
-*(To be drafted.)*
+**1. For \(y(t) = 4\sin(t)\), one solution to \(y(t)=2\) is \(t = \sin^{-1}(0.5) = \pi/6\). What is the second solution within \(0\) to \(2\pi\)?**
+
+<details>
+<summary><strong>Click to reveal answer</strong></summary>
+
+Using the symmetry rule: \(t = \pi - \pi/6 = 5\pi/6\).
+
+</details>
+
+---
 
 ## The Full Modeling Workflow
 
-*(Data -> equation -> prediction, worked end-to-end on a seasonal dataset.)*
+Every chapter in this book has built a piece of the same workflow: take a real quantity, decide what family of function best matches how it behaves, fit that function's parameters to data, and use the resulting equation to predict, interpret, or solve. This section walks through that workflow start to finish, on a single dataset.
+
+### Worked Example: From Data to Prediction
+
+Suppose a research buoy records water temperature at the surface of a lake every month for a year, and the values trace out a clear seasonal cycle: a summer peak around 22°C and a winter low around 6°C, with the peak occurring near the start of August (month 8, if January is month 1).
+
+**Step 1 — Choose the function family.** A repeating annual cycle is a strong signal for a **sinusoidal function** (Chapter 9), not linear, exponential, or rational — this is the "shape of change" recognition skill from the very first chapter of this book, now applied to real data.
+
+**Step 2 — Extract amplitude and vertical shift from the peak and trough.**
+
+$$
+D = \frac{22+6}{2} = 14, \qquad A = \frac{22-6}{2} = 8
+$$
+
+**Step 3 — Set the period.** One full annual cycle: period \(=12\) months, so \(B = \dfrac{2\pi}{12} = \dfrac{\pi}{6}\).
+
+**Step 4 — Set the phase shift using the peak location.** Sine reaches its maximum a quarter-cycle (3 months) after it crosses the midline going up. Since the peak is at month 8, the midline-crossing (going up) is at month 5, so \(C = 5\).
+
+**Step 5 — Assemble the model.**
+
+$$
+T(t) = 8\sin\left(\frac{\pi}{6}(t-5)\right) + 14
+$$
+
+**Step 6 — Use it to predict.** What temperature does the model predict for month 11 (November)?
+
+$$
+T(11) = 8\sin\left(\frac{\pi}{6}(11-5)\right)+14 = 8\sin(\pi)+14 = 8(0)+14 = 14°C
+$$
+
+```{r lake-temp-model-plot, echo=FALSE, message=FALSE, warning=FALSE, fig.cap="A fitted sinusoidal model of lake surface temperature across a year, with the November prediction marked.", fig.alt="Smooth wave curve showing lake surface temperature across 12 months, peaking near month 8 at 22 degrees Celsius and reaching a low near month 2 at 6 degrees Celsius, with a marked point at month 11 showing a predicted temperature of 14 degrees Celsius."}
+library(ggplot2)
+
+t_vals <- seq(1, 12, by = 0.1)
+T_vals <- 8*sin((pi/6)*(t_vals-5)) + 14
+
+df <- data.frame(t = t_vals, T = T_vals)
+nov <- data.frame(t = 11, T = 14)
+
+ggplot(df, aes(x = t, y = T)) +
+  geom_line(color = "#1a5e3a", linewidth = 1) +
+  geom_point(data = nov, aes(x = t, y = T), color = "#9a2820", size = 3) +
+  annotate("text", x = 11, y = 15.2, label = "Nov prediction: 14°C", color = "#9a2820") +
+  labs(title = "Modeled Lake Surface Temperature",
+       x = "Month", y = "Temperature (°C)") +
+  theme_minimal()
+```
+
+---
 
 ## Capstone Case Study
 
-*(Predicting a future high-tide time or seasonal pollutant peak from a fitted sinusoidal model.)*
+::: promptbox
+
+**Putting It All Together**
+
+A watershed manager wants to predict the seasonal peak concentration of a nutrient that spikes each spring due to snowmelt runoff, then decays over the summer as flows subside. Using tools from across this book, sketch — in words — how you would approach this:
+
+- What shape of function would you use for the *spring spike and rise*? (Chapter 4 or 9?)
+- What shape of function would you use for the *summer decay*? (Chapter 6?)
+- What would you need to know about the data to fit the parameters of your chosen function(s)?
+
+<div class="writein tall"></div>
+:::
+
+---
 
 ## Practice: Capstone Modeling Project
 
-*(Ties together linear, quadratic, exponential, and trig tools where relevant.)*
+### What You're Practicing
+
+Choosing the right function family from the whole course based on a system's described behavior, fitting parameters from given features (peak, trough, timing, rate), and using the resulting model to predict or solve.
+
+### Practice Problems
+
+**1.** A river's turbidity (cloudiness) rises sharply after each rainstorm and then decays back toward a clear baseline over the following days, in a pattern that repeats after every storm but doesn't cycle on a fixed calendar schedule. Which function family from this book best matches a single post-storm decay — exponential, sinusoidal, or quadratic? Explain your reasoning in one sentence.
+
+<details>
+<summary><strong>Click to reveal solution</strong></summary>
+
+**Exponential.** A single storm's turbidity spike decaying back toward a baseline is a decay-toward-equilibrium pattern (like the lake temperature after a cold snap in Chapter 6) — it isn't a repeating annual cycle (which would call for sinusoidal), and it isn't described by a single symmetric peak the way a quadratic optimization problem is.
+
+</details>
+
+**2.** A coastal air temperature cycles annually with a high of 26°C in July (month 7) and a low of 10°C in January (month 1). Build a sinusoidal model \(T(t)\) for this cycle, and predict the temperature in April (month 4).
+
+<details>
+<summary><strong>Click to reveal solution</strong></summary>
+
+\(D = \dfrac{26+10}{2}=18\), \(A=\dfrac{26-10}{2}=8\), period 12 months so \(B=\dfrac{\pi}{6}\). Peak at month 7 means midline-crossing (rising) at month 4, so \(C=4\):
+
+$$
+T(t) = 8\sin\left(\frac{\pi}{6}(t-4)\right)+18
+$$
+
+At \(t=4\): \(T(4) = 8\sin(0)+18 = 18°C\) — which makes sense, since month 4 was defined as the midline-crossing point itself.
+
+</details>
+
+---
 
 ## Skills Drills: Mixed Review
 
-*(Mixed review across all chapter types, in preparation for the final exam.)*
+A short mixed set, spanning tools from across the whole course.
+
+1. Convert 2.5 metric tons to kg. *(Chapter 1)*
+2. Find the intersection of \(y=2x+3\) and \(y=-x+9\). *(Chapter 2)*
+3. Evaluate the piecewise function \(f(x) = \begin{cases}x^2 & x<0\\2x & x\ge0\end{cases}\) at \(x=-3\) and \(x=3\). *(Chapter 3)*
+4. Find the vertex of \(f(x) = -x^2+6x\). *(Chapter 4)*
+5. Given \(f(x)=x+1\), \(g(x)=3x\), find \((g\circ f)(2)\). *(Chapter 5)*
+6. Solve \(4^x = 64\). *(Chapter 6)*
+7. Convert \(120°\) to radians. *(Chapter 7)*
+8. Evaluate \(\sin(\pi/3)\) using the unit circle. *(Chapter 8)*
+9. Find the period of \(f(t) = 5\sin\left(\dfrac{\pi}{4}t\right)\). *(Chapter 9)*
+
+<details>
+<summary><strong>Click to reveal answers</strong></summary>
+
+1. \(2500\) kg
+2. \(2x+3=-x+9 \Rightarrow x=2, y=7\): \((2,7)\)
+3. \(f(-3)=9\), \(f(3)=6\)
+4. \(x=3\), \(f(3) = -(3)^2+6(3) = -9+18 = 9\): vertex \((3,9)\)
+5. \(f(2)=3\), \(g(3)=9\)
+6. \(x=3\)
+7. \(\dfrac{2\pi}{3}\)
+8. \(\dfrac{\sqrt3}{2}\)
+9. \(\dfrac{2\pi}{\pi/4}=8\)
+
+</details>
+
+---
+
+## Test 4 Preview {-}
+
+This chapter concludes the material covered on Test 4 (Chapters 8–10) — the last test of the course. There is no cumulative final exam.

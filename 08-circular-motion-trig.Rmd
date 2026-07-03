@@ -13,40 +13,199 @@ By the end of this chapter, you will be able to:
 
 ## Circular Motion Basics
 
-*(Seasonal daylight cycles, tidal motion, satellite orbit basics, wind turbine blade motion.)*
+Many environmental processes are **cyclical** — they repeat in a regular pattern over time, tracing out something conceptually similar to a point moving around a circle. Seasonal daylight hours, tidal height, and the rotation of a wind turbine blade all share this underlying structure: a quantity that sweeps through an angle at a steady rate and returns to where it started.
+
+If an object moves around a circle of radius \(r\) at a constant **angular speed** \(\omega\) (radians per unit time), the angle swept out after time \(t\) is:
+
+$$
+\theta(t) = \omega t
+$$
+
+and, from Chapter 7, the arc length traveled is \(s = r\theta = r\omega t\).
+
+::: promptbox
+
+**Two Kinds of Speed**
+
+A large wind turbine blade and a small one rotate at the same angular speed (say, one full rotation every 4 seconds). Which blade's *tip* is moving faster through the air — the long one or the short one? Why, even though their angular speed is identical?
+
+<div class="writein"></div>
+:::
+
+### Worked Example: A Turbine Blade Tip Speed
+
+A wind turbine blade is 40 m long and completes one full rotation every 4 seconds.
+
+**Step 1 — Find the angular speed.** One full rotation is \(2\pi\) radians, completed in 4 seconds:
+
+$$
+\omega = \frac{2\pi \text{ radians}}{4 \text{ s}} = \frac{\pi}{2} \text{ radians/s}
+$$
+
+**Step 2 — Find the linear (tip) speed using \(s = r\theta\), applied as a rate.** Since \(s = r\omega t\), the tip's speed is \(r\omega\):
+
+$$
+v = r\omega = 40 \times \frac{\pi}{2} = 20\pi \approx 62.8 \text{ m/s}
+$$
+
+**Step 3 — Interpret.** The blade tip moves at roughly 63 m/s — over 225 km/h — even though the whole blade completes the same *angular* rotation as any point closer to the hub. Points farther from the center cover more linear distance in the same rotation, which is exactly the intuition from the prompt box above.
+
+---
 
 ## Right-Triangle Trigonometry
 
-*(SOH-CAH-TOA; setting up and solving right-triangle problems.)*
+For a right triangle with one acute angle \(\theta\), the three basic trigonometric ratios relate the angle to the triangle's side lengths:
+
+$$
+\sin(\theta) = \frac{\text{opposite}}{\text{hypotenuse}}, \qquad \cos(\theta) = \frac{\text{adjacent}}{\text{hypotenuse}}, \qquad \tan(\theta) = \frac{\text{opposite}}{\text{adjacent}}
+$$
+
+### Worked Example: Estimating Canopy Height
+
+An ecologist stands 30 m from the base of a tree and measures the angle of elevation to its top as \(35°\).
+
+**Step 1 — Identify the triangle.** The horizontal distance (30 m) is the side *adjacent* to the angle; the tree height is the side *opposite* the angle.
+
+**Step 2 — Choose the ratio that relates opposite and adjacent.**
+
+$$
+\tan(35°) = \frac{\text{height}}{30}
+$$
+
+**Step 3 — Solve for height.**
+
+$$
+\text{height} = 30\tan(35°) \approx 30(0.7002) \approx 21.0 \text{ m}
+$$
+
+**Step 4 — Interpret.** The tree is approximately 21 meters tall — measured without ever needing to climb it or use a direct measuring tool, just an angle and a horizontal distance.
 
 ### Concept Check: Right-Triangle Trig Setup {-}
 
-*(To be drafted.)*
+**1. In the canopy example, why was tangent the right ratio to use, rather than sine or cosine?**
+
+<details>
+<summary><strong>Click to reveal answer</strong></summary>
+
+Tangent relates the **opposite** and **adjacent** sides, and those are exactly the two sides we knew or wanted (adjacent = 30 m horizontal distance, opposite = the unknown height). Sine and cosine both involve the hypotenuse, which we didn't know here.
+
+</details>
+
+**2. A ramp rises 2 m over a horizontal run of 15 m. What angle does the ramp make with the ground?**
+
+<details>
+<summary><strong>Click to reveal answer</strong></summary>
+
+\(\tan(\theta) = \dfrac{2}{15} \Rightarrow \theta = \tan^{-1}\left(\dfrac{2}{15}\right) \approx 7.6°\).
+
+</details>
+
+---
 
 ## The Unit Circle
 
-*(Standard angles; sine/cosine/tangent values.)*
+The **unit circle** is a circle of radius 1 centered at the origin. For any angle \(\theta\) (measured counterclockwise from the positive x-axis), the point where the angle's ray crosses the unit circle has coordinates \((\cos\theta, \sin\theta)\). This is what lets sine and cosine be defined for *any* angle, not just acute angles inside a right triangle.
+
+**Key standard angles** (in radians, with degrees noted):
+
+| \(\theta\) | \(0\) | \(\pi/6\) (30°) | \(\pi/4\) (45°) | \(\pi/3\) (60°) | \(\pi/2\) (90°) |
+|:---:|:---:|:---:|:---:|:---:|:---:|
+| \(\cos\theta\) | \(1\) | \(\dfrac{\sqrt3}{2}\) | \(\dfrac{\sqrt2}{2}\) | \(\dfrac12\) | \(0\) |
+| \(\sin\theta\) | \(0\) | \(\dfrac12\) | \(\dfrac{\sqrt2}{2}\) | \(\dfrac{\sqrt3}{2}\) | \(1\) |
+
+---
 
 ## Core Trig Identities (Introduction)
 
-*(Pythagorean identity and friends, introduced lightly.)*
+The single most important trig identity comes directly from the unit circle being, well, a circle of radius 1 — so every point \((\cos\theta, \sin\theta)\) on it satisfies the circle equation from Chapter 2 with \(r=1\):
+
+$$
+\sin^2(\theta) + \cos^2(\theta) = 1
+$$
+
+This is the **Pythagorean identity**, and it holds for *every* angle \(\theta\), not just the standard ones in the table above.
 
 ### Concept Check: Unit Circle Values {-}
 
-*(To be drafted.)*
+**1. Using the unit circle, what is \(\cos(\pi/3)\)?**
+
+<details>
+<summary><strong>Click to reveal answer</strong></summary>
+
+\(\cos(\pi/3) = \dfrac12\).
+
+</details>
+
+**2. If \(\sin(\theta) = 0.6\), use the Pythagorean identity to find \(\cos(\theta)\), assuming \(\theta\) is in the first quadrant (so cosine is positive).**
+
+<details>
+<summary><strong>Click to reveal answer</strong></summary>
+
+\(\cos^2(\theta) = 1 - 0.6^2 = 1-0.36=0.64 \Rightarrow \cos(\theta) = \sqrt{0.64} = 0.8\).
+
+</details>
+
+---
 
 ## Practice: Modeling a Rotational/Cyclical Process
 
-*(To be drafted.)*
+### What Are You Practicing?
+
+Connecting angular speed to linear (tip) speed, solving right-triangle problems for an unknown side or angle, and applying the Pythagorean identity.
+
+### How to Approach These Problems
+
+1. For rotational speed problems: find angular speed first (angle swept ÷ time), then multiply by radius for linear speed.
+2. For right-triangle problems: label which sides are opposite/adjacent relative to the angle you're using, then choose the matching ratio.
+3. For identity problems: substitute the known value into \(\sin^2\theta+\cos^2\theta=1\) and solve for the unknown, keeping track of sign based on which quadrant the angle is in.
+
+### Practice Problems
+
+**1.** A buoy bobs in a circular tidal eddy of radius 5 m, completing one loop every 20 seconds. Find its angular speed and its linear speed.
+
+<details>
+<summary><strong>Click to reveal solution</strong></summary>
+
+\(\omega = \dfrac{2\pi}{20} = \dfrac{\pi}{10}\) rad/s. Linear speed: \(v = r\omega = 5\times\dfrac{\pi}{10} = \dfrac{\pi}{2} \approx 1.57\) m/s.
+
+</details>
+
+**2.** A drone hovers and measures the angle of depression to a wildlife carcass on the ground as \(50°\), from a horizontal distance of 12 m. How high is the drone?
+
+<details>
+<summary><strong>Click to reveal solution</strong></summary>
+
+\(\tan(50°) = \dfrac{\text{height}}{12} \Rightarrow \text{height} = 12\tan(50°) \approx 12(1.19) \approx 14.3\) m.
+
+</details>
+
+---
 
 ## Skills Drills
 
 ### Evaluating Trig Functions at Standard Angles
 
-*(To be drafted.)*
+Evaluate each without a calculator, using the unit circle table above.
+
+1. \(\sin(\pi/6)\)
+2. \(\cos(\pi/4)\)
+3. \(\tan(\pi/3)\)
+4. \(\sin(\pi/2)\)
+5. \(\cos(0)\)
+
+<details>
+<summary><strong>Click to reveal answers</strong></summary>
+
+1. \(\dfrac12\)
+2. \(\dfrac{\sqrt2}{2}\)
+3. \(\dfrac{\sin(\pi/3)}{\cos(\pi/3)} = \dfrac{\sqrt3/2}{1/2} = \sqrt3\)
+4. \(1\)
+5. \(1\)
+
+</details>
 
 ---
 
-## Midterm 2 Preview {-}
+## Test 4 Preview {-}
 
-This chapter concludes the material covered on Midterm 2 (Chapters 5–8). See the Midterm 2 Review chapter in the back matter for practice materials.
+This chapter is the first of three chapters covered on Test 4. See the Test 4 Review chapter in the back matter once Chapters 9 and 10 are complete.

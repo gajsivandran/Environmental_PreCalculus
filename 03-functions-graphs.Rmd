@@ -13,38 +13,228 @@ By the end of this chapter, you will be able to:
 
 ## Function Definition & Notation
 
-*(What makes something a function; function notation review.)*
+A **function** is a rule that assigns exactly one output to each input. If \(x\) is the input and \(y\) is the output, we write \(y = f(x)\), read "\(f\) of \(x\)." The name \(f\) is arbitrary — you'll often see functions named for what they represent, like \(C(t)\) for concentration as a function of time, or \(T(h)\) for temperature as a function of elevation.
 
-## Domain & Range
+The defining rule — **exactly one output per input** — is what separates a function from a general relationship. If you can trace a vertical line through a graph and it crosses the curve more than once, the graph does *not* represent a function of \(x\), because that one input \(x\) would correspond to more than one output.
 
-*(Determining domain/range from context — e.g. a population function restricted to a season.)*
+::: promptbox
+
+**Is It a Function?**
+
+A graph shows water depth in a tidal channel over the course of a day — depth on the vertical axis, time of day on the horizontal axis. Could two different times of day have the exact same depth? Does that make it *not* a function? Discuss with a partner why or why not.
+
+<div class="writein"></div>
+:::
 
 ### Concept Check: Function vs. Non-Function {-}
 
-*(To be drafted.)*
+**1. A table lists 5 different sampling dates and the nitrate concentration measured on each. Is concentration a function of date?**
+
+<details>
+<summary><strong>Click to reveal answer</strong></summary>
+
+**Yes** — each date has exactly one recorded concentration. (Two different dates could, in principle, have the same concentration value — that's fine. What would break the function rule is one date having two different recorded concentrations.)
+
+</details>
+
+**2. A graph plots elevation (vertical axis) against distance along a river channel that loops back on itself, so a single distance-along-the-channel value corresponds to two different elevations where the loop crosses itself. Is elevation a function of distance here?**
+
+<details>
+<summary><strong>Click to reveal answer</strong></summary>
+
+**No.** One input (a given distance along the channel) maps to two different outputs (two different elevations), which violates the function rule.
+
+</details>
+
+---
+
+## Domain & Range
+
+The **domain** of a function is the set of all valid inputs; the **range** is the set of all possible outputs. In environmental modeling, domain and range are rarely "all real numbers" — they're restricted by what's physically or practically meaningful.
+
+### Worked Example: A Seasonal Population Function
+
+Suppose a model \(P(t) = 200 + 15t\) describes the population of a migratory bird species at a wetland, where \(t\) is measured in weeks since the birds arrive in spring, and the birds are only present at the wetland for a 20-week season.
+
+- **Domain:** \(0 \le t \le 20\) — the model has no meaning for \(t\) outside the season, since the birds aren't there at all.
+- **Range:** at \(t=0\), \(P=200\); at \(t=20\), \(P=200+15(20)=500\). So the range is \(200 \le P \le 500\).
+
+Notice that the *domain* is a restriction we impose based on context (the birds are only present for part of the year), while the *range* is a consequence we compute from the domain and the function rule.
+
+---
 
 ## Graph Reading & Transformations (Introduction)
 
-*(Reading key features off a graph; a first look at shifts, ahead of Chapter 6.)*
+Reading a graph well means being able to answer questions like: where is the function increasing or decreasing? Where is it at its highest or lowest? Does it cross the x-axis, and if so, what does that mean in context?
+
+You'll also start noticing that many graphs are *shifted*, *stretched*, or *flipped* versions of a simpler graph — for example, a temperature curve shifted upward because of climate warming, or a dose-response curve stretched horizontally because a drug takes longer to act. We'll formalize these transformations with algebra in Chapter 6; for now, practice describing them in words.
+
+::: promptbox
+
+**Describing a Shift**
+
+Two years of daily temperature data are plotted on the same axes. The second year's curve has exactly the same shape as the first year's, just consistently 1.5°C higher at every point in time. How would you describe this transformation in one sentence?
+
+<div class="writein"></div>
+:::
+
+---
 
 ## Multipart (Piecewise) Functions
 
-*(Tiered water-rate pricing or emissions-penalty schedules as piecewise functions.)*
+A **piecewise function** is defined by different formulas on different parts of its domain. These show up constantly in environmental policy — tiered water rates, emissions penalties, and staged regulatory thresholds are all piecewise by design.
+
+### Worked Example: A Tiered Water Rate
+
+A utility charges residential customers for water using a tiered structure:
+
+- \($2.00\) per unit for the first 10 units used
+- \($3.50\) per unit for any usage beyond 10 units
+
+If \(x\) is units used and \(C(x)\) is the total cost, this is:
+
+$$
+C(x) = \begin{cases} 2.00x & 0 \le x \le 10 \\ 20.00 + 3.50(x-10) & x > 10 \end{cases}
+$$
+
+Notice the second piece starts from \(20.00\) — the cost of the first 10 units at the first rate — and adds the higher rate only for units *beyond* the 10th.
+
+**Evaluating the function:** How much does 15 units cost?
+
+Since \(15 > 10\), use the second piece:
+
+$$
+C(15) = 20.00 + 3.50(15-10) = 20.00 + 17.50 = 37.50
+$$
+
+```{r tiered-rate-plot, echo=FALSE, message=FALSE, warning=FALSE, fig.cap="A tiered water rate structure as a piecewise function of usage.", fig.alt="Line graph of total cost in dollars against water units used. The line is steeper past 10 units, showing a kink at the tier boundary where the per-unit rate increases from $2.00 to $3.50."}
+library(ggplot2)
+
+x1 <- seq(0, 10, by = 0.5)
+x2 <- seq(10, 25, by = 0.5)
+df <- data.frame(
+  x = c(x1, x2),
+  cost = c(2.00 * x1, 20.00 + 3.50 * (x2 - 10))
+)
+
+ggplot(df, aes(x = x, y = cost)) +
+  geom_line(color = "#1a5e3a", linewidth = 1) +
+  geom_vline(xintercept = 10, linetype = "dashed", color = "grey60") +
+  labs(title = "Tiered Water Rate Structure",
+       x = "Units Used", y = "Total Cost ($)") +
+  theme_minimal()
+```
 
 ### Concept Check: Evaluating Piecewise Functions {-}
 
-*(To be drafted.)*
+**1. Using the tiered rate function above, what is \(C(8)\)?**
+
+<details>
+<summary><strong>Click to reveal answer</strong></summary>
+
+Since \(8 \le 10\), use the first piece: \(C(8) = 2.00(8) = 16.00\).
+
+</details>
+
+**2. Why does the second piece of the function subtract 10 from \(x\) before multiplying by 3.50?**
+
+<details>
+<summary><strong>Click to reveal answer</strong></summary>
+
+Because the higher rate only applies to units *beyond* the first 10 — \((x - 10)\) counts just the units in the second tier, not the full usage amount. Multiplying \(3.50\) by the full \(x\) would incorrectly charge the higher rate on the first 10 units too.
+
+</details>
+
+**3. What input value marks the boundary between the two pieces, and what happens to the cost right at that boundary?**
+
+<details>
+<summary><strong>Click to reveal answer</strong></summary>
+
+\(x = 10\). Both pieces agree there: \(C(10) = 2.00(10) = 20.00\) from the first piece, and \(20.00 + 3.50(10-10) = 20.00\) from the second piece — the function is continuous (no jump) at the boundary, it just changes slope.
+
+</details>
+
+---
 
 ## Practice: Build a Piecewise Model
 
-*(Building a piecewise model for a tiered utility/policy structure.)*
+### What Are You Practicing?
+
+Building a piecewise function from a verbal description of a tiered policy or threshold-based rule, then evaluating it at specific inputs.
+
+### How to Approach These Problems
+
+1. Identify each "tier" or condition and the rule that applies within it.
+2. Write each piece using the correct rule and the correct domain restriction.
+3. Make sure the pieces agree (or intentionally disagree) at the boundary, and check that against the real-world scenario.
+4. Evaluate by first checking which piece the input falls into.
+
+### Practice Problems
+
+**1.** A carbon tax charges nothing on a company's first 1,000 tons of emissions per year, then \($40\) per ton for any emissions beyond that. Write \(T(x)\), the total tax owed, as a piecewise function of emissions \(x\) (in tons), and find \(T(1500)\).
+
+<details>
+<summary><strong>Click to reveal solution</strong></summary>
+
+$$
+T(x) = \begin{cases} 0 & 0 \le x \le 1000 \\ 40(x-1000) & x > 1000 \end{cases}
+$$
+
+\(T(1500) = 40(500) = 20{,}000\) dollars.
+
+</details>
+
+**2.** A stream is classified "impaired" if its dissolved oxygen drops below 4 mg/L. Suppose oxygen level is modeled by \(O(t) = 8 - 0.5t\) for \(t\) in days during a pollution event, valid only while \(O(t) \ge 0\). What is the domain of this model, and at what day does the stream become impaired?
+
+<details>
+<summary><strong>Click to reveal solution</strong></summary>
+
+The model is only physically meaningful while oxygen is non-negative: \(8 - 0.5t \ge 0 \Rightarrow t \le 16\), so domain is \(0 \le t \le 16\). Impairment (\(O(t) < 4\)): \(8-0.5t < 4 \Rightarrow t > 8\), so the stream becomes impaired after day 8.
+
+</details>
+
+---
 
 ## Skills Drills
 
 ### Evaluating Functions
 
-*(To be drafted.)*
+Given \(f(x) = 3x^2 - 2x + 1\), evaluate:
+
+1. \(f(0)\)
+2. \(f(2)\)
+3. \(f(-1)\)
+4. \(f(a)\) (leave in terms of \(a\))
+
+<details>
+<summary><strong>Click to reveal answers</strong></summary>
+
+1. \(1\)
+2. \(3(4)-4+1 = 9\)
+3. \(3(1)+2+1 = 6\)
+4. \(3a^2-2a+1\)
+
+</details>
 
 ### Sketching From a Table
 
-*(To be drafted.)*
+For each table, state whether \(y\) is a function of \(x\), and explain why or why not.
+
+1. \(x: 1,2,3,4 \quad y: 5,7,5,9\)
+2. \(x: 1,2,2,4 \quad y: 5,7,8,9\)
+3. \(x: -1,0,1 \quad y: 2,2,2\)
+
+<details>
+<summary><strong>Click to reveal answers</strong></summary>
+
+1. **Yes** — each \(x\) appears once, each with one \(y\).
+2. **No** — \(x=2\) appears twice with two different \(y\) values (7 and 8).
+3. **Yes** — a constant function is still a valid function; repeated \(y\) values are fine as long as each \(x\) has only one.
+
+</details>
+
+---
+
+## Test 1 Preview {-}
+
+This chapter concludes the material covered on Test 1 (Chapters 1–3). See the Test 1 Review chapter in the back matter for practice materials.

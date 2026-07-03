@@ -12,30 +12,207 @@ By the end of this chapter, you will be able to:
 
 ## Graphs of Trig Functions
 
-*(Sine, cosine, tangent and their graphs.)*
+The graphs of \(\sin(\theta)\) and \(\cos(\theta)\) are smooth, repeating waves — direct pictures of the unit-circle coordinates from Chapter 8, plotted as \(\theta\) sweeps from \(0\) to \(2\pi\) and beyond. Both have the same basic wave shape; \(\cos(\theta)\) is simply \(\sin(\theta)\) shifted left by \(\pi/2\).
+
+```{r sin-cos-plot, echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Graphs of sine and cosine over two full periods.", fig.alt="Two overlapping smooth wave curves, sine and cosine, plotted against angle in radians from 0 to 4 pi. Both oscillate between -1 and 1, with cosine shifted slightly to the left relative to sine."}
+library(ggplot2)
+
+theta <- seq(0, 4*pi, length.out = 400)
+df <- data.frame(
+  theta = rep(theta, 2),
+  value = c(sin(theta), cos(theta)),
+  func = rep(c("sin", "cos"), each = length(theta))
+)
+
+ggplot(df, aes(x = theta, y = value, color = func)) +
+  geom_line(linewidth = 1) +
+  scale_color_manual(values = c("sin" = "#1a5e3a", "cos" = "#2e6ec4")) +
+  labs(title = "Sine and Cosine", x = expression(theta ~ "(radians)"), y = "Value", color = "") +
+  theme_minimal()
+```
+
+Every point where the curve crosses zero, reaches its peak, or reaches its trough tells you something about the cycle — and that vocabulary (**amplitude**, **period**, **phase shift**, **vertical shift**) is exactly what lets us fit these curves to real cyclical data.
+
+---
 
 ## Sinusoidal Functions
 
-*(Amplitude, period, phase shift, vertical shift; modeling seasonal temperature or tidal height.)*
+A general **sinusoidal function** is written:
+
+$$
+f(t) = A\sin\big(B(t-C)\big) + D
+$$
+
+- **Amplitude (\(A\))**: half the distance between the peak and trough — how far the curve swings above and below its midline.
+- **Period (\(2\pi/B\))**: how long one complete cycle takes.
+- **Phase shift (\(C\))**: how far the curve is shifted horizontally.
+- **Vertical shift (\(D\))**: the midline the curve oscillates around.
+
+### Worked Example: Modeling Daylight Hours
+
+Suppose daylight hours in Seattle over the course of a year are approximately:
+
+$$
+H(t) = 3.5\sin\left(\frac{2\pi}{365}(t - 80)\right) + 12.2
+$$
+
+where \(t\) is day of the year (\(t=1\) is Jan 1) and \(H(t)\) is hours of daylight.
+
+**Step 1 — Read off each parameter.** \(A = 3.5\), \(B = \dfrac{2\pi}{365}\), \(C = 80\), \(D = 12.2\).
+
+**Step 2 — Interpret each one.**
+
+- Amplitude \(3.5\): daylight swings 3.5 hours above and below the midline.
+- Period \(= \dfrac{2\pi}{2\pi/365} = 365\) days — one full cycle per year, as expected.
+- Phase shift \(80\): the curve is shifted so that day 80 (roughly the spring equinox) is where daylight is at the midline and increasing — a reasonable match for when day length crosses its average value on the way up.
+- Vertical shift \(12.2\): the average day length across the year is 12.2 hours.
+
+**Step 3 — Predict the longest day.** The maximum of \(\sin\) is 1, so the longest day has \(H = 3.5(1)+12.2 = 15.7\) hours.
+
+```{r daylight-plot, echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Modeled daylight hours across a calendar year.", fig.alt="Smooth wave curve showing daylight hours across 365 days, peaking near mid-year at about 15.7 hours and dipping near the start and end of the year to about 8.7 hours, centered on a midline of 12.2 hours."}
+library(ggplot2)
+
+t_vals <- 1:365
+H_vals <- 3.5*sin((2*pi/365)*(t_vals-80)) + 12.2
+
+df <- data.frame(t = t_vals, H = H_vals)
+
+ggplot(df, aes(x = t, y = H)) +
+  geom_line(color = "#1a5e3a", linewidth = 1) +
+  geom_hline(yintercept = 12.2, linetype = "dashed", color = "grey60") +
+  labs(title = "Modeled Daylight Hours (Seattle)",
+       x = "Day of Year", y = "Daylight (hours)") +
+  theme_minimal()
+```
 
 ### Concept Check: Identifying Amplitude/Period/Shift {-}
 
-*(To be drafted.)*
+**1. For \(f(t) = 4\sin\left(\dfrac{\pi}{6}t\right) + 10\), identify the amplitude, period, and vertical shift.**
+
+<details>
+<summary><strong>Click to reveal answer</strong></summary>
+
+Amplitude \(=4\). Period \(= \dfrac{2\pi}{\pi/6} = 12\). Vertical shift \(=10\) (no phase shift, since there's no \((t-C)\) term).
+
+</details>
+
+**2. If a tidal height model has amplitude 1.2 m and vertical shift 3 m, what are the highest and lowest tide heights it predicts?**
+
+<details>
+<summary><strong>Click to reveal answer</strong></summary>
+
+Highest: \(3+1.2 = 4.2\) m. Lowest: \(3-1.2 = 1.8\) m.
+
+</details>
+
+---
 
 ## Inverse Trigonometric Functions
 
-*(Definitions, restricted domains; solving for time-of-year using inverse trig.)*
+Just as with the general inverses from Chapter 5, an inverse trig function undoes a trig function — but with a caveat: since sine, cosine, and tangent are *not* one-to-one (they repeat forever), their inverses are only defined by restricting to one cycle's worth of output. \(\sin^{-1}(x)\) (also written \(\arcsin(x)\)) returns an angle between \(-\pi/2\) and \(\pi/2\); \(\cos^{-1}(x)\) returns an angle between \(0\) and \(\pi\).
+
+### Worked Example: Solving for Time-of-Year
+
+Using the daylight model \(H(t) = 3.5\sin\left(\frac{2\pi}{365}(t-80)\right)+12.2\), find a day of the year when daylight is exactly 14 hours.
+
+**Step 1 — Isolate the sine term.**
+
+$$
+14 - 12.2 = 3.5\sin\left(\frac{2\pi}{365}(t-80)\right) \Rightarrow \sin\left(\frac{2\pi}{365}(t-80)\right) = \frac{1.8}{3.5} \approx 0.514
+$$
+
+**Step 2 — Apply the inverse sine.**
+
+$$
+\frac{2\pi}{365}(t-80) = \sin^{-1}(0.514) \approx 0.539 \text{ radians}
+$$
+
+**Step 3 — Solve for \(t\).**
+
+$$
+t - 80 = 0.539 \times \frac{365}{2\pi} \approx 31.3 \quad \Rightarrow \quad t \approx 111.3
+$$
+
+**Step 4 — Interpret.** Day 111 of the year (roughly late April) is predicted to have 14 hours of daylight. (Because sine repeats, there's a second day later in the year with the same daylight total, on the way back down — inverse sine only hands you one of the two solutions directly.)
+
+---
 
 ## Practice: Fit a Sinusoidal Model to Seasonal Data
 
-*(To be drafted.)*
+### What Are You Practicing?
+
+Reading amplitude, period, phase shift, and vertical shift off a sinusoidal equation or graph, and using inverse trig to solve for an unknown input.
+
+### How to Approach These Problems
+
+1. Match the given equation to the general form \(A\sin(B(t-C))+D\) term by term.
+2. Compute period as \(2\pi/B\) if you need it.
+3. To solve for an unknown \(t\), isolate the sine or cosine term first, then apply the inverse function, then finish solving algebraically.
+
+### Practice Problems
+
+**1.** Tidal height at a harbor is modeled by \(y(t) = 1.5\sin\left(\dfrac{\pi}{6}t\right) + 2.5\), \(t\) in hours after midnight. Find the amplitude, period, and predicted high and low tide heights.
+
+<details>
+<summary><strong>Click to reveal solution</strong></summary>
+
+Amplitude \(=1.5\). Period \(=\dfrac{2\pi}{\pi/6}=12\) hours. High tide: \(2.5+1.5=4.0\) m. Low tide: \(2.5-1.5=1.0\) m.
+
+</details>
+
+**2.** Using the same tidal model, find a time \(t\) (between 0 and 6) when the tide height is exactly 3.5 m.
+
+<details>
+<summary><strong>Click to reveal solution</strong></summary>
+
+\(3.5-2.5 = 1.5\sin\left(\dfrac{\pi}{6}t\right) \Rightarrow \sin\left(\dfrac{\pi}{6}t\right) = \dfrac{1}{1.5} \approx 0.667\). Then \(\dfrac{\pi}{6}t = \sin^{-1}(0.667)\approx 0.730\), so \(t \approx 0.730\times\dfrac{6}{\pi}\approx 1.39\) hours after midnight.
+
+</details>
+
+---
 
 ## Skills Drills
 
 ### Graphing Transformed Sinusoids
 
-*(To be drafted.)*
+For each function, state the amplitude, period, and vertical shift.
+
+1. \(f(t) = 2\sin(t) + 5\)
+2. \(f(t) = 6\sin\left(\dfrac{\pi}{4}t\right)\)
+3. \(f(t) = 0.5\sin(2t) - 3\)
+4. \(f(t) = 10\sin\left(\dfrac{\pi}{12}t\right) + 20\)
+
+<details>
+<summary><strong>Click to reveal answers</strong></summary>
+
+1. Amplitude 2, period \(2\pi\), vertical shift 5
+2. Amplitude 6, period \(\dfrac{2\pi}{\pi/4}=8\), vertical shift 0
+3. Amplitude 0.5, period \(\dfrac{2\pi}{2}=\pi\), vertical shift \(-3\)
+4. Amplitude 10, period \(\dfrac{2\pi}{\pi/12}=24\), vertical shift 20
+
+</details>
 
 ### Evaluating Inverse Trig Functions
 
-*(To be drafted.)*
+Evaluate each (in radians).
+
+1. \(\sin^{-1}(1)\)
+2. \(\cos^{-1}(0)\)
+3. \(\sin^{-1}(0.5)\)
+4. \(\cos^{-1}(1)\)
+
+<details>
+<summary><strong>Click to reveal answers</strong></summary>
+
+1. \(\pi/2\)
+2. \(\pi/2\)
+3. \(\pi/6\)
+4. \(0\)
+
+</details>
+
+---
+
+## Test 4 Preview {-}
+
+This chapter is the second of three chapters covered on Test 4. See the Test 4 Review chapter in the back matter once Chapter 10 is complete.

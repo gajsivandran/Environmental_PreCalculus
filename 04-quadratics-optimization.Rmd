@@ -13,44 +13,234 @@ By the end of this chapter, you will be able to:
 
 ## Quadratic Form & the Vertex
 
-*(Standard form, vertex form; interpreting the vertex as a max/min.)*
+A **quadratic function** has the standard form
+
+$$
+f(x) = ax^2 + bx + c
+$$
+
+Its graph is a **parabola** — it opens upward if \(a>0\) and downward if \(a<0\). The single highest or lowest point on the parabola is called the **vertex**, and in **vertex form**:
+
+$$
+f(x) = a(x-h)^2 + k
+$$
+
+the vertex is simply \((h, k)\) — you can read it directly off the equation. This is the quadratic equivalent of what point-slope form was for lines: the same function, written in a form that makes one particular feature (here, the vertex) immediately visible.
+
+For a quadratic in standard form, the vertex's \(x\)-coordinate is:
+
+$$
+x = -\frac{b}{2a}
+$$
+
+::: promptbox
+
+**Why a Maximum, Not a Minimum?**
+
+A parabola modeling crop yield as a function of fertilizer amount opens *downward*. Before doing any algebra, what does that tell you about what happens if you apply either too little or too much fertilizer?
+
+<div class="writein"></div>
+:::
+
+---
 
 ## Completing the Square
 
-*(Method and worked examples.)*
+**Completing the square** converts standard form into vertex form. The core idea: take the \(x^2\) and \(x\) terms, and add and subtract the exact amount needed to make them a perfect square trinomial.
+
+### Worked Example: Converting a Yield Model
+
+Suppose crop yield (in bushels/acre) as a function of fertilizer applied (\(x\), in kg/acre) is modeled by:
+
+$$
+Y(x) = -2x^2 + 40x + 50
+$$
+
+**Step 1 — Factor \(a\) out of the first two terms.**
+
+$$
+Y(x) = -2(x^2 - 20x) + 50
+$$
+
+**Step 2 — Complete the square inside the parentheses.** Take half of \(-20\), square it: \((-10)^2 = 100\). Add and subtract it inside:
+
+$$
+Y(x) = -2(x^2 - 20x + 100 - 100) + 50 = -2\big[(x-10)^2 - 100\big] + 50
+$$
+
+**Step 3 — Distribute the \(-2\) and simplify.**
+
+$$
+Y(x) = -2(x-10)^2 + 200 + 50 = -2(x-10)^2 + 250
+$$
+
+**Step 4 — Read off the vertex and interpret.** Vertex: \((10, 250)\). Since \(a = -2 < 0\), this is a maximum: applying **10 kg/acre** of fertilizer is predicted to maximize yield at **250 bushels/acre**. Applying more or less than 10 kg/acre — in either direction — is predicted to reduce yield.
 
 ### Concept Check: The Vertex Formula {-}
 
-*(To be drafted.)*
+**1. Find the vertex of \(f(x) = 3x^2 - 12x + 7\) using the vertex formula, without completing the square.**
+
+<details>
+<summary><strong>Click to reveal answer</strong></summary>
+
+\(x = -\dfrac{-12}{2(3)} = 2\). Then \(f(2) = 3(4)-12(2)+7 = 12-24+7=-5\). Vertex: \((2,-5)\).
+
+</details>
+
+**2. A quadratic has \(a > 0\). Is its vertex a maximum or a minimum, and how do you know from the shape of the graph?**
+
+<details>
+<summary><strong>Click to reveal answer</strong></summary>
+
+**Minimum.** When \(a>0\), the parabola opens upward, like a bowl — the vertex sits at the bottom, the lowest point on the graph.
+
+</details>
+
+---
 
 ## Graphing Parabolas
 
-*(Sketching from vertex form; effect of the leading coefficient.)*
+Once you know the vertex and the sign of \(a\), you can sketch a parabola quickly: plot the vertex, note whether it opens up or down, and use the \(y\)-intercept (\(f(0) = c\)) as a second point to gauge the width.
+
+```{r yield-parabola-plot, echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Crop yield as a function of fertilizer applied, with the vertex marking the yield-maximizing fertilizer rate.", fig.alt="Downward-opening parabola showing crop yield in bushels per acre against fertilizer applied in kilograms per acre. The curve rises from the origin, peaks at 10 kilograms per acre and 250 bushels per acre, then falls symmetrically as more fertilizer is applied."}
+library(ggplot2)
+
+x_vals <- seq(0, 20, by = 0.2)
+y_vals <- -2*(x_vals-10)^2 + 250
+
+df <- data.frame(x = x_vals, y = y_vals)
+vertex <- data.frame(x = 10, y = 250)
+
+ggplot(df, aes(x = x, y = y)) +
+  geom_line(color = "#1a5e3a", linewidth = 1) +
+  geom_point(data = vertex, aes(x = x, y = y), color = "#9a2820", size = 3) +
+  annotate("text", x = 10, y = 260, label = "Vertex (10, 250)", color = "#9a2820") +
+  labs(title = "Crop Yield vs. Fertilizer Applied",
+       x = "Fertilizer (kg/acre)", y = "Yield (bushels/acre)") +
+  theme_minimal()
+```
+
+---
 
 ## Optimization Problems
 
-*(Maximizing crop yield vs. fertilizer input; optimal harvest timing; runoff/spray trajectory.)*
+Many environmental questions boil down to finding a **maximum** or **minimum** of some quantity — the highest sustainable harvest, the lowest-cost containment design, the peak of a pollutant plume. When the relationship is quadratic, the vertex *is* the answer to the optimization question.
+
+### Worked Example: Minimizing the Cost of a Containment Berm
+
+An engineer needs to build a rectangular containment berm with a **fixed perimeter of 200 m** around a storage site, and wants to choose the dimensions that **maximize the enclosed area** (to contain as much runoff as possible for the same amount of berm material).
+
+**Step 1 — Set up variables.** Let \(x\) = one side length. Since the perimeter is fixed at 200 m, the two pairs of sides satisfy \(2x + 2y = 200\), so \(y = 100 - x\).
+
+**Step 2 — Write area as a function of one variable.**
+
+$$
+A(x) = x \cdot y = x(100-x) = -x^2 + 100x
+$$
+
+**Step 3 — Find the vertex.**
+
+$$
+x = -\frac{100}{2(-1)} = 50
+$$
+
+**Step 4 — Solve for the other dimension and interpret.** \(y = 100 - 50 = 50\). The area-maximizing berm is a \(50\text{ m} \times 50\text{ m}\) square, enclosing \(A(50) = 50(50) = 2500\) m² — the largest possible area for that fixed amount of perimeter material.
 
 ### Concept Check: Interpreting Max/Min in Context {-}
 
-*(To be drafted.)*
+**1. In the berm example, why does setting \(y = 100 - x\) let us write area as a function of \(x\) alone?**
+
+<details>
+<summary><strong>Click to reveal answer</strong></summary>
+
+Because the perimeter constraint ties \(x\) and \(y\) together — once \(x\) is chosen, \(y\) is *forced* to be \(100-x\) to keep the perimeter fixed at 200. Substituting removes the second variable, leaving a single-variable quadratic we can optimize with the vertex formula.
+
+</details>
+
+**2. If the optimization problem asked to *minimize* cost instead of *maximize* area, would you still look for the vertex?**
+
+<details>
+<summary><strong>Click to reveal answer</strong></summary>
+
+**Yes** — the vertex is always the extreme point of a parabola, whether that extreme is a maximum or a minimum depends on the sign of \(a\), not on which type of problem you're solving. A cost function that opens upward (\(a>0\)) has its vertex as a minimum, which is exactly what a cost-minimization problem is looking for.
+
+</details>
+
+---
 
 ## Practice: Optimization Case Study
 
-*(Minimize the cost of a containment structure, or similar.)*
+### What Are You Practicing?
+
+Turning a verbal optimization scenario into a quadratic function of a single variable, then using the vertex to answer the original question.
+
+### How to Approach These Problems
+
+1. Identify the quantity being optimized (this becomes your output, e.g. area, cost, yield).
+2. Identify the constraint that relates your variables (a fixed perimeter, a fixed budget, a fixed total).
+3. Use the constraint to eliminate one variable, leaving a single-variable quadratic.
+4. Find the vertex and interpret both coordinates in context.
+
+### Practice Problems
+
+**1.** A conservation group has \($6000\) to spend fencing a rectangular wildlife exclosure, where fencing costs \($30\) per meter of perimeter. They want to maximize enclosed area. Set up the area function and find the optimal dimensions.
+
+<details>
+<summary><strong>Click to reveal solution</strong></summary>
+
+Total perimeter affordable: \(6000/30 = 200\) m, same setup as the berm example: \(2x+2y=200 \Rightarrow y=100-x\), \(A(x) = -x^2+100x\), vertex at \(x=50\), so \(y=50\) — a 50 m × 50 m square, enclosing 2500 m².
+
+</details>
+
+**2.** The height of a projected water fountain arc at a restored wetland is modeled by \(h(t) = -5t^2 + 20t\), where \(h\) is height in meters and \(t\) is time in seconds. Find the maximum height and the time at which it occurs.
+
+<details>
+<summary><strong>Click to reveal solution</strong></summary>
+
+Vertex: \(t = -\dfrac{20}{2(-5)} = 2\). \(h(2) = -5(4)+20(2) = -20+40=20\). Maximum height of 20 m at \(t=2\) seconds.
+
+</details>
+
+---
 
 ## Skills Drills
 
 ### Completing the Square
 
-*(To be drafted.)*
+Convert each quadratic to vertex form.
+
+1. \(f(x) = x^2 - 6x + 5\)
+2. \(f(x) = 2x^2 + 8x + 3\)
+3. \(f(x) = -x^2 + 4x\)
+
+<details>
+<summary><strong>Click to reveal answers</strong></summary>
+
+1. \(f(x) = (x-3)^2 - 4\)
+2. \(f(x) = 2(x+2)^2 - 5\)
+3. \(f(x) = -(x-2)^2 + 4\)
+
+</details>
 
 ### Vertex-Finding
 
-*(To be drafted.)*
+Use the vertex formula to find the vertex of each function.
+
+1. \(f(x) = x^2 - 4x + 1\)
+2. \(f(x) = -3x^2 + 12x - 2\)
+3. \(f(x) = 0.5x^2 - 2x + 6\)
+
+<details>
+<summary><strong>Click to reveal answers</strong></summary>
+
+1. \(x=2\), \(f(2) = 4-8+1=-3\): vertex \((2,-3)\)
+2. \(x=2\), \(f(2)=-12+24-2=10\): vertex \((2,10)\)
+3. \(x=2\), \(f(2)=2-4+6=4\): vertex \((2,4)\)
+
+</details>
 
 ---
 
-## Midterm 1 Preview {-}
+## Test 2 Preview {-}
 
-This chapter concludes the material covered on Midterm 1 (Chapters 1–4). See the Midterm 1 Review chapter in the back matter for practice materials.
+This chapter is the first of two chapters covered on Test 2. See the Test 2 Review chapter in the back matter once Chapter 5 is complete.
