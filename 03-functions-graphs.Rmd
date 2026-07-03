@@ -1,0 +1,50 @@
+# Functions and Graphs
+
+## Learning Objectives
+
+By the end of this chapter, you will be able to:
+
+- Determine whether a relationship is a function from a graph, table, or equation.
+- Identify the domain and range of a function in context.
+- Read and interpret transformations of a graph.
+- Build and evaluate piecewise (multipart) functions.
+
+---
+
+## Function Definition & Notation
+
+*(What makes something a function; function notation review.)*
+
+## Domain & Range
+
+*(Determining domain/range from context — e.g. a population function restricted to a season.)*
+
+### Concept Check: Function vs. Non-Function {-}
+
+*(To be drafted.)*
+
+## Graph Reading & Transformations (Introduction)
+
+*(Reading key features off a graph; a first look at shifts, ahead of Chapter 6.)*
+
+## Multipart (Piecewise) Functions
+
+*(Tiered water-rate pricing or emissions-penalty schedules as piecewise functions.)*
+
+### Concept Check: Evaluating Piecewise Functions {-}
+
+*(To be drafted.)*
+
+## Practice: Build a Piecewise Model
+
+*(Building a piecewise model for a tiered utility/policy structure.)*
+
+## Skills Drills
+
+### Evaluating Functions
+
+*(To be drafted.)*
+
+### Sketching From a Table
+
+*(To be drafted.)*

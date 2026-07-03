@@ -3,7 +3,7 @@ bookdown::bs4_book:
   theme:
     primary: "#1a5e3a"
   repo:
-    base: https://github.com/gajsivandran/Environmental_Calculus
+    base: https://github.com/gajsivandran/Precalculus_Environmental_Science
     branch: main
     subdir: ""
   includes:
@@ -15,7 +15,7 @@ bookdown::gitbook:
       before: |
         <li><a href="./">QSCI 291</a></li>
       after: |
-        <li><a href="https://github.com/gajsivandran/Environmental_Calculus" target="_blank">Published with bookdown</a></li>
+        <li><a href="https://github.com/gajsivandran/Precalculus_Environmental_Science" target="_blank">Published with bookdown</a></li>
     download: ["pdf", "epub"]
 bookdown::pdf_book:
   includes:

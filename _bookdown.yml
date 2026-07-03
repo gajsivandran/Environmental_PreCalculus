@@ -1,24 +1,20 @@
-book_filename: "environmental-precalculus"
+book_filename: "precalculus-environmental-science"
 rmd_files:
   - index.Rmd
-  - 03-intro.Rmd
-  - 05-Derivatives.Rmd
-  - 07-Derivative_Rules.Rmd
-  - 08-application.Rmd
-  - 09-optimization.Rmd
-  - 101-index_wB.Rmd
-  - 102-intro-workbook.Rmd
-  - 103-Derivatives_WB.Rmd
-  - 104-DerivativesRules_WB.Rmd
-  - 105-Applications_WB.Rmd
-  - 106-optimization_WB.Rmd
-  - 20-Equation_sheet.Rmd
-  - 21-test_review.Rmd
-  - 22-test_review.Rmd
-  - 23-test_review.Rmd
-  - 24-test_review.Rmd
-  - 25-study_guides.Rmd
-  - Applications.Rmd
+  - 01-foundations.Rmd
+  - 02-lines-circles.Rmd
+  - 03-functions-graphs.Rmd
+  - 04-quadratics-optimization.Rmd
+  - 05-composition-inverses.Rmd
+  - 06-exponential-logarithmic.Rmd
+  - 07-rational-angular.Rmd
+  - 08-circular-motion-trig.Rmd
+  - 09-trig-functions.Rmd
+  - 10-sinusoidal-modeling.Rmd
+  - 20-equation-sheet.Rmd
+  - 21-test1-review.Rmd
+  - 22-test2-review.Rmd
+  - 23-final-review.Rmd
 
 output_dir: "docs"
 clean: [packages.bib, bookdown.bbl]

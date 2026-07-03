@@ -1,0 +1,52 @@
+# Circular Motion & Trigonometry
+
+## Learning Objectives
+
+By the end of this chapter, you will be able to:
+
+- Describe circular motion using angle and radius.
+- Set up and solve right-triangle trigonometry problems.
+- Evaluate trigonometric functions using the unit circle.
+- Recognize core trigonometric identities.
+
+---
+
+## Circular Motion Basics
+
+*(Seasonal daylight cycles, tidal motion, satellite orbit basics, wind turbine blade motion.)*
+
+## Right-Triangle Trigonometry
+
+*(SOH-CAH-TOA; setting up and solving right-triangle problems.)*
+
+### Concept Check: Right-Triangle Trig Setup {-}
+
+*(To be drafted.)*
+
+## The Unit Circle
+
+*(Standard angles; sine/cosine/tangent values.)*
+
+## Core Trig Identities (Introduction)
+
+*(Pythagorean identity and friends, introduced lightly.)*
+
+### Concept Check: Unit Circle Values {-}
+
+*(To be drafted.)*
+
+## Practice: Modeling a Rotational/Cyclical Process
+
+*(To be drafted.)*
+
+## Skills Drills
+
+### Evaluating Trig Functions at Standard Angles
+
+*(To be drafted.)*
+
+---
+
+## Midterm 2 Preview {-}
+
+This chapter concludes the material covered on Midterm 2 (Chapters 5–8). See the Midterm 2 Review chapter in the back matter for practice materials.

@@ -1,0 +1,54 @@
+# Foundations: Numbers, Units & Coordinate Systems
+
+## Learning Objectives
+
+By the end of this chapter, you will be able to:
+
+- Convert between units using dimensional analysis, including compound and derived units.
+- Plot and interpret points in a coordinate system.
+- Compute the distance between two points and interpret it in context.
+- Build simple models using coordinates and units drawn from environmental monitoring data.
+
+---
+
+## Introduction
+
+*(Course framing goes here — what this chapter sets up for the rest of the book.)*
+
+## Unit Conversion
+
+*(Dimensional analysis; converting pollutant concentrations, e.g. mg/L <-> ppm; unit chains.)*
+
+### Concept Check: Unit Conversion {-}
+
+*(To be drafted.)*
+
+## Coordinate Systems
+
+*(Cartesian coordinates; introducing monitoring-station locations as coordinate points.)*
+
+## The Distance Formula
+
+*(Deriving and applying the distance formula; distances between monitoring sites.)*
+
+### Concept Check: Distance Formula {-}
+
+*(To be drafted.)*
+
+## Practice: Multi-Step Conversions
+
+*(Practice problems tied to a running dataset, e.g. watershed sampling sites.)*
+
+## Skills Drills
+
+### Unit Conversion Chains
+
+*(To be drafted.)*
+
+### Plotting Points
+
+*(To be drafted.)*
+
+### Distance Calculations
+
+*(To be drafted.)*

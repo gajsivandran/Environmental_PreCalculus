@@ -1,0 +1,46 @@
+# Function Composition & Inverse Functions
+
+## Learning Objectives
+
+By the end of this chapter, you will be able to:
+
+- Evaluate and interpret composite functions.
+- Determine whether a function has an inverse, and find it when it does.
+- Verify that two functions are inverses of each other.
+- Apply composition and inverses to chained environmental conversions.
+
+---
+
+## Composition of Functions
+
+*(Notation and evaluation; chained unit-conversion example — e.g. depth -> pressure -> oxygen solubility.)*
+
+### Concept Check: Evaluating Composite Functions {-}
+
+*(To be drafted.)*
+
+## Inverse Functions
+
+*(Existence, finding an inverse, verifying inverse pairs.)*
+
+## Applications of Composition & Inverses
+
+*(Inverting a dosage/concentration model to solve for input given output.)*
+
+### Concept Check: Checking Inverse Pairs {-}
+
+*(To be drafted.)*
+
+## Practice: Chained Environmental Conversion Model
+
+*(To be drafted.)*
+
+## Skills Drills
+
+### Finding Inverses Algebraically
+
+*(To be drafted.)*
+
+### Composition Practice
+
+*(To be drafted.)*

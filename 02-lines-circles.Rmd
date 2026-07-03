@@ -1,0 +1,55 @@
+# Lines, Circles & Linear Modeling
+
+## Learning Objectives
+
+By the end of this chapter, you will be able to:
+
+- Write and interpret the equation of a line in slope-intercept and point-slope form.
+- Write and interpret the equation of a circle.
+- Fit a linear model to environmental data and interpret its slope and intercept.
+- Solve for the intersection of two lines and interpret the result in context.
+- Model uniform linear motion using parametric equations.
+
+---
+
+## Equations of Lines
+
+*(Slope-intercept form, point-slope form; interpreting slope as a rate.)*
+
+## Circles
+
+*(Equation of a circle; center/radius; buffer zones around a contamination source.)*
+
+### Concept Check: Circle Equations {-}
+
+*(To be drafted.)*
+
+## Linear Modeling from Data
+
+*(Fitting a line to real data — e.g. long-term CO2 or temperature trend.)*
+
+## Intersections of Lines
+
+*(Solving systems of linear equations; interpreting the intersection point.)*
+
+### Concept Check: Interpreting Slope {-}
+
+*(To be drafted.)*
+
+## Uniform Linear Motion & Parametric Equations
+
+*(Two moving point-sources modeled parametrically; where/when their paths cross.)*
+
+## Practice: Fit-a-Line Case Study
+
+*(To be drafted.)*
+
+## Skills Drills
+
+### Writing Line Equations
+
+*(To be drafted.)*
+
+### Solving Intersections Algebraically
+
+*(To be drafted.)*

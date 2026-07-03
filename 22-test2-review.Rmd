@@ -1,0 +1,12 @@
+# Midterm 2 Review Material {-}
+
+Below are resources to help you practice and prepare for Midterm 2.
+
+Midterm 2 will cover the material covered in Chapters 5–8 of this textbook:
+
+- function composition and inverse functions
+- exponential functions and logarithms
+- rational functions and angular measure
+- circular motion and trigonometry
+
+*(Practice problems to be drafted.)*

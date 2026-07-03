@@ -1,0 +1,41 @@
+# Trigonometric Functions
+
+## Learning Objectives
+
+By the end of this chapter, you will be able to:
+
+- Graph the six trigonometric functions.
+- Identify amplitude, period, phase shift, and vertical shift of a sinusoidal function.
+- Evaluate inverse trigonometric functions.
+
+---
+
+## Graphs of Trig Functions
+
+*(Sine, cosine, tangent and their graphs.)*
+
+## Sinusoidal Functions
+
+*(Amplitude, period, phase shift, vertical shift; modeling seasonal temperature or tidal height.)*
+
+### Concept Check: Identifying Amplitude/Period/Shift {-}
+
+*(To be drafted.)*
+
+## Inverse Trigonometric Functions
+
+*(Definitions, restricted domains; solving for time-of-year using inverse trig.)*
+
+## Practice: Fit a Sinusoidal Model to Seasonal Data
+
+*(To be drafted.)*
+
+## Skills Drills
+
+### Graphing Transformed Sinusoids
+
+*(To be drafted.)*
+
+### Evaluating Inverse Trig Functions
+
+*(To be drafted.)*

@@ -1,0 +1,42 @@
+# Rational Functions & Angular Measure
+
+## Learning Objectives
+
+By the end of this chapter, you will be able to:
+
+- Identify asymptotes and domain restrictions of a rational function.
+- Interpret the long-run behavior of a rational function in context.
+- Convert between degrees and radians.
+- Compute arc length.
+
+---
+
+## Rational Functions
+
+*(Asymptotes, domain restrictions, behavior; concentration dilution models — asymptote as equilibrium concentration.)*
+
+### Concept Check: Finding Asymptotes {-}
+
+*(To be drafted.)*
+
+## Angular Measure
+
+*(Degrees, radians, arc length; converting wind-direction/lat-long angular data.)*
+
+### Concept Check: Degree-Radian Conversion {-}
+
+*(To be drafted.)*
+
+## Practice: Dilution / Equilibrium Modeling
+
+*(To be drafted.)*
+
+## Skills Drills
+
+### Simplifying Rational Expressions
+
+*(To be drafted.)*
+
+### Radian Conversions
+
+*(To be drafted.)*

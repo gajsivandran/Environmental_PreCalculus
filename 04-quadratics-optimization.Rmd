@@ -1,0 +1,56 @@
+# Quadratic Functions & Optimization
+
+## Learning Objectives
+
+By the end of this chapter, you will be able to:
+
+- Identify the vertex of a quadratic function and interpret it in context.
+- Complete the square to convert between forms of a quadratic.
+- Graph a parabola from its equation.
+- Set up and solve optimization problems using quadratic functions.
+
+---
+
+## Quadratic Form & the Vertex
+
+*(Standard form, vertex form; interpreting the vertex as a max/min.)*
+
+## Completing the Square
+
+*(Method and worked examples.)*
+
+### Concept Check: The Vertex Formula {-}
+
+*(To be drafted.)*
+
+## Graphing Parabolas
+
+*(Sketching from vertex form; effect of the leading coefficient.)*
+
+## Optimization Problems
+
+*(Maximizing crop yield vs. fertilizer input; optimal harvest timing; runoff/spray trajectory.)*
+
+### Concept Check: Interpreting Max/Min in Context {-}
+
+*(To be drafted.)*
+
+## Practice: Optimization Case Study
+
+*(Minimize the cost of a containment structure, or similar.)*
+
+## Skills Drills
+
+### Completing the Square
+
+*(To be drafted.)*
+
+### Vertex-Finding
+
+*(To be drafted.)*
+
+---
+
+## Midterm 1 Preview {-}
+
+This chapter concludes the material covered on Midterm 1 (Chapters 1–4). See the Midterm 1 Review chapter in the back matter for practice materials.

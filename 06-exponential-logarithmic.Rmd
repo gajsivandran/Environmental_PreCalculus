@@ -1,0 +1,46 @@
+# Exponential Functions and Logarithms
+
+## Learning Objectives
+
+By the end of this chapter, you will be able to:
+
+- Model growth and decay using exponential functions.
+- Apply the definition and properties of logarithms.
+- Solve exponential and logarithmic equations.
+- Shift, dilate, and reflect exponential and logarithmic graphs.
+
+---
+
+## Exponential Growth & Decay
+
+*(Radioactive/pollutant decay, population growth; half-life problems.)*
+
+### Concept Check: Growth vs. Decay {-}
+
+*(To be drafted.)*
+
+## Logarithms
+
+*(Definition, properties; pH as a logarithmic scale.)*
+
+## Shifting, Dilation, and Reflection
+
+*(Transformations of exponential/log graphs.)*
+
+### Concept Check: Log Properties & Graph Transformations {-}
+
+*(To be drafted.)*
+
+## Practice: Half-Life / Decay-Rate Case Study
+
+*(To be drafted.)*
+
+## Skills Drills
+
+### Solving Exponential Equations
+
+*(To be drafted.)*
+
+### Log Rules
+
+*(To be drafted.)*

@@ -1,0 +1,35 @@
+# Sinusoidal Equations, Modeling & Final Review
+
+## Learning Objectives
+
+By the end of this chapter, you will be able to:
+
+- Solve sinusoidal equations for specific input values.
+- Carry out the full modeling workflow: data -> equation -> prediction.
+- Synthesize precalculus tools across the course in a capstone project.
+
+---
+
+## Solving Sinusoidal Equations
+
+*(Solving for specific t-values.)*
+
+### Concept Check: Solving for a Specific Time {-}
+
+*(To be drafted.)*
+
+## The Full Modeling Workflow
+
+*(Data -> equation -> prediction, worked end-to-end on a seasonal dataset.)*
+
+## Capstone Case Study
+
+*(Predicting a future high-tide time or seasonal pollutant peak from a fitted sinusoidal model.)*
+
+## Practice: Capstone Modeling Project
+
+*(Ties together linear, quadratic, exponential, and trig tools where relevant.)*
+
+## Skills Drills: Mixed Review
+
+*(Mixed review across all chapter types, in preparation for the final exam.)*

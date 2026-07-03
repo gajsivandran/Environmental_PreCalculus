@@ -1,0 +1,48 @@
+# Precalculus Equation Sheet {-}
+
+---
+
+**Lines & Circles**
+
+| Concept | Form |
+|:----:|:-----------------:|
+| Slope-intercept | \(y = mx + b\) |
+| Point-slope | \(y - y_1 = m(x - x_1)\) |
+| Circle | \((x-h)^2 + (y-k)^2 = r^2\) |
+| Distance formula | \(d = \sqrt{(x_2-x_1)^2 + (y_2-y_1)^2}\) |
+
+**Quadratics**
+
+| Concept | Form |
+|:----:|:-----------------:|
+| Standard form | \(f(x) = ax^2 + bx + c\) |
+| Vertex form | \(f(x) = a(x-h)^2 + k\) |
+| Vertex (from standard form) | \(x = -\dfrac{b}{2a}\) |
+
+**Exponential & Logarithmic**
+
+| Concept | Form |
+|:----:|:-----------------:|
+| Exponential growth/decay | \(f(t) = a \cdot b^t\) |
+| Logarithm definition | \(\log_b(x) = y \iff b^y = x\) |
+| Product rule | \(\log_b(xy) = \log_b(x) + \log_b(y)\) |
+| Quotient rule | \(\log_b(x/y) = \log_b(x) - \log_b(y)\) |
+| Power rule | \(\log_b(x^n) = n\log_b(x)\) |
+
+**Rational Functions & Angular Measure**
+
+| Concept | Form |
+|:----:|:-----------------:|
+| Degrees to radians | \(\text{radians} = \text{degrees} \times \dfrac{\pi}{180}\) |
+| Arc length | \(s = r\theta\) |
+
+**Trigonometry & Sinusoidal Functions**
+
+| Concept | Form |
+|:----:|:-----------------:|
+| Sinusoidal function | \(f(t) = A\sin\big(B(t-C)\big) + D\) |
+| Amplitude | \(A\) |
+| Period | \(\dfrac{2\pi}{B}\) |
+| Phase shift | \(C\) |
+| Vertical shift | \(D\) |
+| Pythagorean identity | \(\sin^2(\theta) + \cos^2(\theta) = 1\) |

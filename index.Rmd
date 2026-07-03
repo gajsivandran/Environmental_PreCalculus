@@ -1,5 +1,5 @@
 --- 
-title: "Environmental Calculus - Active Learning with Case Studies"
+title: "Precalculus for Environmental Science: Foundations for Modeling"
 author: "Gaj Sivandran"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
@@ -9,97 +9,92 @@ documentclass: book
 bibliography: [book.bib]  
 biblio-style: apalike
 link-citations: yes
-github-repo: gajsivandran/Environmental_Calculus
-description: "A textbook companion to the University of Washington QSci 291 class"
+github-repo: gajsivandran/Precalculus_Environmental_Science
+description: "A textbook companion to prepare students for the University of Washington QSci 291 Environmental Calculus sequence"
 ---
 
-# Why Calculus?
+# Why Precalculus?
 
-A salmon run peaks in a Pacific Northwest river. How quickly is the number of returning fish changing day by day? Over the entire season, how many total fish passed the counting station? A wildfire burns through a dry forest. How fast is the fire line advancing right now? How much total carbon has been released into the atmosphere since it started?
+A biologist notices that a lake's oxygen level swings up and down with the seasons, peaking every summer and bottoming out every winter. A hydrologist watches a contaminant plume spread outward from a spill site in a widening circle. A climate scientist fits a curve to fifty years of temperature data to project what next decade might look like.
 
-These questions—*how fast is something changing?* and *how much has accumulated?*—are the two core questions of calculus. They show up everywhere in the environmental sciences, and by the end of this book you'll have the tools to answer them.
+None of these questions can be answered with arithmetic alone. They require a language for describing *shapes of change*—lines, circles, curves, cycles—and the tools to translate a real system into an equation you can actually work with.
 
-Welcome to *Calculus for Environmental Science*.
+That language is precalculus.
 
-This book is your companion for exploring the natural world through the lens of calculus—especially the powerful ideas of **change** and **accumulation**. Calculus is not just symbols on a page. It's a way of asking meaningful questions, interpreting patterns, and making sense of the complex environmental systems you care about. And along the way, you'll discover that you are absolutely capable of mastering these ideas.
+Welcome to *Precalculus for Environmental Science*.
+
+This book is your on-ramp to the Environmental Calculus sequence. It is not a re-run of your high school math class. Every tool you build here—coordinate systems, functions, exponentials, trigonometry—is chosen because you will use it, directly, to model a real environmental system in the chapters and courses that follow.
 
 ---
 
 ## Why This Book?
 
-Most calculus textbooks lean heavily on physics examples—motion, velocity, and acceleration—because calculus was originally developed to solve physics problems. Those examples are powerful, and we'll use them from time to time because they give us an intuitive "feel" for how change works.
+Most precalculus textbooks are written to prepare students for *any* future math course, so their examples tend to be abstract: generic curves, unlabeled axes, "find x." That approach works, but it misses an opportunity—precalculus concepts map beautifully onto environmental systems, and concepts stick best when they're connected to something you care about.
 
-But calculus has grown far beyond physics. Today it is an essential tool across biology, ecology, environmental science, economics, and engineering. In this book, we anchor our learning in the systems you study as environmental scientists—because concepts stick best when they're connected to things you care about.
+In this book, every major idea is anchored in an environmental context:
 
-Environmental scientists face some of the most urgent challenges of our time: climate change, biodiversity loss, resource management, and pollution. Calculus gives us the mathematical language to describe these challenges precisely:
+- **Lines** model steady trends—rising sea level, a linear dose-response relationship.
+- **Circles** describe buffer zones, contamination radii, and orbital paths.
+- **Exponentials and logarithms** govern decay, growth, and scales like pH.
+- **Trigonometry and sinusoids** capture cycles—tides, seasons, daylight hours.
 
-- **Predict** how populations, pollutants, and temperatures evolve over time  
-- **Quantify** risks, impacts, and total accumulations  
-- **Model** natural and human systems with equations that capture real behavior  
-- **Communicate** findings with the clarity that decision-makers need  
-
-Throughout this book, you'll work with real environmental data, use visual and conceptual approaches, and practice skills that matter for sustainability. Our goal is not just to "get through calculus," but to see how these ideas open doors for discovery and problem-solving in the real world.
+Our goal isn't just to get you ready for the next exam. It's to help you see precalculus as a toolkit you'll reach for constantly as an environmental scientist.
 
 ---
 
-## What Is Calculus?
+## What Is Precalculus, Really?
 
-At its heart, calculus is the mathematics of **change** and **accumulation**. These two ideas appear in every branch of environmental science. Here are a few examples you'll encounter in this course:
+At its core, precalculus is the study of **relationships between quantities**—and the vocabulary for describing how those relationships behave. Here are a few examples you'll encounter in this book:
 
-| System | The Derivative (Rate of Change) | The Integral (Accumulation) |
-|--------|--------------------------------|----------------------------|
-| **Atmosphere** | How fast CO₂ concentration is rising right now | Total CO₂ added over a decade |
-| **Populations** | The growth rate of a salmon population this season | Total fish that passed a weir over the run |
-| **Hydrology** | How quickly streamflow is increasing during a storm | Total volume of water that flowed past a gauge |
-| **Toxicology** | Rate at which a contaminant leaches into groundwater | Total mass of contaminant accumulated in soil |
+| System | The Relationship | The Precalculus Tool |
+|--------|-------------------|------------------------|
+| **Atmosphere** | CO₂ concentration rising roughly steadily over decades | Linear functions |
+| **Toxicology** | A drug or pollutant concentration decaying over time | Exponential functions |
+| **Water chemistry** | Acidity spanning many orders of magnitude | Logarithmic scales |
+| **Tides & seasons** | A quantity that rises and falls in a repeating cycle | Sinusoidal functions |
+| **Contamination** | The boundary of an affected area around a point source | Circles & coordinate geometry |
 
-Notice the pattern: a *derivative* tells you how fast something is changing at a specific moment; an *integral* tells you how much has piled up over time. These two ideas are deeply connected—in fact, the Fundamental Theorem of Calculus says they are two sides of the same coin. We'll get there step by step.
-
-Traditionally, calculus uses physics examples like velocity (rate of change of position) and acceleration (rate of change of velocity). These are helpful because most of us can *feel* what it means to move faster or slower, so we'll use them when they make ideas clearer. But our main goal is always to connect calculus directly to the environment you are studying—population growth, forest carbon storage, water flow in rivers, and other natural systems.
-
-We'll build your understanding step by step, supported by graphs, data, and hands-on examples. And if it's been a while since your last math class, that's completely okay—you'll find plenty of support here.
+Notice the pattern: each real system has a *shape*, and each shape has a matching mathematical family. Learning to recognize which family fits a given system—and then finding the specific equation—is the central skill of this course.
 
 ::: promptbox
 
-**Change is Everywhere**
+**Shapes of Change**
 
-In a small group, discuss: where is *change* happening in this image? Try to identify at least three different processes. For each one, what might be changing, and how fast?
-
-![A river scene with water flowing between vegetated banks. Shrubs line the near bank, large trees stand in the background, and a deer drinks at the water's edge.](images/Nature.png){fig.alt="A photograph of a natural river scene. Water flows through a channel bordered by green shrubs and grasses on the near bank. Tall deciduous and coniferous trees fill the background. A deer stands at the edge of the stream, lowering its head to drink. The scene illustrates multiple environmental processes happening simultaneously—water flow, plant growth, animal behavior, and nutrient cycling."}
+Think of an environmental quantity you've read about recently (temperature, a pollutant level, a population count, tide height). In a small group, discuss: does it change steadily, does it grow or shrink multiplicatively, or does it repeat in cycles? What shape would its graph have?
 
 <div class="writein tall"></div>
 :::
 
 ---
 
-### Concept Check: Derivatives and Integrals {-}
+### Concept Check: Matching Systems to Math {-}
 
-See if you can identify which questions are about a *rate of change* (derivative) and which are about a *total accumulation* (integral).
+See if you can match each scenario to the type of function that best describes it.
 
-**1. A researcher measures that a lake's pH is dropping by 0.03 units per year. Is this a derivative or an integral?**
+**1. A tank drains so that the volume of water decreases by the same number of liters every minute. Linear, exponential, or sinusoidal?**
 
 <details>
 <summary><strong>Click to reveal answer</strong></summary>
 
-This is a **derivative** — it describes *how fast* the pH is changing at a given time (a rate of change per year).
+**Linear.** A constant rate of change (same amount lost every minute) is the hallmark of a linear relationship.
 
 </details>
 
-**2. Over the past 50 years, atmospheric CO₂ has increased by about 100 ppm. Is this a derivative or an integral?**
+**2. A radioactive tracer's activity drops by half every 8 days. Linear, exponential, or sinusoidal?**
 
 <details>
 <summary><strong>Click to reveal answer</strong></summary>
 
-This is an **integral** — it describes *how much total change* has accumulated over a period of time. To get this number, you would need to add up all the small year-by-year increases.
+**Exponential.** A fixed *fraction* lost per time interval (a "half-life") is the signature of exponential decay.
 
 </details>
 
-**3. A stream gauge shows that 2.4 million cubic meters of water passed a monitoring station during March. Is this a derivative or an integral?**
+**3. The number of daylight hours in Seattle rises and falls smoothly over the course of a year, repeating annually. Linear, exponential, or sinusoidal?**
 
 <details>
 <summary><strong>Click to reveal answer</strong></summary>
 
-This is an **integral** — it describes the *total volume accumulated* over the month. The streamflow rate (cubic meters per second) at any given instant would be the derivative.
+**Sinusoidal.** A repeating, cyclical pattern is best captured by a sine or cosine function.
 
 </details>
 
@@ -107,11 +102,11 @@ This is an **integral** — it describes the *total volume accumulated* over the
 
 ## How This Book Works
 
-Each chapter is designed to support you as an active learner. Here's what you'll encounter:
+Each chapter follows the same supportive structure:
 
-**Explanations with environmental context.** Key concepts are introduced with clear language, supported by graphs and real data from ecological and earth science systems. We define terms carefully and build ideas step by step.
+**Explanations with environmental context.** New ideas are introduced in plain language first, then formalized, always tied to a real environmental system.
 
-**Prompt boxes** are places to pause and think. Some ask you to discuss with a partner, some ask you to sketch or write, and some pose a question to wrestle with before reading on. They look like this:
+**Prompt boxes** are places to pause and think—some ask you to discuss with a partner, some ask you to sketch or write, some pose a question to sit with before reading on:
 
 ::: promptbox
 **Example Prompt**
@@ -121,50 +116,42 @@ This is where you'll find a question or activity. The write-in space below is fo
 <div class="writein"></div>
 :::
 
-**Concept checks** appear throughout each chapter. These are low-stakes questions with click-to-reveal answers so you can immediately test whether a concept has clicked. If you get one wrong, that's useful information—go back and re-read the section, or bring the question to class.
+**Concept checks** appear throughout each chapter—low-stakes, click-to-reveal questions so you can immediately test whether an idea has clicked.
 
-**Worked examples** walk through environmental problems step by step, showing not just the math but the reasoning: *what* we're doing, *why*, and *what the answer means in context*.
+**Worked examples** walk through environmental problems step by step: *what* we're doing, *why*, and *what the answer means in context*.
 
-**Workbook chapters** follow each content chapter. These give you space for guided practice, with prompts, write-in areas, and additional problems to work through at your own pace.
+**Skills drills** at the end of each chapter give you pure mechanical repetition—no context, just reps—to build fluency with the algebra itself.
+
+**Workbook chapters** (added in a later phase of this book) will follow each content chapter, giving you guided practice, write-in prompts, and additional problems.
 
 ---
 
 ## Success in This Class
 
-![Conceptual illustration of interconnected natural and cognitive systems.](images/Growth Mindset.png){fig.alt="Artistic illustration of a human head in profile with a glowing brain at the center. Branching connections extend outward from the brain to various environmental elements including trees, clouds, water, and landscapes, symbolizing connections between human thinking and natural systems. Additional icons such as graphs, waves, and molecules are faintly visible in the background, suggesting links between cognition, data, and environmental processes."}
-
 First and foremost, know this: **we believe in your ability to learn and grow.** You bring unique strengths and perspectives, and your effort matters here.
 
-Mistakes are not a setback—they are the very heart of learning. When you get something wrong, you uncover where your thinking needs refinement, and that creates the space for real growth. Struggle is not a sign you don't belong; it's proof that your brain is stretching and building new connections.
+If precalculus material feels rusty or unfamiliar, that's completely normal—it doesn't mean you don't belong in environmental science. Mistakes are how you find out where your thinking needs refinement, and that's exactly where growth happens.
 
-Just like in science, learning calculus is about **iteration**—trying, testing, revising, and improving. That process is what makes your understanding deeper and more durable.
-
-Assessments in this class are snapshots of your thinking at a particular moment in time. They are not final judgments about your intelligence, your worth, or your potential. You will have chances to revisit concepts, refine your understanding, and demonstrate what you've learned. Growth comes from re-engaging with the material, not from perfection on the first try.
-
-So give yourself permission to be imperfect. Keep engaging, reflecting, and asking questions. We'll be here to support you every step of the way.
+Just like fieldwork, learning math is iterative: try, test, revise, improve. Give yourself permission to be imperfect while you build these tools—you'll need them, and you're capable of mastering them.
 
 ---
 
 ## Looking Ahead
 
-By the end of this course, you will be able to:
+By the end of this book, you will be able to:
 
-- **Interpret derivatives** as rates of change in systems like population dynamics, streamflow, and atmospheric chemistry  
-- **Use differentiation rules** to analyze how environmental quantities respond to changing conditions  
-- **Find and interpret extrema** to identify tipping points, optimal strategies, and critical thresholds in ecological systems  
-- **Read and create graphs** that communicate environmental trends with mathematical precision  
-- **Set up and solve applied problems** using real data from the environmental sciences  
+- **Track units and coordinates** through environmental calculations and check results for reasonableness
+- **Build and interpret linear, quadratic, exponential, logarithmic, rational, and sinusoidal models** from real environmental data
+- **Compose and invert functions** to move between related environmental quantities
+- **Use trigonometry and circular motion** to describe cyclical environmental processes
+- **Read, graph, and transform functions** to communicate environmental trends with mathematical precision
 
-But even more important than any specific skill, you'll leave this course with a stronger belief in your ability to *learn mathematics*—and the confidence to keep growing, using math as a tool to explore, protect, and better understand the natural world around you.
+These are exactly the tools you'll need on day one of *Environmental Calculus*.
 
 ---
 
 ## About This Book
 
-I started writing this textbook to create a calculus resource that speaks directly to your interests as environmental scientists. My goal is to make calculus feel relevant, supportive, and connected to the systems you care about.
+This book is a companion volume to *Environmental Calculus*, written to prepare students for that course using the same environmental-science lens. It is a **work in progress**—expect rough edges, and expect them to get smoothed out with your help.
 
-That said, this is very much a **work in progress**. This draft will have typos, rough edges, and the occasional mistake. But here's the good news: it's also **free**.
-
-If you come across an error—big or small—please let me know so I can fix it for you and for future students. Your feedback is not just welcome, it's essential to making this a better resource.
-
-Thanks for your patience, your sharp eyes, and your willingness to learn from (and with) an evolving text. Together, we'll keep improving it.
+If you spot an error, or a section that doesn't quite click, please let us know so we can improve it for you and for future students.
