@@ -14,42 +14,342 @@ By the end of this chapter, you will be able to:
 
 ## Equations of Lines
 
-*(Slope-intercept form, point-slope form; interpreting slope as a rate.)*
+### Slope-Intercept and Point-Slope Form
+
+A line can be written in **slope-intercept form**:
+
+$$y = mx + b$$
+
+where \(m\) is the slope (the rate of change of \(y\) with respect to \(x\)) and \(b\) is the y-intercept (the value of \(y\) when \(x = 0\)).
+
+If instead you know one point \((x_1, y_1)\) on the line and the slope \(m\), it's often faster to use **point-slope form**:
+
+$$y - y_1 = m(x - x_1)$$
+
+Both forms describe the exact same line — point-slope form is just a shortcut for building the equation before simplifying it into slope-intercept form.
+
+::: promptbox
+
+**Slope as a Rate**
+
+Recall the Upstream Well station from Chapter 1. Suppose its nitrate concentration was 6.0 mg/L in year 0 and 9.6 mg/L in year 4. What are the "rise" and "run" here, in words, before you compute anything?
+
+<div class="writein"></div>
+:::
+
+### Worked Example: Writing a Trend Line
+
+Using the Upstream Well data above — 6.0 mg/L at year 0, 9.6 mg/L at year 4:
+
+**Step 1 — Compute the slope.**
+
+$$
+m = \frac{9.6 - 6.0}{4 - 0} = \frac{3.6}{4} = 0.9 \ \frac{\text{mg/L}}{\text{yr}}
+$$
+
+**Step 2 — Use point-slope form with \((0, 6.0)\).**
+
+$$
+y - 6.0 = 0.9(x - 0)
+$$
+
+**Step 3 — Simplify to slope-intercept form.**
+
+$$
+y = 0.9x + 6.0
+$$
+
+**Step 4 — Interpret.** Nitrate at this well is rising by about 0.9 mg/L per year, starting from a baseline of 6.0 mg/L. If this linear trend continues, we can predict future concentrations — which is exactly what we'll do in the next section.
+
+---
 
 ## Circles
 
-*(Equation of a circle; center/radius; buffer zones around a contamination source.)*
+### The Equation of a Circle
+
+A circle is the set of all points at a fixed distance (the **radius**, \(r\)) from a fixed point (the **center**, \((h,k)\)). Since the distance formula from Chapter 1 gives the distance between any point \((x,y)\) and the center, setting that distance equal to \(r\) — and squaring both sides to clear the square root — gives the equation of a circle:
+
+$$
+(x-h)^2 + (y-k)^2 = r^2
+$$
+
+### Worked Example: A Contamination Buffer Zone
+
+Suppose a chemical spill occurs at the Downstream Well, located at \((180, -40)\) in our watershed's local coordinate grid (meters east/north of the stream gauge). Regulators establish a 150 m buffer zone around the spill site where groundwater sampling is required.
+
+**Step 1 — Identify center and radius.** Center: \((180, -40)\). Radius: \(150\) m.
+
+**Step 2 — Write the equation.**
+
+$$
+(x - 180)^2 + (y + 40)^2 = 150^2 = 22500
+$$
+
+**Step 3 — Use it.** Is the Wetland Inlet, at \((60, 150)\), inside the buffer zone? Compute the distance from the spill site to the inlet and compare it to 150 m:
+
+$$
+d = \sqrt{(60-180)^2 + (150-(-40))^2} = \sqrt{(-120)^2 + 190^2} = \sqrt{14400+36100} = \sqrt{50500} \approx 224.7 \text{ m}
+$$
+
+Since \(224.7 > 150\), the Wetland Inlet sits **outside** the buffer zone.
 
 ### Concept Check: Circle Equations {-}
 
-*(To be drafted.)*
+**1. What is the center and radius of the circle \((x-3)^2 + (y+5)^2 = 49\)?**
+
+<details>
+<summary><strong>Click to reveal answer</strong></summary>
+
+Center \((3, -5)\), radius \(\sqrt{49} = 7\). Note the sign flips: the equation subtracts the center's coordinates, so \((y+5)^2\) means \(k = -5\).
+
+</details>
+
+**2. A monitoring buffer has center \((0,0)\) and radius 300 m. Is the point \((200, 220)\) inside, outside, or on the buffer boundary?**
+
+<details>
+<summary><strong>Click to reveal answer</strong></summary>
+
+Distance from origin: \(\sqrt{200^2+220^2} = \sqrt{40000+48400} = \sqrt{88400} \approx 297.3\) m, which is just **inside** the 300 m buffer.
+
+</details>
+
+**3. Why does the equation of a circle involve squared terms, while the equation of a line does not?**
+
+<details>
+<summary><strong>Click to reveal answer</strong></summary>
+
+A circle is defined by a *fixed distance* from a center, and distance itself involves a square root of squared differences (Chapter 1). Squaring both sides to remove the square root is what introduces the squared terms. A line, by contrast, is defined by a *constant rate of change*, which is a first-degree (unsquared) relationship between \(x\) and \(y\).
+
+</details>
+
+---
 
 ## Linear Modeling from Data
 
-*(Fitting a line to real data — e.g. long-term CO2 or temperature trend.)*
+Real data rarely falls exactly on a line — but if the underlying process is roughly linear, we can find the line that best fits the scatter of points. This is called **linear regression**, and while the full statistical method is beyond this course, the *result* is something you already know how to use: a slope-intercept equation you can evaluate and interpret.
+
+```{r co2-trend-plot, echo=FALSE, message=FALSE, warning=FALSE, fig.cap="A simulated multi-decade CO2 trend with a fitted linear model.", fig.alt="Scatter plot of atmospheric CO2 concentration in parts per million against year, showing a roughly linear upward trend from about 1980 to 2020, with a straight best-fit line drawn through the points."}
+library(ggplot2)
+
+set.seed(42)
+years <- seq(1980, 2020, by = 2)
+co2 <- 340 + 1.8 * (years - 1980) + rnorm(length(years), 0, 1.5)
+co2_df <- data.frame(Year = years, CO2_ppm = co2)
+
+ggplot(co2_df, aes(x = Year, y = CO2_ppm)) +
+  geom_point(color = "#1a5e3a", size = 2) +
+  geom_smooth(method = "lm", se = FALSE, color = "#2e6ec4") +
+  labs(title = "Atmospheric CO2 Trend (Simulated Data)",
+       x = "Year", y = "CO2 (ppm)") +
+  theme_minimal()
+```
+
+### Worked Example: Interpreting a Fitted Line
+
+Suppose fitting a line to the data above gives:
+
+$$
+C(t) = 1.8t + 336.4
+$$
+
+where \(t\) is years since 1980 and \(C(t)\) is CO₂ concentration in ppm.
+
+- **Slope (1.8):** CO₂ is rising by about 1.8 ppm per year, on average, over this period.
+- **Intercept (336.4):** The model predicts a concentration of 336.4 ppm at \(t=0\), i.e., in 1980.
+- **Prediction:** In 2030 (\(t = 50\)), the model predicts \(C(50) = 1.8(50)+336.4 = 426.4\) ppm.
+
+::: promptbox
+
+**Trusting a Linear Model**
+
+A linear model fit to 40 years of data is used to predict a value 50 years into the future. What could go wrong with that kind of extrapolation? Discuss with a partner.
+
+<div class="writein"></div>
+:::
+
+---
 
 ## Intersections of Lines
 
-*(Solving systems of linear equations; interpreting the intersection point.)*
+Two lines **intersect** at the point (or points) where they share the same \(x\) and \(y\) values simultaneously — in other words, where their equations are both true at once. Setting the two right-hand sides equal to each other and solving for \(x\) gives the intersection.
+
+### Worked Example: When Do Two Trends Cross?
+
+Suppose nitrate at the Upstream Well follows \(y = 0.9x + 6.0\) (from our earlier example), while nitrate at the Downstream Well follows \(y = 0.4x + 9.0\), where \(x\) is years since monitoring began.
+
+**Step 1 — Set the equations equal.**
+
+$$
+0.9x + 6.0 = 0.4x + 9.0
+$$
+
+**Step 2 — Solve for \(x\).**
+
+$$
+0.5x = 3.0 \quad \Rightarrow \quad x = 6
+$$
+
+**Step 3 — Solve for \(y\) using either equation.**
+
+$$
+y = 0.9(6) + 6.0 = 11.4
+$$
+
+**Step 4 — Interpret.** According to these two linear models, the Upstream and Downstream Wells are predicted to have the same nitrate concentration (11.4 mg/L) 6 years after monitoring began — even though they started at different levels and are changing at different rates.
 
 ### Concept Check: Interpreting Slope {-}
 
-*(To be drafted.)*
+**1. Two contamination trend lines have the same slope but different intercepts. Will they ever intersect?**
+
+<details>
+<summary><strong>Click to reveal answer</strong></summary>
+
+**No.** Equal slopes mean the lines are parallel — they change at the same rate and never converge or cross, since the vertical gap between them (the difference in intercepts) stays constant forever.
+
+</details>
+
+**2. In the worked example above, which well's nitrate level is rising faster, and how do you know?**
+
+<details>
+<summary><strong>Click to reveal answer</strong></summary>
+
+The **Upstream Well**, since its slope (0.9) is larger than the Downstream Well's slope (0.4) — it's gaining mg/L per year faster, even though it started lower.
+
+</details>
+
+---
 
 ## Uniform Linear Motion & Parametric Equations
 
-*(Two moving point-sources modeled parametrically; where/when their paths cross.)*
+So far, \(x\) and \(y\) have been related directly to each other. But sometimes it's more natural to describe *both* \(x\) and \(y\) as functions of a third variable — usually time, \(t\). This is a **parametric equation**.
+
+For an object moving at a constant velocity in a straight line, its position at time \(t\) is:
+
+$$
+x(t) = x_0 + v_x t, \qquad y(t) = y_0 + v_y t
+$$
+
+where \((x_0, y_0)\) is the starting position and \((v_x, v_y)\) is the constant velocity in each direction.
+
+### Worked Example: Do Two Plumes Meet?
+
+Two contaminant plumes are each modeled as a point moving through groundwater at constant velocity. Plume A starts at \((-100, 0)\) and moves at \((v_x, v_y) = (15, 5)\) m/year. Plume B starts at \((100, 100)\) and moves at \((v_x, v_y) = (-10, 0)\) m/year.
+
+**Step 1 — Write parametric equations for each plume.**
+
+$$
+\text{A:}\quad x_A(t) = -100 + 15t, \quad y_A(t) = 0 + 5t
+$$
+$$
+\text{B:}\quad x_B(t) = 100 - 10t, \quad y_B(t) = 100
+$$
+
+**Step 2 — Set the x-coordinates equal and solve for \(t\).**
+
+$$
+-100 + 15t = 100 - 10t \quad \Rightarrow \quad 25t = 200 \quad \Rightarrow \quad t = 8
+$$
+
+**Step 3 — Check whether the y-coordinates also match at that \(t\).**
+
+$$
+y_A(8) = 5(8) = 40, \qquad y_B(8) = 100
+$$
+
+**Step 4 — Interpret.** Since \(40 \neq 100\), the two plumes are at the *same x-position* at \(t=8\) years but at *different* y-positions — they pass each other without meeting. This is an important distinction: matching one coordinate is not enough to say two moving objects collide; both coordinates must match at the same time.
+
+---
 
 ## Practice: Fit-a-Line Case Study
 
-*(To be drafted.)*
+### What Are You Practicing?
+
+These problems combine writing line equations, fitting a trend, finding intersections, and reasoning about parametric motion — all applied to watershed and monitoring scenarios.
+
+### How to Approach These Problems
+
+1. Identify what kind of relationship you're modeling — a static line, a circle, or motion over time.
+2. Write down what's given (points, slopes, rates) before choosing an equation form.
+3. Solve algebraically, then interpret the result in the original context.
+
+### Practice Problems
+
+**1.** A sensor's calibration follows a linear relationship. At a true concentration of 0 mg/L, it reads 0.2 mg/L. At a true concentration of 10 mg/L, it reads 9.7 mg/L. Find the line relating true concentration (\(x\)) to sensor reading (\(y\)).
+
+<details>
+<summary><strong>Click to reveal solution</strong></summary>
+
+Slope: \(m = \dfrac{9.7-0.2}{10-0} = 0.95\). Using point-slope with \((0, 0.2)\): \(y - 0.2 = 0.95(x-0)\), so \(y = 0.95x + 0.2\).
+
+</details>
+
+**2.** A restricted-access zone is a circle centered at \((50, 50)\) with radius 80 m. Write its equation, and determine whether the point \((100, 120)\) falls inside it.
+
+<details>
+<summary><strong>Click to reveal solution</strong></summary>
+
+Equation: \((x-50)^2+(y-50)^2 = 6400\). Distance from center to point: \(\sqrt{50^2+70^2} = \sqrt{2500+4900}=\sqrt{7400}\approx 86.0\) m, which is **outside** the 80 m radius.
+
+</details>
+
+**3.** Two population models predict deer counts in a preserve: Model A: \(y = 12x + 200\), Model B: \(y = 8x + 260\), where \(x\) is years from now. In how many years do the models predict the same population, and what is it?
+
+<details>
+<summary><strong>Click to reveal solution</strong></summary>
+
+\(12x+200 = 8x+260 \Rightarrow 4x = 60 \Rightarrow x = 15\). Population: \(y = 12(15)+200 = 380\).
+
+</details>
+
+**4.** A drifting buoy starts at \((0, 200)\) and moves at \((v_x, v_y) = (20, -5)\) m/hr. Write its parametric equations and find its position after 6 hours.
+
+<details>
+<summary><strong>Click to reveal solution</strong></summary>
+
+\(x(t) = 20t\), \(y(t) = 200 - 5t\). At \(t=6\): \(x = 120\), \(y = 170\), so the buoy is at \((120, 170)\).
+
+</details>
+
+---
 
 ## Skills Drills
 
 ### Writing Line Equations
 
-*(To be drafted.)*
+Write the slope-intercept equation of the line through each pair of points.
+
+1. \((0,2)\) and \((4,10)\)
+2. \((1,5)\) and \((3,1)\)
+3. \((-2,0)\) and \((0,6)\)
+4. \((2,7)\) and \((2,-3)\) — what goes wrong here, and why?
+5. \((0,-4)\) and \((5,-4)\)
+
+<details>
+<summary><strong>Click to reveal answers</strong></summary>
+
+1. \(m=2\), \(y = 2x+2\)
+2. \(m=-2\), \(y=-2x+7\)
+3. \(m=3\), \(y=3x+6\)
+4. Both points share \(x=2\), so the "line" is vertical (\(x=2\)) — it has no slope-intercept form because the slope is undefined (division by zero when computing rise/run).
+5. \(m=0\), \(y=-4\) (a horizontal line)
+
+</details>
 
 ### Solving Intersections Algebraically
 
-*(To be drafted.)*
+Find the intersection point of each pair of lines.
+
+1. \(y = 3x+1\) and \(y = -2x+11\)
+2. \(y = 5x-4\) and \(y = 5x+2\)
+3. \(y = x\) and \(y = -x+8\)
+4. \(y = 0.5x+3\) and \(y = 2x-6\)
+
+<details>
+<summary><strong>Click to reveal answers</strong></summary>
+
+1. \(3x+1=-2x+11 \Rightarrow x=2, y=7\): \((2,7)\)
+2. Same slope, different intercepts: **no intersection** (parallel lines)
+3. \(x=-x+8 \Rightarrow x=4, y=4\): \((4,4)\)
+4. \(0.5x+3=2x-6 \Rightarrow 1.5x=9 \Rightarrow x=6, y=6\): \((6,6)\)
+
+</details>
