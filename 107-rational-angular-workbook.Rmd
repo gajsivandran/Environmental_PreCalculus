@@ -1,0 +1,140 @@
+# Rational Functions & Angular Measure — Workbook
+
+## Learning Objectives (Quick Self-Check)
+
+::: promptbox
+**Check your readiness:**
+For each objective, write one sentence in your own words or a question you still have:
+
+1. How do I find asymptotes and domain restrictions of a rational function?
+2. How do I interpret the long-run behavior of a rational function?
+3. How do I convert between degrees, radians, and arc length?
+
+**Notes:**
+<div class="writein tall"></div>
+:::
+
+---
+
+## Rational Functions & Equilibrium
+
+### Instructor Demo: A Different Dilution Model
+
+A pond's pollutant concentration is modeled by \(C(t) = \dfrac{15t+8}{t+3}\), \(t\) in hours.
+
+*(Instructor walks through this live: find the domain restriction, find the horizontal asymptote, and interpret it as an equilibrium concentration.)*
+
+<div class="writein tall"></div>
+
+### Your Turn: Rational Functions & Equilibrium
+
+::: promptbox
+**1.** Find the domain restriction of \(f(x) = \dfrac{2x+1}{x-5}\).
+
+**2.** Find the domain restriction of \(f(x) = \dfrac{7}{x+9}\).
+
+**3.** Find the horizontal asymptote of \(f(x) = \dfrac{4x+3}{x+1}\).
+
+**4.** Find the horizontal asymptote of \(f(x) = \dfrac{10x+50}{2x+5}\).
+
+**5.** A dilution model is \(C(t) = \dfrac{30t+2}{t+1}\), \(t\) in hours. Find the equilibrium concentration as \(t\to\infty\).
+
+**6.** A reservoir treatment model is \(C(t) = \dfrac{5t+100}{t+20}\). Evaluate \(C(0)\), \(C(20)\), and the horizontal asymptote. Describe in one sentence how the concentration changes over time.
+
+**Notes:**
+<div class="writein tall"></div>
+:::
+
+---
+
+## Angular Measure & Arc Length
+
+### Instructor Demo: A New Wedge Calculation
+
+A 250 m contamination buffer needs sampling along a \(75°\) wedge of its boundary.
+
+*(Instructor walks through this live: convert the angle to radians, then apply the arc length formula.)*
+
+<div class="writein tall"></div>
+
+### Your Turn: Angular Measure & Arc Length
+
+::: promptbox
+**1.** Convert \(150°\) to radians.
+
+**2.** Convert \(\dfrac{5\pi}{6}\) radians to degrees.
+
+**3.** A circle has radius 25 m. Find the arc length for an angle of \(\dfrac{\pi}{4}\) radians.
+
+**4.** A circle has radius 10 km. Find the arc length for an angle of \(40°\). *(Convert first.)*
+
+**5.** A directional antenna sweeps \(100°\) with an effective range (radius) of 3 km. Find the arc length swept.
+
+**6.** An animal tracking collar's antenna has a range of 1.5 km and sweeps an arc of length 2 km. What angle (in radians, then in degrees) does this correspond to? *(Hint: solve \(s=r\theta\) for \(\theta\).)*
+
+**Notes:**
+<div class="writein tall"></div>
+:::
+
+---
+
+## Challenge
+
+### Harder Versions
+
+::: promptbox
+**1.** A rational function is \(f(x) = \dfrac{ax+b}{x+c}\) with a known horizontal asymptote of 8 and a known vertical asymptote at \(x=-5\). If \(f(0) = 6\), find \(a\), \(b\), and \(c\). *(Hint: the vertical asymptote tells you \(c\); the horizontal asymptote tells you \(a\); then use \(f(0)\) to find \(b\).)*
+
+**2.** Two circular regions have radii 40 m and 60 m, sharing the same center. Find the area of the ring (annulus) between them that corresponds to a \(90°\) wedge. *(You'll need the sector-area formula \(A=\frac12 r^2\theta\), applied to each circle, then subtracted.)*
+
+**Notes:**
+<div class="writein tall"></div>
+:::
+
+### Environmental & Biological Applications
+
+::: promptbox
+**1.** A drug's blood concentration during continuous IV infusion approaches a steady-state level described by \(C(t) = \dfrac{50t+5}{t+2}\) (mg/L, \(t\) in hours). Find the steady-state concentration, and explain why a rational function (rather than, say, a linear function) is an appropriate model for a process that "levels off."
+
+**2.** A GPS-tracked migratory bird's flight path sweeps out an arc as it circles a thermal updraft with a radius of 200 m, completing three-quarters of a full circle before straightening out. Find the total arc length flown during that circling phase. *(Hint: three-quarters of a circle is what angle, in radians?)*
+
+**Notes:**
+<div class="writein tall"></div>
+:::
+
+---
+
+## Answer Key {-}
+
+<details>
+<summary><strong>Click to reveal Your Turn and Challenge answers</strong></summary>
+
+**Rational Functions & Equilibrium — Your Turn**
+
+1. \(x=5\)
+2. \(x=-9\)
+3. \(4\) (ratio of leading coefficients: \(4x/x=4\))
+4. \(5\) (ratio of leading coefficients: \(10x/2x=5\))
+5. \(30\) (ratio of leading coefficients \(30t/t=30\))
+6. \(C(0)=\dfrac{100}{20}=5\); \(C(20)=\dfrac{100+100}{40}=5\); horizontal asymptote \(=5\) (ratio \(5t/t=5\)). The concentration is **constant at 5** for all \(t\) in this particular model — every value, including the asymptote, equals 5, so there's no actual change over time here.
+
+**Angular Measure & Arc Length — Your Turn**
+
+1. \(\dfrac{5\pi}{6}\)
+2. \(150°\)
+3. \(s=25\times\dfrac{\pi}{4}=\dfrac{25\pi}{4}\approx19.6\) m
+4. \(40°=\dfrac{2\pi}{9}\) rad; \(s=10\times\dfrac{2\pi}{9}=\dfrac{20\pi}{9}\approx6.98\) km
+5. \(100°=\dfrac{5\pi}{9}\) rad; \(s=3\times\dfrac{5\pi}{9}=\dfrac{5\pi}{3}\approx5.24\) km
+6. \(\theta=\dfrac{s}{r}=\dfrac{2}{1.5}=1.\overline{3}\) rad \(\approx76.4°\)
+
+**Challenge — Harder Versions**
+
+1. Vertical asymptote at \(x=-5\) means \(c=5\) (since denominator is \(x+c=0 \Rightarrow x=-c\)). Horizontal asymptote of 8 means \(a=8\) (ratio of leading coefficients). Then \(f(0)=\dfrac{b}{c}=\dfrac{b}{5}=6 \Rightarrow b=30\). So \(f(x)=\dfrac{8x+30}{x+5}\).
+2. \(90°=\dfrac{\pi}{2}\) rad. Sector area (radius 60): \(\frac12(60)^2\left(\frac{\pi}{2}\right)=900\pi\). Sector area (radius 40): \(\frac12(40)^2\left(\frac{\pi}{2}\right)=400\pi\). Ring area: \(900\pi-400\pi=500\pi\approx1570.8\) m².
+
+**Challenge — Environmental & Biological Applications**
+
+1. Steady-state (horizontal asymptote): ratio of leading coefficients \(=50\) mg/L. A rational function is a good fit because, unlike a linear function (which would grow forever) or an exponential function decaying to zero, this process approaches a **nonzero constant** — exactly the shape a horizontal asymptote captures.
+2. Three-quarters of a full circle \(=\dfrac34(2\pi)=\dfrac{3\pi}{2}\) radians. Arc length: \(s=200\times\dfrac{3\pi}{2}=300\pi\approx942.5\) m.
+
+</details>

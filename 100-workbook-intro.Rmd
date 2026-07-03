@@ -1,0 +1,27 @@
+# (PART) Workbook Chapters {-}
+
+# How to Use This Workbook
+
+Each workbook chapter mirrors the content chapter of the same name, and is meant to be worked through **in class**, together. Every chapter follows the same three-part structure:
+
+**Instructor Demo.** A worked example the instructor walks through live, modeling the thinking process out loud — not just the algebra. If you're using this as a self-study resource outside of class, work through the demo yourself before moving on, the same way you would in a class session.
+
+**Your Turn.** A short set of problems for you to attempt on your own or in a small group, right after each demo, while the ideas are fresh. These are similar in difficulty to the demo problems.
+
+**Challenge.** Every workbook chapter ends with a Challenge section, split into two parts:
+
+- **Harder Versions** — problems that extend the same skill further than the main Your Turn problems do.
+- **Environmental & Biological Applications** — problems that apply the chapter's tools to new environmental or biological contexts, for students who want an extra stretch.
+
+The Challenge section is optional extension material — it's there for students who finish early or want more practice, not a required baseline. If you're moving quickly through the main material, spend more time here; if the main material is still settling, it's completely fine to skip Challenge problems for now and return to them later.
+
+Answer keys for the **Your Turn** and **Challenge** problems are collected at the end of each workbook chapter, click-to-reveal. Instructor Demo problems are intentionally left unworked in this text — the instructor works through them live.
+
+### Suggested Pacing {-}
+
+Each workbook chapter is designed for a class session structured as:
+
+- **~20 minutes** — mini-lecture / content introduction (using the matching content chapter)
+- **~60 minutes** — this workbook: Instructor Demos, Your Turn practice, and (time permitting) Challenge problems
+
+Within the 60-minute workbook block, a reasonable pace is a short live demo (5–10 minutes) followed by Your Turn problems for that same topic before moving to the next topic. Groups that move quickly should head into the Challenge section rather than waiting; groups that need more time on the core Your Turn problems should treat Challenge as optional and skippable.

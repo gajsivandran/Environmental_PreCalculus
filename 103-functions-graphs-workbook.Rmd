@@ -1,0 +1,140 @@
+# Functions and Graphs — Workbook
+
+## Learning Objectives (Quick Self-Check)
+
+::: promptbox
+**Check your readiness:**
+For each objective, write one sentence in your own words or a question you still have:
+
+1. How do I decide whether a relationship is a function?
+2. How do I find the domain and range of a function in context?
+3. How do I build and evaluate a piecewise function?
+
+**Notes:**
+<div class="writein tall"></div>
+:::
+
+---
+
+## Functions, Domain & Range
+
+### Instructor Demo: A Restricted-Season Model
+
+A fish ladder count is modeled by \(N(t) = 40t\), where \(t\) is weeks since the run began, valid only for the 10-week run.
+
+*(Instructor walks through this live: determine the domain from context, compute the range, and discuss why the model has no meaning outside the domain.)*
+
+<div class="writein tall"></div>
+
+### Your Turn: Functions, Domain & Range
+
+::: promptbox
+**1.** A table lists 6 dates and a single ozone reading for each. Is ozone a function of date? Why or why not?
+
+**2.** A graph shows a lake's depth plotted against distance across the lake, where the lakebed dips down and back up, so a single depth value corresponds to two different distances. Is depth a function of distance? Is distance a function of depth?
+
+**3.** A wind turbine only operates when wind speed is between 3 m/s and 25 m/s; its power output is modeled by \(P(v) = 15v\) (in kW) within that range. State the domain and find the range.
+
+**4.** A model for daily insect activity is only valid for temperatures between 10°C and 35°C. If \(A(T) = 2T - 15\), what is the range of this model over its valid domain?
+
+**5.** Evaluate \(f(x) = 2x^2 - 5x + 1\) at \(x=0\), \(x=3\), and \(x=-2\).
+
+**6.** A reservoir's storage is a function of time during a controlled release, given by \(S(t) = 5000 - 200t\), valid only while \(S(t) \ge 0\). Find the domain, and interpret what happens at the upper edge of that domain.
+
+**Notes:**
+<div class="writein tall"></div>
+:::
+
+---
+
+## Piecewise Functions
+
+### Instructor Demo: A Stormwater Fee Structure
+
+A city charges a flat $10 stormwater fee for the first 500 sq ft of impervious surface, then $0.02 per sq ft beyond that.
+
+*(Instructor walks through this live: write the piecewise function, check that the two pieces agree at the boundary, and evaluate it for a specific property size.)*
+
+<div class="writein tall"></div>
+
+### Your Turn: Building & Evaluating Piecewise Functions
+
+::: promptbox
+**1.** A utility charges $1.50 per unit for the first 20 units of water, then $2.75 per unit beyond that. Write the piecewise cost function \(C(x)\), and find \(C(30)\).
+
+**2.** Using the function from Question 1, find \(C(15)\).
+
+**3.** A carbon offset program pays nothing for the first 5 tons of verified reduction, then $25/ton for the next 45 tons (5 to 50), then $40/ton beyond 50 tons. Write this as a three-piece function \(P(x)\).
+
+**4.** Using your function from Question 3, find \(P(70)\).
+
+**5.** A park charges $5 entry for visitors under 12, and $12 entry for visitors 12 and older. Write this as a piecewise function of age \(a\), and state whether it is continuous at the boundary (compare the value just below 12 to the value at 12).
+
+**6.** A drug's blood concentration is modeled as rising linearly for the first hour after a dose, then decaying linearly for the next 5 hours: \(C(t) = 20t\) for \(0\le t\le1\), and \(C(t) = -4(t-1)+20\) for \(1<t\le6\). Find \(C(0.5)\) and \(C(4)\).
+
+**Notes:**
+<div class="writein tall"></div>
+:::
+
+---
+
+## Challenge
+
+### Harder Versions
+
+::: promptbox
+**1.** A three-tier emissions fee structure has an unknown second-tier rate \(r\). The first 100 tons are free, the next 400 tons (100–500) cost \(r\) dollars/ton, and anything beyond 500 tons costs \(2r\) dollars/ton. If a company emitting 700 tons pays a total of $24,000, find \(r\).
+
+**2.** A piecewise function is defined as \(f(x) = x^2\) for \(x<2\) and \(f(x) = mx+b\) for \(x \ge 2\). If the function must be continuous at \(x=2\) and \(f(4) = 10\), find \(m\) and \(b\).
+
+**Notes:**
+<div class="writein tall"></div>
+:::
+
+### Environmental & Biological Applications
+
+::: promptbox
+**1.** A species' metabolic rate as a function of body temperature is only biologically meaningful between 5°C and 40°C (outside that range, the organism cannot survive). If \(M(T) = 3T + 20\) (in arbitrary metabolic units), state the domain and range, and explain in one sentence why a domain restriction matters more here than it would in a purely abstract math problem.
+
+**2.** A wildlife refuge sets a tiered visitor fee to fund conservation: free for the first 50 visitors each day, $8/visitor for the next 150 (50–200), and $15/visitor beyond 200 (to discourage overcrowding). Write the piecewise revenue function \(R(x)\) for \(x\) total visitors, and find the revenue on a day with 250 visitors.
+
+**Notes:**
+<div class="writein tall"></div>
+:::
+
+---
+
+## Answer Key {-}
+
+<details>
+<summary><strong>Click to reveal Your Turn and Challenge answers</strong></summary>
+
+**Functions, Domain & Range — Your Turn**
+
+1. **Yes** — each date has exactly one ozone reading.
+2. Depth **is** a function of distance only if each distance has one depth (it does, per the setup); distance is **not** a function of depth, since one depth value corresponds to two different distances (where the lakebed dips and rises back to the same depth).
+3. Domain: \(3 \le v \le 25\). Range: \(P(3)=45\) to \(P(25)=375\), so \(45 \le P \le 375\) kW.
+4. Domain \(10\le T\le35\). \(A(10)=5\), \(A(35)=55\): range \(5\le A\le55\).
+5. \(f(0)=1\); \(f(3)=18-15+1=4\); \(f(-2)=8+10+1=19\)
+6. Domain: \(5000-200t\ge0 \Rightarrow t\le25\), so \(0\le t\le25\). At \(t=25\), storage reaches exactly 0 — the reservoir is fully drawn down.
+
+**Piecewise Functions — Your Turn**
+
+1. \(C(x)=\begin{cases}1.50x & 0\le x\le20\\30+2.75(x-20) & x>20\end{cases}\). \(C(30)=30+2.75(10)=57.50\)
+2. \(C(15)=1.50(15)=22.50\)
+3. \(P(x)=\begin{cases}0 & 0\le x\le5\\25(x-5) & 5<x\le50\\1125+40(x-50) & x>50\end{cases}\)
+4. \(P(70)=1125+40(20)=1925\)
+5. \(E(a)=\begin{cases}5 & a<12\\12 & a\ge12\end{cases}\). **Not continuous** — just below 12 the value is 5, and at 12 it jumps to 12 (a real jump, unlike the water-rate example in the content chapter).
+6. \(C(0.5)=20(0.5)=10\). \(C(4)=-4(3)+20=8\)
+
+**Challenge — Harder Versions**
+
+1. Fee for tons 100–500 (400 tons): \(400r\). Fee for tons above 500 (200 tons): \(200(2r)=400r\). Total: \(400r+400r=800r=24000 \Rightarrow r=30\).
+2. Continuity at \(x=2\): \(f(2^-) = 2^2=4\), so \(m(2)+b=4\). Also \(f(4)=4m+b=10\). Subtracting: \((4m+b)-(2m+b)=10-4 \Rightarrow 2m=6 \Rightarrow m=3\). Then \(2(3)+b=4 \Rightarrow b=-2\).
+
+**Challenge — Environmental & Biological Applications**
+
+1. Domain: \(5\le T\le40\). Range: \(M(5)=35\) to \(M(40)=140\), so \(35\le M\le140\). Unlike a purely abstract function, restricting the domain here reflects a real biological limit — the formula might produce a number outside \(5\)–\(40°C\), but that number wouldn't correspond to a living organism, so it's not just a math convenience, it's a statement about survivability.
+2. \(R(x)=\begin{cases}0 & 0\le x\le50\\8(x-50) & 50<x\le200\\1200+15(x-200) & x>200\end{cases}\). \(R(250)=1200+15(50)=1950\)
+
+</details>

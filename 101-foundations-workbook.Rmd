@@ -1,0 +1,140 @@
+# Foundations: Numbers, Units & Coordinate Systems — Workbook
+
+## Learning Objectives (Quick Self-Check)
+
+::: promptbox
+**Check your readiness:**
+For each objective, write one sentence in your own words or a question you still have:
+
+1. How do I convert between units using dimensional analysis?
+2. How do I plot and read a point in a coordinate system?
+3. How do I compute the distance between two points, and what does it mean in context?
+
+**Notes:**
+<div class="writein tall"></div>
+:::
+
+---
+
+## Unit Conversion
+
+### Instructor Demo: A Pesticide Application Rate
+
+A farm applies pesticide at a rate of 3.5 lb per acre. Regulators want this expressed in kg per hectare (1 lb ≈ 0.4536 kg, 1 acre ≈ 0.4047 hectares).
+
+*(Instructor walks through this live: identify the given and target units, list conversion facts, chain the factors, check reasonableness.)*
+
+<div class="writein tall"></div>
+
+### Your Turn: Unit Conversion Practice
+
+::: promptbox
+**1.** A stormwater outfall discharges at 450 gallons per minute. Convert this to liters per second. (1 gallon ≈ 3.785 L)
+
+**2.** A soil sample contains 12 mg of lead per kg of soil. Express this as parts per million (ppm), given that for solid samples, mg/kg is exactly equivalent to ppm by mass.
+
+**3.** A vehicle fleet's emissions are reported as 0.8 lb of NOx per mile. Convert this to grams per kilometer (1 lb ≈ 453.6 g, 1 mile ≈ 1.609 km).
+
+**4.** A reservoir loses water to evaporation at 2.2 acre-feet per day. Given that 1 acre-foot ≈ 1,233,000 L, express this loss rate in liters per hour.
+
+**5.** A composting facility processes 3 metric tons of food waste per day. Express this rate in kg per hour.
+
+**6.** A well's water table drops 8 inches over 6 months. Convert this to centimeters per year (1 inch = 2.54 cm).
+
+**Notes:**
+<div class="writein tall"></div>
+:::
+
+---
+
+## Coordinate Systems & The Distance Formula
+
+### Instructor Demo: Locating a New Sampling Site
+
+A field crew sets up a local grid centered on a reference stake. Station P sits at \((45, -20)\) and Station Q sits at \((-30, 60)\), in meters east/north of the stake.
+
+*(Instructor walks through this live: plot both points, identify quadrants, then apply the distance formula step by step to find the distance between P and Q.)*
+
+<div class="writein tall"></div>
+
+### Your Turn: Coordinates & Distance
+
+::: promptbox
+**1.** Plot the points \((20, 15)\), \((-10, 5)\), and \((0, -25)\) on a coordinate grid. Which quadrant (or axis) does each fall on?
+
+**2.** Two soil probes are located at \((15, 40)\) and \((85, -20)\), in meters. Find the straight-line distance between them.
+
+**3.** A third probe is placed exactly halfway between the two probes in Question 2 (using the midpoint of each coordinate). What are its coordinates? *(Hint: average the x-values, then average the y-values.)*
+
+**4.** A weather station sits at \((-45, 30)\) and a rain gauge sits at \((15, -10)\), in meters. Find the distance between them.
+
+**5.** Plot four points: \((10,10)\), \((10,-10)\), \((-10,-10)\), \((-10,10)\). What shape do they form, and what is its perimeter? *(Use the distance formula for each side, even though you could find the side length by inspection — practice the formula.)*
+
+**6.** A drone launch point is at \((0,0)\). It needs to reach a wildlife camera at \((150, 200)\) meters away. How far must it fly in a straight line?
+
+**Notes:**
+<div class="writein tall"></div>
+:::
+
+---
+
+## Challenge
+
+### Harder Versions
+
+::: promptbox
+**1.** A shipment of soil amendment is labeled 2.5% nitrogen by mass. If a farmer applies 800 lb of this amendment per acre, how many kg of actual nitrogen is applied per hectare? (This problem chains a percentage, a mass conversion, and an area conversion in one problem — organize your steps carefully.)
+
+**2.** Three monitoring stations sit at \((0,0)\), \((60, 0)\), and \((30, 52)\). Find the perimeter of the triangle they form by computing all three pairwise distances and summing them.
+
+**Notes:**
+<div class="writein tall"></div>
+:::
+
+### Environmental & Biological Applications
+
+::: promptbox
+**1.** A predator's home range is roughly circular with a 3 km radius, centered on a den site at \((0,0)\) on a local grid. A second den, belonging to a competing individual, sits at \((4.5, 2)\) km. Is the second den inside the first predator's home range? Justify your answer using the distance formula (recall the circle/buffer-zone reasoning from the content chapter).
+
+**2.** A biologist studying bioaccumulation notes that a contaminant present at 0.002 mg/L in lake water is found at a concentration in fish tissue that is 100,000 times higher on a per-kg basis. Express the fish tissue concentration in mg/kg, and then in ppm (recall that mg/kg is equivalent to ppm by mass for solid tissue samples).
+
+**Notes:**
+<div class="writein tall"></div>
+:::
+
+---
+
+## Answer Key {-}
+
+<details>
+<summary><strong>Click to reveal Your Turn and Challenge answers</strong></summary>
+
+**Unit Conversion — Your Turn**
+
+1. \(450\ \tfrac{\text{gal}}{\text{min}} \times \dfrac{3.785\ \text{L}}{1\ \text{gal}} \times \dfrac{1\ \text{min}}{60\ \text{s}} \approx 28.4\ \text{L/s}\)
+2. \(12\) ppm (mg/kg converts directly to ppm by mass for a solid sample)
+3. \(0.8\ \tfrac{\text{lb}}{\text{mi}} \times \dfrac{453.6\ \text{g}}{1\ \text{lb}} \times \dfrac{1\ \text{mi}}{1.609\ \text{km}} \approx 225.5\ \text{g/km}\)
+4. \(2.2\ \tfrac{\text{acre-ft}}{\text{day}} \times \dfrac{1{,}233{,}000\ \text{L}}{1\ \text{acre-ft}} \times \dfrac{1\ \text{day}}{24\ \text{hr}} \approx 113{,}025\ \text{L/hr}\)
+5. \(3\ \text{tons/day} \times \dfrac{1000\ \text{kg}}{1\ \text{ton}} \times \dfrac{1\ \text{day}}{24\ \text{hr}} = 125\ \text{kg/hr}\)
+6. \(8\ \text{in} \times \dfrac{2.54\ \text{cm}}{1\ \text{in}} = 20.32\ \text{cm over 6 months}\); annualized: \(20.32 \times 2 = 40.64\ \text{cm/yr}\)
+
+**Coordinates & Distance — Your Turn**
+
+1. \((20,15)\): Quadrant I. \((-10,5)\): Quadrant II. \((0,-25)\): on the y-axis.
+2. \(d = \sqrt{(85-15)^2+(-20-40)^2} = \sqrt{70^2+(-60)^2} = \sqrt{4900+3600}=\sqrt{8500}\approx 92.2\) m
+3. Midpoint: \(\left(\dfrac{15+85}{2}, \dfrac{40+(-20)}{2}\right) = (50, 10)\)
+4. \(d = \sqrt{(15-(-45))^2+(-10-30)^2} = \sqrt{60^2+(-40)^2} = \sqrt{3600+1600}=\sqrt{5200}\approx72.1\) m
+5. A square with side length 20; perimeter \(=4\times20=80\) (each side confirmed via the distance formula, e.g. \(\sqrt{(10-10)^2+(10-(-10))^2}=20\))
+6. \(d = \sqrt{150^2+200^2} = \sqrt{22500+40000}=\sqrt{62500}=250\) m
+
+**Challenge — Harder Versions**
+
+1. \(800\ \text{lb} \times 0.025 = 20\ \text{lb N}\). Convert to kg: \(20 \times 0.4536 \approx 9.07\) kg N per acre. Convert per-acre to per-hectare: \(9.07\ \tfrac{\text{kg}}{\text{acre}} \times \dfrac{1\ \text{acre}}{0.4047\ \text{ha}} \approx 22.4\ \text{kg N/ha}\).
+2. Distances: \((0,0)\)–\((60,0)\): \(60\). \((60,0)\)–\((30,52)\): \(\sqrt{30^2+52^2}=\sqrt{900+2704}=\sqrt{3604}\approx60.0\). \((30,52)\)–\((0,0)\): \(\sqrt{30^2+52^2}\approx60.0\). Perimeter \(\approx 60+60.0+60.0 = 180.0\).
+
+**Challenge — Environmental & Biological Applications**
+
+1. Distance from origin: \(\sqrt{4.5^2+2^2} = \sqrt{20.25+4}=\sqrt{24.25}\approx4.92\) km. Since \(4.92 > 3\), the second den is **outside** the first predator's 3 km home range.
+2. \(0.002\ \text{mg/L} \times 100{,}000 = 200\ \text{mg/kg} = 200\ \text{ppm}\) in fish tissue.
+
+</details>

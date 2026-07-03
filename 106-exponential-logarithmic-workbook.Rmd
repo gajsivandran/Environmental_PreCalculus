@@ -1,0 +1,140 @@
+# Exponential Functions and Logarithms — Workbook
+
+## Learning Objectives (Quick Self-Check)
+
+::: promptbox
+**Check your readiness:**
+For each objective, write one sentence in your own words or a question you still have:
+
+1. How do I build an exponential growth or decay model?
+2. How do I use the definition and properties of logarithms?
+3. How do I solve an exponential or logarithmic equation?
+
+**Notes:**
+<div class="writein tall"></div>
+:::
+
+---
+
+## Exponential Growth & Decay
+
+### Instructor Demo: A Different Half-Life Problem
+
+A pesticide residue has a half-life of 12 days. Starting amount: 60 units.
+
+*(Instructor walks through this live: write the model using the half-life exponent form, then evaluate at a specific number of days.)*
+
+<div class="writein tall"></div>
+
+### Your Turn: Growth & Decay Models
+
+::: promptbox
+**1.** A bacterial colony starts at 500 cells and grows by 15% per hour. Write the model \(N(t)\) and find \(N(6)\).
+
+**2.** A contaminant has a half-life of 10 years. Starting from 200 units, how much remains after 30 years?
+
+**3.** A population declines by 4% per year from an initial 3000 individuals. Write the model and find the predicted population after 20 years.
+
+**4.** A radioactive tracer starts at 80 units with a half-life of 6 hours. How much remains after 18 hours?
+
+**5.** Is \(f(t) = 25(1.02)^t\) growth or decay? What percentage change does it represent per period?
+
+**6.** Is \(f(t) = 90(0.93)^t\) growth or decay? What percentage change does it represent per period?
+
+**Notes:**
+<div class="writein tall"></div>
+:::
+
+---
+
+## Logarithms
+
+### Instructor Demo: Comparing Two pH Samples
+
+Sample A has \([\text{H}^+] = 1\times10^{-4}\) mol/L. Sample B has \([\text{H}^+] = 1\times10^{-7}\) mol/L.
+
+*(Instructor walks through this live: find the pH of each sample, then compare how many times more acidic one sample is than the other.)*
+
+<div class="writein tall"></div>
+
+### Your Turn: Logarithm Properties & pH
+
+::: promptbox
+**1.** Find the pH of a sample with \([\text{H}^+] = 1\times10^{-5}\) mol/L.
+
+**2.** A sample has pH 3. Find \([\text{H}^+]\).
+
+**3.** Simplify \(\log_5(25) + \log_5(5)\).
+
+**4.** Simplify \(\log_{10}(10000) - \log_{10}(100)\).
+
+**5.** A lake has pH 7.2 and a nearby acidic mine drainage stream has pH 4.2. How many times more acidic is the stream than the lake?
+
+**6.** Simplify \(\log_2(64)\), and check your answer by rewriting it as an exponential equation.
+
+**Notes:**
+<div class="writein tall"></div>
+:::
+
+---
+
+## Challenge
+
+### Harder Versions
+
+::: promptbox
+**1.** A population growing as \(N(t) = 150(1.06)^t\) is predicted to triple. Set up and solve the equation for \(t\) (you'll need a logarithm to isolate \(t\)).
+
+**2.** Two contaminants decay at different rates: Contaminant A starts at 100 units with a half-life of 4 years; Contaminant B starts at 40 units with a half-life of 12 years. Estimate (by testing a few values or setting up the equation) approximately when the two contaminants reach equal levels.
+
+**Notes:**
+<div class="writein tall"></div>
+:::
+
+### Environmental & Biological Applications
+
+::: promptbox
+**1.** Atmospheric CO₂ has risen from about 280 ppm (pre-industrial) to about 420 ppm today. If a simplified exponential model assumes CO₂ has been growing at a constant annual percentage rate over 170 years, set up the equation \(420 = 280(b)^{170}\) and describe (in words) the steps you'd take to solve for the annual growth factor \(b\) — you don't need to compute the final decimal, just outline the process using tools from this chapter.
+
+**2.** A biologist studying antibiotic resistance models bacterial population as \(N(t) = 200(1.4)^t\) without treatment (t in hours), but with an antibiotic present, population instead follows \(N(t) = 200(0.7)^t\). After how many hours does the treated population drop to 10% of its starting value? Set up and solve using logarithms.
+
+**Notes:**
+<div class="writein tall"></div>
+:::
+
+---
+
+## Answer Key {-}
+
+<details>
+<summary><strong>Click to reveal Your Turn and Challenge answers</strong></summary>
+
+**Exponential Growth & Decay — Your Turn**
+
+1. \(N(t)=500(1.15)^t\); \(N(6)=500(1.15)^6\approx500(2.313)\approx1156.7\) cells
+2. \(A(t)=200(0.5)^{t/10}\); \(A(30)=200(0.5)^3=200(0.125)=25\) units
+3. \(N(t)=3000(0.96)^t\); \(N(20)=3000(0.96)^{20}\approx3000(0.4420)\approx1326\)
+4. \(A(t)=80(0.5)^{t/6}\); \(A(18)=80(0.5)^3=80(0.125)=10\) units
+5. **Growth**, 2% per period
+6. **Decay**, 7% per period
+
+**Logarithms — Your Turn**
+
+1. \(\text{pH}=-\log_{10}(10^{-5})=5\)
+2. \([\text{H}^+]=10^{-3}\) mol/L
+3. \(2+1=3\)
+4. \(4-2=2\)
+5. Difference of 3 pH units \(\Rightarrow 10^3=1000\) times more acidic
+6. \(\log_2(64)=6\), since \(2^6=64\)
+
+**Challenge — Harder Versions**
+
+1. \(3(150)=150(1.06)^t \Rightarrow 3=(1.06)^t \Rightarrow t=\log_{1.06}(3)\approx18.85\) years.
+2. Setting \(100(0.5)^{t/4}=40(0.5)^{t/12}\) and testing values (or solving with logs) gives an equal-level time of roughly \(t\approx6.6\) years — testing near there in the models confirms both give a value close to 42–44 units, well after \(t=0\) where they started at very different levels.
+
+**Challenge — Environmental & Biological Applications**
+
+1. Divide both sides by 280 to isolate the exponential term: \(1.5 = b^{170}\). Then take a logarithm (or the 170th root) of both sides to bring the exponent down and solve for \(b\): \(b = 1.5^{1/170}\), which a calculator can evaluate to find the implied constant annual growth factor.
+2. \(20 = 200(0.7)^t \Rightarrow 0.1 = (0.7)^t \Rightarrow t = \log_{0.7}(0.1) \approx 6.45\) hours.
+
+</details>

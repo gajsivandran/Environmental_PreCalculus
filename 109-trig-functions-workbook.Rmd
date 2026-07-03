@@ -1,0 +1,139 @@
+# Trigonometric Functions — Workbook
+
+## Learning Objectives (Quick Self-Check)
+
+::: promptbox
+**Check your readiness:**
+For each objective, write one sentence in your own words or a question you still have:
+
+1. How do I identify amplitude, period, phase shift, and vertical shift from a sinusoidal equation?
+2. How do I use inverse trig functions to solve for an unknown input?
+
+**Notes:**
+<div class="writein tall"></div>
+:::
+
+---
+
+## Reading Sinusoidal Functions
+
+### Instructor Demo: A Tidal Model
+
+A harbor's tide height is modeled by \(y(t) = 2\sin\left(\dfrac{\pi}{6}(t-3)\right) + 4\), \(t\) in hours.
+
+*(Instructor walks through this live: identify amplitude, period, phase shift, and vertical shift, then predict high and low tide heights.)*
+
+<div class="writein tall"></div>
+
+### Your Turn: Reading Sinusoidal Functions
+
+::: promptbox
+**1.** For \(f(t) = 5\sin(t) + 20\), identify the amplitude and vertical shift.
+
+**2.** For \(f(t) = 3\sin\left(\dfrac{\pi}{4}t\right)\), find the period.
+
+**3.** For \(f(t) = 6\sin\left(\dfrac{2\pi}{12}(t-2)\right)+15\), identify all four parameters (amplitude, period, phase shift, vertical shift).
+
+**4.** A seasonal temperature model has amplitude 12°C and vertical shift 8°C. Find the predicted maximum and minimum temperatures.
+
+**5.** A daylight model has period 365 days. Find \(B\) in the general form \(A\sin(B(t-C))+D\).
+
+**6.** Sketch (or describe) the difference between \(f(t)=2\sin(t)\) and \(g(t)=2\sin(t)+5\). What single transformation separates them?
+
+**Notes:**
+<div class="writein tall"></div>
+:::
+
+---
+
+## Inverse Trig & Solving for Time
+
+### Instructor Demo: Solving a Different Daylight Question
+
+Using \(H(t) = 3.5\sin\left(\dfrac{2\pi}{365}(t-80)\right)+12.2\) from the content chapter, find a day when daylight is exactly 10 hours.
+
+*(Instructor walks through this live: isolate the sine term, apply inverse sine, solve for \(t\).)*
+
+<div class="writein tall"></div>
+
+### Your Turn: Inverse Trig & Solving for Time
+
+::: promptbox
+**1.** Evaluate \(\sin^{-1}(0)\), \(\cos^{-1}(1)\), and \(\sin^{-1}(-1)\).
+
+**2.** For \(y(t) = 4\sin(t)+10\), find a value of \(t\) (between 0 and \(\pi/2\)) where \(y(t)=12\).
+
+**3.** A tidal model is \(y(t)=1.5\sin\left(\dfrac{\pi}{6}t\right)+2.5\). Find a time \(t\) between 0 and 6 when \(y(t)=3.0\).
+
+**4.** A temperature model is \(T(t) = 10\sin\left(\dfrac{2\pi}{12}(t-3)\right)+15\), \(t\) in months. Find a month when \(T(t)=20\).
+
+**5.** Using the model from Question 4, is there more than one month in the year when \(T(t)=20\)? Explain how you know without fully solving for the second one.
+
+**6.** A pond oxygen level is modeled by \(O(t) = 2\sin\left(\dfrac{\pi}{12}t\right)+7\), \(t\) in hours. Find a time when \(O(t)=8\).
+
+**Notes:**
+<div class="writein tall"></div>
+:::
+
+---
+
+## Challenge
+
+### Harder Versions
+
+::: promptbox
+**1.** A sinusoidal model has an unknown phase shift. You know its maximum value (9) occurs at \(t=5\), its vertical shift is 4, and its period is 10. Reconstruct the full equation \(A\sin(B(t-C))+D\). *(Hint: use the max value and vertical shift to find \(A\); use the period to find \(B\); use the fact that sine reaches its max a quarter-period after crossing the midline going up, to find \(C\).)*
+
+**2.** For the tidal model \(y(t)=1.5\sin\left(\dfrac{\pi}{6}t\right)+2.5\), find **all** solutions to \(y(t)=3.0\) within the first 24 hours (two full cycles), not just the first one.
+
+**Notes:**
+<div class="writein tall"></div>
+:::
+
+### Environmental & Biological Applications
+
+::: promptbox
+**1.** A researcher tracking elk migration notes that herd elevation (in a mountain range) varies seasonally, modeled by \(E(t) = 400\sin\left(\dfrac{2\pi}{12}(t-4)\right)+2000\), where \(t\) is month and \(E\) is elevation in meters. Find the amplitude, period, and predicted maximum and minimum elevations, and interpret the phase shift in terms of when the herd is at its average elevation and moving upward.
+
+**2.** A shellfish harvesting closure is triggered whenever modeled toxin level exceeds a threshold. If toxin level is modeled by \(y(t) = 8\sin\left(\dfrac{2\pi}{12}(t-6)\right)+10\) (arbitrary units, \(t\) in months) and the closure threshold is a toxin level of 15, find a month when the toxin level first reaches the threshold.
+
+**Notes:**
+<div class="writein tall"></div>
+:::
+
+---
+
+## Answer Key {-}
+
+<details>
+<summary><strong>Click to reveal Your Turn and Challenge answers</strong></summary>
+
+**Reading Sinusoidal Functions — Your Turn**
+
+1. Amplitude \(5\), vertical shift \(20\)
+2. Period \(=\dfrac{2\pi}{\pi/4}=8\)
+3. Amplitude \(6\), period \(=\dfrac{2\pi}{2\pi/12}=12\), phase shift \(2\), vertical shift \(15\)
+4. Max: \(8+12=20°C\); Min: \(8-12=-4°C\)
+5. \(B=\dfrac{2\pi}{365}\)
+6. The graphs have the same shape and amplitude; \(g(t)\) is simply \(f(t)\) shifted vertically upward by 5.
+
+**Inverse Trig & Solving for Time — Your Turn**
+
+1. \(\sin^{-1}(0)=0\); \(\cos^{-1}(1)=0\); \(\sin^{-1}(-1)=-\pi/2\)
+2. \(12-10=4(1) \Rightarrow \sin(t)=0.5 \Rightarrow t=\pi/6\)... check: \(4\sin(\pi/6)+10=4(0.5)+10=12\) ✓, so \(t=\pi/6\)
+3. \(3.0-2.5=1.5\sin\left(\dfrac{\pi}{6}t\right) \Rightarrow \sin\left(\dfrac{\pi}{6}t\right)=\dfrac13 \Rightarrow \dfrac{\pi}{6}t=\sin^{-1}(0.333)\approx0.3398 \Rightarrow t\approx0.649\) hr
+4. \(20-15=10\sin\left(\dfrac{\pi}{6}(t-3)\right) \Rightarrow \sin(\cdot)=0.5 \Rightarrow \dfrac{\pi}{6}(t-3)=\pi/6 \Rightarrow t-3=1 \Rightarrow t=4\)
+5. **Yes** — sine is symmetric about its peak, so there is a second month where the curve crosses the same value on its way back down, mirrored around the month where the maximum occurs.
+6. \(8-7=2\sin\left(\dfrac{\pi}{12}t\right) \Rightarrow \sin(\cdot)=0.5 \Rightarrow \dfrac{\pi}{12}t=\pi/6 \Rightarrow t=2\) hr
+
+**Challenge — Harder Versions**
+
+1. \(A=9-4=5\). \(B=\dfrac{2\pi}{10}=\dfrac{\pi}{5}\). Max at \(t=5\) means midline-crossing (rising) at \(t=5-\dfrac{10}{4}=2.5\), so \(C=2.5\). Equation: \(f(t)=5\sin\left(\dfrac{\pi}{5}(t-2.5)\right)+4\).
+2. From the worked demo/practice: one solution near \(t\approx0.649\) hr. Using the period (\(2\pi/(\pi/6)=12\) hr) and sine's symmetry: second solution in cycle 1 at \(t=6-0.649=5.351\) hr. Repeating the pattern every 12 hours gives two more in the second cycle: \(t\approx12.649\) hr and \(t\approx17.351\) hr. All four: approximately \(0.65, 5.35, 12.65, 17.35\) hours.
+
+**Challenge — Environmental & Biological Applications**
+
+1. Amplitude \(400\) m, period \(12\) months, max elevation \(2400\) m, min elevation \(1600\) m. The phase shift of 4 means the herd is at its average elevation (2000 m) and moving upward starting around month 4.
+2. \(15-10=8\sin\left(\dfrac{2\pi}{12}(t-6)\right) \Rightarrow \sin(\cdot)=0.625 \Rightarrow \dfrac{\pi}{6}(t-6)=\sin^{-1}(0.625)\approx0.6751 \Rightarrow t-6\approx1.29 \Rightarrow t\approx7.29\), so around month 7 the toxin level first reaches the closure threshold.
+
+</details>

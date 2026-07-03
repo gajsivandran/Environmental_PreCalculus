@@ -1,0 +1,140 @@
+# Function Composition & Inverse Functions — Workbook
+
+## Learning Objectives (Quick Self-Check)
+
+::: promptbox
+**Check your readiness:**
+For each objective, write one sentence in your own words or a question you still have:
+
+1. How do I evaluate a composite function?
+2. How do I find the inverse of a function?
+3. How do I verify that two functions are inverses?
+
+**Notes:**
+<div class="writein tall"></div>
+:::
+
+---
+
+## Composing Functions
+
+### Instructor Demo: A Two-Step Conversion Chain
+
+Soil moisture sensor voltage converts to moisture percentage via \(M(v) = 4v + 5\), and moisture percentage affects predicted plant stress via \(S(M) = 100 - 2M\).
+
+*(Instructor walks through this live: recognize this as a composition, substitute \(M(v)\) into \(S\), simplify, and evaluate at a specific voltage.)*
+
+<div class="writein tall"></div>
+
+### Your Turn: Composing Functions
+
+::: promptbox
+**1.** Given \(f(x) = x+5\) and \(g(x)=3x\), find \((g\circ f)(2)\).
+
+**2.** Using the same \(f\) and \(g\), find \((f \circ g)(2)\).
+
+**3.** Given \(f(x)=2x-1\) and \(g(x)=x^2\), find \((g\circ f)(3)\).
+
+**4.** Using the same \(f\) and \(g\) as Question 3, find \((f\circ g)(x)\) as a simplified expression in \(x\).
+
+**5.** A sensor's raw signal \(s\) converts to concentration via \(C(s) = 0.2s+1\), and concentration converts to a risk score via \(R(C) = 10C - 3\). Find \(R(C(s))\) as a single function of \(s\).
+
+**6.** Using your answer to Question 5, evaluate the combined function at \(s=20\).
+
+**Notes:**
+<div class="writein tall"></div>
+:::
+
+---
+
+## Inverses
+
+### Instructor Demo: Inverting a Calibration Curve
+
+A sensor's calibration is \(y = 1.5x - 2\), where \(x\) is true concentration and \(y\) is sensor reading.
+
+*(Instructor walks through this live: swap variables, solve for \(y\), verify the result by composing it with the original function.)*
+
+<div class="writein tall"></div>
+
+### Your Turn: Finding & Verifying Inverses
+
+::: promptbox
+**1.** Find the inverse of \(f(x) = 4x - 8\).
+
+**2.** Find the inverse of \(f(x) = \dfrac{x+6}{2}\).
+
+**3.** Verify that \(f(x)=5x+10\) and \(g(x)=\dfrac{x-10}{5}\) are inverses by computing \(f(g(x))\).
+
+**4.** Does \(f(x) = |x|\) (absolute value) have an inverse over all real numbers? Explain why or why not, using the one-to-one idea.
+
+**5.** A dosage-response model is \(R(x) = 3x + 2\), where \(x\) is dose (mg) and \(R\) is response (arbitrary units). Find \(R^{-1}(x)\) and use it to find what dose produced a response of 26.
+
+**6.** Find the inverse of \(f(x) = -2x + 7\), and verify your answer by checking that \(f(f^{-1}(5)) = 5\).
+
+**Notes:**
+<div class="writein tall"></div>
+:::
+
+---
+
+## Challenge
+
+### Harder Versions
+
+::: promptbox
+**1.** Given \(f(x) = 2x+3\) and \(g(x) = x-4\), find a formula for \((f \circ g)^{-1}(x)\) two different ways: (a) find \((f\circ g)(x)\) first, then invert the result; (b) find \(f^{-1}(x)\) and \(g^{-1}(x)\) separately, then compose them as \((g^{-1}\circ f^{-1})(x)\). Do the two methods agree?
+
+**2.** A function is defined piecewise as \(f(x) = x+3\) for \(x<0\) and \(f(x) = 2x+3\) for \(x\ge0\). Is this function one-to-one over all real numbers? If so, find its inverse (it will need to be piecewise too).
+
+**Notes:**
+<div class="writein tall"></div>
+:::
+
+### Environmental & Biological Applications
+
+::: promptbox
+**1.** A physiologist models core body temperature drop in cold water as a function of immersion time, and survivable immersion time as a function of that temperature drop, forming a composed function \(S(t)\). If \(D(t) = 0.15t\) (temperature drop in °C after \(t\) minutes) and survivable time remaining is \(S(D) = 40 - 5D\) (minutes), find \(S(D(t))\) as a function of \(t\), and use it to estimate remaining survivable time after 20 minutes of immersion.
+
+**2.** A fisheries model converts total allowable catch \(x\) (in tons) to permit revenue via \(R(x) = 150x\), and revenue funds enforcement patrols via \(P(R) = \dfrac{R}{5000}\) (number of patrol boats funded). Find \(P(R(x))\), then find its inverse — what does the inverse function tell a manager who wants to know the catch level needed to fund a specific number of patrol boats?
+
+**Notes:**
+<div class="writein tall"></div>
+:::
+
+---
+
+## Answer Key {-}
+
+<details>
+<summary><strong>Click to reveal Your Turn and Challenge answers</strong></summary>
+
+**Composing Functions — Your Turn**
+
+1. \(f(2)=7\), \(g(7)=21\)
+2. \(g(2)=6\), \(f(6)=11\)
+3. \(f(3)=5\), \(g(5)=25\)
+4. \((f\circ g)(x) = 2x^2-1\)
+5. \(R(C(s)) = 10(0.2s+1)-3 = 2s+10-3 = 2s+7\)
+6. \(2(20)+7=47\)
+
+**Inverses — Your Turn**
+
+1. \(f^{-1}(x) = \dfrac{x+8}{4}\)
+2. \(f^{-1}(x) = 2x-6\)
+3. \(f(g(x)) = 5\left(\dfrac{x-10}{5}\right)+10 = (x-10)+10=x\) ✓
+4. **No** — \(f(2)=2\) and \(f(-2)=2\), so two different inputs give the same output, violating one-to-one.
+5. \(R^{-1}(x)=\dfrac{x-2}{3}\); at \(x=26\): \(R^{-1}(26)=\dfrac{24}{3}=8\) mg
+6. \(f^{-1}(x)=\dfrac{7-x}{2}\); \(f^{-1}(5)=1\), \(f(1)=-2+7=5\) ✓
+
+**Challenge — Harder Versions**
+
+1. (a) \((f\circ g)(x) = 2(x-4)+3 = 2x-5\); inverting: \(y=2x-5 \Rightarrow x=\dfrac{y+5}{2} \Rightarrow (f\circ g)^{-1}(x)=\dfrac{x+5}{2}\). (b) \(f^{-1}(x)=\dfrac{x-3}{2}\), \(g^{-1}(x)=x+4\); \((g^{-1}\circ f^{-1})(x) = \dfrac{x-3}{2}+4 = \dfrac{x-3+8}{2}=\dfrac{x+5}{2}\). **Yes, both methods agree.**
+2. Yes, one-to-one (each piece is individually increasing, and the pieces don't overlap in output range in a way that causes repeats). Inverse: for \(x<0\) piece, \(y=x+3 \Rightarrow x=y-3\), valid for \(y<3\); for \(x\ge0\) piece, \(y=2x+3 \Rightarrow x=\dfrac{y-3}{2}\), valid for \(y\ge3\). So \(f^{-1}(x) = \begin{cases}x-3 & x<3\\ \frac{x-3}{2} & x\ge3\end{cases}\).
+
+**Challenge — Environmental & Biological Applications**
+
+1. \(S(D(t)) = 40-5(0.15t) = 40-0.75t\). At \(t=20\): \(40-15=25\) minutes of estimated remaining survivable time.
+2. \(P(R(x)) = \dfrac{150x}{5000} = 0.03x\). Inverse: \(x = \dfrac{y}{0.03} \Rightarrow P^{-1}(y) = \dfrac{y}{0.03}\approx33.3y\). This tells a manager: to fund \(y\) patrol boats, they need a total allowable catch of about \(33.3y\) tons.
+
+</details>

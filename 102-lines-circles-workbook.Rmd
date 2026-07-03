@@ -1,0 +1,181 @@
+# Lines, Circles & Linear Modeling — Workbook
+
+## Learning Objectives (Quick Self-Check)
+
+::: promptbox
+**Check your readiness:**
+For each objective, write one sentence in your own words or a question you still have:
+
+1. How do I write and interpret the equation of a line?
+2. How do I write and interpret the equation of a circle?
+3. How do I fit and interpret a linear model, and find where two lines intersect?
+4. How do I describe motion at constant velocity using parametric equations?
+
+**Notes:**
+<div class="writein tall"></div>
+:::
+
+---
+
+## Lines & Slope
+
+### Instructor Demo: A Streamflow Trend
+
+A stream gauge reads 12 m³/s in year 0 and 18 m³/s in year 6.
+
+*(Instructor walks through this live: compute the slope, write the equation in point-slope form, simplify to slope-intercept form, and interpret both the slope and intercept in context.)*
+
+<div class="writein tall"></div>
+
+### Your Turn: Writing & Interpreting Lines
+
+::: promptbox
+**1.** A well's water level was 22 m below the surface in year 0 and 16 m below the surface in year 8. Write the line describing depth as a function of year, and interpret the slope.
+
+**2.** A utility's per-unit electricity cost is $0.12/kWh with a flat $15 monthly fee. Write a cost function \(C(x)\) for \(x\) kWh used.
+
+**3.** Given the line \(y = -2x + 40\) modeling a pollutant's concentration (mg/L) over time (years), what does the negative slope tell you about the pollutant, and when does the model predict a concentration of zero?
+
+**4.** Find the equation of the line through \((2, 9)\) and \((6, 1)\).
+
+**5.** A glacier's terminus retreats from an elevation marker at a rate of 15 m/year, starting at 0 m in year 0. Write the line describing retreat distance vs. year, and predict the retreat after 12 years.
+
+**6.** Two competing linear cost estimates for a restoration project are \(C_1(x) = 500x + 2000\) and \(C_2(x) = 650x + 500\), where \(x\) is acres restored. Which has the higher starting cost? Which has the higher per-acre cost?
+
+**Notes:**
+<div class="writein tall"></div>
+:::
+
+---
+
+## Circles & Buffer Zones
+
+### Instructor Demo: A New Spill Buffer
+
+A chemical spill occurs at \((50, -30)\) on a local grid. Regulators set a 200 m buffer zone.
+
+*(Instructor walks through this live: write the circle's equation, then check whether a specific nearby station falls inside or outside the buffer using the distance formula.)*
+
+<div class="writein tall"></div>
+
+### Your Turn: Circle Equations & Buffer Checks
+
+::: promptbox
+**1.** Write the equation of a circle centered at \((10, -5)\) with radius 60.
+
+**2.** A monitoring buffer has equation \((x-20)^2+(y+10)^2 = 2500\). What are its center and radius?
+
+**3.** A 100 m buffer is centered at \((0,0)\). Is the point \((70, 80)\) inside, outside, or on the boundary?
+
+**4.** A restricted zone has center \((100, 100)\) and radius 150. Is a station at \((200, 50)\) inside the zone?
+
+**5.** Write the equation of a circle with center \((-15, 25)\) that passes through the point \((-15, 40)\). *(Hint: first find the radius using the distance between the center and the given point.)*
+
+**6.** Two spill buffers are centered at \((0,0)\) with radius 80, and at \((120, 0)\) with radius 60. Do the two buffer zones overlap? *(Hint: compare the distance between centers to the sum of the radii.)*
+
+**Notes:**
+<div class="writein tall"></div>
+:::
+
+---
+
+## Modeling, Intersections & Parametric Motion
+
+### Instructor Demo: When Do Two Trends Cross?
+
+Two contaminant sources have trend lines \(y = 1.2x + 4\) and \(y = 0.6x + 10\), where \(x\) is years.
+
+*(Instructor walks through this live: set the equations equal, solve for the intersection, and interpret what the crossing point means for the two sources.)*
+
+<div class="writein tall"></div>
+
+### Your Turn: Modeling, Intersections & Motion
+
+::: promptbox
+**1.** Find the intersection of \(y = 3x+2\) and \(y = -x+18\).
+
+**2.** Two population models are \(y=25x+300\) (Model A) and \(y=40x+150\) (Model B), \(x\) in years. When do they predict equal populations?
+
+**3.** A buoy starts at \((0, 50)\) and drifts at \((v_x, v_y) = (8, -3)\) m/hr. Write its parametric equations and find its position after 5 hours.
+
+**4.** A contaminant plume starts at \((-200, 0)\) moving at \((12, 4)\) m/yr. Write its parametric equations, and find its position after 10 years.
+
+**5.** Two drifting buoys: Buoy A starts at \((0,0)\) moving at \((10, 6)\) m/hr; Buoy B starts at \((100, 0)\) moving at \((-5, 6)\) m/hr. At what time \(t\) do their x-coordinates match? Do their y-coordinates also match at that time?
+
+**6.** A river gauge reads 5 ppm at year 0 and 8 ppm at year 4 for one pollutant, while a second pollutant reads 12 ppm at year 0 and decreases by 0.5 ppm/year. In what year (if any) are the two pollutant levels equal?
+
+**Notes:**
+<div class="writein tall"></div>
+:::
+
+---
+
+## Challenge
+
+### Harder Versions
+
+::: promptbox
+**1.** A circular buffer zone of radius \(r\) is centered at the origin. A straight monitoring transect follows the line \(y = x\). At what point(s) does the transect cross the buffer boundary, in terms of \(r\)? *(Hint: substitute \(y=x\) into the circle equation and solve for \(x\).)*
+
+**2.** Three sensors report linear trends: \(y=2x+5\), \(y=-x+20\), and \(y=0.5x+10\). Find all three pairwise intersection points, and determine whether all three lines pass through a single common point.
+
+**Notes:**
+<div class="writein tall"></div>
+:::
+
+### Environmental & Biological Applications
+
+::: promptbox
+**1.** Two predator territories are modeled as circular buffers: Territory A, radius 4 km centered at \((0,0)\); Territory B, radius 3 km centered at \((6, 0)\). Do the territories overlap? If so, by how much do the boundaries overlap along the line connecting the two centers? *(Hint: compare the distance between centers to the sum and difference of the radii.)*
+
+**2.** A fish population in a hatchery-supplemented stream is modeled by \(P(t) = 40t + 500\) (with supplementation) and, if supplementation stopped, would instead follow \(P(t) = -15t + 500\), where \(t\) is years. In what year would the two scenarios predict the same population (other than \(t=0\), where they start equal)? What does your answer tell you about whether the two lines actually diverge over time?
+
+**Notes:**
+<div class="writein tall"></div>
+:::
+
+---
+
+## Answer Key {-}
+
+<details>
+<summary><strong>Click to reveal Your Turn and Challenge answers</strong></summary>
+
+**Lines & Slope — Your Turn**
+
+1. Slope \(= \dfrac{16-22}{8-0} = -0.75\); \(y = -0.75x+22\). The well's water level is rising (depth below surface decreasing) by 0.75 m/year.
+2. \(C(x) = 0.12x + 15\)
+3. The concentration is decreasing by 2 mg/L per year. Zero when \(0 = -2x+40 \Rightarrow x=20\) years.
+4. Slope \(=\dfrac{1-9}{6-2}=-2\); \(y-9=-2(x-2) \Rightarrow y=-2x+13\)
+5. \(y = 15x\); at \(x=12\): \(y=180\) m
+6. \(C_1\) has the higher starting cost (\$2000 vs \$500); \(C_2\) has the higher per-acre cost (\$650 vs \$500)
+
+**Circles & Buffer Zones — Your Turn**
+
+1. \((x-10)^2+(y+5)^2=3600\)
+2. Center \((20,-10)\), radius \(50\)
+3. \(\sqrt{70^2+80^2}=\sqrt{4900+6400}=\sqrt{11300}\approx106.3\), **outside** the 100 m buffer
+4. \(\sqrt{100^2+50^2}=\sqrt{10000+2500}=\sqrt{12500}\approx111.8 < 150\), **inside** the zone
+5. Radius \(=\sqrt{0^2+15^2}=15\); equation: \((x+15)^2+(y-25)^2=225\)
+6. Distance between centers \(=120\); sum of radii \(=80+60=140\). Since \(120<140\), the circles **overlap**.
+
+**Modeling, Intersections & Motion — Your Turn**
+
+1. \(3x+2=-x+18 \Rightarrow x=4, y=14\): \((4,14)\)
+2. \(25x+300=40x+150 \Rightarrow 15x=150 \Rightarrow x=10\) years
+3. \(x(t)=8t\), \(y(t)=50-3t\); at \(t=5\): \((40, 35)\)
+4. \(x(t)=-200+12t\), \(y(t)=4t\); at \(t=10\): \((-80, 40)\)
+5. \(10t = 100-5t \Rightarrow 15t=100 \Rightarrow t=6.67\) hr. y-coordinates: \(y_A=6(6.67)=40\), \(y_B=6(6.67)=40\) — **yes**, they match (both move at the same \(v_y=6\), so if x matches, y automatically matches too).
+6. \(5+2x = 12-0.5x \Rightarrow 2.5x=7 \Rightarrow x=2.8\) years
+
+**Challenge — Harder Versions**
+
+1. Substituting \(y=x\): \(x^2+x^2=r^2 \Rightarrow 2x^2=r^2 \Rightarrow x=\pm\dfrac{r}{\sqrt2}\). Crossing points: \(\left(\dfrac{r}{\sqrt2},\dfrac{r}{\sqrt2}\right)\) and \(\left(-\dfrac{r}{\sqrt2},-\dfrac{r}{\sqrt2}\right)\).
+2. Line 1 & 2: \(2x+5=-x+20 \Rightarrow x=5,y=15\). Line 1 & 3: \(2x+5=0.5x+10 \Rightarrow x=3.33,y=11.67\). Line 2 & 3: \(-x+20=0.5x+10\Rightarrow x=6.67,y=13.33\). The three intersection points are all different, so the three lines do **not** share a single common point.
+
+**Challenge — Environmental & Biological Applications**
+
+1. Distance between centers \(=6\). Sum of radii \(=7\), difference \(=1\). Since \(1<6<7\), the circles overlap partially (neither separate nor one fully inside the other).
+2. \(40t+500 = -15t+500 \Rightarrow 55t=0 \Rightarrow t=0\). The only equal point is \(t=0\) itself — for any \(t>0\) the two scenarios diverge immediately (one increasing, one decreasing), so supplementation clearly changes the long-run trajectory rather than just delaying an inevitable crossing.
+
+</details>

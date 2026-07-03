@@ -11,6 +11,17 @@ rmd_files:
   - 08-circular-motion-trig.Rmd
   - 09-trig-functions.Rmd
   - 10-sinusoidal-modeling.Rmd
+  - 100-workbook-intro.Rmd
+  - 101-foundations-workbook.Rmd
+  - 102-lines-circles-workbook.Rmd
+  - 103-functions-graphs-workbook.Rmd
+  - 104-quadratics-optimization-workbook.Rmd
+  - 105-composition-inverses-workbook.Rmd
+  - 106-exponential-logarithmic-workbook.Rmd
+  - 107-rational-angular-workbook.Rmd
+  - 108-circular-motion-trig-workbook.Rmd
+  - 109-trig-functions-workbook.Rmd
+  - 110-sinusoidal-modeling-workbook.Rmd
   - 20-equation-sheet.Rmd
   - 21-test1-review.Rmd
   - 22-test2-review.Rmd

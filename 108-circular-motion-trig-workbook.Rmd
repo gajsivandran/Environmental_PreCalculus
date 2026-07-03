@@ -1,0 +1,140 @@
+# Circular Motion & Trigonometry — Workbook
+
+## Learning Objectives (Quick Self-Check)
+
+::: promptbox
+**Check your readiness:**
+For each objective, write one sentence in your own words or a question you still have:
+
+1. How do I relate angular speed and linear (tip) speed?
+2. How do I set up and solve a right-triangle trig problem?
+3. How do I use the unit circle and the Pythagorean identity?
+
+**Notes:**
+<div class="writein tall"></div>
+:::
+
+---
+
+## Circular Motion
+
+### Instructor Demo: A Different Turbine
+
+A 25 m turbine blade completes one rotation every 3 seconds.
+
+*(Instructor walks through this live: find angular speed, then tip speed.)*
+
+<div class="writein tall"></div>
+
+### Your Turn: Circular Motion
+
+::: promptbox
+**1.** A Ferris wheel of radius 15 m completes one rotation every 60 seconds. Find its angular speed and the linear speed of a rider at the rim.
+
+**2.** A satellite orbits at a radius of 7000 km, completing one orbit every 5760 seconds (about 96 minutes). Find its angular speed and linear (orbital) speed.
+
+**3.** A centrifuge sample sits 12 cm from the center and completes 1000 rotations per minute. Find the angular speed in radians per minute, and the linear speed of the sample in cm/minute.
+
+**4.** A buoy in a tidal eddy of radius 8 m completes one loop every 30 seconds. Find its linear speed.
+
+**5.** Two points sit on the same rotating wind turbine hub: one at radius 10 m, one at radius 35 m, both completing 1 rotation every 4 seconds. Find the linear speed of each, and state which is faster and by what factor.
+
+**6.** A rotating sprinkler arm is 6 m long and completes one rotation every 20 seconds. Find the linear speed of water leaving the very tip of the arm.
+
+**Notes:**
+<div class="writein tall"></div>
+:::
+
+---
+
+## Right-Triangle Trig & the Unit Circle
+
+### Instructor Demo: A Canopy Gap Measurement
+
+An ecologist stands 18 m from a tree and measures the elevation angle to the treetop as \(42°\).
+
+*(Instructor walks through this live: identify opposite/adjacent, choose the correct ratio, and solve for height.)*
+
+<div class="writein tall"></div>
+
+### Your Turn: Right-Triangle Trig & the Unit Circle
+
+::: promptbox
+**1.** A ramp rises 3 m over a horizontal run of 20 m. Find the angle the ramp makes with the ground.
+
+**2.** From a point 50 m from the base of a cliff, the angle of elevation to the top is \(28°\). Find the cliff's height.
+
+**3.** A drone hovers at 40 m height and sees a target at a horizontal distance of 60 m. Find the angle of depression from the drone to the target.
+
+**4.** Evaluate \(\sin(\pi/4)\), \(\cos(\pi/6)\), and \(\tan(\pi/4)\) using the unit circle.
+
+**5.** If \(\cos(\theta) = 0.28\) and \(\theta\) is in the first quadrant, use the Pythagorean identity to find \(\sin(\theta)\).
+
+**6.** If \(\sin(\theta) = 0.96\) and \(\theta\) is in the first quadrant, find \(\cos(\theta)\) using the Pythagorean identity.
+
+**Notes:**
+<div class="writein tall"></div>
+:::
+
+---
+
+## Challenge
+
+### Harder Versions
+
+::: promptbox
+**1.** A wind turbine blade tip must not exceed a linear speed of 80 m/s for safety reasons. If the blade is 45 m long, what is the maximum safe rotation period (time for one full rotation), in seconds?
+
+**2.** Two observers stand on opposite sides of a tree, 40 m apart, both in a direct line with the tree's base. One measures an elevation angle of \(50°\) to the top, and the other (on the far side) measures \(30°\). Set up and solve for the tree's height. *(Hint: let \(h\) be the height and \(x\) be the distance from the first observer to the tree; the second observer's distance is \(40+x\) or \(40-x\) depending on which side of the tree they're on — draw a picture.)*
+
+**Notes:**
+<div class="writein tall"></div>
+:::
+
+### Environmental & Biological Applications
+
+::: promptbox
+**1.** A raptor circles a thermal updraft at a radius of 50 m, completing one loop every 8 seconds, gradually gaining altitude. Find its linear (horizontal) speed while circling, and discuss why this speed calculation only captures the horizontal component of the bird's actual motion (not its vertical climb).
+
+**2.** A researcher estimates the height of a nesting platform by standing 25 m from its base and measuring an elevation angle of \(38°\) to the platform, then climbing a nearby observation tower and re-measuring from a point level with the platform's estimated midpoint. Using just the ground-level measurement, find the platform's estimated height, and explain one source of measurement error that could affect this single-angle method (e.g., uncertainty in the 25 m distance, or in the angle reading).
+
+**Notes:**
+<div class="writein tall"></div>
+:::
+
+---
+
+## Answer Key {-}
+
+<details>
+<summary><strong>Click to reveal Your Turn and Challenge answers</strong></summary>
+
+**Circular Motion — Your Turn**
+
+1. \(\omega=\dfrac{2\pi}{60}=\dfrac{\pi}{30}\) rad/s; \(v=15\times\dfrac{\pi}{30}=\dfrac{\pi}{2}\approx1.57\) m/s
+2. \(\omega=\dfrac{2\pi}{5760}\approx0.00109\) rad/s; \(v=7000\times0.00109\approx7.63\) km/s
+3. \(\omega=1000\times2\pi=2000\pi\approx6283.2\) rad/min; \(v=12\times6283.2\approx75{,}398\) cm/min
+4. \(\omega=\dfrac{2\pi}{30}=\dfrac{\pi}{15}\); \(v=8\times\dfrac{\pi}{15}\approx1.68\) m/s
+5. \(\omega=\dfrac{2\pi}{4}=\dfrac{\pi}{2}\) rad/s for both. \(v_{10}=10\times\dfrac{\pi}{2}\approx15.7\) m/s; \(v_{35}=35\times\dfrac{\pi}{2}\approx55.0\) m/s. The radius-35 point is faster, by a factor of exactly \(35/10=3.5\) (same as the ratio of radii, since \(\omega\) is the same for both).
+6. \(\omega=\dfrac{2\pi}{20}=\dfrac{\pi}{10}\); \(v=6\times\dfrac{\pi}{10}\approx1.88\) m/s
+
+**Right-Triangle Trig & the Unit Circle — Your Turn**
+
+1. \(\tan(\theta)=\dfrac{3}{20} \Rightarrow \theta=\tan^{-1}(0.15)\approx8.5°\)
+2. \(\tan(28°)=\dfrac{h}{50} \Rightarrow h=50\tan(28°)\approx26.6\) m
+3. \(\tan(\theta)=\dfrac{40}{60} \Rightarrow \theta=\tan^{-1}(0.667)\approx33.7°\)
+4. \(\sin(\pi/4)=\dfrac{\sqrt2}{2}\); \(\cos(\pi/6)=\dfrac{\sqrt3}{2}\); \(\tan(\pi/4)=1\)
+5. \(\sin^2\theta=1-0.28^2=1-0.0784=0.9216 \Rightarrow \sin\theta\approx0.960\)
+6. \(\cos^2\theta=1-0.96^2=1-0.9216=0.0784 \Rightarrow \cos\theta\approx0.280\)
+
+**Challenge — Harder Versions**
+
+1. \(v=r\omega \le 80 \Rightarrow \omega \le \dfrac{80}{45}\approx1.778\) rad/s. Period \(T=\dfrac{2\pi}{\omega}\), so minimum period: \(T\ge\dfrac{2\pi}{1.778}\approx3.53\) s. The blade must take **at least about 3.53 seconds** per rotation.
+2. Near observer: \(\tan(50°)=\dfrac{h}{x} \Rightarrow x=\dfrac{h}{\tan(50°)}\). Far observer: \(\tan(30°)=\dfrac{h}{x+40} \Rightarrow x+40=\dfrac{h}{\tan(30°)}\). Subtracting: \(\dfrac{h}{\tan(30°)}-\dfrac{h}{\tan(50°)}=40\). Solving: \(h\left(\dfrac{1}{0.5774}-\dfrac{1}{1.1918}\right)=40 \Rightarrow h(1.732-0.839)=40 \Rightarrow h(0.893)=40 \Rightarrow h\approx44.8\) m.
+
+**Challenge — Environmental & Biological Applications**
+
+1. \(\omega=\dfrac{2\pi}{8}=\dfrac{\pi}{4}\) rad/s; \(v=50\times\dfrac{\pi}{4}\approx39.3\) m/s (horizontal speed). This calculation only accounts for motion around the circle (horizontal); it ignores the bird's simultaneous vertical climb, so its true total speed through the air is somewhat higher than this horizontal-only figure.
+2. \(h=25\tan(38°)\approx25(0.781)\approx19.5\) m. A source of error: a small error in the measured 25 m ground distance (e.g. due to uneven terrain or imprecise pacing) propagates directly into the height estimate, since height is proportional to that distance for a fixed angle.
+
+</details>

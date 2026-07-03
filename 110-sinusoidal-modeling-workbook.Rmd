@@ -1,0 +1,125 @@
+# Sinusoidal Equations & Modeling — Workbook
+
+## Learning Objectives (Quick Self-Check)
+
+::: promptbox
+**Check your readiness:**
+For each objective, write one sentence in your own words or a question you still have:
+
+1. How do I find all solutions to a sinusoidal equation within a given time span?
+2. How do I build a sinusoidal model from a described peak, trough, and timing?
+3. How do I choose the right function family for a described environmental process?
+
+**Notes:**
+<div class="writein tall"></div>
+:::
+
+---
+
+## Solving Sinusoidal Equations
+
+### Instructor Demo: Two Solutions in One Cycle
+
+Using \(y(t) = 2\sin\left(\dfrac{\pi}{6}t\right)+5\), find all solutions to \(y(t) = 6\) within \(0\) to \(12\) hours.
+
+*(Instructor walks through this live: find the first solution using inverse sine, then use symmetry to find the second solution within the same cycle.)*
+
+<div class="writein tall"></div>
+
+### Your Turn: Solving Sinusoidal Equations
+
+::: promptbox
+**1.** For \(y(t) = 3\sin(t)\), one solution to \(y(t)=1.5\) is \(t=\sin^{-1}(0.5)=\pi/6\). Find the second solution within \(0\) to \(2\pi\).
+
+**2.** A tide model is \(y(t)=1.2\sin\left(\dfrac{\pi}{6}t\right)+3\). Find both solutions to \(y(t)=3.6\) within the first 12-hour cycle.
+
+**3.** A temperature model is \(T(t)=8\sin\left(\dfrac{2\pi}{12}(t-2)\right)+18\), \(t\) in months. Find both months within a year when \(T(t)=22\).
+
+**Notes:**
+<div class="writein tall"></div>
+:::
+
+---
+
+## Full Modeling Workflow — Capstone Project
+
+::: promptbox
+
+**Group Capstone Activity**
+
+Work in groups to build a complete model from a description, following the same six-step process from the content chapter (choose function family → extract amplitude/vertical shift → set period → set phase shift → assemble the model → use it to predict).
+
+**Scenario:** A wetland's water level varies seasonally: it peaks at 1.8 m in April (month 4) and reaches its lowest point, 0.4 m, in October (month 10).
+
+1. What function family fits this description? Justify your choice in one sentence.
+2. Find the amplitude and vertical shift.
+3. Find the period, and use it to find \(B\).
+4. Find the phase shift \(C\), using the timing of the peak.
+5. Assemble the full model \(L(t)\).
+6. Use your model to predict the water level in month 7 (July).
+7. **Discuss as a group:** what real-world factors might cause actual wetland water levels to deviate from this idealized sinusoidal model?
+
+**Notes:**
+<div class="writein tall"></div>
+:::
+
+---
+
+## Challenge
+
+### Harder Versions
+
+::: promptbox
+**1.** A sinusoidal model has period 8, amplitude 6, vertical shift 10, and reaches its **minimum** (not maximum) at \(t=3\). Reconstruct the full equation. *(Hint: sine reaches its minimum a quarter-period after crossing the midline going down — think carefully about the sign and direction.)*
+
+**2.** Find all solutions to \(y(t) = 4\sin\left(\dfrac{\pi}{4}t\right)+6 = 8\) within \(0\) to \(16\) (two full periods).
+
+**Notes:**
+<div class="writein tall"></div>
+:::
+
+### Environmental & Biological Applications
+
+::: promptbox
+**1.** A lake's algal bloom risk is elevated whenever modeled nutrient concentration exceeds a threshold. Nutrient concentration is modeled by \(N(t) = 6\sin\left(\dfrac{2\pi}{12}(t-5)\right)+12\) (arbitrary units, \(t\) in months), and bloom risk is elevated above a concentration of 16. Find the range of months (approximately) during which bloom risk is elevated. *(Hint: find both boundary crossing months, the same way you found both solutions earlier in this chapter.)*
+
+**2.** A population of migratory shorebirds at a coastal refuge is modeled by \(P(t) = 800\sin\left(\dfrac{2\pi}{12}(t-3)\right)+1200\), \(t\) in months, peaking during spring migration. A conservation survey is only funded for months when the population is predicted to exceed 1500. Find the approximate range of months this covers, and briefly explain what limitation this single idealized model might have for actually planning real survey timing (connecting back to the group discussion in the capstone activity above).
+
+**Notes:**
+<div class="writein tall"></div>
+:::
+
+---
+
+## Answer Key {-}
+
+<details>
+<summary><strong>Click to reveal Your Turn and Challenge answers</strong></summary>
+
+**Solving Sinusoidal Equations — Your Turn**
+
+1. Second solution: \(t=\pi-\pi/6=5\pi/6\)
+2. \(3.6-3=1.2\sin\left(\dfrac{\pi}{6}t\right) \Rightarrow \sin(\cdot)=0.5 \Rightarrow \dfrac{\pi}{6}t=\pi/6 \Rightarrow t=1\). Second solution: \(\dfrac{\pi}{6}t=\pi-\pi/6=5\pi/6 \Rightarrow t=5\). Both: \(t=1\) and \(t=5\) hours.
+3. \(22-18=8\sin\left(\dfrac{\pi}{6}(t-2)\right) \Rightarrow \sin(\cdot)=0.5 \Rightarrow \dfrac{\pi}{6}(t-2)=\pi/6 \Rightarrow t-2=1 \Rightarrow t=3\). Second solution: \(\dfrac{\pi}{6}(t-2)=5\pi/6 \Rightarrow t-2=5 \Rightarrow t=7\). Both: month 3 and month 7.
+
+**Full Modeling Workflow — Capstone (sample solution)**
+
+1. A repeating annual cycle with a single high and low point strongly suggests a **sinusoidal function**.
+2. \(D=\dfrac{1.8+0.4}{2}=1.1\); \(A=\dfrac{1.8-0.4}{2}=0.7\)
+3. Period \(=12\) months; \(B=\dfrac{2\pi}{12}=\dfrac{\pi}{6}\)
+4. Peak at month 4 means midline-crossing (rising) at month 1, so \(C=1\)
+5. \(L(t)=0.7\sin\left(\dfrac{\pi}{6}(t-1)\right)+1.1\)
+6. \(L(7)=0.7\sin\left(\dfrac{\pi}{6}(6)\right)+1.1=0.7\sin(\pi)+1.1=0.7(0)+1.1=1.1\) m
+7. Sample discussion points: rainfall variability from year to year, upstream water management decisions, drought years, or an unusually warm/cold season could all shift the real data away from a perfectly smooth idealized cycle.
+
+**Challenge — Harder Versions**
+
+1. \(A=6\), \(D=10\), \(B=\dfrac{2\pi}{8}=\dfrac{\pi}{4}\). A minimum occurs a quarter-period after a *downward* midline crossing; equivalently, a minimum at \(t=3\) means the *maximum* occurs half a period earlier or later, i.e. at \(t=3-4=-1\) or \(t=3+4=7\). The maximum corresponds to an upward midline-crossing a quarter period before it, so using the max at \(t=7\): upward crossing at \(t=7-2=5\), giving \(C=5\). Equation: \(f(t)=6\sin\left(\dfrac{\pi}{4}(t-5)\right)+10\). *(Check: at \(t=3\), \(\frac{\pi}{4}(3-5)=-\frac{\pi}{2}\), \(\sin(-\pi/2)=-1\), giving \(f(3)=6(-1)+10=4\), the minimum — confirmed.)*
+2. \(8-6=4\sin\left(\dfrac{\pi}{4}t\right) \Rightarrow \sin(\cdot)=0.5 \Rightarrow \dfrac{\pi}{4}t=\pi/6 \Rightarrow t=2/3\). Second solution in first cycle: \(\dfrac{\pi}{4}t=5\pi/6 \Rightarrow t=10/3\). Period \(=\dfrac{2\pi}{\pi/4}=8\), so repeating: \(t=2/3+8=26/3\) and \(t=10/3+8=34/3\). All four solutions in \(0\) to \(16\): \(t\approx0.67, 3.33, 8.67, 11.33\).
+
+**Challenge — Environmental & Biological Applications**
+
+1. \(16-12=6\sin\left(\dfrac{\pi}{6}(t-5)\right) \Rightarrow \sin(\cdot)=0.667 \Rightarrow \dfrac{\pi}{6}(t-5)\approx0.7297 \Rightarrow t-5\approx1.39 \Rightarrow t\approx6.39\). Second crossing: \(\dfrac{\pi}{6}(t-5)\approx\pi-0.7297\approx2.412 \Rightarrow t-5\approx4.61 \Rightarrow t\approx9.61\). Elevated risk approximately from month 6.4 to month 9.6.
+2. \(1500-1200=800\sin\left(\dfrac{2\pi}{12}(t-3)\right) \Rightarrow \sin(\cdot)=0.375 \Rightarrow \dfrac{\pi}{6}(t-3)\approx0.3844 \Rightarrow t-3\approx0.73 \Rightarrow t\approx3.73\). Second crossing: \(\dfrac{\pi}{6}(t-3)\approx\pi-0.3844\approx2.757 \Rightarrow t-3\approx5.27 \Rightarrow t\approx8.27\). Funded survey window: roughly month 3.7 to month 8.3. Limitation: real migration timing shifts year to year with weather and food availability, so a fixed idealized funding window based on one averaged model may miss an early or late migration in an unusual year.
+
+</details>
