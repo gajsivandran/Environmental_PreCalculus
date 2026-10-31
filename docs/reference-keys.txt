@@ -15,6 +15,7 @@ how-this-book-works
 success-in-this-class
 looking-ahead
 about-this-book
+ai-transparency
 foundations-numbers-units-coordinate-systems
 learning-objectives
 introduction

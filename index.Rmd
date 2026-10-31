@@ -11,34 +11,28 @@ biblio-style: apalike
 link-citations: yes
 github-repo: gajsivandran/Precalculus_Environmental_Science
 description: "A textbook companion to prepare students for the University of Washington QSci 291 Environmental Calculus sequence"
----
 
+---
 # Why Precalculus?
 
-A biologist notices that a lake's oxygen level swings up and down with the seasons, peaking every summer and bottoming out every winter. A hydrologist watches a contaminant plume spread outward from a spill site in a widening circle. A climate scientist fits a curve to fifty years of temperature data to project what next decade might look like.
+A limnologist tracks dissolved oxygen in a lake. It peaks every winter and drops every summer, year after year. A hydrologist maps a buffer zone around a drinking-water well: nothing gets built within 100 meters. A climate scientist fits a curve to fifty years of temperature data to see what the next decade might look like.
 
-None of these questions can be answered with arithmetic alone. They require a language for describing *shapes of change*—lines, circles, curves, cycles—and the tools to translate a real system into an equation you can actually work with.
-
-That language is precalculus.
+Arithmetic won't get you far with any of these. You need a way to describe the shape of the change, then turn it into an equation you can work with. That's what precalculus is.
 
 Welcome to *Precalculus for Environmental Science*.
 
-This book is your on-ramp to the Environmental Calculus sequence. It is not a re-run of your high school math class. Every tool you build here—coordinate systems, functions, exponentials, trigonometry—is chosen because you will use it, directly, to model a real environmental system in the chapters and courses that follow.
+This book gets you ready for the Environmental Calculus sequence. Some of it will look familiar from high school. The difference is that every topic is here because you'll use it to model a real system, in this course and in QSci 291 and 292.
 
 ---
 
 ## Why This Book?
 
-Most precalculus textbooks are written to prepare students for *any* future math course, so their examples tend to be abstract: generic curves, unlabeled axes, "find x." That approach works, but it misses an opportunity—precalculus concepts map beautifully onto environmental systems, and concepts stick best when they're connected to something you care about.
+Most precalculus books are written to prepare you for any future math course, so the examples are generic: unlabeled axes, "find x." That works. But you're going into environmental science, so the examples here come from it:
 
-In this book, every major idea is anchored in an environmental context:
-
-- **Lines** model steady trends—rising sea level, a linear dose-response relationship.
-- **Circles** describe buffer zones, contamination radii, and orbital paths.
-- **Exponentials and logarithms** govern decay, growth, and scales like pH.
-- **Trigonometry and sinusoids** capture cycles—tides, seasons, daylight hours.
-
-Our goal isn't just to get you ready for the next exam. It's to help you see precalculus as a toolkit you'll reach for constantly as an environmental scientist.
+- **Lines** for steady change over a short window, like a tank draining at a constant rate
+- **Circles** for distances around a point, like buffer zones and setbacks
+- **Exponentials and logarithms** for decay, growth and scales like pH
+- **Sinusoids** for anything that cycles: tides, seasons, daylight
 
 ---
 
@@ -155,3 +149,19 @@ These are exactly the tools you'll need on day one of *Environmental Calculus*.
 This book is a companion volume to *Environmental Calculus*, written to prepare students for that course using the same environmental-science lens. It is a **work in progress**—expect rough edges, and expect them to get smoothed out with your help.
 
 If you spot an error, or a section that doesn't quite click, please let us know so we can improve it for you and for future students.
+
+## AI Transparency
+
+I developed this book for students in my quantitative science courses at UW. I ask those students to be open about how they use AI, so the same standard applies to me.
+
+The course design is mine: what we cover, in what order, the environmental case studies, and how each idea is explained. 
+
+I used generative AI tools to:
+
+- edit for grammar and consistency. 
+- draft practice problems, concept checks and their worked solutions
+- format and convert material, including the reveal-answer blocks and the study guides
+- meet digital accessibility requirements (WCAG 2.1 AA): drafting alt text for figures, checking heading structure, color contrast and table markup, and producing accessible Word versions of course documents
+
+I reviewed and edited all AI-generated material before publishing.
+
