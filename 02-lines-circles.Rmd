@@ -22,7 +22,7 @@ $$y = mx + b$$
 
 where \(m\) is the slope (the rate of change of \(y\) with respect to \(x\)) and \(b\) is the y-intercept (the value of \(y\) when \(x = 0\)).
 
-If instead you know one point \((x_1, y_1)\) on the line and the slope \(m\), it's often faster to use **point-slope form**:
+If you know one point \((x_1, y_1)\) on the line and the slope \(m\), it's often faster to use **point-slope form**:
 
 $$y - y_1 = m(x - x_1)$$
 
@@ -32,14 +32,14 @@ Both forms describe the exact same line — point-slope form is just a shortcut 
 
 **Slope as a Rate**
 
-Recall the Upstream Well station from Chapter 1. Suppose its nitrate concentration was 6.0 mg/L in year 0 and 9.6 mg/L in year 4. What are the "rise" and "run" here, in words, before you compute anything?
+Suppose a well has a nitrate concentration of 6.0 mg/L in year 0 and 9.6 mg/L in year 4. What are the "rise" and "run" here, in words, before you compute anything?
 
 <div class="writein"></div>
 :::
 
 ### Worked Example: Writing a Trend Line
 
-Using the Upstream Well data above — 6.0 mg/L at year 0, 9.6 mg/L at year 4:
+Using the Well data above — 6.0 mg/L at year 0, 9.6 mg/L at year 4:
 
 **Step 1 — Compute the slope.**
 
@@ -61,6 +61,8 @@ $$
 
 **Step 4 — Interpret.** Nitrate at this well is rising by about 0.9 mg/L per year, starting from a baseline of 6.0 mg/L. If this linear trend continues, we can predict future concentrations — which is exactly what we'll do in the next section.
 
+**Important** we've made an implicit assumption here when we chose to fit a linear function to this data. Models are always assumptions. With only 2 measurements there are an infinite number of ways the concentration could have gone from 6 to 9 mg/L. It is important to recognize as we use math to represent the natural world we are 'abstracting' or simplifying the system.
+
 ---
 
 ## Circles
@@ -72,10 +74,15 @@ A circle is the set of all points at a fixed distance (the **radius**, \(r\)) fr
 $$
 (x-h)^2 + (y-k)^2 = r^2
 $$
+The signs of the general form matter. Positive values for \(h\) and \(k\) result from the form above. If \(h\) were a negative number, the first term may look like:  
+$$
+(x+h)^2 + (y-k)^2 = r^2
+$$
+
 
 ### Worked Example: A Contamination Buffer Zone
 
-Suppose a chemical spill occurs at the Downstream Well, located at \((180, -40)\) in our watershed's local coordinate grid (meters east/north of the stream gauge). Regulators establish a 150 m buffer zone around the spill site where groundwater sampling is required.
+A chemical spill occurs at the Downstream Well, located at \((180, -40)\) in our watershed's local coordinate grid (meters east/north of the stream gauge). Regulators establish a 150 m buffer zone around the spill site where groundwater sampling is required.
 
 **Step 1 — Identify center and radius.** Center: \((180, -40)\). Radius: \(150\) m.
 
@@ -126,7 +133,7 @@ A circle is defined by a *fixed distance* from a center, and distance itself inv
 
 ## Linear Modeling from Data
 
-Real data rarely falls exactly on a line — but if the underlying process is roughly linear, we can find the line that best fits the scatter of points. This is called **linear regression**, and while the full statistical method is beyond this course, the *result* is something you already know how to use: a slope-intercept equation you can evaluate and interpret.
+Real environmental data rarely falls exactly on a line — but if the underlying process is roughly linear, we can find the line that best fits the scatter of points. This is called **linear regression**, and while the full statistical method is beyond this course, the *result* which is a linear model is something you already already know how to use. 
 
 ```{r co2-trend-plot, echo=FALSE, message=FALSE, warning=FALSE, fig.cap="A simulated multi-decade CO2 trend with a fitted linear model.", fig.alt="Scatter plot of atmospheric CO2 concentration in parts per million against year, showing a roughly linear upward trend from about 1980 to 2020, with a straight best-fit line drawn through the points."}
 library(ggplot2)
@@ -171,7 +178,7 @@ A linear model fit to 40 years of data is used to predict a value 50 years into 
 
 ## Intersections of Lines
 
-Two lines **intersect** at the point (or points) where they share the same \(x\) and \(y\) values simultaneously — in other words, where their equations are both true at once. Setting the two right-hand sides equal to each other and solving for \(x\) gives the intersection.
+Two lines **intersect** at the point (or points) where they share the same \(x\) and \(y\) values simultaneously — in other words, where their equations are both true at once. Setting the equatsions equal to each other and solving for \(x\) gives that intersection.
 
 ### Worked Example: When Do Two Trends Cross?
 
@@ -264,7 +271,7 @@ $$
 
 ### What Are You Practicing?
 
-These problems combine writing line equations, fitting a trend, finding intersections, and reasoning about parametric motion — all applied to watershed and monitoring scenarios.
+These problems combine writing line equations, fitting a trend, finding intersections, and reasoning around the parameters — all applied to watershed and monitoring scenarios.
 
 ### How to Approach These Problems
 

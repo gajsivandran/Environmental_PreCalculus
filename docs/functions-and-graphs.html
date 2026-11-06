@@ -629,11 +629,11 @@
 </div>
 <div id="function-definition-notation" class="section level2 hasAnchor" number="4.2">
 <h2><span class="header-section-number">4.2</span> Function Definition &amp; Notation<a href="functions-and-graphs.html#function-definition-notation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>A <strong>function</strong> is a rule that assigns exactly one output to each input. If <span class="math inline">\(x\)</span> is the input and <span class="math inline">\(y\)</span> is the output, we write <span class="math inline">\(y = f(x)\)</span>, read “<span class="math inline">\(f\)</span> of <span class="math inline">\(x\)</span>.” The name <span class="math inline">\(f\)</span> is arbitrary — you’ll often see functions named for what they represent, like <span class="math inline">\(C(t)\)</span> for concentration as a function of time, or <span class="math inline">\(T(h)\)</span> for temperature as a function of elevation.</p>
-<p>The defining rule — <strong>exactly one output per input</strong> — is what separates a function from a general relationship. If you can trace a vertical line through a graph and it crosses the curve more than once, the graph does <em>not</em> represent a function of <span class="math inline">\(x\)</span>, because that one input <span class="math inline">\(x\)</span> would correspond to more than one output.</p>
+<p>A <strong>function</strong> is a rule that assigns exactly one output to each input. If <span class="math inline">\(x\)</span> is the input and <span class="math inline">\(y\)</span> is the output, we write <span class="math inline">\(y = f(x)\)</span>, read “<span class="math inline">\(f\)</span> of <span class="math inline">\(x\)</span>.” The name <span class="math inline">\(f\)</span> is arbitrary — you’ll often see functions named for what they represent, like <span class="math inline">\(C(t)\)</span> for concentration as a function of time, or <span class="math inline">\(T(z)\)</span> for temperature as a function of elevation.</p>
+<p>The defining rule — <strong>exactly one output per input</strong> — is what separates a function from a general relationship. If you can trace a vertical line through a graph and it crosses the curve more than once, the graph does <em>not</em> represent a function of <span class="math inline">\(x\)</span>, because that one input <span class="math inline">\(x\)</span> would correspond to more than one output. This is refered to as the <em>vertical line test</em>. Note: if the vertical line passes through no points - that doesn’t reveal anything. There are plenty of functions that have no output for specific <span class="math inline">\(x\)</span> values.</p>
 <div class="promptbox">
 <p><strong>Is It a Function?</strong></p>
-<p>A graph shows water depth in a tidal channel over the course of a day — depth on the vertical axis, time of day on the horizontal axis. Could two different times of day have the exact same depth? Does that make it <em>not</em> a function? Discuss with a partner why or why not.</p>
+<p>A graph shows water depth in a tidal channel over the course of a day. Depth on the vertical axis, time of day on the horizontal axis. Could two different times of day have the exact same depth? Does that make it <em>not</em> a function? Discuss with a partner why or why not.</p>
 <div class="writein">
 
 </div>
@@ -659,7 +659,7 @@
 </div>
 <div id="domain-range" class="section level2 hasAnchor" number="4.3">
 <h2><span class="header-section-number">4.3</span> Domain &amp; Range<a href="functions-and-graphs.html#domain-range" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>The <strong>domain</strong> of a function is the set of all valid inputs; the <strong>range</strong> is the set of all possible outputs. In environmental modeling, domain and range are rarely “all real numbers” — they’re restricted by what’s physically or practically meaningful.</p>
+<p>The <strong>domain</strong> of a function is the set of all valid inputs. The <strong>range</strong> is the set of all possible outputs. In environmental modeling, domain and range are rarely “all real numbers” — they are often restricted by what’s physically or practically meaningful (you can’t have a negative population or a water temperature of over 200 degrees celcius).</p>
 <div id="worked-example-a-seasonal-population-function" class="section level3 hasAnchor" number="4.3.1">
 <h3><span class="header-section-number">4.3.1</span> Worked Example: A Seasonal Population Function<a href="functions-and-graphs.html#worked-example-a-seasonal-population-function" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Suppose a model <span class="math inline">\(P(t) = 200 + 15t\)</span> describes the population of a migratory bird species at a wetland, where <span class="math inline">\(t\)</span> is measured in weeks since the birds arrive in spring, and the birds are only present at the wetland for a 20-week season.</p>
@@ -673,7 +673,12 @@
 </div>
 <div id="graph-reading-transformations-introduction" class="section level2 hasAnchor" number="4.4">
 <h2><span class="header-section-number">4.4</span> Graph Reading &amp; Transformations (Introduction)<a href="functions-and-graphs.html#graph-reading-transformations-introduction" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Reading a graph well means being able to answer questions like: where is the function increasing or decreasing? Where is it at its highest or lowest? Does it cross the x-axis, and if so, what does that mean in context?</p>
+<p>Reading a graph well means being able to answer questions like:</p>
+<ul>
+<li>where is the function increasing or decreasing?</li>
+<li>Where is it at its highest or lowest?</li>
+<li>Does it cross the x-axis, and if so, what does that mean in context?</li>
+</ul>
 <p>You’ll also start noticing that many graphs are <em>shifted</em>, <em>stretched</em>, or <em>flipped</em> versions of a simpler graph — for example, a temperature curve shifted upward because of climate warming, or a dose-response curve stretched horizontally because a drug takes longer to act. We’ll formalize these transformations with algebra in Chapter 6; for now, practice describing them in words.</p>
 <div class="promptbox">
 <p><strong>Describing a Shift</strong></p>
@@ -686,7 +691,7 @@
 </div>
 <div id="multipart-piecewise-functions" class="section level2 hasAnchor" number="4.5">
 <h2><span class="header-section-number">4.5</span> Multipart (Piecewise) Functions<a href="functions-and-graphs.html#multipart-piecewise-functions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>A <strong>piecewise function</strong> is defined by different formulas on different parts of its domain. These show up constantly in environmental policy — tiered water rates, emissions penalties, and staged regulatory thresholds are all piecewise by design.</p>
+<p>A <strong>piecewise function</strong> is defined by different formulas on different parts of its domain. These show up a lot in environmental policy — tiered water rates, emissions penalties, and staged regulatory thresholds are all piecewise by design.</p>
 <div id="worked-example-a-tiered-water-rate" class="section level3 hasAnchor" number="4.5.1">
 <h3><span class="header-section-number">4.5.1</span> Worked Example: A Tiered Water Rate<a href="functions-and-graphs.html#worked-example-a-tiered-water-rate" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>A utility charges residential customers for water using a tiered structure:</p>

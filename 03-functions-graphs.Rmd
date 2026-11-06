@@ -13,15 +13,15 @@ By the end of this chapter, you will be able to:
 
 ## Function Definition & Notation
 
-A **function** is a rule that assigns exactly one output to each input. If \(x\) is the input and \(y\) is the output, we write \(y = f(x)\), read "\(f\) of \(x\)." The name \(f\) is arbitrary — you'll often see functions named for what they represent, like \(C(t)\) for concentration as a function of time, or \(T(h)\) for temperature as a function of elevation.
+A **function** is a rule that assigns exactly one output to each input. If \(x\) is the input and \(y\) is the output, we write \(y = f(x)\), read "\(f\) of \(x\)." The name \(f\) is arbitrary — you'll often see functions named for what they represent, like \(C(t)\) for concentration as a function of time, or \(T(z)\) for temperature as a function of elevation.
 
-The defining rule — **exactly one output per input** — is what separates a function from a general relationship. If you can trace a vertical line through a graph and it crosses the curve more than once, the graph does *not* represent a function of \(x\), because that one input \(x\) would correspond to more than one output.
+The defining rule — **exactly one output per input** — is what separates a function from a general relationship. If you can trace a vertical line through a graph and it crosses the curve more than once, the graph does *not* represent a function of \(x\), because that one input \(x\) would correspond to more than one output. This is refered to as the *vertical line test*. Note: if the vertical line passes through no points - that doesn't reveal anything. There are plenty of functions that have no output for specific \(x\) values.
 
 ::: promptbox
 
 **Is It a Function?**
 
-A graph shows water depth in a tidal channel over the course of a day — depth on the vertical axis, time of day on the horizontal axis. Could two different times of day have the exact same depth? Does that make it *not* a function? Discuss with a partner why or why not.
+A graph shows water depth in a tidal channel over the course of a day. Depth on the vertical axis, time of day on the horizontal axis. Could two different times of day have the exact same depth? Does that make it *not* a function? Discuss with a partner why or why not.
 
 <div class="writein"></div>
 :::
@@ -50,7 +50,7 @@ A graph shows water depth in a tidal channel over the course of a day — depth 
 
 ## Domain & Range
 
-The **domain** of a function is the set of all valid inputs; the **range** is the set of all possible outputs. In environmental modeling, domain and range are rarely "all real numbers" — they're restricted by what's physically or practically meaningful.
+The **domain** of a function is the set of all valid inputs. The **range** is the set of all possible outputs. In environmental modeling, domain and range are rarely "all real numbers" — they are often restricted by what's physically or practically meaningful (you can't have a negative population or a water temperature of over 200 degrees celcius).
 
 ### Worked Example: A Seasonal Population Function
 
@@ -65,7 +65,11 @@ Notice that the *domain* is a restriction we impose based on context (the birds 
 
 ## Graph Reading & Transformations (Introduction)
 
-Reading a graph well means being able to answer questions like: where is the function increasing or decreasing? Where is it at its highest or lowest? Does it cross the x-axis, and if so, what does that mean in context?
+Reading a graph well means being able to answer questions like: 
+
+- where is the function increasing or decreasing? 
+- Where is it at its highest or lowest? 
+- Does it cross the x-axis, and if so, what does that mean in context?
 
 You'll also start noticing that many graphs are *shifted*, *stretched*, or *flipped* versions of a simpler graph — for example, a temperature curve shifted upward because of climate warming, or a dose-response curve stretched horizontally because a drug takes longer to act. We'll formalize these transformations with algebra in Chapter 6; for now, practice describing them in words.
 
@@ -82,7 +86,7 @@ Two years of daily temperature data are plotted on the same axes. The second yea
 
 ## Multipart (Piecewise) Functions
 
-A **piecewise function** is defined by different formulas on different parts of its domain. These show up constantly in environmental policy — tiered water rates, emissions penalties, and staged regulatory thresholds are all piecewise by design.
+A **piecewise function** is defined by different formulas on different parts of its domain. These show up a lot in environmental policy — tiered water rates, emissions penalties, and staged regulatory thresholds are all piecewise by design.
 
 ### Worked Example: A Tiered Water Rate
 

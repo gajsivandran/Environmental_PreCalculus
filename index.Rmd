@@ -15,30 +15,32 @@ description: "A textbook companion to prepare students for the University of Was
 ---
 # Why Precalculus?
 
-A limnologist tracks dissolved oxygen in a lake. It peaks every winter and drops every summer, year after year. A hydrologist maps a buffer zone around a drinking-water well: nothing gets built within 100 meters. A climate scientist fits a curve to fifty years of temperature data to see what the next decade might look like.
+A limnologist tracks dissolved oxygen in a lake. It peaks every winter and drops every summer, year after year in a predictable cylcle. A hydrologist maps a buffer zone around a drinking-water well: nothing gets built within 100 meters to reduce the risk of contamination. A climate scientist fits a curve to fifty years of temperature data to project what the next decade might look like.
 
-Arithmetic won't get you far with any of these. You need a way to describe the shape of the change, then turn it into an equation you can work with. That's what precalculus is.
+Arithmetic won't get you far with any of these. You need a way to describe the shape of the change. Turning these observations to equations allows us to explore them. That's what precalculus is.
 
 Welcome to *Precalculus for Environmental Science*.
 
-This book gets you ready for the Environmental Calculus sequence. Some of it will look familiar from high school. The difference is that every topic is here because you'll use it to model a real system, in this course and in QSci 291 and 292.
+This book gets you ready for the Environmental Calculus sequence. Some of it will look familiar from high school. The difference is that every topic is here because you'll use it to model a real system, in this course and in QSci 291 and 292. You'll definitely come across these models in your environmental major classes - and the topics in this book will help you understand the science you have chosen to study.
 
 ---
 
 ## Why This Book?
 
-Most precalculus books are written to prepare you for any future math course, so the examples are generic: unlabeled axes, "find x." That works. But you're going into environmental science, so the examples here come from it:
+Most precalculus books are written to prepare you for any future math course, so the examples are generic: unlabeled axes, "find x." That works. But you're going into environmental science, so the examples in this book come from it:
 
 - **Lines** for steady change over a short window, like a tank draining at a constant rate
 - **Circles** for distances around a point, like buffer zones and setbacks
 - **Exponentials and logarithms** for decay, growth and scales like pH
 - **Sinusoids** for anything that cycles: tides, seasons, daylight
 
+The goal here is to use your intuition and interest in the natural systems to help learn the mathematics. As you progress through your major, you will rarely derive an equation from first principles. But rather, you'll be given the final equation. Building mathematical literacy, the ability to 'read' and equation, to determine how the systme is behaving is the ultimate goal.
+
 ---
 
 ## What Is Precalculus, Really?
 
-At its core, precalculus is the study of **relationships between quantities**—and the vocabulary for describing how those relationships behave. Here are a few examples you'll encounter in this book:
+At its center, precalculus is the study of **relationships between quantities**—and the building the vocabulary for describing how those relationships behave. Here are a few examples you'll come across in this book:
 
 | System | The Relationship | The Precalculus Tool |
 |--------|-------------------|------------------------|
@@ -48,13 +50,15 @@ At its core, precalculus is the study of **relationships between quantities**—
 | **Tides & seasons** | A quantity that rises and falls in a repeating cycle | Sinusoidal functions |
 | **Contamination** | The boundary of an affected area around a point source | Circles & coordinate geometry |
 
-Notice the pattern: each real system has a *shape*, and each shape has a matching mathematical family. Learning to recognize which family fits a given system—and then finding the specific equation—is the central skill of this course.
+Notice the pattern: each real system has a *shape*, and each shape has a matching mathematical family. Learning to recognize which family fits a given system—and then finding the specific equation—is the literacy skill of this course.
+
+In later mathematics courses, know which derivative or integral rule to use leans on this same skill, pattern recognition.
 
 ::: promptbox
 
 **Shapes of Change**
 
-Think of an environmental quantity you've read about recently (temperature, a pollutant level, a population count, tide height). In a small group, discuss: does it change steadily, does it grow or shrink multiplicatively, or does it repeat in cycles? What shape would its graph have?
+Think of an environmental quantity you've seen recently (temperature, a pollutant level, a population count, tide height). In a small group, discuss: does it change steadily (constantly), does it grow or shrink multiplicatively (exponentially), or does it repeat in cycles (sinusoidally)? What shape would its graph have?
 
 <div class="writein tall"></div>
 :::
@@ -98,7 +102,7 @@ See if you can match each scenario to the type of function that best describes i
 
 Each chapter follows the same supportive structure:
 
-**Explanations with environmental context.** New ideas are introduced in plain language first, then formalized, always tied to a real environmental system.
+**Explanations with environmental context.** New ideas will be introduced in plain language first, then formalized with mathematical notation, and finally tied to a real environmental system.
 
 **Prompt boxes** are places to pause and think—some ask you to discuss with a partner, some ask you to sketch or write, some pose a question to sit with before reading on:
 
@@ -110,23 +114,25 @@ This is where you'll find a question or activity. The write-in space below is fo
 <div class="writein"></div>
 :::
 
-**Concept checks** appear throughout each chapter—low-stakes, click-to-reveal questions so you can immediately test whether an idea has clicked.
+**Concept checks** appear throughout each chapter—low-stakes, click-to-reveal questions so you can immediately test whether an idea has clicked. These are your self checks while you read through the material.
 
 **Worked examples** walk through environmental problems step by step: *what* we're doing, *why*, and *what the answer means in context*.
 
-**Skills drills** at the end of each chapter give you pure mechanical repetition—no context, just reps—to build fluency with the algebra itself.
+**Skills drills** at the end of each chapter give you pure mechanical repetition—no context, just reps—to build fluency with the algebra itself. Building this mathematically 'muscle memory' will eventually allow you to see the relationship rather than the numbers (Matrix fans - this is what is meant but not seeing the code anymore - just what it represents).
 
-**Workbook chapters** (added in a later phase of this book) will follow each content chapter, giving you guided practice, write-in prompts, and additional problems.
+**Workbook chapters** (added in a later phase of this book) will follow each content chapter, giving you guided practice, write-in prompts, and additional problems. These sections have been created to give you more guided practice.
 
 ---
 
 ## Success in This Class
 
-First and foremost, know this: **we believe in your ability to learn and grow.** You bring unique strengths and perspectives, and your effort matters here.
+First and foremost **we believe in your ability to learn and grow.** You bring unique strengths and perspectives, and your effort matters here. Learning requires struggle, so as soon as you find yourself struggling thats a good thing - it means you are learning something new.
 
-If precalculus material feels rusty or unfamiliar, that's completely normal—it doesn't mean you don't belong in environmental science. Mistakes are how you find out where your thinking needs refinement, and that's exactly where growth happens.
+If precalculus material feels rusty or unfamiliar, that's completely normal—it doesn't mean you don't belong in environmental science. We have students in this class from a diversity of mathematics preparation background. Mistakes are how you find out where your thinking needs refinement, and that's exactly where growth happens.
 
-Just like fieldwork, learning math is iterative: try, test, revise, improve. Give yourself permission to be imperfect while you build these tools—you'll need them, and you're capable of mastering them.
+Just like fieldwork, learning math is iterative: try, test, revise, improve. Give yourself permission to be imperfect while you build these tools—you'll need them, and you're capable of mastering them. You'll learn more by trying and making mistakes than by not trying because of a fear of being wrong.
+
+I promise to be wrong from time to time - I will make mistakes in class when solving a problem. When you work on a problem you only get to be right once, you'll be wrong several times before you are right, its the process. Trust the process.
 
 ---
 
@@ -146,9 +152,9 @@ These are exactly the tools you'll need on day one of *Environmental Calculus*.
 
 ## About This Book
 
-This book is a companion volume to *Environmental Calculus*, written to prepare students for that course using the same environmental-science lens. It is a **work in progress**—expect rough edges, and expect them to get smoothed out with your help.
+This book is a companion volume to *Environmental Calculus*, written to prepare students for that course using the same environmental-science lens. It is a **work in progress**—expect rough edges and typos. I hope to smooth them out with your help.
 
-If you spot an error, or a section that doesn't quite click, please let us know so we can improve it for you and for future students.
+If you spot an error, or a section that doesn't quite click, please let us know so I can improve it for you and for future students.
 
 ## AI Transparency
 
@@ -160,7 +166,7 @@ I used generative AI tools to:
 
 - edit for grammar and consistency. 
 - draft practice problems, concept checks and their worked solutions
-- format and convert material, including the reveal-answer blocks and the study guides
+- format and convert material for html, including the reveal-answer blocks and the study guides
 - meet digital accessibility requirements (WCAG 2.1 AA): drafting alt text for figures, checking heading structure, color contrast and table markup, and producing accessible Word versions of course documents
 
 I reviewed and edited all AI-generated material before publishing.

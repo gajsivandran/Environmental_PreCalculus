@@ -629,16 +629,16 @@
 </div>
 <div id="introduction" class="section level2 hasAnchor" number="2.2">
 <h2><span class="header-section-number">2.2</span> Introduction<a href="foundations-numbers-units-coordinate-systems.html#introduction" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Imagine you’ve just joined a team monitoring water quality in a small watershed. You’re handed a spreadsheet: a list of sampling stations, each with a location, a nitrate concentration, and a date. Before you can plot a single trend line or fit a single model, you need to answer some very basic-sounding questions:</p>
+<p>Imagine you’ve just joined a team monitoring water quality in a small watershed. You’re handed a spreadsheet: a list of sampling locations, each with a set of coordinates, a nitrate concentration, and a date. Before you can plot a single trend line or fit a single model, you need to answer some very high level questions:</p>
 <ul>
 <li>Are these concentrations in the same units as the regulatory limit you’re comparing them to?</li>
 <li>How far apart are these two sampling stations, actually?</li>
 <li>If I place these stations on a map, where do they sit relative to each other?</li>
 </ul>
-<p>None of these questions require calculus. They require the tools in this chapter: <strong>units</strong>, <strong>coordinates</strong>, and <strong>distance</strong>. They are the quiet infrastructure underneath every model you’ll build in this course — get them wrong, and everything built on top of them is wrong too.</p>
+<p>None of these questions require calculus. They require the tools in this chapter: <strong>units</strong>, <strong>coordinates</strong>, and <strong>distance</strong>. They are the underlying structure of sampling campaign that informs a model — get them wrong, and everything built on top of them is wrong too.</p>
 <div class="promptbox">
 <p><strong>Before We Start</strong></p>
-<p>Think of a time a mismatched unit caused confusion — a recipe, a road sign, a medication dose, a shipping label. What went wrong, and how was it caught (or not)?</p>
+<p>Think of a time a mismatched unit caused confusion — in a recipe when a teaspoon of salt was needed and you used a tablespoon, a road sign, a medication dose, a shipping label. What went wrong, and how was it caught (or not)?</p>
 <div class="writein">
 
 </div>
@@ -665,7 +665,7 @@
 <p><span class="math display">\[
 2.4\ \frac{\text{m}^3}{\text{s}} \times \frac{1000\ \text{L}}{1\ \text{m}^3} \times \frac{60\ \text{s}}{1\ \text{min}} = 2.4 \times 1000 \times 60 \ \frac{\text{L}}{\text{min}} = 144{,}000 \ \frac{\text{L}}{\text{min}}
 \]</span></p>
-<p><strong>Step 3 — Check reasonableness.</strong> A flow of a few cubic meters per second is a real, moderately-sized stream, so a six-figure liters-per-minute value is plausible — it’s just a much smaller time unit and much smaller volume unit multiplied together.</p>
+<p><strong>Step 3 — Check reasonableness.</strong> Its always worth asking yourself if you think the final numeric answer will be bigger or smaller than what you started with, if i am going from 1 min to seconds, I expect there the be more seconds than 1. A flow of a few cubic meters per second is a real, moderately-sized stream, so a six-figure liters-per-minute value is plausible — it’s just a much smaller time unit and much smaller volume unit multiplied together. This directionality can help you catch an accidental misuse of a converstion factor.</p>
 <div class="writein">
 
 </div>
@@ -700,8 +700,8 @@
 </div>
 <div id="a-famous-example-the-mars-climate-orbiter" class="section level3 hasAnchor" number="2.3.4">
 <h3><span class="header-section-number">2.3.4</span> A Famous Example: The Mars Climate Orbiter 🚀<a href="#a-famous-example-the-mars-climate-orbiter" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Mismatched units aren’t just a classroom nuisance — they’ve caused real, expensive failures. In 1999, NASA’s Mars Climate Orbiter was lost as it approached Mars. The investigation found that one engineering team had provided thrust data in <strong>pound-seconds</strong> (an imperial unit), while the navigation software on the other end of the pipeline expected the value in <strong>newton-seconds</strong> (the metric unit). The software used the number as given, without converting it, and the resulting navigation error sent the spacecraft catastrophically off course.</p>
-<p>No individual calculation was “wrong” — every team did their own arithmetic correctly. The failure was a <strong>unit mismatch at the handoff</strong> between two systems: a number changed hands without its units being checked. It’s the same failure mode as forgetting to convert mg/L to ppm before comparing a reading to a regulatory limit — just with a much higher price tag. The lesson scales down perfectly to a spreadsheet: always track units through every step, and always double-check them at every handoff, not just within your own calculation.</p>
+<p>Mismatched units aren’t just a classroom nuisance — they’ve caused real, expensive failures. In 1999, NASA’s Mars Climate Orbiter burned up on entry into the Mars atmosphere. The investigation found that one engineering team had provided their thrust data in <strong>pound-seconds</strong> (an imperial unit), while the navigation software on the other end of the pipeline expected the value in <strong>newton-seconds</strong> (the metric unit). The software used the number as given, without converting it, and the resulted in a ~$240 million fireball (adjusted for today’s dollars).</p>
+<p>No individual calculation was “wrong” — every team did their own math correctly. The failure was a <strong>unit mismatch at the handoff</strong> between two systems: a number changed hands without its units being checked. It’s the same failure mode as forgetting to convert mg/L to ppm before comparing a reading to a regulatory limit — just with a much higher price tag. The lesson is simple: always track units through every step, and always double-check them at every handoff, not just within your own calculation.</p>
 </div>
 <div id="concept-check-unit-conversion" class="section level3 unnumbered hasAnchor">
 <h3>Concept Check: Unit Conversion<a href="foundations-numbers-units-coordinate-systems.html#concept-check-unit-conversion" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -791,7 +791,7 @@
 Figure 2.1: Sampling stations plotted on a local coordinate grid centered on the stream gauge.
 </p>
 </div>
-<p>Notice that a negative x-coordinate means “west of the gauge,” and a negative y-coordinate means “south of the gauge” — exactly like the four quadrants of a standard Cartesian plane.</p>
+<p>Notice that a negative x-coordinate means “west of the gauge,” and a negative y-coordinate means “south of the gauge”. This is just like the four quadrants of a standard Cartesian plane.</p>
 <hr />
 </div>
 </div>

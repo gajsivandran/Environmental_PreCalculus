@@ -635,12 +635,12 @@
 <p>A line can be written in <strong>slope-intercept form</strong>:</p>
 <p><span class="math display">\[y = mx + b\]</span></p>
 <p>where <span class="math inline">\(m\)</span> is the slope (the rate of change of <span class="math inline">\(y\)</span> with respect to <span class="math inline">\(x\)</span>) and <span class="math inline">\(b\)</span> is the y-intercept (the value of <span class="math inline">\(y\)</span> when <span class="math inline">\(x = 0\)</span>).</p>
-<p>If instead you know one point <span class="math inline">\((x_1, y_1)\)</span> on the line and the slope <span class="math inline">\(m\)</span>, it’s often faster to use <strong>point-slope form</strong>:</p>
+<p>If you know one point <span class="math inline">\((x_1, y_1)\)</span> on the line and the slope <span class="math inline">\(m\)</span>, it’s often faster to use <strong>point-slope form</strong>:</p>
 <p><span class="math display">\[y - y_1 = m(x - x_1)\]</span></p>
 <p>Both forms describe the exact same line — point-slope form is just a shortcut for building the equation before simplifying it into slope-intercept form.</p>
 <div class="promptbox">
 <p><strong>Slope as a Rate</strong></p>
-<p>Recall the Upstream Well station from Chapter 1. Suppose its nitrate concentration was 6.0 mg/L in year 0 and 9.6 mg/L in year 4. What are the “rise” and “run” here, in words, before you compute anything?</p>
+<p>Suppose a well has a nitrate concentration of 6.0 mg/L in year 0 and 9.6 mg/L in year 4. What are the “rise” and “run” here, in words, before you compute anything?</p>
 <div class="writein">
 
 </div>
@@ -648,7 +648,7 @@
 </div>
 <div id="worked-example-writing-a-trend-line" class="section level3 hasAnchor" number="3.2.2">
 <h3><span class="header-section-number">3.2.2</span> Worked Example: Writing a Trend Line<a href="lines-circles-linear-modeling.html#worked-example-writing-a-trend-line" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Using the Upstream Well data above — 6.0 mg/L at year 0, 9.6 mg/L at year 4:</p>
+<p>Using the Well data above — 6.0 mg/L at year 0, 9.6 mg/L at year 4:</p>
 <p><strong>Step 1 — Compute the slope.</strong></p>
 <p><span class="math display">\[
 m = \frac{9.6 - 6.0}{4 - 0} = \frac{3.6}{4} = 0.9 \ \frac{\text{mg/L}}{\text{yr}}
@@ -662,6 +662,7 @@ y - 6.0 = 0.9(x - 0)
 y = 0.9x + 6.0
 \]</span></p>
 <p><strong>Step 4 — Interpret.</strong> Nitrate at this well is rising by about 0.9 mg/L per year, starting from a baseline of 6.0 mg/L. If this linear trend continues, we can predict future concentrations — which is exactly what we’ll do in the next section.</p>
+<p><strong>Important</strong> we’ve made an implicit assumption here when we chose to fit a linear function to this data. Models are always assumptions. With only 2 measurements there are an infinite number of ways the concentration could have gone from 6 to 9 mg/L. It is important to recognize as we use math to represent the natural world we are ‘abstracting’ or simplifying the system.</p>
 <hr />
 </div>
 </div>
@@ -672,11 +673,15 @@ y = 0.9x + 6.0
 <p>A circle is the set of all points at a fixed distance (the <strong>radius</strong>, <span class="math inline">\(r\)</span>) from a fixed point (the <strong>center</strong>, <span class="math inline">\((h,k)\)</span>). Since the distance formula from Chapter 1 gives the distance between any point <span class="math inline">\((x,y)\)</span> and the center, setting that distance equal to <span class="math inline">\(r\)</span> — and squaring both sides to clear the square root — gives the equation of a circle:</p>
 <p><span class="math display">\[
 (x-h)^2 + (y-k)^2 = r^2
+\]</span>
+The signs of the general form matter. Positive values for <span class="math inline">\(h\)</span> and <span class="math inline">\(k\)</span> result from the form above. If <span class="math inline">\(h\)</span> were a negative number, the first term may look like:<br />
+<span class="math display">\[
+(x+h)^2 + (y-k)^2 = r^2
 \]</span></p>
 </div>
 <div id="worked-example-a-contamination-buffer-zone" class="section level3 hasAnchor" number="3.3.2">
 <h3><span class="header-section-number">3.3.2</span> Worked Example: A Contamination Buffer Zone<a href="lines-circles-linear-modeling.html#worked-example-a-contamination-buffer-zone" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Suppose a chemical spill occurs at the Downstream Well, located at <span class="math inline">\((180, -40)\)</span> in our watershed’s local coordinate grid (meters east/north of the stream gauge). Regulators establish a 150 m buffer zone around the spill site where groundwater sampling is required.</p>
+<p>A chemical spill occurs at the Downstream Well, located at <span class="math inline">\((180, -40)\)</span> in our watershed’s local coordinate grid (meters east/north of the stream gauge). Regulators establish a 150 m buffer zone around the spill site where groundwater sampling is required.</p>
 <p><strong>Step 1 — Identify center and radius.</strong> Center: <span class="math inline">\((180, -40)\)</span>. Radius: <span class="math inline">\(150\)</span> m.</p>
 <p><strong>Step 2 — Write the equation.</strong></p>
 <p><span class="math display">\[
@@ -716,7 +721,7 @@ d = \sqrt{(60-180)^2 + (150-(-40))^2} = \sqrt{(-120)^2 + 190^2} = \sqrt{14400+36
 </div>
 <div id="linear-modeling-from-data" class="section level2 hasAnchor" number="3.4">
 <h2><span class="header-section-number">3.4</span> Linear Modeling from Data<a href="lines-circles-linear-modeling.html#linear-modeling-from-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Real data rarely falls exactly on a line — but if the underlying process is roughly linear, we can find the line that best fits the scatter of points. This is called <strong>linear regression</strong>, and while the full statistical method is beyond this course, the <em>result</em> is something you already know how to use: a slope-intercept equation you can evaluate and interpret.</p>
+<p>Real environmental data rarely falls exactly on a line — but if the underlying process is roughly linear, we can find the line that best fits the scatter of points. This is called <strong>linear regression</strong>, and while the full statistical method is beyond this course, the <em>result</em> which is a linear model is something you already already know how to use.</p>
 <div class="figure"><span style="display:block;" id="fig:co2-trend-plot"></span>
 <img src="precalculus-environmental-science_files/figure-html/co2-trend-plot-1.png" alt="Scatter plot of atmospheric CO2 concentration in parts per million against year, showing a roughly linear upward trend from about 1980 to 2020, with a straight best-fit line drawn through the points." width="672" />
 <p class="caption">
@@ -747,7 +752,7 @@ C(t) = 1.8t + 336.4
 </div>
 <div id="intersections-of-lines" class="section level2 hasAnchor" number="3.5">
 <h2><span class="header-section-number">3.5</span> Intersections of Lines<a href="lines-circles-linear-modeling.html#intersections-of-lines" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Two lines <strong>intersect</strong> at the point (or points) where they share the same <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> values simultaneously — in other words, where their equations are both true at once. Setting the two right-hand sides equal to each other and solving for <span class="math inline">\(x\)</span> gives the intersection.</p>
+<p>Two lines <strong>intersect</strong> at the point (or points) where they share the same <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> values simultaneously — in other words, where their equations are both true at once. Setting the equatsions equal to each other and solving for <span class="math inline">\(x\)</span> gives that intersection.</p>
 <div id="worked-example-when-do-two-trends-cross" class="section level3 hasAnchor" number="3.5.1">
 <h3><span class="header-section-number">3.5.1</span> Worked Example: When Do Two Trends Cross?<a href="lines-circles-linear-modeling.html#worked-example-when-do-two-trends-cross" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Suppose nitrate at the Upstream Well follows <span class="math inline">\(y = 0.9x + 6.0\)</span> (from our earlier example), while nitrate at the Downstream Well follows <span class="math inline">\(y = 0.4x + 9.0\)</span>, where <span class="math inline">\(x\)</span> is years since monitoring began.</p>
@@ -818,7 +823,7 @@ y_A(8) = 5(8) = 40, \qquad y_B(8) = 100
 <h2><span class="header-section-number">3.7</span> Practice: Fit-a-Line Case Study<a href="lines-circles-linear-modeling.html#practice-fit-a-line-case-study" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div id="what-are-you-practicing-1" class="section level3 hasAnchor" number="3.7.1">
 <h3><span class="header-section-number">3.7.1</span> What Are You Practicing?<a href="lines-circles-linear-modeling.html#what-are-you-practicing-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>These problems combine writing line equations, fitting a trend, finding intersections, and reasoning about parametric motion — all applied to watershed and monitoring scenarios.</p>
+<p>These problems combine writing line equations, fitting a trend, finding intersections, and reasoning around the parameters — all applied to watershed and monitoring scenarios.</p>
 </div>
 <div id="how-to-approach-these-problems-1" class="section level3 hasAnchor" number="3.7.2">
 <h3><span class="header-section-number">3.7.2</span> How to Approach These Problems<a href="lines-circles-linear-modeling.html#how-to-approach-these-problems-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>

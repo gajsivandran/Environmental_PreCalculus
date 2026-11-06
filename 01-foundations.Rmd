@@ -13,19 +13,19 @@ By the end of this chapter, you will be able to:
 
 ## Introduction
 
-Imagine you've just joined a team monitoring water quality in a small watershed. You're handed a spreadsheet: a list of sampling stations, each with a location, a nitrate concentration, and a date. Before you can plot a single trend line or fit a single model, you need to answer some very basic-sounding questions:
+Imagine you've just joined a team monitoring water quality in a small watershed. You're handed a spreadsheet: a list of sampling locations, each with a set of coordinates, a nitrate concentration, and a date. Before you can plot a single trend line or fit a single model, you need to answer some very high level questions:
 
 - Are these concentrations in the same units as the regulatory limit you're comparing them to?
 - How far apart are these two sampling stations, actually?
 - If I place these stations on a map, where do they sit relative to each other?
 
-None of these questions require calculus. They require the tools in this chapter: **units**, **coordinates**, and **distance**. They are the quiet infrastructure underneath every model you'll build in this course — get them wrong, and everything built on top of them is wrong too.
+None of these questions require calculus. They require the tools in this chapter: **units**, **coordinates**, and **distance**. They are the underlying structure of sampling campaign that informs a model — get them wrong, and everything built on top of them is wrong too.
 
 ::: promptbox
 
 **Before We Start**
 
-Think of a time a mismatched unit caused confusion — a recipe, a road sign, a medication dose, a shipping label. What went wrong, and how was it caught (or not)?
+Think of a time a mismatched unit caused confusion — in a recipe when a teaspoon of salt was needed and you used a tablespoon, a road sign, a medication dose, a shipping label. What went wrong, and how was it caught (or not)?
 
 <div class="writein"></div>
 :::
@@ -61,7 +61,7 @@ $$
 2.4\ \frac{\text{m}^3}{\text{s}} \times \frac{1000\ \text{L}}{1\ \text{m}^3} \times \frac{60\ \text{s}}{1\ \text{min}} = 2.4 \times 1000 \times 60 \ \frac{\text{L}}{\text{min}} = 144{,}000 \ \frac{\text{L}}{\text{min}}
 $$
 
-**Step 3 — Check reasonableness.** A flow of a few cubic meters per second is a real, moderately-sized stream, so a six-figure liters-per-minute value is plausible — it's just a much smaller time unit and much smaller volume unit multiplied together.
+**Step 3 — Check reasonableness.** Its always worth asking yourself if you think the final numeric answer will be bigger or smaller than what you started with, if i am going from 1 min to seconds, I expect there the be more seconds than 1. A flow of a few cubic meters per second is a real, moderately-sized stream, so a six-figure liters-per-minute value is plausible — it's just a much smaller time unit and much smaller volume unit multiplied together. This directionality can help you catch an accidental misuse of a converstion factor.
 
 <div class="writein"></div>
 :::
@@ -100,9 +100,9 @@ $$
 
 ### A Famous Example: The Mars Climate Orbiter 🚀
 
-Mismatched units aren't just a classroom nuisance — they've caused real, expensive failures. In 1999, NASA's Mars Climate Orbiter was lost as it approached Mars. The investigation found that one engineering team had provided thrust data in **pound-seconds** (an imperial unit), while the navigation software on the other end of the pipeline expected the value in **newton-seconds** (the metric unit). The software used the number as given, without converting it, and the resulting navigation error sent the spacecraft catastrophically off course.
+Mismatched units aren't just a classroom nuisance — they've caused real, expensive failures. In 1999, NASA's Mars Climate Orbiter burned up on entry into the Mars atmosphere. The investigation found that one engineering team had provided their thrust data in **pound-seconds** (an imperial unit), while the navigation software on the other end of the pipeline expected the value in **newton-seconds** (the metric unit). The software used the number as given, without converting it, and the resulted in a ~$240 million fireball (adjusted for today's dollars).
 
-No individual calculation was "wrong" — every team did their own arithmetic correctly. The failure was a **unit mismatch at the handoff** between two systems: a number changed hands without its units being checked. It's the same failure mode as forgetting to convert mg/L to ppm before comparing a reading to a regulatory limit — just with a much higher price tag. The lesson scales down perfectly to a spreadsheet: always track units through every step, and always double-check them at every handoff, not just within your own calculation.
+No individual calculation was "wrong" — every team did their own math correctly. The failure was a **unit mismatch at the handoff** between two systems: a number changed hands without its units being checked. It's the same failure mode as forgetting to convert mg/L to ppm before comparing a reading to a regulatory limit — just with a much higher price tag. The lesson is simple: always track units through every step, and always double-check them at every handoff, not just within your own calculation.
 
 ### Concept Check: Unit Conversion {-}
 
@@ -190,7 +190,7 @@ ggplot(stations, aes(x = East_m, y = North_m, label = Station)) +
   theme_minimal()
 ```
 
-Notice that a negative x-coordinate means "west of the gauge," and a negative y-coordinate means "south of the gauge" — exactly like the four quadrants of a standard Cartesian plane.
+Notice that a negative x-coordinate means "west of the gauge," and a negative y-coordinate means "south of the gauge". This is just like the four quadrants of a standard Cartesian plane.
 
 ---
 
