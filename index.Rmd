@@ -10,7 +10,7 @@ bibliography: [book.bib]
 biblio-style: apalike
 link-citations: yes
 github-repo: gajsivandran/Precalculus_Environmental_Science
-description: "A textbook companion to prepare students for the University of Washington QSci 291 Environmental Calculus sequence"
+description: "A textbook companion to prepare students for the University of Washington QSci 190 Environmental Calculus sequence"
 
 ---
 # Why Precalculus?

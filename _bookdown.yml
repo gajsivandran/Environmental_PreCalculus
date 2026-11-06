@@ -22,11 +22,7 @@ rmd_files:
   - 108-circular-motion-trig-workbook.Rmd
   - 109-trig-functions-workbook.Rmd
   - 110-sinusoidal-modeling-workbook.Rmd
-  - 20-equation-sheet.Rmd
-  - 21-test1-review.Rmd
-  - 22-test2-review.Rmd
-  - 23-test3-review.Rmd
-  - 24-test4-review.Rmd
+
 
 output_dir: "docs"
 clean: [packages.bib, bookdown.bbl]
