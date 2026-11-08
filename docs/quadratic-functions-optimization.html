@@ -643,6 +643,12 @@ f(x) = ax^2 + bx + c
 f(x) = a(x-h)^2 + k
 \]</span></p>
 <p>the vertex is simply <span class="math inline">\((h, k)\)</span> — you can read it directly off the equation. This is the quadratic equivalent of what point-slope form was for lines: the same function, written in a form that makes one particular feature (here, the vertex) immediately visible.</p>
+<div class="figure"><span style="display:block;" id="fig:quadratics-vertex-up-down"></span>
+<img src="precalculus-environmental-science_files/figure-html/quadratics-vertex-up-down-1.png" alt="Two side-by-side panels, each showing a parabola with its vertex marked. Left panel, titled a greater than 0, opens upward: the parabola f of x equals 0.5 times (x minus 2) squared plus 1 forms a bowl with its lowest point at the vertex (2, 1), labeled minimum. Right panel, titled a less than 0, opens downward: the parabola f of x equals negative 0.5 times (x minus 2) squared plus 4 forms an arch with its highest point at the vertex (2, 4), labeled maximum. In both panels a dashed vertical line through x equals 2 shows the axis of symmetry passing through the vertex." width="816" />
+<p class="caption">
+Figure 5.1: The sign of a decides which way the parabola opens, and that decides what the vertex (h, k) means. Left: a &gt; 0, the parabola opens upward and the vertex is the minimum. Right: a &lt; 0, it opens downward and the vertex is the maximum.
+</p>
+</div>
 <p>For a quadratic in standard form, the vertex’s <span class="math inline">\(x\)</span>-coordinate is:</p>
 <p><span class="math display">\[
 x = -\frac{b}{2a}
@@ -659,6 +665,12 @@ x = -\frac{b}{2a}
 <div id="completing-the-square" class="section level2 hasAnchor" number="5.3">
 <h2><span class="header-section-number">5.3</span> Completing the Square<a href="quadratic-functions-optimization.html#completing-the-square" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><strong>Completing the square</strong> converts standard form into vertex form. The core idea: take the <span class="math inline">\(x^2\)</span> and <span class="math inline">\(x\)</span> terms, and add and subtract the exact amount needed to make them a perfect square trinomial.</p>
+<div class="figure"><span style="display:block;" id="fig:quadratics-completing-square-area"></span>
+<img src="precalculus-environmental-science_files/figure-html/quadratics-completing-square-area-1.png" alt="Area diagram built from rectangles. A large blue square in the lower left is labeled x squared, with sides labeled x. To its right is a tall orange strip labeled 5x, with width 5 and height x. Above the square is a wide orange strip labeled 5x, with width x and height 5. Together these three pieces form an L-shape. The empty upper-right corner, 5 by 5, is drawn with a dashed outline and labeled 25, the missing piece. The outer edges of the completed square are labeled x plus 5 along the bottom and along the left side. Text beside the figure reads x squared plus 10x plus 25 equals (x plus 5) squared." width="672" />
+<p class="caption">
+Figure 5.2: Completing the square as area, for x² + 10x. Split the 10x into two strips of 5x and place them on two sides of the x-by-x square. The shape is now a large square with one corner missing; that corner is (10/2)² = 25. Adding it gives x² + 10x + 25 = (x + 5)². The same idea works with negative b; the strips are just subtracted instead of added.
+</p>
+</div>
 <div id="worked-example-converting-a-yield-model" class="section level3 hasAnchor" number="5.3.1">
 <h3><span class="header-section-number">5.3.1</span> Worked Example: Converting a Yield Model<a href="quadratic-functions-optimization.html#worked-example-converting-a-yield-model" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Suppose crop yield (in bushels/acre) as a function of fertilizer applied (<span class="math inline">\(x\)</span>, in kg/acre) is modeled by:</p>
@@ -701,10 +713,16 @@ Y(x) = -2(x-10)^2 + 200 + 50 = -2(x-10)^2 + 250
 <div id="graphing-parabolas" class="section level2 hasAnchor" number="5.4">
 <h2><span class="header-section-number">5.4</span> Graphing Parabolas<a href="quadratic-functions-optimization.html#graphing-parabolas" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Once you know the vertex and the sign of <span class="math inline">\(a\)</span>, you can sketch a parabola quickly: plot the vertex, note whether it opens up or down, and use the <span class="math inline">\(y\)</span>-intercept (<span class="math inline">\(f(0) = c\)</span>) as a second point to gauge the width.</p>
+<div class="figure"><span style="display:block;" id="fig:quadratics-sketch-from-vertex"></span>
+<img src="precalculus-environmental-science_files/figure-html/quadratics-sketch-from-vertex-1.png" alt="Graph of an upward-opening parabola with three marked points. The vertex at (3, 2) is the lowest point and is labeled 1, vertex. The y-intercept at (0, 6.5) is labeled 2, y-intercept, f of 0 equals c. A dashed vertical line through x equals 3 is labeled axis of symmetry. A dotted horizontal arrow runs from the y-intercept across the axis to a mirror point at (6, 6.5), labeled 3, mirror point. The parabola passes smoothly through all three points." width="672" />
+<p class="caption">
+Figure 5.3: Sketching f(x) = 0.5x² - 3x + 6.5 from three facts: the vertex (3, 2), the direction (a = 0.5 &gt; 0, so it opens upward), and the y-intercept f(0) = c = 6.5. Because a parabola is symmetric about the vertical line through its vertex, the y-intercept has a mirror-image point at (6, 6.5).
+</p>
+</div>
 <div class="figure"><span style="display:block;" id="fig:yield-parabola-plot"></span>
 <img src="precalculus-environmental-science_files/figure-html/yield-parabola-plot-1.png" alt="Downward-opening parabola showing crop yield in bushels per acre against fertilizer applied in kilograms per acre. The curve rises from the origin, peaks at 10 kilograms per acre and 250 bushels per acre, then falls symmetrically as more fertilizer is applied." width="672" />
 <p class="caption">
-Figure 5.1: Crop yield as a function of fertilizer applied, with the vertex marking the yield-maximizing fertilizer rate.
+Figure 5.4: Crop yield as a function of fertilizer applied, with the vertex marking the yield-maximizing fertilizer rate.
 </p>
 </div>
 <hr />
@@ -725,6 +743,12 @@ A(x) = x \cdot y = x(100-x) = -x^2 + 100x
 x = -\frac{100}{2(-1)} = 50
 \]</span></p>
 <p><strong>Step 4 — Solve for the other dimension and interpret.</strong> <span class="math inline">\(y = 100 - 50 = 50\)</span>. The area-maximizing berm is a <span class="math inline">\(50\text{ m} \times 50\text{ m}\)</span> square, enclosing <span class="math inline">\(A(50) = 50(50) = 2500\)</span> m² — the largest possible area for that fixed amount of perimeter material.</p>
+<div class="figure"><span style="display:block;" id="fig:quadratics-berm-area-optimum"></span>
+<img src="precalculus-environmental-science_files/figure-html/quadratics-berm-area-optimum-1.png" alt="Two panels. The left panel shows three rectangles drawn to the same scale, each with a 200 meter perimeter: 20 by 80 meters enclosing 1600 square meters, 50 by 50 meters enclosing 2500 square meters and highlighted as the optimum, and 80 by 20 meters enclosing 1600 square meters. The right panel is a graph of enclosed area in square meters against side length x in meters, from 0 to 100. A downward-opening parabola rises from 0 at x equals 0 to a peak of 2500 at x equals 50, then falls back to 0 at x equals 100. Points at x equals 20, 50 and 80 match the three rectangles, and the peak is labeled vertex (50, 2500)." width="864" />
+<p class="caption">
+Figure 5.5: Every rectangle here uses the same 200 m of berm. Left: three of the possible shapes, drawn to scale. Right: the area function A(x) = -x² + 100x. Long, thin rectangles enclose little; the area peaks at the vertex, x = 50, where the rectangle is a 50 m by 50 m square.
+</p>
+</div>
 </div>
 <div id="concept-check-interpreting-maxmin-in-context" class="section level3 unnumbered hasAnchor">
 <h3>Concept Check: Interpreting Max/Min in Context<a href="quadratic-functions-optimization.html#concept-check-interpreting-maxmin-in-context" class="anchor-section" aria-label="Anchor link to header"></a></h3>

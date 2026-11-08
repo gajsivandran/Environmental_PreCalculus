@@ -17,7 +17,59 @@ Under the right environmental conditions an algal bloom can double its biomass i
 
 That rule is what makes something exponential. “Exponential” doesn’t mean fast, and it doesn’t mean big. It means proportional. A trout population of 1,000 growing at 5% per year gains 50 fish. At 10,000 trout, the same 5% adds 500. The percentage stays fixed, so the actual change grows with the system.
 
+```{r exponential-gain-proportional, fig.cap="What 'proportional' looks like. For a trout population growing at 5% per year, the number of fish added in a year is plotted against the population size. The points fall on a straight line through the origin: ten times the fish means ten times the yearly gain.", fig.alt="Graph of fish added in one year against current population size, from 0 to 11,000 trout. A straight line starts at the origin and rises with slope 0.05. Two points on the line are marked: 1,000 trout gaining 50 fish, and 10,000 trout gaining 500 fish. Dashed guide lines run from each point to both axes.", cache=FALSE, echo=FALSE, message=FALSE, warning=FALSE}
+library(ggplot2)
+
+blue   <- "#003F7F"
+orange <- "#8A3B00"
+
+pop  <- c(0, 11000)
+pts  <- data.frame(N = c(1000, 10000), gain = 0.05 * c(1000, 10000))
+pts$lab <- c("1,000 trout\n+50 fish", "10,000 trout\n+500 fish")
+pts$hj  <- c(-0.15, 1.1)
+pts$vj  <- c(1.3, -0.3)
+
+ggplot() +
+  geom_line(data = data.frame(N = pop, gain = 0.05 * pop), aes(N, gain),
+            color = blue, linewidth = 1.3) +
+  geom_segment(data = pts, aes(x = N, xend = N, y = 0, yend = gain),
+               linetype = "dashed", color = "grey45") +
+  geom_segment(data = pts, aes(x = 0, xend = N, y = gain, yend = gain),
+               linetype = "dashed", color = "grey45") +
+  geom_point(data = pts, aes(N, gain), size = 3.8, color = orange) +
+  geom_text(data = pts, aes(N, gain, label = lab, hjust = hj, vjust = vj),
+            size = 4, color = orange, lineheight = 0.9) +
+  annotate("text", x = 6000, y = 220, size = 4.2, color = blue, angle = 0, hjust = 0,
+           label = "gain = 0.05 × population") +
+  scale_x_continuous(labels = function(v) formatC(v, format = "d", big.mark = ","),
+                     breaks = seq(0, 10000, by = 2000)) +
+  coord_cartesian(xlim = c(0, 11000), ylim = c(0, 580), expand = FALSE) +
+  labs(x = "Current population (trout)", y = "Fish added in one year") +
+  theme_minimal(base_size = 13)
+```
+
 Flip the sign and you get decay. A pesticide breaking down in soil, a radioactive isotope settling toward stability, light being absorbed with depth. Each loses a constant fraction (factor) for every unit of time, or every meter of water.
+
+```{r exponential-light-with-depth, fig.cap="Decay as a constant fraction per step. In this illustrative lake, each meter of water absorbs 25% of the light that reaches it, so each bar is 0.75 times the one above. The amount lost shrinks with every meter, but the fraction lost stays the same.", fig.alt="Horizontal bar chart of light remaining, as a percentage of surface light, at depths from 0 to 6 meters, with depth increasing downward. The bars shrink by the same factor each meter: 100 percent at the surface, then 75, 56, 42, 32, 24, and 18 percent at 6 meters. Each bar is labeled with its percentage, and a note reads times 0.75 per meter.", cache=FALSE, echo=FALSE, message=FALSE, warning=FALSE}
+library(ggplot2)
+
+blue <- "#003F7F"
+
+depth <- 0:6
+light <- 100 * 0.75^depth
+df <- data.frame(depth = depth, light = light)
+
+ggplot(df, aes(x = light, y = depth)) +
+  geom_col(orientation = "y", fill = blue, width = 0.7) +
+  geom_text(aes(label = sprintf("%.0f%%", light)), hjust = -0.2, size = 4.2) +
+  annotate("text", x = 80, y = 4.5, size = 4.4, label = "× 0.75 per meter") +
+  scale_y_reverse(breaks = depth) +
+  scale_x_continuous(limits = c(0, 115), breaks = seq(0, 100, by = 25),
+                     labels = function(v) paste0(v, "%")) +
+  labs(x = "Light remaining (% of surface light)", y = "Depth (m)") +
+  theme_minimal(base_size = 13) +
+  theme(panel.grid.major.y = element_blank(), panel.grid.minor = element_blank())
+```
 
 In this chapter you will build the exponential function, convert between growth rates, doubling times, and half-lives, and work out when a system will cross a threshold.
 
@@ -30,6 +82,44 @@ f(t) = a \cdot b^t
 $$
 
 where \(a\) is the initial value (at \(t=0\)) and \(b\) is the **growth factor** — the multiplier applied each time \(t\) increases by 1. If \(b>1\), the quantity grows; if \(0<b<1\), it decays. This is fundamentally different from a linear function: a linear function adds the same *amount* each step, while an exponential function multiplies by the same *factor* each step.
+
+```{r exponential-add-vs-multiply, fig.cap="Adding versus multiplying, over the first five steps. Both quantities start at 100. The linear one adds 10 every step, so its steps are all the same size. The exponential one multiplies by 1.1 every step, so each step is a little bigger than the last because it is 10% of a bigger number.", fig.alt="Graph of value against step number from 0 to 5, with two sets of connected points that both start at 100. The linear set, shown with circles and a solid line, rises by exactly 10 each step to 150, and each step is labeled plus 10. The exponential set, shown with triangles and a dashed line, rises by 10, then 11, then 12.1, then 13.3, then 14.6, reaching about 161, and each step is labeled with its increase. The two sets start together and slowly pull apart.", cache=FALSE, echo=FALSE, message=FALSE, warning=FALSE}
+library(ggplot2)
+
+blue   <- "#003F7F"
+orange <- "#8A3B00"
+
+s   <- 0:5
+lin <- 100 + 10 * s
+ex  <- 100 * 1.1^s
+
+df <- rbind(
+  data.frame(s = s, v = lin, kind = "Linear: add 10 each step"),
+  data.frame(s = s, v = ex,  kind = "Exponential: multiply by 1.1 each step")
+)
+df$kind <- factor(df$kind, levels = unique(df$kind))
+
+steps <- rbind(
+  data.frame(s = s[-1] - 0.5, v = (head(lin, -1) + lin[-1]) / 2 - 3,
+             lab = sprintf("+%g", diff(lin)), kind = levels(df$kind)[1]),
+  data.frame(s = s[-1] - 0.5, v = (head(ex, -1) + ex[-1]) / 2 + 3.5,
+             lab = sprintf("+%.1f", diff(ex)), kind = levels(df$kind)[2])
+)
+
+ggplot(df, aes(s, v, color = kind, shape = kind, linetype = kind)) +
+  geom_line(linewidth = 1.1) +
+  geom_point(size = 3.5) +
+  geom_text(data = steps, aes(s, v, label = lab, color = kind), inherit.aes = FALSE,
+            size = 3.8, show.legend = FALSE) +
+  scale_color_manual(values = c(blue, orange)) +
+  scale_shape_manual(values = c(16, 17)) +
+  scale_linetype_manual(values = c("solid", "dashed")) +
+  scale_x_continuous(breaks = s) +
+  labs(x = "Step", y = "Value", color = NULL, shape = NULL, linetype = NULL) +
+  theme_minimal(base_size = 13) +
+  theme(legend.position = "bottom", legend.direction = "vertical",
+        legend.key.width = unit(1.6, "cm"))
+```
 
 ::: promptbox
 
@@ -60,6 +150,32 @@ $$
 
 **Step 4 — Interpret.** The model predicts the population will roughly double (to about 864) after 10 years of unchecked 8% annual growth.
 
+```{r exponential-invasive-plant, fig.cap="N(t) = 400(1.08)^t for the invasive plant. The curve crosses the doubling line (800 plants) a little after year 9 and reaches about 864 at year 10.", fig.alt="Graph of plant population against years from 0 to 12. A curve starts at 400 and bends upward, getting steeper over time. A dashed horizontal line at 800 is labeled double the starting population. The curve crosses this line a little after year 9. The point at year 10 is marked and labeled N of 10 approximately 864.", cache=FALSE, echo=FALSE, message=FALSE, warning=FALSE}
+library(ggplot2)
+
+blue   <- "#003F7F"
+orange <- "#8A3B00"
+
+N <- function(t) 400 * 1.08^t
+t <- seq(0, 12, length.out = 200)
+
+ggplot(data.frame(t = t, N = N(t)), aes(t, N)) +
+  geom_hline(yintercept = 800, linetype = "dashed", color = "grey35") +
+  annotate("text", x = 0.2, y = 830, hjust = 0, size = 4, color = "grey20",
+           label = "Double the start: 800") +
+  geom_line(color = blue, linewidth = 1.3) +
+  annotate("point", x = 0, y = 400, size = 3.5) +
+  annotate("text", x = 0.3, y = 375, hjust = 0, size = 4, label = "N(0) = 400") +
+  annotate("point", x = 10, y = N(10), size = 3.8, color = orange) +
+  annotate("text", x = 9.7, y = N(10) + 45, hjust = 1, size = 4.2, color = orange,
+           label = "N(10) ≈ 864") +
+  scale_x_continuous(breaks = 0:12) +
+  coord_cartesian(ylim = c(350, 1050)) +
+  labs(x = "Years, t", y = "Plant population, N(t)") +
+  theme_minimal(base_size = 13) +
+  theme(panel.grid.minor = element_blank())
+```
+
 ### Worked Example: Radioactive Decay and Half-Life
 
 A radioactive tracer has a **half-life** of 8 days — meaning its activity is cut in half every 8 days, regardless of the starting amount. If the initial activity is 100 units:
@@ -81,6 +197,36 @@ A(24) = 100\left(\frac{1}{2}\right)^{24/8} = 100\left(\frac{1}{2}\right)^3 = 100
 $$
 
 **Step 4 — Interpret.** After 24 days (three half-lives), only 12.5 of the original 100 units of activity remain.
+
+```{r exponential-half-life-steps, fig.cap="A(t) = 100(1/2)^(t/8). Every 8 days the activity is cut in half: 100, then 50, 25, and 12.5 after three half-lives. The halvings happen continuously along the curve; the marked points are just where a whole number of half-lives has passed.", fig.alt="Graph of tracer activity in units against days from 0 to 32. A smooth decreasing curve starts at 100 and flattens toward zero. Points are marked at 0, 8, 16, 24 and 32 days with values 100, 50, 25, 12.5 and 6.25. Dashed vertical lines at each multiple of 8 days are labeled 1, 2, 3 and 4 half-lives. Small labels between consecutive points read times one half.", cache=FALSE, echo=FALSE, message=FALSE, warning=FALSE}
+library(ggplot2)
+
+blue   <- "#003F7F"
+orange <- "#8A3B00"
+
+A  <- function(t) 100 * 0.5^(t / 8)
+t  <- seq(0, 32, length.out = 300)
+hl <- data.frame(t = seq(0, 32, by = 8))
+hl$A <- A(hl$t)
+hl$hj <- c(-0.35, 1.3, 1.3, 1.3, 1.3)
+hl$vj <- c(-0.4, 1.4, 1.4, 1.4, 1.4)
+
+ggplot() +
+  geom_vline(xintercept = hl$t[-1], linetype = "dashed", color = "grey60") +
+  annotate("text", x = hl$t[-1], y = 104, size = 3.6, color = "grey25",
+           label = paste(1:4, c("half-life", "half-lives", "half-lives", "half-lives"))) +
+  geom_line(data = data.frame(t = t, A = A(t)), aes(t, A), color = blue, linewidth = 1.3) +
+  geom_point(data = hl, aes(t, A), size = 3.6, color = orange) +
+  geom_text(data = hl, aes(t, A, label = format(A, drop0trailing = TRUE),
+                          hjust = hj, vjust = vj), size = 4.2) +
+  annotate("text", x = hl$t[-5] + 4, y = (hl$A[-5] + hl$A[-1]) / 2 + 6,
+           label = "× ½", color = orange, size = 4.2) +
+  scale_x_continuous(breaks = seq(0, 32, by = 8)) +
+  coord_cartesian(xlim = c(0, 34), ylim = c(0, 108)) +
+  labs(x = "Days, t", y = "Activity (units)") +
+  theme_minimal(base_size = 13) +
+  theme(panel.grid.minor = element_blank())
+```
 
 ### Concept Check: Growth vs. Decay {-}
 
@@ -114,6 +260,45 @@ $$
 
 Logarithms are the inverse of exponential functions — exactly in the sense of Chapter 5. If \(f(x) = b^x\), then \(f^{-1}(x) = \log_b(x)\).
 
+```{r exponential-log-inverse-reflection, fig.cap="The logarithm is the inverse of the exponential, so their graphs are mirror images across y = x. The point (3, 8) on y = 2^x becomes (8, 3) on y = log₂(x): 2³ = 8 and log₂(8) = 3 are the same fact read in opposite directions.", fig.alt="Graph on equal-scaled axes from negative 2 to 10. A solid curve y equals 2 to the x rises slowly on the left and steeply on the right, passing through (0, 1). A dashed curve y equals log base 2 of x rises steeply near x equals 0 and then flattens, passing through (1, 0). A dotted diagonal line y equals x lies between them. The point (3, 8) on the exponential curve and the point (8, 3) on the log curve are marked and joined by a dotted segment crossing the mirror line at a right angle.", cache=FALSE, echo=FALSE, message=FALSE, warning=FALSE}
+library(ggplot2)
+
+blue   <- "#003F7F"
+orange <- "#8A3B00"
+
+xe <- seq(-2, log2(10), length.out = 200)
+xl <- seq(2^-2, 10, length.out = 400)
+curves <- rbind(
+  data.frame(x = xe, y = 2^xe,    fn = "y = 2^x"),
+  data.frame(x = xl, y = log2(xl), fn = "y = log₂(x)")
+)
+curves$fn <- factor(curves$fn, levels = unique(curves$fn))
+
+ggplot(curves, aes(x, y, color = fn, linetype = fn)) +
+  geom_hline(yintercept = 0, color = "grey70") +
+  geom_vline(xintercept = 0, color = "grey70") +
+  geom_abline(slope = 1, intercept = 0, color = "grey45", linetype = "dotted",
+              linewidth = 0.9) +
+  annotate("text", x = 9.25, y = 8.6, angle = 45, size = 3.8, color = "grey25",
+           label = "y = x") +
+  geom_line(linewidth = 1.3) +
+  annotate("segment", x = 3, xend = 8, y = 8, yend = 3, color = "grey30",
+           linetype = "dotted", linewidth = 0.8) +
+  annotate("point", x = c(3, 8), y = c(8, 3), size = 3.8, color = c(blue, orange)) +
+  annotate("text", x = 2.7, y = 8.4, hjust = 1, size = 4.2, color = blue, label = "(3, 8)") +
+  annotate("text", x = 8.2, y = 2.4, hjust = 0, size = 4.2, color = orange, label = "(8, 3)") +
+  scale_color_manual(values = c(blue, orange),
+                     labels = c(expression(y == 2^x), expression(y == log[2](x)))) +
+  scale_linetype_manual(values = c("solid", "dashed"),
+                        labels = c(expression(y == 2^x), expression(y == log[2](x)))) +
+  coord_equal(xlim = c(-2, 10), ylim = c(-2, 10), expand = FALSE) +
+  scale_x_continuous(breaks = seq(-2, 10, by = 2)) +
+  scale_y_continuous(breaks = seq(-2, 10, by = 2)) +
+  labs(x = "x", y = "y", color = NULL, linetype = NULL) +
+  theme_minimal(base_size = 13) +
+  theme(legend.position = "bottom", panel.grid.minor = element_blank())
+```
+
 **Key properties:**
 
 $$
@@ -146,6 +331,28 @@ $$
 
 **Step 3 — Interpret a one-unit change.** A sample with pH 5 has \([\text{H}^+] = 10^{-5}\) mol/L — **ten times** the hydrogen ion concentration of the pH-6 sample above, not just "one more" unit of acidity. Every step down the pH scale represents a *tenfold* (factor of 10) increase in acidity, which is exactly what makes logarithmic scales powerful for compressing a huge range of values into a manageable number line.
 
+```{r exponential-ph-scale, fig.cap="The pH scale is a logarithmic number line. Equal steps in pH are equal factors in hydrogen ion concentration: each step to the left multiplies [H⁺] by 10. The bar lengths show [H⁺] on an ordinary (linear) axis, which is why a logarithm is needed to fit the range onto one line.", fig.height=3.8, fig.alt="Horizontal bar chart with one bar for each pH value from 4 to 8, listed top to bottom from pH 4 to pH 8. Each bar's length is the hydrogen ion concentration on a linear axis in micromoles per liter. pH 4 is 100 micromoles per liter and the bar spans the whole axis. pH 5 is 10, a bar one tenth as long. pH 6 is 1, pH 7 is 0.1, and pH 8 is 0.01, bars so short they are barely visible. Each bar is labeled with its concentration written as a power of ten in moles per liter, and arrows between rows read times 10.", cache=FALSE, echo=FALSE, message=FALSE, warning=FALSE}
+library(ggplot2)
+
+blue   <- "#003F7F"
+orange <- "#8A3B00"
+
+ph <- 4:8
+df <- data.frame(ph = factor(paste("pH", ph), levels = rev(paste("pH", ph))),
+                 H  = 10^(-ph) * 1e6,                 # micromol per liter
+                 lab = paste0("10^", -ph, "~mol/L"))
+
+ggplot(df, aes(x = H, y = ph)) +
+  geom_col(fill = blue, width = 0.6) +
+  geom_text(aes(x = pmax(H, 0) + 2, label = lab), parse = TRUE, hjust = 0, size = 4.2) +
+  annotate("text", x = 75, y = 4:1 + 0.5, label = "× 10 ↑",
+           color = orange, size = 4) +
+  scale_x_continuous(limits = c(0, 125), breaks = seq(0, 100, by = 25)) +
+  labs(x = expression("[H"^"+"*"] (µmol/L, linear axis)"), y = NULL) +
+  theme_minimal(base_size = 13) +
+  theme(panel.grid.major.y = element_blank(), panel.grid.minor = element_blank())
+```
+
 ### Concept Check: Log Properties & Graph Transformations {-}
 
 **1. Simplify \(\log_2(8) + \log_2(4)\) using the product rule, then check by combining first.**
@@ -171,6 +378,39 @@ The difference is 2 pH units, and each unit is a factor of 10, so the stream is 
 ## Shifting, Dilation, and Reflection
 
 Just as with the graphs you started reading in Chapter 3, exponential and logarithmic graphs can be shifted, stretched, or flipped. For a general exponential \(f(t) = a\cdot b^{t}\), adding a constant shifts the graph vertically — this matters environmentally because it represents a **baseline** that a quantity decays toward (or grows from), rather than decaying all the way to zero.
+
+```{r exponential-shift-stretch-reflect, fig.cap="Three transformations of the decay curve f(t) = 5(0.9)^t (dashed in every panel). Shift: adding 12 lifts the whole curve so it levels off at 12 instead of 0. Stretch: multiplying by 2 doubles every height. Reflection: multiplying by -1 flips the curve across the t-axis.", fig.width=9.5, fig.height=3.6, fig.alt="Three side-by-side panels, each showing the original curve 5 times 0.9 to the t as a dashed line decaying from 5 toward 0 over 40 hours, plus a transformed version as a solid line. Left panel, titled shift, f of t plus 12: the solid curve starts at 17 and levels off toward a dotted baseline at 12. Middle panel, titled stretch, 2 f of t: the solid curve starts at 10 and decays toward 0, twice as tall as the dashed curve everywhere. Right panel, titled reflect, negative f of t: the solid curve starts at negative 5 and rises toward 0, a mirror image of the dashed curve across the horizontal axis.", cache=FALSE, echo=FALSE, message=FALSE, warning=FALSE}
+library(ggplot2)
+
+blue <- "#003F7F"
+
+f  <- function(t) 5 * 0.9^t
+t  <- seq(0, 40, length.out = 200)
+lv <- c("Shift: f(t) + 12", "Stretch: 2f(t)", "Reflect: -f(t)")
+
+trans <- rbind(
+  data.frame(t = t, y = f(t) + 12, panel = lv[1]),
+  data.frame(t = t, y = 2 * f(t),  panel = lv[2]),
+  data.frame(t = t, y = -f(t),     panel = lv[3])
+)
+base <- do.call(rbind, lapply(lv, function(p) data.frame(t = t, y = f(t), panel = p)))
+asym <- data.frame(panel = lv, y = c(12, 0, 0))
+
+trans$panel <- factor(trans$panel, levels = lv)
+base$panel  <- factor(base$panel,  levels = lv)
+asym$panel  <- factor(asym$panel,  levels = lv)
+
+ggplot() +
+  geom_hline(yintercept = 0, color = "grey70") +
+  geom_hline(data = asym, aes(yintercept = y), linetype = "dotted", color = "grey30") +
+  geom_line(data = base, aes(t, y), linetype = "dashed", color = "grey35", linewidth = 0.9) +
+  geom_line(data = trans, aes(t, y), color = blue, linewidth = 1.3) +
+  facet_wrap(~ panel, nrow = 1) +
+  labs(x = "t (hours)", y = "Value") +
+  theme_minimal(base_size = 12) +
+  theme(strip.text = element_text(face = "bold", size = 11.5),
+        panel.grid.minor = element_blank())
+```
 
 ### Worked Example: Decay Toward a Nonzero Baseline
 

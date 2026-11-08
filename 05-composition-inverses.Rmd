@@ -17,6 +17,39 @@ By the end of this chapter, you will be able to:
 
 Composition shows up constantly in environmental science because measurements are often separated by several converted steps. For example, raw sensor voltage becomes a concentration, a concentration becomes a risk score, a risk score becomes a policy decision. Each of these steps is a function, and the whole pipeline is their composition.
 
+```{r composition-pipeline-diagram, fig.cap="A measurement pipeline is a chain of functions. Each arrow is one function; the output of one step becomes the input to the next. The whole chain, from raw voltage to decision, is their composition.", fig.height=2.4, fig.alt="Flow diagram of four boxes in a row connected by arrows from left to right. The boxes read raw sensor voltage, concentration, risk score, and policy decision. The arrow between the first two boxes is labeled f, between the second and third is labeled g, and between the third and fourth is labeled h. A long bracket beneath all four boxes is labeled the composition h of g of f of v, showing the whole pipeline as one function.", cache=FALSE, echo=FALSE, message=FALSE, warning=FALSE}
+library(ggplot2)
+
+blue   <- "#003F7F"
+orange <- "#8A3B00"
+
+boxes <- data.frame(
+  x   = c(1, 3.7, 6.4, 9.1),
+  lab = c("Raw sensor\nvoltage", "Concentration", "Risk score", "Policy\ndecision")
+)
+arrows <- data.frame(x = boxes$x[-4] + 1.02, xend = boxes$x[-1] - 1.02,
+                     lab = c("f", "g", "h"))
+
+ggplot() +
+  geom_tile(data = boxes, aes(x = x, y = 1), width = 2.0, height = 0.9,
+            fill = "white", color = blue, linewidth = 1.1) +
+  geom_text(data = boxes, aes(x = x, y = 1, label = lab), size = 4.2,
+            lineheight = 0.9) +
+  geom_segment(data = arrows, aes(x = x, xend = xend, y = 1, yend = 1),
+               color = orange, linewidth = 1.1,
+               arrow = arrow(length = unit(0.25, "cm"), type = "closed")) +
+  geom_text(data = arrows, aes(x = (x + xend) / 2, y = 1.22, label = lab),
+            color = orange, size = 5, fontface = "italic") +
+  annotate("segment", x = 0, xend = 10.1, y = 0.3, yend = 0.3,
+           linewidth = 0.8) +
+  annotate("segment", x = c(0, 10.1), xend = c(0, 10.1),
+           y = 0.3, yend = 0.42, linewidth = 0.8) +
+  annotate("text", x = 5.05, y = 0.08, size = 4.4,
+           label = "Whole pipeline: h(g(f(v)))") +
+  coord_cartesian(xlim = c(-0.1, 10.2), ylim = c(-0.05, 1.5)) +
+  theme_void()
+```
+
 ### Worked Example: Depth, Pressure, and Oxygen Solubility
 
 In a lake, pressure increases with depth, and the amount of oxygen water can hold (its solubility) depends on pressure. Suppose:
@@ -43,6 +76,46 @@ S(P(20)) = 9.5 + 0.05(20) = 10.5 \text{ mg/L}
 $$
 
 **Step 4 — Interpret.** At 20 m depth, this model predicts an oxygen solubility of 10.5 mg/L — and we found it *without* separately computing pressure and then plugging it in by hand each time; the composed function \(9.5+0.05d\) directly converts depth to solubility in one step.
+
+```{r composition-depth-pressure-solubility, fig.cap="Composition traced on graphs, for d = 20 m. Left: P(d) turns depth into pressure, P(20) = 3 atm. Middle: S(P) turns that pressure into solubility, S(3) = 10.5 mg/L. Right: the composed function S(P(d)) = 9.5 + 0.05d goes straight from depth to solubility and lands on the same 10.5 mg/L.", fig.width=9.5, fig.height=3.6, fig.alt="Three side-by-side line graphs. Left graph, titled step 1, P of d: pressure in atmospheres against depth in meters from 0 to 40, a rising line from 1 atmosphere at 0 meters to 5 atmospheres at 40 meters. Dashed guides go up from depth 20 to the line and across to 3 atmospheres. Middle graph, titled step 2, S of P: solubility in milligrams per liter against pressure in atmospheres from 1 to 5, a rising line from 9.5 to 11.5. Dashed guides go up from pressure 3 to the line and across to 10.5 milligrams per liter. Right graph, titled composed, S of P of d: solubility against depth from 0 to 40 meters, a rising line from 9.5 to 11.5. Dashed guides go up from depth 20 directly to the line and across to 10.5 milligrams per liter, the same answer as the two-step route.", cache=FALSE, echo=FALSE, message=FALSE, warning=FALSE}
+library(ggplot2)
+library(patchwork)
+
+blue   <- "#003F7F"
+orange <- "#8A3B00"
+
+P  <- function(d) 1 + 0.1 * d
+S  <- function(p) 9 + 0.5 * p
+SP <- function(d) S(P(d))
+
+trace_panel <- function(f, xr, x0, xlab, ylab, ttl, ylim) {
+  xx <- seq(xr[1], xr[2], length.out = 100)
+  y0 <- f(x0)
+  ggplot(data.frame(x = xx, y = f(xx)), aes(x, y)) +
+    geom_line(color = blue, linewidth = 1.3) +
+    annotate("segment", x = x0, xend = x0, y = ylim[1], yend = y0,
+             color = orange, linetype = "dashed", linewidth = 0.9) +
+    annotate("segment", x = x0, xend = xr[1], y = y0, yend = y0,
+             color = orange, linetype = "dashed", linewidth = 0.9,
+             arrow = arrow(length = unit(0.2, "cm"), type = "closed")) +
+    annotate("point", x = x0, y = y0, size = 3.2) +
+    annotate("text", x = x0 + 0.04 * diff(xr), y = y0 - 0.07 * diff(ylim),
+             hjust = 0, size = 3.8, label = sprintf("(%g, %g)", x0, y0)) +
+    coord_cartesian(xlim = xr, ylim = ylim, expand = FALSE) +
+    labs(x = xlab, y = ylab, title = ttl) +
+    theme_minimal(base_size = 11.5) +
+    theme(plot.title = element_text(face = "bold", size = 11.5))
+}
+
+p1 <- trace_panel(P,  c(0, 40), 20, "Depth, d (m)", "Pressure, P (atm)",
+                  "Step 1: P(d)", c(0.8, 5.2))
+p2 <- trace_panel(S,  c(1, 5),  3,  "Pressure, P (atm)", "Solubility (mg/L)",
+                  "Step 2: S(P)", c(9.3, 11.7))
+p3 <- trace_panel(SP, c(0, 40), 20, "Depth, d (m)", "Solubility (mg/L)",
+                  "Composed: S(P(d))", c(9.3, 11.7))
+
+p1 + p2 + p3
+```
 
 ### Concept Check: Evaluating Composite Functions {-}
 
@@ -71,6 +144,44 @@ First \(g(4)=8\), then \(f(8) = 11\). So \((f\circ g)(4) = 11\), which is **diff
 An **inverse function**, written \(f^{-1}\), "undoes" what \(f\) does: if \(f(a) = b\), then \(f^{-1}(b) = a\). Composing a function with its inverse (in either order) returns the original input: \(f^{-1}(f(x)) = x\).
 
 Not every function has an inverse. A function only has an inverse if it's **one-to-one** — each output comes from exactly one input (the horizontal-line-test counterpart to the vertical-line test from Chapter 3). If a function is not one-to-one, you often can't uniquely reverse it, because a given output could have come from more than one input.
+
+```{r composition-horizontal-line-test, fig.cap="The horizontal line test. Left: every horizontal line crosses the graph at most once, so each output comes from exactly one input and the function is one-to-one. Right: this horizontal line crosses three times, so the output y = 1 came from three different inputs, and there is no single way to reverse it.", fig.width=8.5, fig.height=3.8, fig.alt="Two side-by-side panels, each with a curve and a dashed horizontal test line. Left panel, titled one-to-one, passes: a straight rising line y equals 0.8x plus 0.5, crossed by the horizontal line y equals 1 at a single marked point. Right panel, titled not one-to-one, fails: an S-shaped curve y equals x cubed minus 3x that rises, dips, and rises again, crossed by the horizontal line y equals 1 at three marked points, at x of about negative 1.53, negative 0.35, and 1.88.", cache=FALSE, echo=FALSE, message=FALSE, warning=FALSE}
+library(ggplot2)
+
+blue   <- "#003F7F"
+orange <- "#8A3B00"
+
+lv <- c("One-to-one: passes", "Not one-to-one: fails")
+x  <- seq(-2.3, 2.3, length.out = 300)
+
+g  <- function(x) x^3 - 3 * x
+r  <- polyroot(c(-1, -3, 0, 1))          # solutions of x^3 - 3x = 1
+r  <- sort(Re(r[abs(Im(r)) < 1e-8]))
+
+curves <- rbind(
+  data.frame(x = x, y = 0.8 * x + 0.5, panel = lv[1]),
+  data.frame(x = x, y = g(x),          panel = lv[2])
+)
+hits <- rbind(
+  data.frame(x = (1 - 0.5) / 0.8, y = 1, panel = lv[1]),
+  data.frame(x = r,               y = 1, panel = lv[2])
+)
+curves$panel <- factor(curves$panel, levels = lv)
+hits$panel   <- factor(hits$panel,   levels = lv)
+
+ggplot(curves, aes(x, y)) +
+  geom_hline(yintercept = 0, color = "grey70") +
+  geom_vline(xintercept = 0, color = "grey70") +
+  geom_hline(yintercept = 1, color = orange, linetype = "dashed", linewidth = 1) +
+  geom_line(color = blue, linewidth = 1.3) +
+  geom_point(data = hits, size = 3.6, color = orange) +
+  facet_wrap(~ panel, nrow = 1) +
+  coord_cartesian(xlim = c(-2.3, 2.3), ylim = c(-3, 3.5)) +
+  labs(x = "x", y = "y") +
+  theme_minimal(base_size = 13) +
+  theme(strip.text = element_text(face = "bold", size = 12),
+        panel.grid.minor = element_blank())
+```
 
 ### Finding an Inverse Algebraically
 
@@ -110,6 +221,41 @@ $$
 
 **Step 4 — Use it.** If a measured concentration is \(15\) ng/mL, the dose that produced it was \(C^{-1}(15) = \dfrac{15-1}{2} = 7\) mg.
 
+```{r composition-inverse-reflection, fig.cap="A function and its inverse are mirror images across the line y = x. C(x) = 2x + 1 sends a dose of 7 mg to a concentration of 15 ng/mL, the point (7, 15). The inverse C⁻¹(x) = (x - 1)/2 sends 15 back to 7, the point (15, 7). Swapping x and y in the algebra is the same as reflecting the graph.", fig.alt="Graph on equal-scaled axes from 0 to 20. A solid steep line shows C of x equals 2x plus 1. A dashed shallower line shows the inverse, C inverse of x equals (x minus 1) over 2. A dotted grey diagonal line y equals x runs between them, labeled mirror line y equals x. The point (7, 15) is marked on the steep line and the point (15, 7) is marked on the shallow line. A dotted segment connects the two points, crossing the mirror line at a right angle, showing that each point is the reflection of the other.", cache=FALSE, echo=FALSE, message=FALSE, warning=FALSE}
+library(ggplot2)
+
+blue   <- "#003F7F"
+orange <- "#8A3B00"
+
+x <- seq(0, 20, length.out = 200)
+lines_df <- rbind(
+  data.frame(x = x, y = 2 * x + 1,   fn = "C(x) = 2x + 1"),
+  data.frame(x = x, y = (x - 1) / 2, fn = "Inverse: (x - 1) / 2")
+)
+lines_df$fn <- factor(lines_df$fn, levels = unique(lines_df$fn))
+
+ggplot(lines_df, aes(x, y, color = fn, linetype = fn)) +
+  geom_abline(slope = 1, intercept = 0, color = "grey45", linetype = "dotted",
+              linewidth = 0.9) +
+  annotate("text", x = 18.6, y = 17.6, angle = 45, size = 3.8, color = "grey25",
+           label = "y = x") +
+  geom_line(linewidth = 1.3) +
+  annotate("segment", x = 7, xend = 15, y = 15, yend = 7, color = "grey30",
+           linetype = "dotted", linewidth = 0.8) +
+  annotate("point", x = c(7, 15), y = c(15, 7), size = 3.8,
+           color = c(blue, orange)) +
+  annotate("text", x = 8.4, y = 16.4, hjust = 0, size = 4.2, color = blue,
+           label = "(7, 15)\ndose → concentration", lineheight = 0.9) +
+  annotate("text", x = 19.6, y = 3.4, hjust = 1, size = 4.2, color = orange,
+           label = "(15, 7)\nconcentration → dose", lineheight = 0.9) +
+  scale_color_manual(values = c(blue, orange)) +
+  scale_linetype_manual(values = c("solid", "dashed")) +
+  coord_equal(xlim = c(0, 20), ylim = c(0, 20), expand = FALSE) +
+  labs(x = "x", y = "y", color = NULL, linetype = NULL) +
+  theme_minimal(base_size = 13) +
+  theme(legend.position = "bottom")
+```
+
 ### Verifying an Inverse
 
 To check that two functions are really inverses, confirm that composing them (in either order) returns the original input. Using the example above:
@@ -147,6 +293,36 @@ Since composing them returns \(x\), they are inverses.
 ## Applications of Composition & Inverses
 
 Composition and inverses are especially powerful together: composition builds a multi-step conversion pipeline, and the inverse lets you run that pipeline *backward* — going from a downstream measurement back to an upstream cause.
+
+```{r composition-pipeline-backward, fig.cap="Composition runs the pipeline forward, from cause to measurement. The inverse runs it backward, from a measured value to the input that produced it.", fig.height=2.6, fig.alt="Diagram of three boxes in a row: depth, pressure, and solubility. Above the boxes, two arrows point left to right, labeled P from depth to pressure and S from pressure to solubility, with the caption forward, composition S of P of d. Below the boxes, a single long arrow points right to left from solubility back to depth, labeled backward, the inverse of the composed function.", cache=FALSE, echo=FALSE, message=FALSE, warning=FALSE}
+library(ggplot2)
+
+blue   <- "#003F7F"
+orange <- "#8A3B00"
+
+boxes <- data.frame(x = c(1, 4, 7), lab = c("Depth", "Pressure", "Solubility"))
+
+ggplot() +
+  geom_tile(data = boxes, aes(x = x, y = 1), width = 1.8, height = 0.7,
+            fill = "white", color = "black", linewidth = 1) +
+  geom_text(data = boxes, aes(x = x, y = 1, label = lab), size = 4.6) +
+  # forward arrows
+  annotate("segment", x = c(1.95, 4.95), xend = c(3.05, 6.05), y = 1.55, yend = 1.55,
+           color = blue, linewidth = 1.2,
+           arrow = arrow(length = unit(0.25, "cm"), type = "closed")) +
+  annotate("text", x = c(2.5, 5.5), y = 1.75, label = c("P", "S"), color = blue,
+           size = 5, fontface = "italic") +
+  annotate("text", x = 4, y = 2.1, color = blue, size = 4.3,
+           label = "Forward: the composition S(P(d))") +
+  # backward arrow
+  annotate("segment", x = 7, xend = 1, y = 0.42, yend = 0.42,
+           color = orange, linewidth = 1.2,
+           arrow = arrow(length = unit(0.25, "cm"), type = "closed")) +
+  annotate("text", x = 4, y = 0.15, color = orange, size = 4.3,
+           label = "Backward: the inverse of the composed function") +
+  coord_cartesian(xlim = c(-0.1, 8.1), ylim = c(0, 2.3)) +
+  theme_void()
+```
 
 ::: promptbox
 

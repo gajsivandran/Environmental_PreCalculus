@@ -18,6 +18,36 @@ A **rational function** is a ratio of two polynomials, \(f(x) = \dfrac{p(x)}{q(x
 - **Domain restrictions:** \(f(x)\) is undefined wherever the denominator \(q(x) = 0\), since division by zero is undefined.
 - **Asymptotes:** a **vertical asymptote** occurs at an \(x\)-value where the denominator hits zero (as long as the numerator doesn't); a **horizontal asymptote** describes the value \(f(x)\) approaches as \(x\) grows very large in either direction.
 
+```{r rational-asymptotes-anatomy, fig.cap="The two features of a rational function, for f(x) = (2x - 2)/(x + 1). The denominator is zero at x = -1, so the graph has a vertical asymptote there and splits into two branches. For large |x|, f(x) behaves like 2x/x = 2, so the graph levels off toward the horizontal asymptote y = 2 in both directions.", fig.alt="Graph of f of x equals (2x minus 2) over (x plus 1), for x from negative 8 to 8. A dashed vertical line at x equals negative 1 is labeled vertical asymptote, x equals negative 1, where the denominator is zero. A dashed horizontal line at y equals 2 is labeled horizontal asymptote, y equals 2. The graph has two separate branches. The left branch comes in from the far left just above y equals 2 and shoots upward as it nears x equals negative 1. The right branch rises from far below near x equals negative 1, crosses the x-axis at x equals 1, and levels off just below y equals 2 on the far right.", cache=FALSE, echo=FALSE, message=FALSE, warning=FALSE}
+library(ggplot2)
+
+blue   <- "#003F7F"
+orange <- "#8A3B00"
+
+f  <- function(x) (2 * x - 2) / (x + 1)
+xl <- seq(-8, -1.12, length.out = 300)
+xr <- seq(-0.88, 8, length.out = 300)
+br <- rbind(data.frame(x = xl, y = f(xl), b = "L"),
+            data.frame(x = xr, y = f(xr), b = "R"))
+
+ggplot(br, aes(x, y, group = b)) +
+  geom_hline(yintercept = 0, color = "grey70") +
+  geom_vline(xintercept = 0, color = "grey70") +
+  geom_vline(xintercept = -1, color = orange, linetype = "dashed", linewidth = 1) +
+  geom_hline(yintercept = 2, color = orange, linetype = "dashed", linewidth = 1) +
+  geom_line(color = blue, linewidth = 1.3) +
+  annotate("label", x = -1.2, y = -9, hjust = 1, size = 3.9, color = orange,
+           label = "Vertical asymptote: x = -1\n(denominator = 0)", lineheight = 0.9,
+           fill = "white", label.size = 0) +
+  annotate("label", x = 7.8, y = 3.1, hjust = 1, size = 3.9, color = orange,
+           label = "Horizontal asymptote: y = 2", fill = "white", label.size = 0) +
+  coord_cartesian(xlim = c(-8, 8), ylim = c(-12, 12)) +
+  scale_x_continuous(breaks = seq(-8, 8, by = 2)) +
+  labs(x = "x", y = "f(x)") +
+  theme_minimal(base_size = 13) +
+  theme(panel.grid.minor = element_blank())
+```
+
 ### Worked Example: A Dilution / Equilibrium Model
 
 Suppose a pollutant is continuously discharged into a reservoir at a constant rate, while clean water also flows in and dilutes it. A model for concentration over time might be:
@@ -29,6 +59,42 @@ $$
 where \(t\) is time in hours and \(C(t)\) is concentration in mg/L.
 
 **Step 1 — Find the domain restriction.** The denominator is zero when \(t = -2\). Since \(t\) represents time starting at 0, this restriction doesn't come up in the physically meaningful part of the domain (\(t \ge 0\)) — but it's worth noting as a place the formula itself breaks down.
+
+```{r rational-dilution-full-formula, fig.cap="The formula C(t) = (20t + 5)/(t + 2) drawn beyond its physical domain. It breaks down at t = -2, where the denominator is zero, but that lies outside the shaded region t ≥ 0, which is the only part that describes the reservoir. Inside it, the curve starts at C(0) = 2.5 mg/L and rises toward 20 mg/L.", fig.alt="Graph of concentration in milligrams per liter against time in hours, from negative 10 to 30. A shaded band covers t from 0 to 30 and is labeled physical domain, t greater than or equal to 0. A dashed vertical line at t equals negative 2 is labeled the formula breaks down, t equals negative 2. A dashed horizontal line at 20 milligrams per liter marks the horizontal asymptote. Left of t equals negative 2, a faint dotted branch comes in above 20 and shoots upward near the asymptote. Right of t equals negative 2, the curve rises from far below; it is faint and dotted until t equals 0 and then solid, starting at 2.5 milligrams per liter at t equals 0, where a point is marked, and climbing toward 20.", cache=FALSE, echo=FALSE, message=FALSE, warning=FALSE}
+library(ggplot2)
+
+blue   <- "#003F7F"
+orange <- "#8A3B00"
+
+C   <- function(t) (20 * t + 5) / (t + 2)
+tl  <- seq(-10, -2.15, length.out = 200)
+tm  <- seq(-1.85, 0, length.out = 100)
+tr  <- seq(0, 30, length.out = 300)
+
+ggplot() +
+  annotate("rect", xmin = 0, xmax = 30, ymin = -Inf, ymax = Inf, fill = blue, alpha = 0.08) +
+  annotate("text", x = 15, y = 38, size = 4, color = blue,
+           label = "Physical domain: t ≥ 0") +
+  geom_hline(yintercept = 0, color = "grey70") +
+  geom_vline(xintercept = -2, color = orange, linetype = "dashed", linewidth = 1) +
+  annotate("label", x = -2.3, y = -22, hjust = 1, size = 3.8, color = orange,
+           label = "Formula breaks\ndown: t = -2", lineheight = 0.9,
+           fill = "white", label.size = 0) +
+  geom_hline(yintercept = 20, color = "grey30", linetype = "dashed") +
+  annotate("text", x = 29.5, y = 22, hjust = 1, size = 3.8, color = "grey20",
+           label = "Asymptote: 20 mg/L") +
+  geom_line(data = data.frame(t = tl, C = C(tl)), aes(t, C),
+            color = "grey45", linetype = "dotted", linewidth = 1) +
+  geom_line(data = data.frame(t = tm, C = C(tm)), aes(t, C),
+            color = "grey45", linetype = "dotted", linewidth = 1) +
+  geom_line(data = data.frame(t = tr, C = C(tr)), aes(t, C),
+            color = blue, linewidth = 1.4) +
+  annotate("point", x = 0, y = C(0), size = 3.5) +
+  annotate("text", x = 0.8, y = C(0) - 3, hjust = 0, size = 3.9, label = "C(0) = 2.5") +
+  coord_cartesian(xlim = c(-10, 30), ylim = c(-30, 42)) +
+  labs(x = "Time, t (hours)", y = "Concentration, C(t) (mg/L)") +
+  theme_minimal(base_size = 13)
+```
 
 **Step 2 — Find the horizontal asymptote.** As \(t\) grows very large, both the numerator and denominator are dominated by their \(t\)-terms, so:
 
@@ -81,6 +147,40 @@ As \(x\to\infty\), \(f(x) \to \dfrac{5x}{x} = 5\). If this models concentration 
 
 Angles can be measured in **degrees** (a full circle is \(360°\)) or in **radians** (a full circle is \(2\pi\) radians). Radians are defined so that an angle's measure equals the arc length it sweeps out on a **unit circle** (radius 1) — which is why radians, not degrees, are the natural unit for the trigonometric work in Chapters 8–10.
 
+```{r rational-one-radian, fig.cap="What one radian means. On a unit circle (radius 1), an angle of 1 radian sweeps out an arc of length exactly 1, the same as the radius. A full turn sweeps out the whole circumference, 2π ≈ 6.28, so a full circle is 2π radians.", fig.alt="A unit circle centered at the origin, drawn on equal-scaled axes. Two radii start at the center: one along the positive x-axis and one rotated counterclockwise by 1 radian, about 57 degrees. Both radii are labeled r equals 1. The arc of the circle between them is drawn thick and labeled arc length equals 1. A small arc near the center between the two radii is labeled theta equals 1 radian. A note reads full circle: arc length 2 pi, angle 2 pi radians.", cache=FALSE, echo=FALSE, message=FALSE, warning=FALSE}
+library(ggplot2)
+
+blue   <- "#003F7F"
+orange <- "#8A3B00"
+
+tt   <- seq(0, 2 * pi, length.out = 400)
+circ <- data.frame(x = cos(tt), y = sin(tt))
+ta   <- seq(0, 1, length.out = 100)
+arc  <- data.frame(x = cos(ta), y = sin(ta))
+ang  <- data.frame(x = 0.25 * cos(ta), y = 0.25 * sin(ta))
+
+ggplot() +
+  geom_hline(yintercept = 0, color = "grey75") +
+  geom_vline(xintercept = 0, color = "grey75") +
+  geom_path(data = circ, aes(x, y), color = "grey40", linewidth = 0.9) +
+  geom_path(data = arc,  aes(x, y), color = orange, linewidth = 2.4) +
+  geom_path(data = ang,  aes(x, y), color = blue, linewidth = 0.9) +
+  annotate("segment", x = 0, y = 0, xend = 1, yend = 0, color = blue, linewidth = 1.3) +
+  annotate("segment", x = 0, y = 0, xend = cos(1), yend = sin(1),
+           color = blue, linewidth = 1.3) +
+  annotate("text", x = 0.5, y = -0.09, label = "r = 1", color = blue, size = 4.3) +
+  annotate("text", x = 0.5 * cos(1) - 0.1, y = 0.5 * sin(1) + 0.06, label = "r = 1",
+           color = blue, size = 4.3, angle = 57) +
+  annotate("text", x = 0.36, y = 0.14, label = "θ = 1 rad", color = blue,
+           size = 4, hjust = 0) +
+  annotate("text", x = 1.12 * cos(0.5), y = 1.12 * sin(0.5), hjust = 0, size = 4.3,
+           color = orange, label = "arc length = 1") +
+  annotate("text", x = -1.35, y = -1.25, hjust = 0, size = 3.9,
+           label = "Full circle: arc length 2π, angle 2π rad") +
+  coord_equal(xlim = c(-1.4, 1.75), ylim = c(-1.35, 1.25)) +
+  theme_void()
+```
+
 Warning: Be sure you calculators are set to 'RAD' when evaluating trigonometric probelms.
 
 ### Converting Between Degrees and Radians
@@ -100,6 +200,41 @@ $$
 $$
 
 **Step 2 — Sanity check.** \(\frac{5\pi}{4} \approx 3.93\) radians, and since a full circle is \(2\pi \approx 6.28\) radians, this is a bit past the halfway point around the circle — consistent with \(225°\) being past \(180°\) (halfway) on a \(360°\) compass.
+
+```{r rational-wind-bearing, fig.cap="A 225° wind on a compass. Compass bearings start at north and turn clockwise, so 225° points southwest. Weather stations report the direction the wind comes from, so this wind blows from the southwest toward the northeast. Math angles start at east and turn counterclockwise: the same southwest direction is also 225° in that system, but only because southwest sits symmetrically between the two starting lines. Most bearings do not match.", fig.alt="A compass circle with north at the top, east at the right, south at the bottom and west at the left. A thick arc starts at north and turns clockwise through east and south to the southwest, labeled bearing 225 degrees, measured clockwise from north. A marked point at the southwest edge of the circle is labeled wind comes from here. A large arrow runs from that southwest point through the center toward the northeast, labeled wind blows toward northeast.", cache=FALSE, echo=FALSE, message=FALSE, warning=FALSE}
+library(ggplot2)
+
+blue   <- "#003F7F"
+orange <- "#8A3B00"
+
+# compass bearing b (deg, clockwise from north) -> plot coordinates
+bxy <- function(b, r = 1) data.frame(x = r * sin(b * pi / 180), y = r * cos(b * pi / 180))
+
+circ <- bxy(seq(0, 360, length.out = 400))
+arcb <- bxy(seq(0, 225, length.out = 200), r = 0.62)
+src  <- bxy(225)
+card <- cbind(bxy(c(0, 90, 180, 270), r = 1.17), lab = c("N", "E", "S", "W"))
+
+ggplot() +
+  geom_path(data = circ, aes(x, y), color = "grey40", linewidth = 0.9) +
+  annotate("segment", x = c(0, -1), xend = c(0, 1), y = c(-1, 0), yend = c(1, 0),
+           color = "grey80") +
+  geom_text(data = card, aes(x, y, label = lab), size = 5, fontface = "bold") +
+  geom_path(data = arcb, aes(x, y), color = blue, linewidth = 1.6,
+            arrow = arrow(length = unit(0.25, "cm"), type = "closed")) +
+  annotate("text", x = 0.5, y = -0.72, hjust = 0, size = 3.9, color = blue,
+           label = "Bearing 225°\n(clockwise from N)", lineheight = 0.9) +
+  annotate("segment", x = src$x, y = src$y, xend = -src$x * 0.85, yend = -src$y * 0.85,
+           color = orange, linewidth = 1.6,
+           arrow = arrow(length = unit(0.35, "cm"), type = "closed")) +
+  annotate("point", x = src$x, y = src$y, size = 4, color = orange) +
+  annotate("text", x = src$x - 0.05, y = src$y - 0.12, hjust = 1, size = 3.9,
+           color = orange, label = "Wind comes\nfrom here (SW)", lineheight = 0.9) +
+  annotate("text", x = 0.66, y = 0.86, hjust = 0, size = 3.9, color = orange,
+           label = "Blows toward NE", lineheight = 0.9) +
+  coord_equal(xlim = c(-1.75, 1.75), ylim = c(-1.3, 1.3)) +
+  theme_void()
+```
 
 ### Arc Length
 
@@ -126,6 +261,44 @@ s = 150 \times \frac{\pi}{3} = 50\pi \approx 157.1 \text{ m}
 $$
 
 **Step 3 — Interpret.** About 157 meters of the buffer's boundary falls within that 60° wedge and needs to be included in the sampling plan.
+
+```{r rational-buffer-arc-length, fig.cap="A 60° wedge of the 150 m buffer around the Downstream Well. The highlighted arc is the part of the boundary inside the wedge: s = rθ = 150 × π/3 ≈ 157.1 m. For comparison, each straight edge of the wedge is 150 m, so the curved edge is only slightly longer than a radius.", fig.alt="Map in meters east and north of the stream gauge, with equal scaling on both axes. A circle of radius 150 meters is centered on the Downstream Well at (180, negative 40). A shaded wedge extends from the center, bounded by two radii 60 degrees apart, one pointing east and one rotated 60 degrees counterclockwise. The arc of the circle between the two radii is drawn thick and labeled s approximately 157.1 meters. The radii are labeled r equals 150 meters, and the angle between them at the center is labeled 60 degrees, pi over 3 radians.", cache=FALSE, echo=FALSE, message=FALSE, warning=FALSE}
+library(ggplot2)
+
+blue   <- "#003F7F"
+orange <- "#8A3B00"
+
+cx <- 180; cy <- -40; r <- 150
+th <- pi / 3
+
+tt    <- seq(0, 2 * pi, length.out = 400)
+circ  <- data.frame(x = cx + r * cos(tt), y = cy + r * sin(tt))
+ta    <- seq(0, th, length.out = 100)
+arc   <- data.frame(x = cx + r * cos(ta), y = cy + r * sin(ta))
+wedge <- rbind(data.frame(x = cx, y = cy), arc, data.frame(x = cx, y = cy))
+ang   <- data.frame(x = cx + 32 * cos(ta), y = cy + 32 * sin(ta))
+
+ggplot() +
+  geom_path(data = circ, aes(x, y), color = "grey45", linewidth = 0.9) +
+  geom_polygon(data = wedge, aes(x, y), fill = blue, alpha = 0.15) +
+  annotate("segment", x = cx, y = cy, xend = cx + r, yend = cy,
+           color = blue, linewidth = 1.2) +
+  annotate("segment", x = cx, y = cy, xend = cx + r * cos(th), yend = cy + r * sin(th),
+           color = blue, linewidth = 1.2) +
+  geom_path(data = arc, aes(x, y), color = orange, linewidth = 2.4) +
+  geom_path(data = ang, aes(x, y), color = "black", linewidth = 0.7) +
+  annotate("text", x = cx + 45, y = cy + 14, hjust = 0, size = 3.9,
+           label = "60° = π/3") +
+  annotate("text", x = cx + 75, y = cy - 12, size = 3.9, color = blue, label = "r = 150 m") +
+  annotate("text", x = cx + 165 * cos(th / 2) + 6, y = cy + 165 * sin(th / 2) + 6,
+           hjust = 0, size = 4.2, color = orange, label = "s ≈ 157.1 m") +
+  annotate("point", x = cx, y = cy, shape = 4, size = 4, stroke = 1.8) +
+  annotate("text", x = cx - 8, y = cy - 16, hjust = 1, size = 3.9,
+           label = "Downstream Well\n(180, -40)", lineheight = 0.9) +
+  coord_equal(xlim = c(20, 400), ylim = c(-200, 120)) +
+  labs(x = "Meters east of stream gauge", y = "Meters north of stream gauge") +
+  theme_minimal(base_size = 13)
+```
 
 ### Concept Check: Degree-Radian Conversion {-}
 

@@ -123,6 +123,43 @@ $$
 
 **Step 3 — Interpret.** The blade tip moves at roughly 63 m/s — over 225 km/h (140 mph) — even though the whole blade completes the same *angular* rotation as any point closer to the hub. Points farther from the center cover more linear distance in the same rotation, which is exactly the intuition from the prompt box above.
 
+```{r trig-same-angle-different-arcs, fig.cap="Same angular speed, different linear speeds. In one second, every point on the blade turns through the same angle, \u03c0/2 radians. A point 20 m from the hub travels an arc of 20 \u00d7 \u03c0/2 \u2248 31.4 m; the tip, 40 m out, travels 40 \u00d7 \u03c0/2 \u2248 62.8 m. Twice the radius, twice the distance, in the same time.", fig.alt="Diagram of a turbine hub at the center with a blade drawn at two moments one second apart: first pointing to the right, then rotated a quarter turn counterclockwise to point straight up. Two arcs show the paths traveled during that second. A short inner arc at radius 20 meters is labeled about 31.4 meters. A long outer arc at radius 40 meters, traced by the blade tip, is labeled about 62.8 meters. A small arc at the hub between the two blade positions is labeled pi over 2 radians in 1 second.", cache=FALSE, echo=FALSE, message=FALSE, warning=FALSE}
+library(ggplot2)
+
+blue   <- "#003F7F"
+orange <- "#8A3B00"
+
+th   <- seq(0, pi / 2, length.out = 120)
+arcs <- rbind(
+  data.frame(x = 20 * cos(th), y = 20 * sin(th), r = "20 m"),
+  data.frame(x = 40 * cos(th), y = 40 * sin(th), r = "40 m")
+)
+ang <- data.frame(x = 6 * cos(th), y = 6 * sin(th))
+
+ggplot() +
+  # blade at t = 0 and t = 1 s
+  annotate("segment", x = 0, y = 0, xend = 40, yend = 0, color = "grey45",
+           linewidth = 2.2, lineend = "round") +
+  annotate("segment", x = 0, y = 0, xend = 0, yend = 40, color = "black",
+           linewidth = 2.2, lineend = "round") +
+  annotate("text", x = 41, y = -3, hjust = 0, size = 3.8, color = "grey25", label = "t = 0") +
+  annotate("text", x = 2, y = 42.5, hjust = 0, size = 3.8, label = "t = 1 s") +
+  geom_path(data = arcs, aes(x, y, group = r, color = r), linewidth = 1.6,
+            linetype = "dashed",
+            arrow = arrow(length = unit(0.25, "cm"), type = "closed")) +
+  geom_path(data = ang, aes(x, y), linewidth = 0.7) +
+  annotate("text", x = 7.5, y = 7.5, hjust = 0, size = 3.8,
+           label = "\u03c0/2 rad\nin 1 s", lineheight = 0.9) +
+  annotate("text", x = 20 * cos(pi / 4) + 1.5, y = 20 * sin(pi / 4) + 1.5, hjust = 0,
+           size = 4.1, color = blue, label = "r = 20 m:\n\u2248 31.4 m", lineheight = 0.9) +
+  annotate("text", x = 40 * cos(pi / 4) + 1.5, y = 40 * sin(pi / 4) + 1.5, hjust = 0,
+           size = 4.1, color = orange, label = "Tip, r = 40 m:\n\u2248 62.8 m", lineheight = 0.9) +
+  annotate("point", x = 0, y = 0, size = 5) +
+  scale_color_manual(values = c(`20 m` = blue, `40 m` = orange), guide = "none") +
+  coord_equal(xlim = c(-3, 56), ylim = c(-5, 46)) +
+  theme_void()
+```
+
 ---
 
 ## Right-Triangle Trigonometry
@@ -132,6 +169,38 @@ For a right triangle with one acute angle \(\theta\), the three basic trigonomet
 $$
 \sin(\theta) = \frac{\text{opposite}}{\text{hypotenuse}}, \qquad \cos(\theta) = \frac{\text{adjacent}}{\text{hypotenuse}}, \qquad \tan(\theta) = \frac{\text{opposite}}{\text{adjacent}}
 $$
+
+```{r trig-right-triangle-labels, fig.cap="Naming the sides of a right triangle relative to the angle θ. The hypotenuse is always the longest side, across from the right angle. Opposite and adjacent depend on which acute angle you are using: opposite is across from θ, adjacent is the leg that touches θ.", fig.alt="A right triangle with the right angle at the lower right, marked with a small square. The angle theta is at the lower left, marked with a small arc. The bottom horizontal side, touching theta, is labeled adjacent. The vertical side on the right, across from theta, is labeled opposite. The slanted side joining the lower left to the top right is labeled hypotenuse. Beside the triangle the three ratios are written: sine theta equals opposite over hypotenuse, cosine theta equals adjacent over hypotenuse, tangent theta equals opposite over adjacent.", fig.height=3.6, cache=FALSE, echo=FALSE, message=FALSE, warning=FALSE}
+library(ggplot2)
+
+blue   <- "#003F7F"
+orange <- "#8A3B00"
+
+W <- 4; H <- 3
+a <- atan2(H, W)
+arc <- data.frame(x = 0.7 * cos(seq(0, a, length.out = 50)),
+                  y = 0.7 * sin(seq(0, a, length.out = 50)))
+
+ggplot() +
+  annotate("polygon", x = c(0, W, W), y = c(0, 0, H), fill = "grey95", color = NA) +
+  annotate("segment", x = 0, y = 0, xend = W, yend = 0, color = blue, linewidth = 1.5) +
+  annotate("segment", x = W, y = 0, xend = W, yend = H, color = orange, linewidth = 1.5) +
+  annotate("segment", x = 0, y = 0, xend = W, yend = H, color = "black", linewidth = 1.5) +
+  annotate("path", x = c(W - 0.3, W - 0.3, W), y = c(0, 0.3, 0.3)) +
+  geom_path(data = arc, aes(x, y)) +
+  annotate("text", x = 0.85, y = 0.28, hjust = 0, size = 5, label = "θ") +
+  annotate("text", x = W / 2, y = -0.3, size = 4.6, color = blue, label = "adjacent") +
+  annotate("text", x = W + 0.15, y = H / 2, hjust = 0, size = 4.6, color = orange,
+           label = "opposite") +
+  annotate("text", x = W / 2 - 0.35, y = H / 2 + 0.3, size = 4.6, angle = a * 180 / pi,
+           label = "hypotenuse") +
+  annotate("text", x = W + 1.9, y = c(2.4, 1.6, 0.8), hjust = 0, size = 4.4,
+           label = c("sin(θ) = opposite / hypotenuse",
+                     "cos(θ) = adjacent / hypotenuse",
+                     "tan(θ) = opposite / adjacent")) +
+  coord_equal(xlim = c(-0.3, 10.6), ylim = c(-0.6, 3.3)) +
+  theme_void()
+```
 
 ### Worked Example: Estimating Canopy Height
 
@@ -152,6 +221,46 @@ $$
 $$
 
 **Step 4 — Interpret.** The tree is approximately 21 meters tall — measured without ever needing to climb it or use a direct measuring tool, just an angle and a horizontal distance.
+
+```{r trig-canopy-height, fig.cap="The canopy-height measurement as a right triangle. The 30 m of level ground is adjacent to the 35° angle of elevation and the tree's height is opposite it, so height = 30 tan(35°) ≈ 21.0 m. As drawn, the angle is measured from ground level at the observer's position.", fig.alt="Side-view diagram of a right triangle on level ground. On the left, a small marker shows the observer's position. On the right stands a vertical tree trunk with a rounded canopy on top. The ground between them is labeled 30 meters, adjacent. The tree's height, from the ground to the top of the canopy, is labeled height approximately 21.0 meters, opposite. A dashed line of sight runs from the observer up to the treetop, labeled hypotenuse, line of sight. At the observer, an arc between the ground and the line of sight is labeled 35 degrees. A small square marks the right angle at the base of the tree.", fig.height=4, cache=FALSE, echo=FALSE, message=FALSE, warning=FALSE}
+library(ggplot2)
+
+blue   <- "#003F7F"
+orange <- "#8A3B00"
+green  <- "#1a5e3a"
+
+d <- 30; a <- 35 * pi / 180; h <- d * tan(a)
+arc <- data.frame(x = 5 * cos(seq(0, a, length.out = 50)),
+                  y = 5 * sin(seq(0, a, length.out = 50)))
+crown <- data.frame(x = d + 4.2 * cos(seq(0, 2 * pi, length.out = 100)),
+                    y = h - 4 + 4.2 * sin(seq(0, 2 * pi, length.out = 100)))
+
+ggplot() +
+  annotate("segment", x = -3, xend = 38, y = 0, yend = 0, color = "grey40", linewidth = 0.8) +
+  # tree
+  annotate("segment", x = d, xend = d, y = 0, yend = h - 6, color = "#5a3a1a", linewidth = 3) +
+  geom_polygon(data = crown, aes(x, y), fill = green, alpha = 0.35, color = green) +
+  # triangle
+  annotate("segment", x = 0, xend = d, y = 0, yend = 0, color = blue, linewidth = 1.5) +
+  annotate("segment", x = d + 6, xend = d + 6, y = 0, yend = h, color = orange,
+           linewidth = 1.2, arrow = arrow(ends = "both", length = unit(0.2, "cm"))) +
+  annotate("segment", x = d, xend = d + 6, y = h, yend = h, color = "grey50",
+           linetype = "dotted") +
+  annotate("segment", x = 0, xend = d, y = 0, yend = h, linetype = "dashed", linewidth = 1) +
+  annotate("path", x = c(d - 1.2, d - 1.2, d), y = c(0, 1.2, 1.2)) +
+  geom_path(data = arc, aes(x, y)) +
+  annotate("text", x = 5.8, y = 1.6, hjust = 0, size = 4.3, label = "35°") +
+  annotate("point", x = 0, y = 0, shape = 17, size = 4) +
+  annotate("text", x = 0, y = -2.2, size = 3.9, label = "Observer") +
+  annotate("text", x = d / 2, y = -2.2, size = 4.2, color = blue,
+           label = "30 m (adjacent)") +
+  annotate("text", x = d + 6.8, y = h / 2, hjust = 0, size = 4.2, color = orange,
+           label = "height ≈ 21.0 m\n(opposite)", lineheight = 0.9) +
+  annotate("text", x = d / 2 - 2.5, y = h / 2 + 2.5, size = 4, angle = 35,
+           label = "line of sight (hypotenuse)") +
+  coord_equal(xlim = c(-4, 50), ylim = c(-3.5, 24)) +
+  theme_void()
+```
 
 ### Concept Check: Right-Triangle Trig Setup {-}
 
@@ -179,6 +288,61 @@ Tangent relates the **opposite** and **adjacent** sides, and those are exactly t
 
 The **unit circle** is a circle of radius 1 centered at the origin. For any angle \(\theta\) (measured counterclockwise from the positive x-axis), the point where the angle's ray crosses the unit circle has coordinates \((\cos\theta, \sin\theta)\). This is what lets sine and cosine be defined for *any* angle, not just acute angles inside a right triangle.
 
+```{r trig-unit-circle-coordinates, fig.cap="On the unit circle, the point at angle θ has coordinates (cos θ, sin θ). Left angle: θ = 50°, where both coordinates are positive and the right triangle has legs cos θ and sin θ with hypotenuse 1. Right angle: θ = 140°, beyond any right triangle's acute angle, where the point lies left of the y-axis and cos θ is negative. The coordinate definition works for both.", fig.width=8.5, fig.height=4, fig.alt="Two side-by-side unit circles, each centered at the origin with radius 1. In each, an arc from the positive x-axis shows the angle, a radius goes to a marked point on the circle, and dashed lines drop from the point to the x-axis. Left circle, theta equals 50 degrees: the point is in the upper right, the horizontal leg along the x-axis is labeled cosine theta and is positive, the vertical leg is labeled sine theta, and the radius is labeled 1. The point is labeled (cosine theta, sine theta). Right circle, theta equals 140 degrees: the point is in the upper left, the horizontal leg extends to the left of the origin and is labeled cosine theta, negative, and the vertical leg is labeled sine theta, positive.", cache=FALSE, echo=FALSE, message=FALSE, warning=FALSE}
+library(ggplot2)
+
+blue   <- "#003F7F"
+orange <- "#8A3B00"
+
+lv <- c("θ = 50°", "θ = 140°")
+ths <- c(50, 140) * pi / 180
+
+tt   <- seq(0, 2 * pi, length.out = 300)
+circ <- do.call(rbind, lapply(lv, function(p) data.frame(x = cos(tt), y = sin(tt), panel = p)))
+arcs <- do.call(rbind, lapply(1:2, function(i) {
+  s <- seq(0, ths[i], length.out = 80)
+  data.frame(x = 0.25 * cos(s), y = 0.25 * sin(s), panel = lv[i])
+}))
+pts <- data.frame(panel = lv, x = cos(ths), y = sin(ths))
+lab <- data.frame(panel = lv,
+                  cx = cos(ths) / 2, cy = -0.12,
+                  clab = c("cos θ", "cos θ (negative)"),
+                  sx = cos(ths) + c(-0.06, 0.06), sy = sin(ths) / 4,
+                  sh = c(1, 0),
+                  px = cos(ths) + c(0.06, -0.06), py = sin(ths) + 0.12,
+                  ph = c(0, 1))
+
+for (d in c("circ", "arcs", "pts", "lab")) {
+  tmp <- get(d); tmp$panel <- factor(tmp$panel, levels = lv); assign(d, tmp)
+}
+
+ggplot() +
+  geom_hline(yintercept = 0, color = "grey70") +
+  geom_vline(xintercept = 0, color = "grey70") +
+  geom_path(data = circ, aes(x, y), color = "grey40", linewidth = 0.9) +
+  geom_path(data = arcs, aes(x, y)) +
+  geom_segment(data = pts, aes(x = 0, y = 0, xend = x, yend = y), color = "black",
+               linewidth = 1.2) +
+  geom_segment(data = pts, aes(x = 0, y = 0, xend = x, yend = 0), color = blue,
+               linewidth = 1.6) +
+  geom_segment(data = pts, aes(x = x, y = 0, xend = x, yend = y), color = orange,
+               linewidth = 1.6, linetype = "dashed") +
+  geom_point(data = pts, aes(x, y), size = 3.6) +
+  geom_text(data = pts, aes(x = x / 2 + c(-0.08, 0.08), y = y / 2 + 0.08, label = "1"),
+            size = 4.2) +
+  geom_text(data = lab, aes(cx, cy, label = clab), color = blue, size = 3.9) +
+  geom_text(data = lab, aes(sx, sy, label = "sin θ", hjust = sh), color = orange,
+            size = 3.9) +
+  geom_text(data = lab, aes(px, py, label = "(cos θ, sin θ)", hjust = ph),
+            size = 3.9) +
+  facet_wrap(~ panel, nrow = 1) +
+  coord_equal(xlim = c(-1.45, 1.45), ylim = c(-1.15, 1.25)) +
+  labs(x = NULL, y = NULL) +
+  theme_minimal(base_size = 12) +
+  theme(strip.text = element_text(face = "bold", size = 13),
+        panel.grid.minor = element_blank())
+```
+
 **Key standard angles** (in radians, with degrees noted):
 
 | \(\theta\) | \(0\) | \(\pi/6\) (30°) | \(\pi/4\) (45°) | \(\pi/3\) (60°) | \(\pi/2\) (90°) |
@@ -197,6 +361,34 @@ $$
 $$
 
 This is the **Pythagorean identity**, and it holds for *every* angle \(\theta\), not just the standard ones in the table above.
+
+```{r trig-pythagorean-identity, fig.cap="The Pythagorean identity for every angle at once. As θ runs from 0 to 2π, sin²(θ) and cos²(θ) each rise and fall between 0 and 1, but whenever one goes up the other comes down by exactly the same amount. Stacked together, they always fill the band up to exactly 1.", fig.height=3.6, fig.alt="Stacked area chart over theta from 0 to 2 pi. The lower layer, in blue, is sine squared of theta: it starts at 0, rises to 1 at pi over 2, falls to 0 at pi, rises to 1 at 3 pi over 2, and returns to 0 at 2 pi. The upper layer, in orange, is cosine squared of theta, stacked on top. It is thickest where the blue layer is thinnest. The top edge of the stack is a flat line at exactly 1 across the whole graph, labeled sine squared plus cosine squared equals 1.", cache=FALSE, echo=FALSE, message=FALSE, warning=FALSE}
+library(ggplot2)
+
+blue   <- "#003F7F"
+orange <- "#8A3B00"
+
+th <- seq(0, 2 * pi, length.out = 400)
+df <- rbind(
+  data.frame(th = th, v = cos(th)^2, part = "cos²(θ)"),
+  data.frame(th = th, v = sin(th)^2, part = "sin²(θ)")
+)
+df$part <- factor(df$part, levels = c("cos²(θ)", "sin²(θ)"))
+
+ggplot(df, aes(th, v, fill = part)) +
+  geom_area(alpha = 0.85, color = "white", linewidth = 0.3) +
+  geom_hline(yintercept = 1, linewidth = 1.1) +
+  annotate("label", x = pi, y = 1.08, size = 4, label.size = 0, fill = "white",
+           label = "sin²(θ) + cos²(θ) = 1 for every θ") +
+  scale_fill_manual(values = c(orange, blue)) +
+  scale_x_continuous(breaks = c(0, pi / 2, pi, 3 * pi / 2, 2 * pi),
+                     labels = c("0", "π/2", "π", "3π/2", "2π")) +
+  scale_y_continuous(breaks = c(0, 0.5, 1)) +
+  coord_cartesian(ylim = c(0, 1.15)) +
+  labs(x = "θ (radians)", y = NULL, fill = NULL) +
+  theme_minimal(base_size = 13) +
+  theme(legend.position = "bottom", panel.grid.minor = element_blank())
+```
 
 ### Concept Check: Unit Circle Values {-}
 

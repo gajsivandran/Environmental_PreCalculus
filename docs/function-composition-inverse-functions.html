@@ -636,6 +636,12 @@
 <h2><span class="header-section-number">6.2</span> Composition of Functions<a href="function-composition-inverse-functions.html#composition-of-functions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><strong>Function composition</strong> means feeding the output of one function into another as its input. We write this as <span class="math inline">\((g \circ f)(x) = g(f(x))\)</span> — read “<span class="math inline">\(g\)</span> of <span class="math inline">\(f\)</span> of <span class="math inline">\(x\)</span>,” and evaluated from the inside out: first apply <span class="math inline">\(f\)</span>, then apply <span class="math inline">\(g\)</span> to <em>that</em> result.</p>
 <p>Composition shows up constantly in environmental science because measurements are often separated by several converted steps. For example, raw sensor voltage becomes a concentration, a concentration becomes a risk score, a risk score becomes a policy decision. Each of these steps is a function, and the whole pipeline is their composition.</p>
+<div class="figure"><span style="display:block;" id="fig:composition-pipeline-diagram"></span>
+<img src="precalculus-environmental-science_files/figure-html/composition-pipeline-diagram-1.png" alt="Flow diagram of four boxes in a row connected by arrows from left to right. The boxes read raw sensor voltage, concentration, risk score, and policy decision. The arrow between the first two boxes is labeled f, between the second and third is labeled g, and between the third and fourth is labeled h. A long bracket beneath all four boxes is labeled the composition h of g of f of v, showing the whole pipeline as one function." width="672" />
+<p class="caption">
+Figure 6.1: A measurement pipeline is a chain of functions. Each arrow is one function; the output of one step becomes the input to the next. The whole chain, from raw voltage to decision, is their composition.
+</p>
+</div>
 <div id="worked-example-depth-pressure-and-oxygen-solubility" class="section level3 hasAnchor" number="6.2.1">
 <h3><span class="header-section-number">6.2.1</span> Worked Example: Depth, Pressure, and Oxygen Solubility<a href="function-composition-inverse-functions.html#worked-example-depth-pressure-and-oxygen-solubility" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>In a lake, pressure increases with depth, and the amount of oxygen water can hold (its solubility) depends on pressure. Suppose:</p>
@@ -655,6 +661,12 @@ S(P(d)) = 9 + 0.5\big(1+0.1d\big) = 9 + 0.5 + 0.05d = 9.5 + 0.05d
 S(P(20)) = 9.5 + 0.05(20) = 10.5 \text{ mg/L}
 \]</span></p>
 <p><strong>Step 4 — Interpret.</strong> At 20 m depth, this model predicts an oxygen solubility of 10.5 mg/L — and we found it <em>without</em> separately computing pressure and then plugging it in by hand each time; the composed function <span class="math inline">\(9.5+0.05d\)</span> directly converts depth to solubility in one step.</p>
+<div class="figure"><span style="display:block;" id="fig:composition-depth-pressure-solubility"></span>
+<img src="precalculus-environmental-science_files/figure-html/composition-depth-pressure-solubility-1.png" alt="Three side-by-side line graphs. Left graph, titled step 1, P of d: pressure in atmospheres against depth in meters from 0 to 40, a rising line from 1 atmosphere at 0 meters to 5 atmospheres at 40 meters. Dashed guides go up from depth 20 to the line and across to 3 atmospheres. Middle graph, titled step 2, S of P: solubility in milligrams per liter against pressure in atmospheres from 1 to 5, a rising line from 9.5 to 11.5. Dashed guides go up from pressure 3 to the line and across to 10.5 milligrams per liter. Right graph, titled composed, S of P of d: solubility against depth from 0 to 40 meters, a rising line from 9.5 to 11.5. Dashed guides go up from depth 20 directly to the line and across to 10.5 milligrams per liter, the same answer as the two-step route." width="912" />
+<p class="caption">
+Figure 6.2: Composition traced on graphs, for d = 20 m. Left: P(d) turns depth into pressure, P(20) = 3 atm. Middle: S(P) turns that pressure into solubility, S(3) = 10.5 mg/L. Right: the composed function S(P(d)) = 9.5 + 0.05d goes straight from depth to solubility and lands on the same 10.5 mg/L.
+</p>
+</div>
 </div>
 <div id="concept-check-evaluating-composite-functions" class="section level3 unnumbered hasAnchor">
 <h3>Concept Check: Evaluating Composite Functions<a href="function-composition-inverse-functions.html#concept-check-evaluating-composite-functions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -679,6 +691,12 @@ S(P(20)) = 9.5 + 0.05(20) = 10.5 \text{ mg/L}
 <h2><span class="header-section-number">6.3</span> Inverse Functions<a href="function-composition-inverse-functions.html#inverse-functions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>An <strong>inverse function</strong>, written <span class="math inline">\(f^{-1}\)</span>, “undoes” what <span class="math inline">\(f\)</span> does: if <span class="math inline">\(f(a) = b\)</span>, then <span class="math inline">\(f^{-1}(b) = a\)</span>. Composing a function with its inverse (in either order) returns the original input: <span class="math inline">\(f^{-1}(f(x)) = x\)</span>.</p>
 <p>Not every function has an inverse. A function only has an inverse if it’s <strong>one-to-one</strong> — each output comes from exactly one input (the horizontal-line-test counterpart to the vertical-line test from Chapter 3). If a function is not one-to-one, you often can’t uniquely reverse it, because a given output could have come from more than one input.</p>
+<div class="figure"><span style="display:block;" id="fig:composition-horizontal-line-test"></span>
+<img src="precalculus-environmental-science_files/figure-html/composition-horizontal-line-test-1.png" alt="Two side-by-side panels, each with a curve and a dashed horizontal test line. Left panel, titled one-to-one, passes: a straight rising line y equals 0.8x plus 0.5, crossed by the horizontal line y equals 1 at a single marked point. Right panel, titled not one-to-one, fails: an S-shaped curve y equals x cubed minus 3x that rises, dips, and rises again, crossed by the horizontal line y equals 1 at three marked points, at x of about negative 1.53, negative 0.35, and 1.88." width="816" />
+<p class="caption">
+Figure 6.3: The horizontal line test. Left: every horizontal line crosses the graph at most once, so each output comes from exactly one input and the function is one-to-one. Right: this horizontal line crosses three times, so the output y = 1 came from three different inputs, and there is no single way to reverse it.
+</p>
+</div>
 <div id="finding-an-inverse-algebraically" class="section level3 hasAnchor" number="6.3.1">
 <h3><span class="header-section-number">6.3.1</span> Finding an Inverse Algebraically<a href="function-composition-inverse-functions.html#finding-an-inverse-algebraically" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>To find <span class="math inline">\(f^{-1}(x)\)</span> from <span class="math inline">\(y = f(x)\)</span>:</p>
@@ -708,6 +726,12 @@ y = \frac{x-1}{2}
 C^{-1}(x) = \frac{x-1}{2}
 \]</span></p>
 <p><strong>Step 4 — Use it.</strong> If a measured concentration is <span class="math inline">\(15\)</span> ng/mL, the dose that produced it was <span class="math inline">\(C^{-1}(15) = \dfrac{15-1}{2} = 7\)</span> mg.</p>
+<div class="figure"><span style="display:block;" id="fig:composition-inverse-reflection"></span>
+<img src="precalculus-environmental-science_files/figure-html/composition-inverse-reflection-1.png" alt="Graph on equal-scaled axes from 0 to 20. A solid steep line shows C of x equals 2x plus 1. A dashed shallower line shows the inverse, C inverse of x equals (x minus 1) over 2. A dotted grey diagonal line y equals x runs between them, labeled mirror line y equals x. The point (7, 15) is marked on the steep line and the point (15, 7) is marked on the shallow line. A dotted segment connects the two points, crossing the mirror line at a right angle, showing that each point is the reflection of the other." width="672" />
+<p class="caption">
+Figure 6.4: A function and its inverse are mirror images across the line y = x. C(x) = 2x + 1 sends a dose of 7 mg to a concentration of 15 ng/mL, the point (7, 15). The inverse C⁻¹(x) = (x - 1)/2 sends 15 back to 7, the point (15, 7). Swapping x and y in the algebra is the same as reflecting the graph.
+</p>
+</div>
 </div>
 <div id="verifying-an-inverse" class="section level3 hasAnchor" number="6.3.3">
 <h3><span class="header-section-number">6.3.3</span> Verifying an Inverse<a href="function-composition-inverse-functions.html#verifying-an-inverse" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -741,6 +765,12 @@ f(g(x)) = 3\left(\frac{x}{3}+2\right)-6 = x+6-6 = x \ \checkmark
 <div id="applications-of-composition-inverses" class="section level2 hasAnchor" number="6.4">
 <h2><span class="header-section-number">6.4</span> Applications of Composition &amp; Inverses<a href="function-composition-inverse-functions.html#applications-of-composition-inverses" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Composition and inverses are especially powerful together: composition builds a multi-step conversion pipeline, and the inverse lets you run that pipeline <em>backward</em> — going from a downstream measurement back to an upstream cause.</p>
+<div class="figure"><span style="display:block;" id="fig:composition-pipeline-backward"></span>
+<img src="precalculus-environmental-science_files/figure-html/composition-pipeline-backward-1.png" alt="Diagram of three boxes in a row: depth, pressure, and solubility. Above the boxes, two arrows point left to right, labeled P from depth to pressure and S from pressure to solubility, with the caption forward, composition S of P of d. Below the boxes, a single long arrow points right to left from solubility back to depth, labeled backward, the inverse of the composed function." width="672" />
+<p class="caption">
+Figure 6.5: Composition runs the pipeline forward, from cause to measurement. The inverse runs it backward, from a measured value to the input that produced it.
+</p>
+</div>
 <div class="promptbox">
 <p><strong>Running a Pipeline Backward</strong></p>
 <p>Recall the depth-to-solubility composition from earlier in this chapter: <span class="math inline">\(S(P(d)) = 9.5 + 0.05d\)</span>. If a diver measures an oxygen solubility of 11.0 mg/L, how would you find the depth that produced it? You don’t need to solve it yet — just describe, in words, what algebraic step you’d take first.</p>

@@ -27,6 +27,47 @@ $$
 
 the vertex is simply \((h, k)\) — you can read it directly off the equation. This is the quadratic equivalent of what point-slope form was for lines: the same function, written in a form that makes one particular feature (here, the vertex) immediately visible.
 
+```{r quadratics-vertex-up-down, fig.cap="The sign of a decides which way the parabola opens, and that decides what the vertex (h, k) means. Left: a > 0, the parabola opens upward and the vertex is the minimum. Right: a < 0, it opens downward and the vertex is the maximum.", fig.width=8.5, fig.height=3.8, fig.alt="Two side-by-side panels, each showing a parabola with its vertex marked. Left panel, titled a greater than 0, opens upward: the parabola f of x equals 0.5 times (x minus 2) squared plus 1 forms a bowl with its lowest point at the vertex (2, 1), labeled minimum. Right panel, titled a less than 0, opens downward: the parabola f of x equals negative 0.5 times (x minus 2) squared plus 4 forms an arch with its highest point at the vertex (2, 4), labeled maximum. In both panels a dashed vertical line through x equals 2 shows the axis of symmetry passing through the vertex.", cache=FALSE, echo=FALSE, message=FALSE, warning=FALSE}
+library(ggplot2)
+
+blue   <- "#003F7F"
+orange <- "#8A3B00"
+
+lv <- c("a > 0: opens upward", "a < 0: opens downward")
+x  <- seq(-1.5, 5.5, length.out = 300)
+
+curves <- rbind(
+  data.frame(x = x, y =  0.5 * (x - 2)^2 + 1, panel = lv[1]),
+  data.frame(x = x, y = -0.5 * (x - 2)^2 + 4, panel = lv[2])
+)
+vtx <- data.frame(x = 2, y = c(1, 4), panel = lv,
+                  lab = c("Vertex (2, 1)\nminimum", "Vertex (2, 4)\nmaximum"),
+                  ly  = c(0.15, 5.0))
+eqn <- data.frame(x = 2, y = c(6.4, -0.45), panel = lv,
+                  lab = c("f(x) == 0.5*(x - 2)^2 + 1", "f(x) == -0.5*(x - 2)^2 + 4"))
+
+curves$panel <- factor(curves$panel, levels = lv)
+vtx$panel    <- factor(vtx$panel, levels = lv)
+eqn$panel    <- factor(eqn$panel, levels = lv)
+
+ggplot(curves, aes(x, y)) +
+  geom_hline(yintercept = 0, color = "grey70") +
+  geom_vline(xintercept = 0, color = "grey70") +
+  geom_vline(xintercept = 2, color = "grey35", linetype = "dashed") +
+  geom_line(color = blue, linewidth = 1.3) +
+  geom_point(data = vtx, size = 3.8, color = orange) +
+  geom_label(data = vtx, aes(x = x + 0.25, y = ly, label = lab), hjust = 0, size = 4,
+             color = orange, lineheight = 0.9, fill = "white", label.size = 0) +
+  geom_label(data = eqn, aes(label = lab), parse = TRUE, size = 4,
+             fill = "white", label.size = 0) +
+  facet_wrap(~ panel, nrow = 1) +
+  coord_cartesian(xlim = c(-1.5, 5.5), ylim = c(-1, 7)) +
+  labs(x = "x", y = "f(x)") +
+  theme_minimal(base_size = 13) +
+  theme(strip.text = element_text(face = "bold", size = 12),
+        panel.grid.minor = element_blank())
+```
+
 For a quadratic in standard form, the vertex's \(x\)-coordinate is:
 
 $$
@@ -47,6 +88,53 @@ A parabola modeling crop yield as a function of fertilizer amount opens *downwar
 ## Completing the Square
 
 **Completing the square** converts standard form into vertex form. The core idea: take the \(x^2\) and \(x\) terms, and add and subtract the exact amount needed to make them a perfect square trinomial.
+
+```{r quadratics-completing-square-area, fig.cap="Completing the square as area, for x² + 10x. Split the 10x into two strips of 5x and place them on two sides of the x-by-x square. The shape is now a large square with one corner missing; that corner is (10/2)² = 25. Adding it gives x² + 10x + 25 = (x + 5)². The same idea works with negative b; the strips are just subtracted instead of added.", fig.alt="Area diagram built from rectangles. A large blue square in the lower left is labeled x squared, with sides labeled x. To its right is a tall orange strip labeled 5x, with width 5 and height x. Above the square is a wide orange strip labeled 5x, with width x and height 5. Together these three pieces form an L-shape. The empty upper-right corner, 5 by 5, is drawn with a dashed outline and labeled 25, the missing piece. The outer edges of the completed square are labeled x plus 5 along the bottom and along the left side. Text beside the figure reads x squared plus 10x plus 25 equals (x plus 5) squared.", cache=FALSE, echo=FALSE, message=FALSE, warning=FALSE}
+library(ggplot2)
+
+blue   <- "#003F7F"
+orange <- "#8A3B00"
+
+X <- 8   # drawn length for "x"
+H <- 5   # half of b = 10
+
+rects <- data.frame(
+  xmin = c(0, X, 0),  xmax = c(X, X + H, X),
+  ymin = c(0, 0, X),  ymax = c(X, X, X + H),
+  fill = c("sq", "strip", "strip")
+)
+
+ggplot() +
+  geom_rect(data = rects, aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax,
+                              fill = fill), color = "white", linewidth = 1.2) +
+  annotate("rect", xmin = X, xmax = X + H, ymin = X, ymax = X + H,
+           fill = NA, color = "black", linetype = "dashed", linewidth = 0.9) +
+  scale_fill_manual(values = c(sq = blue, strip = orange), guide = "none") +
+  annotate("text", x = X / 2, y = X / 2, label = "x^2", parse = TRUE,
+           color = "white", size = 8) +
+  annotate("text", x = X + H / 2, y = X / 2, label = "5*x", parse = TRUE,
+           color = "white", size = 6) +
+  annotate("text", x = X / 2, y = X + H / 2, label = "5*x", parse = TRUE,
+           color = "white", size = 6) +
+  annotate("text", x = X + H / 2, y = X + H / 2, size = 5,
+           label = "25\n(missing\ncorner)", lineheight = 0.9) +
+  # inner side labels
+  annotate("text", x = X / 2, y = -0.7, label = "x", size = 5) +
+  annotate("text", x = X + H / 2, y = -0.7, label = "5", size = 5) +
+  annotate("text", x = -0.7, y = X / 2, label = "x", size = 5) +
+  annotate("text", x = -0.7, y = X + H / 2, label = "5", size = 5) +
+  # outer dimension labels
+  annotate("segment", x = 0, xend = X + H, y = -1.8, yend = -1.8,
+           arrow = arrow(ends = "both", length = unit(0.18, "cm"))) +
+  annotate("text", x = (X + H) / 2, y = -2.5, label = "x + 5", size = 5) +
+  annotate("segment", x = -1.8, xend = -1.8, y = 0, yend = X + H,
+           arrow = arrow(ends = "both", length = unit(0.18, "cm"))) +
+  annotate("text", x = -2.6, y = (X + H) / 2, label = "x + 5", size = 5, angle = 90) +
+  annotate("text", x = X + H + 1, y = (X + H) / 2, hjust = 0, size = 5,
+           label = "x^2 + 10*x + 25 == (x + 5)^2", parse = TRUE) +
+  coord_equal(xlim = c(-3.2, X + H + 12), ylim = c(-3, X + H + 0.5)) +
+  theme_void()
+```
 
 ### Worked Example: Converting a Yield Model
 
@@ -102,6 +190,44 @@ $$
 
 Once you know the vertex and the sign of \(a\), you can sketch a parabola quickly: plot the vertex, note whether it opens up or down, and use the \(y\)-intercept (\(f(0) = c\)) as a second point to gauge the width.
 
+```{r quadratics-sketch-from-vertex, fig.cap="Sketching f(x) = 0.5x² - 3x + 6.5 from three facts: the vertex (3, 2), the direction (a = 0.5 > 0, so it opens upward), and the y-intercept f(0) = c = 6.5. Because a parabola is symmetric about the vertical line through its vertex, the y-intercept has a mirror-image point at (6, 6.5).", fig.alt="Graph of an upward-opening parabola with three marked points. The vertex at (3, 2) is the lowest point and is labeled 1, vertex. The y-intercept at (0, 6.5) is labeled 2, y-intercept, f of 0 equals c. A dashed vertical line through x equals 3 is labeled axis of symmetry. A dotted horizontal arrow runs from the y-intercept across the axis to a mirror point at (6, 6.5), labeled 3, mirror point. The parabola passes smoothly through all three points.", cache=FALSE, echo=FALSE, message=FALSE, warning=FALSE}
+library(ggplot2)
+
+blue   <- "#003F7F"
+orange <- "#8A3B00"
+
+f <- function(x) 0.5 * x^2 - 3 * x + 6.5
+x <- seq(-1, 7, length.out = 300)
+
+pts <- data.frame(
+  x   = c(3, 0, 6),
+  y   = c(2, 6.5, 6.5),
+  lab = c("1. Vertex (3, 2)", "2. y-intercept\nf(0) = c = 6.5", "3. Mirror point\n(6, 6.5)"),
+  hj  = c(0.5, 0, 1),
+  nx  = c(0, 0.25, -0.25),
+  ny  = c(-0.75, 0.9, 0.9)
+)
+
+ggplot(data.frame(x = x, y = f(x)), aes(x, y)) +
+  geom_hline(yintercept = 0, color = "grey70") +
+  geom_vline(xintercept = 0, color = "grey70") +
+  geom_vline(xintercept = 3, color = "grey35", linetype = "dashed") +
+  annotate("text", x = 3.1, y = 9.6, hjust = 0, size = 3.8, color = "grey20",
+           label = "Axis of symmetry: x = 3") +
+  annotate("segment", x = 0.15, xend = 5.85, y = 6.5, yend = 6.5,
+           linetype = "dotted", color = orange, linewidth = 0.9,
+           arrow = arrow(length = unit(0.22, "cm"))) +
+  geom_line(color = blue, linewidth = 1.3) +
+  geom_point(data = pts, size = 3.8, color = orange) +
+  geom_text(data = pts, aes(x = x + nx, y = y + ny, label = lab, hjust = hj),
+            size = 4, lineheight = 0.9) +
+  scale_x_continuous(breaks = -1:7) +
+  coord_cartesian(xlim = c(-1, 7), ylim = c(0, 10)) +
+  labs(x = "x", y = "f(x)") +
+  theme_minimal(base_size = 13) +
+  theme(panel.grid.minor = element_blank())
+```
+
 ```{r yield-parabola-plot, echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Crop yield as a function of fertilizer applied, with the vertex marking the yield-maximizing fertilizer rate.", fig.alt="Downward-opening parabola showing crop yield in bushels per acre against fertilizer applied in kilograms per acre. The curve rises from the origin, peaks at 10 kilograms per acre and 250 bushels per acre, then falls symmetrically as more fertilizer is applied."}
 library(ggplot2)
 
@@ -145,6 +271,55 @@ x = -\frac{100}{2(-1)} = 50
 $$
 
 **Step 4 — Solve for the other dimension and interpret.** \(y = 100 - 50 = 50\). The area-maximizing berm is a \(50\text{ m} \times 50\text{ m}\) square, enclosing \(A(50) = 50(50) = 2500\) m² — the largest possible area for that fixed amount of perimeter material.
+
+```{r quadratics-berm-area-optimum, fig.cap="Every rectangle here uses the same 200 m of berm. Left: three of the possible shapes, drawn to scale. Right: the area function A(x) = -x² + 100x. Long, thin rectangles enclose little; the area peaks at the vertex, x = 50, where the rectangle is a 50 m by 50 m square.", fig.width=9, fig.height=4, fig.alt="Two panels. The left panel shows three rectangles drawn to the same scale, each with a 200 meter perimeter: 20 by 80 meters enclosing 1600 square meters, 50 by 50 meters enclosing 2500 square meters and highlighted as the optimum, and 80 by 20 meters enclosing 1600 square meters. The right panel is a graph of enclosed area in square meters against side length x in meters, from 0 to 100. A downward-opening parabola rises from 0 at x equals 0 to a peak of 2500 at x equals 50, then falls back to 0 at x equals 100. Points at x equals 20, 50 and 80 match the three rectangles, and the peak is labeled vertex (50, 2500).", cache=FALSE, echo=FALSE, message=FALSE, warning=FALSE}
+library(ggplot2)
+library(patchwork)
+
+blue   <- "#003F7F"
+orange <- "#8A3B00"
+
+A  <- function(x) -x^2 + 100 * x
+xs <- c(20, 50, 80)
+
+# left: the three rectangles side by side, to scale
+gap  <- 25
+left <- cumsum(c(0, head(xs, -1) + gap))
+shapes <- data.frame(
+  xmin = left, xmax = left + xs, ymin = 0, ymax = 100 - xs,
+  best = xs == 50,
+  lab  = sprintf("%d m × %d m\n%s m²", xs, 100 - xs,
+                 formatC(A(xs), format = "d", big.mark = ","))
+)
+
+p1 <- ggplot(shapes) +
+  geom_rect(aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax, fill = best),
+            color = "black", linewidth = 0.6) +
+  geom_text(aes(x = (xmin + xmax) / 2, y = ymax + 12, label = lab),
+            size = 3.6, lineheight = 0.9) +
+  scale_fill_manual(values = c(`FALSE` = "grey80", `TRUE` = orange), guide = "none") +
+  coord_equal(ylim = c(0, 105), clip = "off") +
+  labs(title = "Same 200 m perimeter") +
+  theme_void(base_size = 12) +
+  theme(plot.title = element_text(hjust = 0.5, face = "bold"))
+
+# right: the area function
+xx <- seq(0, 100, length.out = 300)
+p2 <- ggplot(data.frame(x = xx, a = A(xx)), aes(x, a)) +
+  geom_line(color = blue, linewidth = 1.3) +
+  annotate("point", x = xs, y = A(xs), size = 3.5,
+           color = c("grey30", orange, "grey30")) +
+  annotate("text", x = 50, y = 2500 + 220, size = 4, label = "Vertex (50, 2500)") +
+  scale_y_continuous(labels = function(v) formatC(v, format = "d", big.mark = ","),
+                     limits = c(0, 2900)) +
+  scale_x_continuous(breaks = seq(0, 100, by = 20)) +
+  labs(x = "Side length x (m)", y = expression("Enclosed area (m"^2*")"),
+       title = expression(bold(A(x) == -x^2 + 100*x))) +
+  theme_minimal(base_size = 12) +
+  theme(plot.title = element_text(hjust = 0.5))
+
+p1 + p2 + plot_layout(widths = c(1.1, 1))
+```
 
 ### Concept Check: Interpreting Max/Min in Context {-}
 

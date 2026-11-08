@@ -639,6 +639,12 @@
 <li><strong>Domain restrictions:</strong> <span class="math inline">\(f(x)\)</span> is undefined wherever the denominator <span class="math inline">\(q(x) = 0\)</span>, since division by zero is undefined.</li>
 <li><strong>Asymptotes:</strong> a <strong>vertical asymptote</strong> occurs at an <span class="math inline">\(x\)</span>-value where the denominator hits zero (as long as the numerator doesn’t); a <strong>horizontal asymptote</strong> describes the value <span class="math inline">\(f(x)\)</span> approaches as <span class="math inline">\(x\)</span> grows very large in either direction.</li>
 </ul>
+<div class="figure"><span style="display:block;" id="fig:rational-asymptotes-anatomy"></span>
+<img src="precalculus-environmental-science_files/figure-html/rational-asymptotes-anatomy-1.png" alt="Graph of f of x equals (2x minus 2) over (x plus 1), for x from negative 8 to 8. A dashed vertical line at x equals negative 1 is labeled vertical asymptote, x equals negative 1, where the denominator is zero. A dashed horizontal line at y equals 2 is labeled horizontal asymptote, y equals 2. The graph has two separate branches. The left branch comes in from the far left just above y equals 2 and shoots upward as it nears x equals negative 1. The right branch rises from far below near x equals negative 1, crosses the x-axis at x equals 1, and levels off just below y equals 2 on the far right." width="672" />
+<p class="caption">
+Figure 8.1: The two features of a rational function, for f(x) = (2x - 2)/(x + 1). The denominator is zero at x = -1, so the graph has a vertical asymptote there and splits into two branches. For large |x|, f(x) behaves like 2x/x = 2, so the graph levels off toward the horizontal asymptote y = 2 in both directions.
+</p>
+</div>
 <div id="worked-example-a-dilution-equilibrium-model" class="section level3 hasAnchor" number="8.2.1">
 <h3><span class="header-section-number">8.2.1</span> Worked Example: A Dilution / Equilibrium Model<a href="rational-functions-angular-measure.html#worked-example-a-dilution-equilibrium-model" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Suppose a pollutant is continuously discharged into a reservoir at a constant rate, while clean water also flows in and dilutes it. A model for concentration over time might be:</p>
@@ -647,6 +653,12 @@ C(t) = \frac{20t + 5}{t + 2}
 \]</span></p>
 <p>where <span class="math inline">\(t\)</span> is time in hours and <span class="math inline">\(C(t)\)</span> is concentration in mg/L.</p>
 <p><strong>Step 1 — Find the domain restriction.</strong> The denominator is zero when <span class="math inline">\(t = -2\)</span>. Since <span class="math inline">\(t\)</span> represents time starting at 0, this restriction doesn’t come up in the physically meaningful part of the domain (<span class="math inline">\(t \ge 0\)</span>) — but it’s worth noting as a place the formula itself breaks down.</p>
+<div class="figure"><span style="display:block;" id="fig:rational-dilution-full-formula"></span>
+<img src="precalculus-environmental-science_files/figure-html/rational-dilution-full-formula-1.png" alt="Graph of concentration in milligrams per liter against time in hours, from negative 10 to 30. A shaded band covers t from 0 to 30 and is labeled physical domain, t greater than or equal to 0. A dashed vertical line at t equals negative 2 is labeled the formula breaks down, t equals negative 2. A dashed horizontal line at 20 milligrams per liter marks the horizontal asymptote. Left of t equals negative 2, a faint dotted branch comes in above 20 and shoots upward near the asymptote. Right of t equals negative 2, the curve rises from far below; it is faint and dotted until t equals 0 and then solid, starting at 2.5 milligrams per liter at t equals 0, where a point is marked, and climbing toward 20." width="672" />
+<p class="caption">
+Figure 8.2: The formula C(t) = (20t + 5)/(t + 2) drawn beyond its physical domain. It breaks down at t = -2, where the denominator is zero, but that lies outside the shaded region t ≥ 0, which is the only part that describes the reservoir. Inside it, the curve starts at C(0) = 2.5 mg/L and rises toward 20 mg/L.
+</p>
+</div>
 <p><strong>Step 2 — Find the horizontal asymptote.</strong> As <span class="math inline">\(t\)</span> grows very large, both the numerator and denominator are dominated by their <span class="math inline">\(t\)</span>-terms, so:</p>
 <p><span class="math display">\[
 C(t) \to \frac{20t}{t} = 20 \quad \text{as } t \to \infty
@@ -655,7 +667,7 @@ C(t) \to \frac{20t}{t} = 20 \quad \text{as } t \to \infty
 <div class="figure"><span style="display:block;" id="fig:dilution-asymptote-plot"></span>
 <img src="precalculus-environmental-science_files/figure-html/dilution-asymptote-plot-1.png" alt="Curve showing concentration rising quickly at first and then leveling off, approaching but never reaching a horizontal dashed line at 20 milligrams per liter, over 50 hours." width="672" />
 <p class="caption">
-Figure 8.1: Pollutant concentration over time approaching a horizontal asymptote at 20 mg/L.
+Figure 8.3: Pollutant concentration over time approaching a horizontal asymptote at 20 mg/L.
 </p>
 </div>
 </div>
@@ -681,6 +693,12 @@ Figure 8.1: Pollutant concentration over time approaching a horizontal asymptote
 <div id="angular-measure" class="section level2 hasAnchor" number="8.3">
 <h2><span class="header-section-number">8.3</span> Angular Measure<a href="rational-functions-angular-measure.html#angular-measure" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Angles can be measured in <strong>degrees</strong> (a full circle is <span class="math inline">\(360°\)</span>) or in <strong>radians</strong> (a full circle is <span class="math inline">\(2\pi\)</span> radians). Radians are defined so that an angle’s measure equals the arc length it sweeps out on a <strong>unit circle</strong> (radius 1) — which is why radians, not degrees, are the natural unit for the trigonometric work in Chapters 8–10.</p>
+<div class="figure"><span style="display:block;" id="fig:rational-one-radian"></span>
+<img src="precalculus-environmental-science_files/figure-html/rational-one-radian-1.png" alt="A unit circle centered at the origin, drawn on equal-scaled axes. Two radii start at the center: one along the positive x-axis and one rotated counterclockwise by 1 radian, about 57 degrees. Both radii are labeled r equals 1. The arc of the circle between them is drawn thick and labeled arc length equals 1. A small arc near the center between the two radii is labeled theta equals 1 radian. A note reads full circle: arc length 2 pi, angle 2 pi radians." width="672" />
+<p class="caption">
+Figure 8.4: What one radian means. On a unit circle (radius 1), an angle of 1 radian sweeps out an arc of length exactly 1, the same as the radius. A full turn sweeps out the whole circumference, 2π ≈ 6.28, so a full circle is 2π radians.
+</p>
+</div>
 <p>Warning: Be sure you calculators are set to ‘RAD’ when evaluating trigonometric probelms.</p>
 <div id="converting-between-degrees-and-radians" class="section level3 hasAnchor" number="8.3.1">
 <h3><span class="header-section-number">8.3.1</span> Converting Between Degrees and Radians<a href="rational-functions-angular-measure.html#converting-between-degrees-and-radians" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -696,6 +714,12 @@ Figure 8.1: Pollutant concentration over time approaching a horizontal asymptote
 225 \times \frac{\pi}{180} = \frac{225\pi}{180} = \frac{5\pi}{4} \text{ radians}
 \]</span></p>
 <p><strong>Step 2 — Sanity check.</strong> <span class="math inline">\(\frac{5\pi}{4} \approx 3.93\)</span> radians, and since a full circle is <span class="math inline">\(2\pi \approx 6.28\)</span> radians, this is a bit past the halfway point around the circle — consistent with <span class="math inline">\(225°\)</span> being past <span class="math inline">\(180°\)</span> (halfway) on a <span class="math inline">\(360°\)</span> compass.</p>
+<div class="figure"><span style="display:block;" id="fig:rational-wind-bearing"></span>
+<img src="precalculus-environmental-science_files/figure-html/rational-wind-bearing-1.png" alt="A compass circle with north at the top, east at the right, south at the bottom and west at the left. A thick arc starts at north and turns clockwise through east and south to the southwest, labeled bearing 225 degrees, measured clockwise from north. A marked point at the southwest edge of the circle is labeled wind comes from here. A large arrow runs from that southwest point through the center toward the northeast, labeled wind blows toward northeast." width="672" />
+<p class="caption">
+Figure 8.5: A 225° wind on a compass. Compass bearings start at north and turn clockwise, so 225° points southwest. Weather stations report the direction the wind comes from, so this wind blows from the southwest toward the northeast. Math angles start at east and turn counterclockwise: the same southwest direction is also 225° in that system, but only because southwest sits symmetrically between the two starting lines. Most bearings do not match.
+</p>
+</div>
 </div>
 <div id="arc-length" class="section level3 hasAnchor" number="8.3.3">
 <h3><span class="header-section-number">8.3.3</span> Arc Length<a href="rational-functions-angular-measure.html#arc-length" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -716,6 +740,12 @@ s = r\theta
 s = 150 \times \frac{\pi}{3} = 50\pi \approx 157.1 \text{ m}
 \]</span></p>
 <p><strong>Step 3 — Interpret.</strong> About 157 meters of the buffer’s boundary falls within that 60° wedge and needs to be included in the sampling plan.</p>
+<div class="figure"><span style="display:block;" id="fig:rational-buffer-arc-length"></span>
+<img src="precalculus-environmental-science_files/figure-html/rational-buffer-arc-length-1.png" alt="Map in meters east and north of the stream gauge, with equal scaling on both axes. A circle of radius 150 meters is centered on the Downstream Well at (180, negative 40). A shaded wedge extends from the center, bounded by two radii 60 degrees apart, one pointing east and one rotated 60 degrees counterclockwise. The arc of the circle between the two radii is drawn thick and labeled s approximately 157.1 meters. The radii are labeled r equals 150 meters, and the angle between them at the center is labeled 60 degrees, pi over 3 radians." width="672" />
+<p class="caption">
+Figure 8.6: A 60° wedge of the 150 m buffer around the Downstream Well. The highlighted arc is the part of the boundary inside the wedge: s = rθ = 150 × π/3 ≈ 157.1 m. For comparison, each straight edge of the wedge is 150 m, so the curved edge is only slightly longer than a radius.
+</p>
+</div>
 </div>
 <div id="concept-check-degree-radian-conversion" class="section level3 unnumbered hasAnchor">
 <h3>Concept Check: Degree-Radian Conversion<a href="rational-functions-angular-measure.html#concept-check-degree-radian-conversion" class="anchor-section" aria-label="Anchor link to header"></a></h3>
