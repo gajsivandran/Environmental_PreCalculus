@@ -12,7 +12,7 @@ By the end of this chapter, you will be able to:
 
 ## Graphs of Trig Functions
 
-The graphs of \(\sin(\theta)\) and \(\cos(\theta)\) are smooth, repeating waves — direct pictures of the unit-circle coordinates from Chapter 8, plotted as \(\theta\) sweeps from \(0\) to \(2\pi\) and beyond. Both have the same basic wave shape; \(\cos(\theta)\) is simply \(\sin(\theta)\) shifted left by \(\pi/2\).
+The graphs of \(\sin(\theta)\) and \(\cos(\theta)\) are smooth, repeating waves — direct pictures of the unit-circle coordinates from Chapter 8. They are plotted as \(\theta\) sweeps from \(0\) to \(2\pi\) and repeat. Both have the same basic wave shape; \(\cos(\theta)\) is simply \(\sin(\theta)\) shifted left by \(\pi/2\).
 
 ```{r sin-cos-plot, echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Graphs of sine and cosine over two full periods.", fig.alt="Two overlapping smooth wave curves, sine and cosine, plotted against angle in radians from 0 to 4 pi. Both oscillate between -1 and 1, with cosine shifted slightly to the left relative to sine."}
 library(ggplot2)
@@ -31,7 +31,7 @@ ggplot(df, aes(x = theta, y = value, color = func)) +
   theme_minimal()
 ```
 
-Every point where the curve crosses zero, reaches its peak, or reaches its trough tells you something about the cycle — and that vocabulary (**amplitude**, **period**, **phase shift**, **vertical shift**) is exactly what lets us fit these curves to real cyclical data.
+Every point where the curve crosses zero, reaches its peak, or reaches its trough tells you something about the cycle. Imagine a cycle of air temperature over 72 hours, the peak and trough are the max and min temperature. The vocabulary (**amplitude**, **period**, **phase shift**, **vertical shift**) is exactly what lets us fit these curves to real cyclical data.
 
 ---
 
@@ -147,7 +147,7 @@ Highest: \(3+1.2 = 4.2\) m. Lowest: \(3-1.2 = 1.8\) m.
 
 ## Inverse Trigonometric Functions
 
-Just as with the general inverses from Chapter 5, an inverse trig function undoes a trig function — but with a caveat: since sine, cosine, and tangent are *not* one-to-one (they repeat forever), their inverses are only defined by restricting to one cycle's worth of output. \(\sin^{-1}(x)\) (also written \(\arcsin(x)\)) returns an angle between \(-\pi/2\) and \(\pi/2\); \(\cos^{-1}(x)\) returns an angle between \(0\) and \(\pi\).
+Just as with the general inverses from Chapter 5, an inverse trig function undoes a trig function. On big **caveat**: since sine, cosine, and tangent are *not* one-to-one (they repeat forever and fail a horizontal line test), their inverses are only defined by restricting to one cycle's worth of output. \(\sin^{-1}(x)\) (also written \(\arcsin(x)\)) returns an angle between \(-\pi/2\) and \(\pi/2\); \(\cos^{-1}(x)\) returns an angle between \(0\) and \(\pi\).
 
 ```{r trigfn-arcsin-restriction, fig.cap="Why inverse sine needs a restricted domain. Left: sine repeats, so it is not one-to-one. Keeping only the solid piece from -π/2 to π/2 gives a stretch that passes the horizontal line test and still hits every output from -1 to 1. Right: reflecting that piece across y = x gives sin⁻¹(x), which takes inputs from -1 to 1 and returns angles between -π/2 and π/2.", fig.width=9, fig.height=4, fig.alt="Two side-by-side panels. Left panel, titled sine, keep one piece: a sine wave from negative 2 pi to 2 pi drawn as a faint dotted curve, with the section from negative pi over 2 to pi over 2 drawn solid and highlighted. That solid section rises steadily from negative 1 to 1. Right panel, titled inverse sine: on equal-scaled axes, the highlighted sine piece is shown dashed, a dotted line y equals x is drawn, and the solid curve inverse sine of x rises from (negative 1, negative pi over 2) to (1, pi over 2), the mirror image of the sine piece across the line y equals x.", cache=FALSE, echo=FALSE, message=FALSE, warning=FALSE}
 library(ggplot2)
