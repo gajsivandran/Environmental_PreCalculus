@@ -1,6 +1,13 @@
 tab:monitoring-stations-table
 fig:monitoring-stations-plot
+fig:lines-slope-intercept-anatomy
+fig:lines-two-points-many-models
+fig:lines-circle-from-distance
+fig:lines-buffer-zone-map
 fig:co2-trend-plot
+fig:lines-co2-extrapolation
+fig:lines-nitrate-intersection
+fig:lines-plume-paths
 fig:tiered-rate-plot
 fig:yield-parabola-plot
 fig:decay-baseline-plot

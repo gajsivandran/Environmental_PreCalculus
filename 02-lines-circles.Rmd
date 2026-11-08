@@ -28,6 +28,45 @@ $$y - y_1 = m(x - x_1)$$
 
 Both forms describe the exact same line — point-slope form is just a shortcut for building the equation before simplifying it into slope-intercept form.
 
+```{r lines-slope-intercept-anatomy, fig.cap="One line, two ways to write it. The slope is the rise over the run between any two points; the y-intercept is where the line crosses x = 0.", fig.alt="Line graph of the line y equals 0.5x plus 2, drawn for x from 0 to 10. A filled point at (0, 2) on the vertical axis is labeled as the y-intercept, b equals 2. A second point at (2, 3) is labeled as the known point (x1, y1). A right triangle between (2, 3) and (6, 5) shows a horizontal run of 4 and a vertical rise of 2, with the label slope m equals rise over run equals 2 over 4 equals 0.5. Two equations are printed beside the line: slope-intercept form y equals 0.5x plus 2, and point-slope form y minus 3 equals 0.5 times (x minus 2), indicating both describe the same line.", cache=FALSE, echo=FALSE, message=FALSE, warning=FALSE}
+library(ggplot2)
+
+blue   <- "#003F7F"
+orange <- "#8A3B00"
+
+line_df <- data.frame(x = c(0, 10), y = 0.5 * c(0, 10) + 2)
+
+ggplot() +
+  geom_line(data = line_df, aes(x, y), color = blue, linewidth = 1.2) +
+  # rise / run triangle between (2, 3) and (6, 5)
+  annotate("segment", x = 2, xend = 6, y = 3, yend = 3,
+           color = orange, linewidth = 1, linetype = "dashed") +
+  annotate("segment", x = 6, xend = 6, y = 3, yend = 5,
+           color = orange, linewidth = 1, linetype = "dashed") +
+  annotate("text", x = 4, y = 2.65, label = "run = 4", color = orange, size = 4.2) +
+  annotate("text", x = 6.2, y = 4, label = "rise = 2", color = orange,
+           size = 4.2, hjust = 0) +
+  annotate("text", x = 6.2, y = 3.35, label = "m = rise / run = 2 / 4 = 0.5",
+           color = orange, size = 4.2, hjust = 0) +
+  # y-intercept
+  annotate("point", x = 0, y = 2, size = 3.5, color = "black") +
+  annotate("text", x = 0.3, y = 1.55, label = "y-intercept: b = 2",
+           hjust = 0, size = 4.2) +
+  # known point for point-slope form
+  annotate("point", x = 2, y = 3, size = 3.5, color = "black") +
+  annotate("text", x = 1.8, y = 3.45, label = "(x[1]*','~y[1]) == '(2, 3)'",
+           parse = TRUE, hjust = 1, size = 4.2) +
+  # both forms, same line
+  annotate("text", x = 0.2, y = 7.4, hjust = 0, size = 4.4, color = blue,
+           label = "Slope-intercept:   y = 0.5x + 2") +
+  annotate("text", x = 0.2, y = 6.8, hjust = 0, size = 4.4, color = blue,
+           label = "Point-slope:          y - 3 = 0.5(x - 2)") +
+  scale_x_continuous(breaks = 0:10, limits = c(-0.5, 10)) +
+  scale_y_continuous(breaks = 0:8, limits = c(0, 8)) +
+  labs(x = "x", y = "y") +
+  theme_minimal(base_size = 13)
+```
+
 ::: promptbox
 
 **Slope as a Rate**
@@ -63,6 +102,38 @@ $$
 
 **Important** we've made an implicit assumption here when we chose to fit a linear function to this data. Models are always assumptions. With only 2 measurements there are an infinite number of ways the concentration could have gone from 6 to 9 mg/L. It is important to recognize as we use math to represent the natural world we are 'abstracting' or simplifying the system.
 
+```{r lines-two-points-many-models, fig.cap="Two measurements, many possible histories. A straight line is one assumption about what happened between year 0 and year 4; the dashed and dotted curves pass through the same two points but tell different stories.", fig.alt="Graph of nitrate concentration in milligrams per liter against years since monitoring began, from 0 to 4 years. Two measured points are shown as large filled circles at (0, 6.0) and (4, 9.6). A solid straight line connects them, labeled linear model y equals 0.9x plus 6.0. Three other curves also pass through both points: one rises quickly then levels off, one starts flat then rises steeply, and one wiggles above and below the straight line. All four curves start and end at the same two measurements but differ in between.", cache=FALSE, echo=FALSE, message=FALSE, warning=FALSE}
+library(ggplot2)
+
+blue <- "#003F7F"
+grey <- "#4D4D4D"
+
+x <- seq(0, 4, length.out = 200)
+curves <- rbind(
+  data.frame(x = x, y = 6.0 + 0.9 * x,                         model = "Linear: y = 0.9x + 6.0"),
+  data.frame(x = x, y = 6.0 + 3.6 * sqrt(x / 4),               model = "Fast rise, then levels off"),
+  data.frame(x = x, y = 6.0 + 3.6 * (x / 4)^3,                 model = "Flat, then sharp rise"),
+  data.frame(x = x, y = 6.0 + 0.9 * x + 1.1 * sin(pi * x / 2), model = "Rises and falls")
+)
+curves$model <- factor(curves$model, levels = unique(curves$model))
+
+obs <- data.frame(x = c(0, 4), y = c(6.0, 9.6))
+
+ggplot(curves, aes(x, y, linetype = model, color = model, linewidth = model)) +
+  geom_line() +
+  geom_point(data = obs, aes(x, y), inherit.aes = FALSE,
+             size = 4.5, color = "black") +
+  scale_color_manual(values = c(blue, grey, grey, grey)) +
+  scale_linetype_manual(values = c("solid", "dashed", "dotted", "dotdash")) +
+  scale_linewidth_manual(values = c(1.4, 0.9, 0.9, 0.9)) +
+  labs(x = "Years since monitoring began",
+       y = "Nitrate (mg/L)",
+       color = NULL, linetype = NULL, linewidth = NULL) +
+  theme_minimal(base_size = 13) +
+  theme(legend.position = "bottom", legend.direction = "vertical",
+        legend.key.width = unit(2.2, "cm"))
+```
+
 ---
 
 ## Circles
@@ -78,6 +149,41 @@ The signs of the general form matter. Positive values for \(h\) and \(k\) result
 $$
 (x+h)^2 + (y-k)^2 = r^2
 $$
+
+```{r lines-circle-from-distance, fig.cap="A circle is every point at distance r from the center. The right triangle shows where the equation comes from: the horizontal leg is x - h, the vertical leg is y - k, and the hypotenuse is r.", fig.alt="A circle of radius 3 centered at the point (2, 1), drawn on equal-scaled axes. The center is marked and labeled (h, k). A point on the circle up and to the right of the center is marked and labeled (x, y). A right triangle connects the center to that point: a horizontal leg labeled x minus h, a vertical leg labeled y minus k, and a slanted hypotenuse labeled r. The equation (x minus h) squared plus (y minus k) squared equals r squared is printed below the circle.", cache=FALSE, echo=FALSE, message=FALSE, warning=FALSE}
+library(ggplot2)
+
+blue   <- "#003F7F"
+orange <- "#8A3B00"
+
+h <- 2; k <- 1; r <- 3
+tt   <- seq(0, 2 * pi, length.out = 300)
+circ <- data.frame(x = h + r * cos(tt), y = k + r * sin(tt))
+
+a  <- 40 * pi / 180            # angle to the example point
+px <- h + r * cos(a)
+py <- k + r * sin(a)
+
+ggplot() +
+  geom_path(data = circ, aes(x, y), color = blue, linewidth = 1.2) +
+  # right triangle: legs and hypotenuse
+  annotate("segment", x = h,  xend = px, y = k, yend = k,  color = orange, linewidth = 1) +
+  annotate("segment", x = px, xend = px, y = k, yend = py, color = orange, linewidth = 1) +
+  annotate("segment", x = h,  xend = px, y = k, yend = py, color = "black", linewidth = 1) +
+  annotate("text", x = (h + px) / 2, y = k - 0.3, label = "x - h", color = orange, size = 4.5) +
+  annotate("text", x = px - 0.12, y = (k + py) / 2, label = "y - k", color = orange,
+           size = 4.5, hjust = 1) +
+  annotate("text", x = (h + px) / 2 - 0.25, y = (k + py) / 2 + 0.3, label = "r", size = 5) +
+  annotate("point", x = h,  y = k,  size = 3.5) +
+  annotate("point", x = px, y = py, size = 3.5) +
+  annotate("text", x = h - 0.15, y = k - 0.3, label = "(h, k)", hjust = 1, size = 4.5) +
+  annotate("text", x = px + 0.15, y = py + 0.3, label = "(x, y)", hjust = 0, size = 4.5) +
+  annotate("text", x = h, y = k - r - 0.7,
+           label = "(x - h)^2 + (y - k)^2 == r^2", parse = TRUE, size = 5) +
+  coord_equal(xlim = c(-1.5, 5.8), ylim = c(-3, 4.3)) +
+  labs(x = "x", y = "y") +
+  theme_minimal(base_size = 13)
+```
 
 
 ### Worked Example: A Contamination Buffer Zone
@@ -99,6 +205,48 @@ d = \sqrt{(60-180)^2 + (150-(-40))^2} = \sqrt{(-120)^2 + 190^2} = \sqrt{14400+36
 $$
 
 Since \(224.7 > 150\), the Wetland Inlet sits **outside** the buffer zone.
+
+```{r lines-buffer-zone-map, fig.cap="The 150 m buffer zone around the spill at the Downstream Well. The distance to the Wetland Inlet (about 224.7 m) is longer than the radius, so the inlet lies outside the zone.", fig.alt="Map on the watershed's local coordinate grid, in meters east and north of the stream gauge, with equal scaling on both axes. The stream gauge is marked at the origin (0, 0). A shaded circle of radius 150 meters is centered on the spill site at the Downstream Well, (180, negative 40). The Wetland Inlet is marked at (60, 150), up and to the left of the circle and clearly outside it. A line runs from the spill site toward the inlet: the solid part inside the circle is labeled r equals 150 meters, and the dashed part continuing beyond the circle edge to the inlet shows the extra distance. The full distance is labeled d approximately 224.7 meters.", cache=FALSE, echo=FALSE, message=FALSE, warning=FALSE}
+library(ggplot2)
+
+blue   <- "#003F7F"
+orange <- "#8A3B00"
+
+cx <- 180; cy <- -40; r <- 150      # spill site and buffer radius
+ix <- 60;  iy <- 150                # Wetland Inlet
+
+tt   <- seq(0, 2 * pi, length.out = 300)
+circ <- data.frame(x = cx + r * cos(tt), y = cy + r * sin(tt))
+
+d  <- sqrt((ix - cx)^2 + (iy - cy)^2)
+bx <- cx + (ix - cx) * r / d        # where the line to the inlet crosses the boundary
+by <- cy + (iy - cy) * r / d
+
+ggplot() +
+  geom_polygon(data = circ, aes(x, y), fill = blue, alpha = 0.12,
+               color = blue, linewidth = 1.1) +
+  annotate("segment", x = cx, xend = bx, y = cy, yend = by,
+           color = blue, linewidth = 1.1) +
+  annotate("segment", x = bx, xend = ix, y = by, yend = iy,
+           color = orange, linewidth = 1.1, linetype = "dashed") +
+  annotate("text", x = (cx + bx) / 2 + 12, y = (cy + by) / 2 + 8,
+           label = "r = 150 m", color = blue, hjust = 0, size = 4.3) +
+  annotate("text", x = (ix + bx) / 2 + 12, y = (iy + by) / 2 + 8,
+           label = "d ≈ 224.7 m", color = orange, hjust = 0, size = 4.3) +
+  annotate("point", x = cx, y = cy, shape = 4, size = 5, stroke = 2) +
+  annotate("text", x = cx, y = cy - 16, vjust = 1, size = 4.2,
+           label = "Spill site\n(Downstream Well)\n(180, -40)") +
+  annotate("point", x = ix, y = iy, shape = 17, size = 4, color = orange) +
+  annotate("text", x = ix, y = iy + 22, size = 4.2,
+           label = "Wetland Inlet (60, 150)") +
+  annotate("point", x = 0, y = 0, shape = 15, size = 3) +
+  annotate("text", x = 10, y = 20, hjust = 1, size = 4,
+           label = "Stream gauge (0, 0)") +
+  coord_equal(xlim = c(-150, 340), ylim = c(-200, 185)) +
+  labs(x = "Meters east of stream gauge",
+       y = "Meters north of stream gauge") +
+  theme_minimal(base_size = 13)
+```
 
 ### Concept Check: Circle Equations {-}
 
@@ -165,6 +313,36 @@ where \(t\) is years since 1980 and \(C(t)\) is CO₂ concentration in ppm.
 - **Intercept (336.4):** The model predicts a concentration of 336.4 ppm at \(t=0\), i.e., in 1980.
 - **Prediction:** In 2030 (\(t = 50\)), the model predicts \(C(50) = 1.8(50)+336.4 = 426.4\) ppm.
 
+```{r lines-co2-extrapolation, fig.cap="The fitted model C(t) = 1.8t + 336.4 inside the range of the data (solid) and extended beyond it (dashed). The 2030 prediction sits in the shaded region, where no data were used to build the model.", fig.alt="Line graph of modeled CO2 concentration in parts per million against year, from 1980 to 2030. A solid straight line runs from 336.4 ppm in 1980 to 408.4 ppm in 2020, covering the years with data. From 2020 to 2030 the line continues as a dashed segment through a light grey shaded region labeled extrapolation. The intercept at 1980 is marked and labeled 336.4 ppm at t equals 0. A point at 2030 is marked and labeled predicted 426.4 ppm. A note on the graph states the slope is 1.8 ppm per year.", cache=FALSE, echo=FALSE, message=FALSE, warning=FALSE}
+library(ggplot2)
+
+blue <- "#003F7F"
+
+C <- function(t) 1.8 * t + 336.4
+fit_part <- data.frame(Year = c(1980, 2020), CO2 = C(c(0, 40)))
+ext_part <- data.frame(Year = c(2020, 2030), CO2 = C(c(40, 50)))
+
+ggplot() +
+  annotate("rect", xmin = 2020, xmax = 2030, ymin = -Inf, ymax = Inf,
+           fill = "grey85", alpha = 0.6) +
+  annotate("text", x = 2025, y = 342, label = "Extrapolation\n(no data here)",
+           size = 4, color = "grey20") +
+  geom_line(data = fit_part, aes(Year, CO2), color = blue, linewidth = 1.3) +
+  geom_line(data = ext_part, aes(Year, CO2), color = blue, linewidth = 1.3,
+            linetype = "dashed") +
+  annotate("point", x = 1980, y = C(0), size = 3.5) +
+  annotate("text", x = 1981, y = C(0) - 4, hjust = 0, size = 4.2,
+           label = "Intercept: 336.4 ppm at t = 0 (1980)") +
+  annotate("point", x = 2030, y = C(50), size = 3.5) +
+  annotate("text", x = 2029, y = C(50) + 5, hjust = 1, size = 4.2,
+           label = "Predicted: 426.4 ppm in 2030") +
+  annotate("text", x = 1990, y = 395, hjust = 0, size = 4.2,
+           label = "Slope: 1.8 ppm per year") +
+  scale_x_continuous(breaks = seq(1980, 2030, by = 10)) +
+  labs(x = "Year", y = expression(CO[2]~"(ppm)")) +
+  theme_minimal(base_size = 13)
+```
+
 ::: promptbox
 
 **Trusting a Linear Model**
@@ -203,6 +381,38 @@ y = 0.9(6) + 6.0 = 11.4
 $$
 
 **Step 4 — Interpret.** According to these two linear models, the Upstream and Downstream Wells are predicted to have the same nitrate concentration (11.4 mg/L) 6 years after monitoring began — even though they started at different levels and are changing at different rates.
+
+```{r lines-nitrate-intersection, fig.cap="Two nitrate trend lines. The Upstream Well starts lower but rises faster, so it catches the Downstream Well at 6 years, when both are at 11.4 mg/L.", fig.alt="Graph of nitrate concentration in milligrams per liter against years since monitoring began, from 0 to 10 years. A solid line for the Upstream Well, y equals 0.9x plus 6.0, starts at 6.0 and rises steeply. A dashed line for the Downstream Well, y equals 0.4x plus 9.0, starts higher at 9.0 and rises more gently. The two lines cross at a marked point labeled (6, 11.4). Dotted guide lines drop from the crossing point to 6 years on the horizontal axis and across to 11.4 on the vertical axis. Before year 6 the Downstream Well is higher; after year 6 the Upstream Well is higher.", cache=FALSE, echo=FALSE, message=FALSE, warning=FALSE}
+library(ggplot2)
+
+blue   <- "#003F7F"
+orange <- "#8A3B00"
+
+x <- c(0, 10)
+wells <- rbind(
+  data.frame(x = x, y = 0.9 * x + 6.0, well = "Upstream Well: y = 0.9x + 6.0"),
+  data.frame(x = x, y = 0.4 * x + 9.0, well = "Downstream Well: y = 0.4x + 9.0")
+)
+wells$well <- factor(wells$well, levels = unique(wells$well))
+
+ggplot(wells, aes(x, y, color = well, linetype = well)) +
+  geom_line(linewidth = 1.3) +
+  annotate("segment", x = 6, xend = 6, y = 4, yend = 11.4,
+           linetype = "dotted", color = "grey25") +
+  annotate("segment", x = 0, xend = 6, y = 11.4, yend = 11.4,
+           linetype = "dotted", color = "grey25") +
+  annotate("point", x = 6, y = 11.4, size = 4) +
+  annotate("text", x = 6.3, y = 11.0, label = "(6, 11.4)", hjust = 0, size = 4.5) +
+  scale_color_manual(values = c(blue, orange)) +
+  scale_linetype_manual(values = c("solid", "dashed")) +
+  scale_x_continuous(breaks = 0:10) +
+  coord_cartesian(ylim = c(5, 16)) +
+  labs(x = "Years since monitoring began", y = "Nitrate (mg/L)",
+       color = NULL, linetype = NULL) +
+  theme_minimal(base_size = 13) +
+  theme(legend.position = "bottom", legend.direction = "vertical",
+        legend.key.width = unit(2, "cm"))
+```
 
 ### Concept Check: Interpreting Slope {-}
 
@@ -264,6 +474,43 @@ y_A(8) = 5(8) = 40, \qquad y_B(8) = 100
 $$
 
 **Step 4 — Interpret.** Since \(40 \neq 100\), the two plumes are at the *same x-position* at \(t=8\) years but at *different* y-positions — they pass each other without meeting. This is an important distinction: matching one coordinate is not enough to say two moving objects collide; both coordinates must match at the same time.
+
+```{r lines-plume-paths, fig.cap="Positions of the two plumes every 2 years. At t = 8 both plumes are at x = 20, but Plume A is at y = 40 and Plume B is at y = 100, so they pass each other without meeting.", fig.alt="Map of two plume paths in meters, with equal scaling on both axes. Plume A, shown with circles and a solid line, starts at (negative 100, 0) and moves up and to the right. Plume B, shown with triangles and a dashed line, starts at (100, 100) and moves straight left along y equals 100. Markers along each path show positions at t equals 0, 2, 4, 6 and 8 years, each labeled with its time, so the direction of motion can be read from the increasing labels. A vertical dotted line at x equals 20 passes through both plumes' positions at t equals 8: Plume A at (20, 40) and Plume B at (20, 100). A bracket between them is labeled 60 m apart, showing that the x-coordinates match but the y-coordinates do not.", cache=FALSE, echo=FALSE, message=FALSE, warning=FALSE}
+library(ggplot2)
+
+blue   <- "#003F7F"
+orange <- "#8A3B00"
+
+t <- seq(0, 8, by = 2)
+pos <- rbind(
+  data.frame(t = t, x = -100 + 15 * t, y = 5 * t,     plume = "Plume A"),
+  data.frame(t = t, x =  100 - 10 * t, y = 100 + 0*t, plume = "Plume B")
+)
+
+ggplot(pos, aes(x, y, color = plume, shape = plume, linetype = plume)) +
+  annotate("segment", x = 20, xend = 20, y = -20, yend = 130,
+           linetype = "dotted", color = "grey25") +
+  annotate("text", x = 23, y = 128, label = "x = 20", hjust = 0, size = 4) +
+  geom_path(linewidth = 1.1) +
+  geom_point(size = 3.5) +
+  geom_label(aes(label = paste0("t = ", t)), nudge_y = -10, size = 3.6,
+             fill = "white", label.size = 0, label.padding = unit(0.1, "lines"),
+             show.legend = FALSE) +
+  # vertical gap between the plumes at t = 8
+  annotate("segment", x = 30, xend = 30, y = 40, yend = 100,
+           color = "black", linewidth = 0.8,
+           arrow = arrow(ends = "both", length = unit(0.2, "cm"))) +
+  annotate("text", x = 34, y = 70, label = "60 m apart\nat t = 8",
+           hjust = 0, size = 4) +
+  scale_color_manual(values = c(blue, orange)) +
+  scale_shape_manual(values = c(16, 17)) +
+  scale_linetype_manual(values = c("solid", "dashed")) +
+  coord_equal(xlim = c(-110, 110), ylim = c(-20, 130)) +
+  labs(x = "x position (m)", y = "y position (m)",
+       color = NULL, shape = NULL, linetype = NULL) +
+  theme_minimal(base_size = 13) +
+  theme(legend.position = "bottom")
+```
 
 ---
 

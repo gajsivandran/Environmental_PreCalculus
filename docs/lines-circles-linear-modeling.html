@@ -643,6 +643,12 @@
 <p>If you know one point <span class="math inline">\((x_1, y_1)\)</span> on the line and the slope <span class="math inline">\(m\)</span>, it’s often faster to use <strong>point-slope form</strong>:</p>
 <p><span class="math display">\[y - y_1 = m(x - x_1)\]</span></p>
 <p>Both forms describe the exact same line — point-slope form is just a shortcut for building the equation before simplifying it into slope-intercept form.</p>
+<div class="figure"><span style="display:block;" id="fig:lines-slope-intercept-anatomy"></span>
+<img src="precalculus-environmental-science_files/figure-html/lines-slope-intercept-anatomy-1.png" alt="Line graph of the line y equals 0.5x plus 2, drawn for x from 0 to 10. A filled point at (0, 2) on the vertical axis is labeled as the y-intercept, b equals 2. A second point at (2, 3) is labeled as the known point (x1, y1). A right triangle between (2, 3) and (6, 5) shows a horizontal run of 4 and a vertical rise of 2, with the label slope m equals rise over run equals 2 over 4 equals 0.5. Two equations are printed beside the line: slope-intercept form y equals 0.5x plus 2, and point-slope form y minus 3 equals 0.5 times (x minus 2), indicating both describe the same line." width="672" />
+<p class="caption">
+Figure 3.1: One line, two ways to write it. The slope is the rise over the run between any two points; the y-intercept is where the line crosses x = 0.
+</p>
+</div>
 <div class="promptbox">
 <p><strong>Slope as a Rate</strong></p>
 <p>Suppose a well has a nitrate concentration of 6.0 mg/L in year 0 and 9.6 mg/L in year 4. What are the “rise” and “run” here, in words, before you compute anything?</p>
@@ -668,6 +674,12 @@ y = 0.9x + 6.0
 \]</span></p>
 <p><strong>Step 4 — Interpret.</strong> Nitrate at this well is rising by about 0.9 mg/L per year, starting from a baseline of 6.0 mg/L. If this linear trend continues, we can predict future concentrations — which is exactly what we’ll do in the next section.</p>
 <p><strong>Important</strong> we’ve made an implicit assumption here when we chose to fit a linear function to this data. Models are always assumptions. With only 2 measurements there are an infinite number of ways the concentration could have gone from 6 to 9 mg/L. It is important to recognize as we use math to represent the natural world we are ‘abstracting’ or simplifying the system.</p>
+<div class="figure"><span style="display:block;" id="fig:lines-two-points-many-models"></span>
+<img src="precalculus-environmental-science_files/figure-html/lines-two-points-many-models-1.png" alt="Graph of nitrate concentration in milligrams per liter against years since monitoring began, from 0 to 4 years. Two measured points are shown as large filled circles at (0, 6.0) and (4, 9.6). A solid straight line connects them, labeled linear model y equals 0.9x plus 6.0. Three other curves also pass through both points: one rises quickly then levels off, one starts flat then rises steeply, and one wiggles above and below the straight line. All four curves start and end at the same two measurements but differ in between." width="672" />
+<p class="caption">
+Figure 3.2: Two measurements, many possible histories. A straight line is one assumption about what happened between year 0 and year 4; the dashed and dotted curves pass through the same two points but tell different stories.
+</p>
+</div>
 <hr />
 </div>
 </div>
@@ -683,6 +695,12 @@ The signs of the general form matter. Positive values for <span class="math inli
 <span class="math display">\[
 (x+h)^2 + (y-k)^2 = r^2
 \]</span></p>
+<div class="figure"><span style="display:block;" id="fig:lines-circle-from-distance"></span>
+<img src="precalculus-environmental-science_files/figure-html/lines-circle-from-distance-1.png" alt="A circle of radius 3 centered at the point (2, 1), drawn on equal-scaled axes. The center is marked and labeled (h, k). A point on the circle up and to the right of the center is marked and labeled (x, y). A right triangle connects the center to that point: a horizontal leg labeled x minus h, a vertical leg labeled y minus k, and a slanted hypotenuse labeled r. The equation (x minus h) squared plus (y minus k) squared equals r squared is printed below the circle." width="672" />
+<p class="caption">
+Figure 3.3: A circle is every point at distance r from the center. The right triangle shows where the equation comes from: the horizontal leg is x - h, the vertical leg is y - k, and the hypotenuse is r.
+</p>
+</div>
 </div>
 <div id="worked-example-a-contamination-buffer-zone" class="section level3 hasAnchor" number="3.3.2">
 <h3><span class="header-section-number">3.3.2</span> Worked Example: A Contamination Buffer Zone<a href="lines-circles-linear-modeling.html#worked-example-a-contamination-buffer-zone" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -697,6 +715,12 @@ The signs of the general form matter. Positive values for <span class="math inli
 d = \sqrt{(60-180)^2 + (150-(-40))^2} = \sqrt{(-120)^2 + 190^2} = \sqrt{14400+36100} = \sqrt{50500} \approx 224.7 \text{ m}
 \]</span></p>
 <p>Since <span class="math inline">\(224.7 &gt; 150\)</span>, the Wetland Inlet sits <strong>outside</strong> the buffer zone.</p>
+<div class="figure"><span style="display:block;" id="fig:lines-buffer-zone-map"></span>
+<img src="precalculus-environmental-science_files/figure-html/lines-buffer-zone-map-1.png" alt="Map on the watershed's local coordinate grid, in meters east and north of the stream gauge, with equal scaling on both axes. The stream gauge is marked at the origin (0, 0). A shaded circle of radius 150 meters is centered on the spill site at the Downstream Well, (180, negative 40). The Wetland Inlet is marked at (60, 150), up and to the left of the circle and clearly outside it. A line runs from the spill site toward the inlet: the solid part inside the circle is labeled r equals 150 meters, and the dashed part continuing beyond the circle edge to the inlet shows the extra distance. The full distance is labeled d approximately 224.7 meters." width="672" />
+<p class="caption">
+Figure 3.4: The 150 m buffer zone around the spill at the Downstream Well. The distance to the Wetland Inlet (about 224.7 m) is longer than the radius, so the inlet lies outside the zone.
+</p>
+</div>
 </div>
 <div id="concept-check-circle-equations" class="section level3 unnumbered hasAnchor">
 <h3>Concept Check: Circle Equations<a href="lines-circles-linear-modeling.html#concept-check-circle-equations" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -730,7 +754,7 @@ d = \sqrt{(60-180)^2 + (150-(-40))^2} = \sqrt{(-120)^2 + 190^2} = \sqrt{14400+36
 <div class="figure"><span style="display:block;" id="fig:co2-trend-plot"></span>
 <img src="precalculus-environmental-science_files/figure-html/co2-trend-plot-1.png" alt="Scatter plot of atmospheric CO2 concentration in parts per million against year, showing a roughly linear upward trend from about 1980 to 2020, with a straight best-fit line drawn through the points." width="672" />
 <p class="caption">
-Figure 3.1: A simulated multi-decade CO2 trend with a fitted linear model.
+Figure 3.5: A simulated multi-decade CO2 trend with a fitted linear model.
 </p>
 </div>
 <div id="worked-example-interpreting-a-fitted-line" class="section level3 hasAnchor" number="3.4.1">
@@ -745,6 +769,12 @@ C(t) = 1.8t + 336.4
 <li><strong>Intercept (336.4):</strong> The model predicts a concentration of 336.4 ppm at <span class="math inline">\(t=0\)</span>, i.e., in 1980.</li>
 <li><strong>Prediction:</strong> In 2030 (<span class="math inline">\(t = 50\)</span>), the model predicts <span class="math inline">\(C(50) = 1.8(50)+336.4 = 426.4\)</span> ppm.</li>
 </ul>
+<div class="figure"><span style="display:block;" id="fig:lines-co2-extrapolation"></span>
+<img src="precalculus-environmental-science_files/figure-html/lines-co2-extrapolation-1.png" alt="Line graph of modeled CO2 concentration in parts per million against year, from 1980 to 2030. A solid straight line runs from 336.4 ppm in 1980 to 408.4 ppm in 2020, covering the years with data. From 2020 to 2030 the line continues as a dashed segment through a light grey shaded region labeled extrapolation. The intercept at 1980 is marked and labeled 336.4 ppm at t equals 0. A point at 2030 is marked and labeled predicted 426.4 ppm. A note on the graph states the slope is 1.8 ppm per year." width="672" />
+<p class="caption">
+Figure 3.6: The fitted model C(t) = 1.8t + 336.4 inside the range of the data (solid) and extended beyond it (dashed). The 2030 prediction sits in the shaded region, where no data were used to build the model.
+</p>
+</div>
 <div class="promptbox">
 <p><strong>Trusting a Linear Model</strong></p>
 <p>A linear model fit to 40 years of data is used to predict a value 50 years into the future. What could go wrong with that kind of extrapolation? Discuss with a partner.</p>
@@ -774,6 +804,12 @@ C(t) = 1.8t + 336.4
 y = 0.9(6) + 6.0 = 11.4
 \]</span></p>
 <p><strong>Step 4 — Interpret.</strong> According to these two linear models, the Upstream and Downstream Wells are predicted to have the same nitrate concentration (11.4 mg/L) 6 years after monitoring began — even though they started at different levels and are changing at different rates.</p>
+<div class="figure"><span style="display:block;" id="fig:lines-nitrate-intersection"></span>
+<img src="precalculus-environmental-science_files/figure-html/lines-nitrate-intersection-1.png" alt="Graph of nitrate concentration in milligrams per liter against years since monitoring began, from 0 to 10 years. A solid line for the Upstream Well, y equals 0.9x plus 6.0, starts at 6.0 and rises steeply. A dashed line for the Downstream Well, y equals 0.4x plus 9.0, starts higher at 9.0 and rises more gently. The two lines cross at a marked point labeled (6, 11.4). Dotted guide lines drop from the crossing point to 6 years on the horizontal axis and across to 11.4 on the vertical axis. Before year 6 the Downstream Well is higher; after year 6 the Upstream Well is higher." width="672" />
+<p class="caption">
+Figure 3.7: Two nitrate trend lines. The Upstream Well starts lower but rises faster, so it catches the Downstream Well at 6 years, when both are at 11.4 mg/L.
+</p>
+</div>
 </div>
 <div id="concept-check-interpreting-slope" class="section level3 unnumbered hasAnchor">
 <h3>Concept Check: Interpreting Slope<a href="lines-circles-linear-modeling.html#concept-check-interpreting-slope" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -821,6 +857,12 @@ x(t) = x_0 + v_x t, \qquad y(t) = y_0 + v_y t
 y_A(8) = 5(8) = 40, \qquad y_B(8) = 100
 \]</span></p>
 <p><strong>Step 4 — Interpret.</strong> Since <span class="math inline">\(40 \neq 100\)</span>, the two plumes are at the <em>same x-position</em> at <span class="math inline">\(t=8\)</span> years but at <em>different</em> y-positions — they pass each other without meeting. This is an important distinction: matching one coordinate is not enough to say two moving objects collide; both coordinates must match at the same time.</p>
+<div class="figure"><span style="display:block;" id="fig:lines-plume-paths"></span>
+<img src="precalculus-environmental-science_files/figure-html/lines-plume-paths-1.png" alt="Map of two plume paths in meters, with equal scaling on both axes. Plume A, shown with circles and a solid line, starts at (negative 100, 0) and moves up and to the right. Plume B, shown with triangles and a dashed line, starts at (100, 100) and moves straight left along y equals 100. Markers along each path show positions at t equals 0, 2, 4, 6 and 8 years, each labeled with its time, so the direction of motion can be read from the increasing labels. A vertical dotted line at x equals 20 passes through both plumes' positions at t equals 8: Plume A at (20, 40) and Plume B at (20, 100). A bracket between them is labeled 60 m apart, showing that the x-coordinates match but the y-coordinates do not." width="672" />
+<p class="caption">
+Figure 3.8: Positions of the two plumes every 2 years. At t = 8 both plumes are at x = 20, but Plume A is at y = 40 and Plume B is at y = 100, so they pass each other without meeting.
+</p>
+</div>
 <hr />
 </div>
 </div>
