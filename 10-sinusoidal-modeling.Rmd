@@ -36,6 +36,43 @@ $$
 \frac{\pi}{6}t = \pi - 0.730 \approx 2.412 \quad\Rightarrow\quad t \approx 2.412\times\frac{6}{\pi}\approx 4.61 \text{ hours}
 $$
 
+```{r sinmodel-symmetry-two-solutions, fig.cap="Why π - θ₀ is the second solution. Within one cycle, sin(θ) rises to its peak at π/2 and falls back symmetrically, so any horizontal line between 0 and 1 crosses it twice, the same distance either side of the peak. Here sin(θ) = 0.667: inverse sine gives θ₀ ≈ 0.730, and the mirror-image crossing is π - 0.730 ≈ 2.412.", fig.alt="Graph of sine theta for theta from 0 to 2 pi. A dashed horizontal line at height 0.667 crosses the first hump of the curve at two marked points. The left point, at theta approximately 0.730, is labeled theta zero, from inverse sine. The right point, at theta approximately 2.412, is labeled pi minus theta zero. A dotted vertical line at the peak, theta equals pi over 2, is labeled axis of symmetry, and two equal-length arrows show that both points are the same distance from it.", cache=FALSE, echo=FALSE, message=FALSE, warning=FALSE}
+library(ggplot2)
+
+blue   <- "#003F7F"
+orange <- "#8A3B00"
+
+k  <- 1 / 1.5
+t0 <- asin(k)
+t1 <- pi - t0
+th <- seq(0, 2 * pi, length.out = 400)
+
+ggplot(data.frame(th = th, y = sin(th)), aes(th, y)) +
+  geom_hline(yintercept = 0, color = "grey70") +
+  geom_hline(yintercept = k, linetype = "dashed", color = "grey35") +
+  annotate("text", x = 2 * pi, y = k + 0.08, hjust = 1, size = 3.8, color = "grey20",
+           label = "sin(θ) = 0.667") +
+  geom_vline(xintercept = pi / 2, linetype = "dotted", color = "grey45") +
+  annotate("text", x = pi / 2, y = 1.2, size = 3.7, color = "grey25",
+           label = "Axis of symmetry: θ = π/2") +
+  geom_line(color = blue, linewidth = 1.4) +
+  annotate("segment", x = pi / 2, xend = t0, y = 0.4, yend = 0.4, color = orange,
+           arrow = arrow(length = unit(0.18, "cm"))) +
+  annotate("segment", x = pi / 2, xend = t1, y = 0.4, yend = 0.4, color = orange,
+           arrow = arrow(length = unit(0.18, "cm"))) +
+  annotate("point", x = c(t0, t1), y = k, size = 3.8, color = orange) +
+  annotate("text", x = t0 - 0.08, y = k + 0.17, hjust = 1, size = 3.9, color = orange,
+           label = "θ₀ ≈ 0.730\n(inverse sine)", lineheight = 0.9) +
+  annotate("text", x = t1 + 0.08, y = k + 0.17, hjust = 0, size = 3.9, color = orange,
+           label = "π - θ₀ ≈ 2.412", lineheight = 0.9) +
+  scale_x_continuous(breaks = c(0, pi / 2, pi, 3 * pi / 2, 2 * pi),
+                     labels = c("0", "π/2", "π", "3π/2", "2π")) +
+  coord_cartesian(ylim = c(-1.1, 1.3)) +
+  labs(x = "θ (radians)", y = "sin(θ)") +
+  theme_minimal(base_size = 13) +
+  theme(panel.grid.minor = element_blank())
+```
+
 **Step 3 — Interpret.** The tide reaches 3.5 m **twice** in this 12-hour cycle: once around \(t\approx1.39\) hours (rising toward high tide) and again around \(t\approx4.61\) hours (falling back down from high tide). Reporting only the first answer from the inverse sine would have missed half the picture.
 
 ::: promptbox
@@ -70,6 +107,42 @@ Suppose a research buoy records water temperature at the surface of a lake every
 
 **Step 1 — Choose the function family.** A repeating annual cycle is a strong signal for a **sinusoidal function** (Chapter 9), not linear, exponential, or rational — this is the "shape of change" recognition skill from the very first chapter of this book, now applied to real data.
 
+```{r sinmodel-function-families, fig.cap="The function families from this book, each drawn by its characteristic shape of change. Choosing a model starts with matching the data's shape to one of these: steady change, a single turning point, proportional growth or decay, levelling toward an asymptote, or a repeating cycle.", fig.width=9.5, fig.height=5, fig.alt="Six small panels arranged in two rows of three, each showing one curve with no axis numbers. Linear: a straight rising line, labeled constant rate of change. Quadratic: a downward-opening parabola with a single peak, labeled one turning point. Exponential growth: a curve that starts flat and bends sharply upward, labeled multiplies by the same factor. Exponential decay to a baseline: a curve that drops quickly then levels off above zero, labeled decays toward a baseline. Rational: a curve that rises quickly then levels off below a dashed horizontal asymptote, labeled approaches an asymptote. Sinusoidal: a smooth repeating wave, labeled repeating cycle.", cache=FALSE, echo=FALSE, message=FALSE, warning=FALSE}
+library(ggplot2)
+
+blue <- "#003F7F"
+
+x  <- seq(0, 10, length.out = 300)
+lv <- c("Linear\nconstant rate of change",
+        "Quadratic\none turning point",
+        "Exponential growth\nmultiplies by the same factor",
+        "Exponential decay\ndecays toward a baseline",
+        "Rational\napproaches an asymptote",
+        "Sinusoidal\nrepeating cycle")
+
+df <- rbind(
+  data.frame(x = x, y = 0.8 * x + 1,                 panel = lv[1]),
+  data.frame(x = x, y = -(x - 5)^2 + 25,             panel = lv[2]),
+  data.frame(x = x, y = 1.5^x,                       panel = lv[3]),
+  data.frame(x = x, y = 8 * 0.6^x + 2,               panel = lv[4]),
+  data.frame(x = x, y = (10 * x + 1) / (x + 1),      panel = lv[5]),
+  data.frame(x = x, y = 3 * sin(pi / 2.5 * x) + 5,   panel = lv[6])
+)
+df$panel <- factor(df$panel, levels = lv)
+
+asym <- data.frame(panel = factor(lv[c(4, 5)], levels = lv), y = c(2, 10))
+
+ggplot(df, aes(x, y)) +
+  geom_hline(data = asym, aes(yintercept = y), linetype = "dashed", color = "grey40") +
+  geom_line(color = blue, linewidth = 1.3) +
+  facet_wrap(~ panel, nrow = 2, scales = "free_y") +
+  labs(x = NULL, y = NULL) +
+  theme_minimal(base_size = 12) +
+  theme(axis.text = element_blank(), panel.grid = element_blank(),
+        panel.border = element_rect(color = "grey80", fill = NA),
+        strip.text = element_text(face = "bold", size = 10.5, lineheight = 0.95))
+```
+
 **Step 2 — Extract amplitude and vertical shift from the peak and trough.**
 
 $$
@@ -79,6 +152,43 @@ $$
 **Step 3 — Set the period.** One full annual cycle: period \(=12\) months, so \(B = \dfrac{2\pi}{12} = \dfrac{\pi}{6}\).
 
 **Step 4 — Set the phase shift using the peak location.** Sine reaches its maximum a quarter-cycle (3 months) after it crosses the midline going up. Since the peak is at month 8, the midline-crossing (going up) is at month 5, so \(C = 5\).
+
+```{r sinmodel-reading-parameters, fig.cap="Reading the lake model's parameters from its features. The peak (22°C) and trough (6°C) set the midline D = 14 and amplitude A = 8. One cycle is 12 months. Sine crosses its midline going up a quarter-cycle (3 months) before its peak, so a peak at month 8 puts the cycle's start at month 5: C = 5.", fig.alt="Graph of lake surface temperature in degrees Celsius against month from 1 to 12. A smooth wave peaks at 22 degrees at month 8 and reaches a low of 6 degrees at month 2. Dotted horizontal lines mark 22 and 6, and a dashed midline at 14 is labeled D equals (22 plus 6) over 2 equals 14. A vertical double arrow from the midline to the peak is labeled A equals 8. The peak at month 8 is marked. A point on the midline at month 5, where the curve crosses going up, is marked and labeled C equals 5. Above the curve, a horizontal arrow runs back from month 8 to month 5 and is labeled a quarter cycle, 3 months before the peak.", cache=FALSE, echo=FALSE, message=FALSE, warning=FALSE}
+library(ggplot2)
+
+blue   <- "#003F7F"
+orange <- "#8A3B00"
+
+T_fn <- function(t) 8 * sin(pi / 6 * (t - 5)) + 14
+t <- seq(1, 12, length.out = 300)
+
+ggplot(data.frame(t = t, T = T_fn(t)), aes(t, T)) +
+  geom_hline(yintercept = c(22, 6), linetype = "dotted", color = "grey50") +
+  geom_hline(yintercept = 14, linetype = "dashed", color = "grey30") +
+  annotate("text", x = 1.1, y = 14.6, hjust = 0, size = 3.8, color = "grey15",
+           label = "Midline: D = (22 + 6)/2 = 14") +
+  annotate("text", x = 12, y = 22.6, hjust = 1, size = 3.6, color = "grey25", label = "Peak 22°C") +
+  annotate("text", x = 12, y = 5.4, hjust = 1, size = 3.6, color = "grey25", label = "Trough 6°C") +
+  geom_line(color = blue, linewidth = 1.4) +
+  # amplitude
+  annotate("segment", x = 8, xend = 8, y = 14, yend = 22, color = orange, linewidth = 1,
+           arrow = arrow(ends = "both", length = unit(0.2, "cm"))) +
+  annotate("text", x = 8.2, y = 17.5, hjust = 0, size = 4, color = orange, label = "A = 8") +
+  # quarter cycle back from the peak
+  annotate("segment", x = c(5, 8), xend = c(5, 8), y = c(14, 22), yend = 23.4,
+           color = "grey55", linetype = "dotted") +
+  annotate("segment", x = 8, xend = 5, y = 23.4, yend = 23.4, color = "black",
+           arrow = arrow(length = unit(0.2, "cm"), type = "closed")) +
+  annotate("text", x = 6.5, y = 24.1, size = 3.7, label = "¼ cycle = 3 months before the peak") +
+  annotate("point", x = c(5, 8), y = c(14, 22), size = 3.8, color = orange) +
+  annotate("text", x = 5.25, y = 12.6, hjust = 0, size = 4, color = orange,
+           label = "C = 5\n(midline, rising)", lineheight = 0.9) +
+  scale_x_continuous(breaks = 1:12) +
+  coord_cartesian(ylim = c(4.5, 24.5)) +
+  labs(x = "Month", y = "Surface temperature (°C)") +
+  theme_minimal(base_size = 13) +
+  theme(panel.grid.minor = element_blank())
+```
 
 **Step 5 — Assemble the model.**
 

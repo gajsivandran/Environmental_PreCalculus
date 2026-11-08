@@ -655,6 +655,12 @@ f(t) = A\sin\big(B(t-C)\big) + D
 <li><strong>Phase shift (<span class="math inline">\(C\)</span>)</strong>: how far the curve is shifted horizontally.</li>
 <li><strong>Vertical shift (<span class="math inline">\(D\)</span>)</strong>: the midline the curve oscillates around.</li>
 </ul>
+<div class="figure"><span style="display:block;" id="fig:trigfn-sinusoid-anatomy"></span>
+<img src="precalculus-environmental-science_files/figure-html/trigfn-sinusoid-anatomy-1.png" alt="Graph of a sine wave over t from 0 to 26. A dashed horizontal midline at y equals 8 is labeled midline, D equals 8. The wave oscillates between a peak of 11 and a trough of 5. A vertical double arrow from the midline up to a peak is labeled amplitude, A equals 3. A point at t equals 2 on the midline, where the wave starts rising, is marked and labeled phase shift, C equals 2, start of a cycle. A horizontal double arrow between t equals 2 and t equals 14, the start of the next cycle, is labeled period equals 2 pi over B equals 12." width="672" />
+<p class="caption">
+Figure 10.2: Reading the four parameters off a graph, for f(t) = 3sin(π/6 (t - 2)) + 8. The midline is the vertical shift D = 8. The amplitude A = 3 is the distance from the midline to a peak. The phase shift C = 2 is where the cycle starts, crossing the midline on the way up. The period 2π/B = 12 is the length of one full cycle.
+</p>
+</div>
 <div id="worked-example-modeling-daylight-hours" class="section level3 hasAnchor" number="10.3.1">
 <h3><span class="header-section-number">10.3.1</span> Worked Example: Modeling Daylight Hours<a href="trigonometric-functions.html#worked-example-modeling-daylight-hours" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Suppose daylight hours in Seattle over the course of a year are approximately:</p>
@@ -674,7 +680,7 @@ H(t) = 3.5\sin\left(\frac{2\pi}{365}(t - 80)\right) + 12.2
 <div class="figure"><span style="display:block;" id="fig:daylight-plot"></span>
 <img src="precalculus-environmental-science_files/figure-html/daylight-plot-1.png" alt="Smooth wave curve showing daylight hours across 365 days, peaking near mid-year at about 15.7 hours and dipping near the start and end of the year to about 8.7 hours, centered on a midline of 12.2 hours." width="672" />
 <p class="caption">
-Figure 10.2: Modeled daylight hours across a calendar year.
+Figure 10.3: Modeled daylight hours across a calendar year.
 </p>
 </div>
 </div>
@@ -700,6 +706,12 @@ Figure 10.2: Modeled daylight hours across a calendar year.
 <div id="inverse-trigonometric-functions" class="section level2 hasAnchor" number="10.4">
 <h2><span class="header-section-number">10.4</span> Inverse Trigonometric Functions<a href="trigonometric-functions.html#inverse-trigonometric-functions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Just as with the general inverses from Chapter 5, an inverse trig function undoes a trig function — but with a caveat: since sine, cosine, and tangent are <em>not</em> one-to-one (they repeat forever), their inverses are only defined by restricting to one cycle’s worth of output. <span class="math inline">\(\sin^{-1}(x)\)</span> (also written <span class="math inline">\(\arcsin(x)\)</span>) returns an angle between <span class="math inline">\(-\pi/2\)</span> and <span class="math inline">\(\pi/2\)</span>; <span class="math inline">\(\cos^{-1}(x)\)</span> returns an angle between <span class="math inline">\(0\)</span> and <span class="math inline">\(\pi\)</span>.</p>
+<div class="figure"><span style="display:block;" id="fig:trigfn-arcsin-restriction"></span>
+<img src="precalculus-environmental-science_files/figure-html/trigfn-arcsin-restriction-1.png" alt="Two side-by-side panels. Left panel, titled sine, keep one piece: a sine wave from negative 2 pi to 2 pi drawn as a faint dotted curve, with the section from negative pi over 2 to pi over 2 drawn solid and highlighted. That solid section rises steadily from negative 1 to 1. Right panel, titled inverse sine: on equal-scaled axes, the highlighted sine piece is shown dashed, a dotted line y equals x is drawn, and the solid curve inverse sine of x rises from (negative 1, negative pi over 2) to (1, pi over 2), the mirror image of the sine piece across the line y equals x." width="864" />
+<p class="caption">
+Figure 10.4: Why inverse sine needs a restricted domain. Left: sine repeats, so it is not one-to-one. Keeping only the solid piece from -π/2 to π/2 gives a stretch that passes the horizontal line test and still hits every output from -1 to 1. Right: reflecting that piece across y = x gives sin⁻¹(x), which takes inputs from -1 to 1 and returns angles between -π/2 and π/2.
+</p>
+</div>
 <div id="worked-example-solving-for-time-of-year" class="section level3 hasAnchor" number="10.4.1">
 <h3><span class="header-section-number">10.4.1</span> Worked Example: Solving for Time-of-Year<a href="trigonometric-functions.html#worked-example-solving-for-time-of-year" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Using the daylight model <span class="math inline">\(H(t) = 3.5\sin\left(\frac{2\pi}{365}(t-80)\right)+12.2\)</span>, find a day of the year when daylight is exactly 14 hours.</p>
@@ -716,6 +728,12 @@ Figure 10.2: Modeled daylight hours across a calendar year.
 t - 80 = 0.539 \times \frac{365}{2\pi} \approx 31.3 \quad \Rightarrow \quad t \approx 111.3
 \]</span></p>
 <p><strong>Step 4 — Interpret.</strong> Day 111 of the year (roughly late April) is predicted to have 14 hours of daylight. (Because sine repeats, there’s a second day later in the year with the same daylight total, on the way back down — inverse sine only hands you one of the two solutions directly.)</p>
+<div class="figure"><span style="display:block;" id="fig:trigfn-daylight-two-solutions"></span>
+<img src="precalculus-environmental-science_files/figure-html/trigfn-daylight-two-solutions-1.png" alt="Graph of modeled daylight hours against day of the year from 1 to 365. A smooth wave rises from about 8.7 hours in winter to a peak of 15.7 hours near day 171, then falls again. A dashed horizontal line at 14 hours crosses the curve at two marked points. The first, near day 111, is labeled day 111, late April, from inverse sine. The second, near day 231, is labeled day 231, mid-August, second solution. A dotted vertical line at the peak, day 171, shows that the two crossings are the same distance from it on either side." width="672" />
+<p class="caption">
+Figure 10.5: The 14-hour line crosses the daylight model twice. Inverse sine returns the first crossing, day ≈ 111 (late April). The second, on the way back down, is the mirror image across the peak at day ≈ 171: day ≈ 231 (mid-August).
+</p>
+</div>
 <hr />
 </div>
 </div>

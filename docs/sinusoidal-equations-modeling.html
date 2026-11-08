@@ -649,6 +649,12 @@ t \approx 0.730 \times \frac{6}{\pi} \approx 1.39 \text{ hours}
 <p><span class="math display">\[
 \frac{\pi}{6}t = \pi - 0.730 \approx 2.412 \quad\Rightarrow\quad t \approx 2.412\times\frac{6}{\pi}\approx 4.61 \text{ hours}
 \]</span></p>
+<div class="figure"><span style="display:block;" id="fig:sinmodel-symmetry-two-solutions"></span>
+<img src="precalculus-environmental-science_files/figure-html/sinmodel-symmetry-two-solutions-1.png" alt="Graph of sine theta for theta from 0 to 2 pi. A dashed horizontal line at height 0.667 crosses the first hump of the curve at two marked points. The left point, at theta approximately 0.730, is labeled theta zero, from inverse sine. The right point, at theta approximately 2.412, is labeled pi minus theta zero. A dotted vertical line at the peak, theta equals pi over 2, is labeled axis of symmetry, and two equal-length arrows show that both points are the same distance from it." width="672" />
+<p class="caption">
+Figure 11.1: Why π - θ₀ is the second solution. Within one cycle, sin(θ) rises to its peak at π/2 and falls back symmetrically, so any horizontal line between 0 and 1 crosses it twice, the same distance either side of the peak. Here sin(θ) = 0.667: inverse sine gives θ₀ ≈ 0.730, and the mirror-image crossing is π - 0.730 ≈ 2.412.
+</p>
+</div>
 <p><strong>Step 3 — Interpret.</strong> The tide reaches 3.5 m <strong>twice</strong> in this 12-hour cycle: once around <span class="math inline">\(t\approx1.39\)</span> hours (rising toward high tide) and again around <span class="math inline">\(t\approx4.61\)</span> hours (falling back down from high tide). Reporting only the first answer from the inverse sine would have missed half the picture.</p>
 <div class="promptbox">
 <p><strong>Why Two Solutions?</strong></p>
@@ -677,12 +683,24 @@ t \approx 0.730 \times \frac{6}{\pi} \approx 1.39 \text{ hours}
 <h3><span class="header-section-number">11.3.1</span> Worked Example: From Data to Prediction<a href="sinusoidal-equations-modeling.html#worked-example-from-data-to-prediction" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Suppose a research buoy records water temperature at the surface of a lake every month for a year, and the values trace out a clear seasonal cycle: a summer peak around 22°C and a winter low around 6°C, with the peak occurring near the start of August (month 8, if January is month 1).</p>
 <p><strong>Step 1 — Choose the function family.</strong> A repeating annual cycle is a strong signal for a <strong>sinusoidal function</strong> (Chapter 9), not linear, exponential, or rational — this is the “shape of change” recognition skill from the very first chapter of this book, now applied to real data.</p>
+<div class="figure"><span style="display:block;" id="fig:sinmodel-function-families"></span>
+<img src="precalculus-environmental-science_files/figure-html/sinmodel-function-families-1.png" alt="Six small panels arranged in two rows of three, each showing one curve with no axis numbers. Linear: a straight rising line, labeled constant rate of change. Quadratic: a downward-opening parabola with a single peak, labeled one turning point. Exponential growth: a curve that starts flat and bends sharply upward, labeled multiplies by the same factor. Exponential decay to a baseline: a curve that drops quickly then levels off above zero, labeled decays toward a baseline. Rational: a curve that rises quickly then levels off below a dashed horizontal asymptote, labeled approaches an asymptote. Sinusoidal: a smooth repeating wave, labeled repeating cycle." width="912" />
+<p class="caption">
+Figure 11.2: The function families from this book, each drawn by its characteristic shape of change. Choosing a model starts with matching the data’s shape to one of these: steady change, a single turning point, proportional growth or decay, levelling toward an asymptote, or a repeating cycle.
+</p>
+</div>
 <p><strong>Step 2 — Extract amplitude and vertical shift from the peak and trough.</strong></p>
 <p><span class="math display">\[
 D = \frac{22+6}{2} = 14, \qquad A = \frac{22-6}{2} = 8
 \]</span></p>
 <p><strong>Step 3 — Set the period.</strong> One full annual cycle: period <span class="math inline">\(=12\)</span> months, so <span class="math inline">\(B = \dfrac{2\pi}{12} = \dfrac{\pi}{6}\)</span>.</p>
 <p><strong>Step 4 — Set the phase shift using the peak location.</strong> Sine reaches its maximum a quarter-cycle (3 months) after it crosses the midline going up. Since the peak is at month 8, the midline-crossing (going up) is at month 5, so <span class="math inline">\(C = 5\)</span>.</p>
+<div class="figure"><span style="display:block;" id="fig:sinmodel-reading-parameters"></span>
+<img src="precalculus-environmental-science_files/figure-html/sinmodel-reading-parameters-1.png" alt="Graph of lake surface temperature in degrees Celsius against month from 1 to 12. A smooth wave peaks at 22 degrees at month 8 and reaches a low of 6 degrees at month 2. Dotted horizontal lines mark 22 and 6, and a dashed midline at 14 is labeled D equals (22 plus 6) over 2 equals 14. A vertical double arrow from the midline to the peak is labeled A equals 8. The peak at month 8 is marked. A point on the midline at month 5, where the curve crosses going up, is marked and labeled C equals 5. Above the curve, a horizontal arrow runs back from month 8 to month 5 and is labeled a quarter cycle, 3 months before the peak." width="672" />
+<p class="caption">
+Figure 11.3: Reading the lake model’s parameters from its features. The peak (22°C) and trough (6°C) set the midline D = 14 and amplitude A = 8. One cycle is 12 months. Sine crosses its midline going up a quarter-cycle (3 months) before its peak, so a peak at month 8 puts the cycle’s start at month 5: C = 5.
+</p>
+</div>
 <p><strong>Step 5 — Assemble the model.</strong></p>
 <p><span class="math display">\[
 T(t) = 8\sin\left(\frac{\pi}{6}(t-5)\right) + 14
@@ -694,7 +712,7 @@ T(11) = 8\sin\left(\frac{\pi}{6}(11-5)\right)+14 = 8\sin(\pi)+14 = 8(0)+14 = 14�
 <div class="figure"><span style="display:block;" id="fig:lake-temp-model-plot"></span>
 <img src="precalculus-environmental-science_files/figure-html/lake-temp-model-plot-1.png" alt="Smooth wave curve showing lake surface temperature across 12 months, peaking near month 8 at 22 degrees Celsius and reaching a low near month 2 at 6 degrees Celsius, with a marked point at month 11 showing a predicted temperature of 14 degrees Celsius." width="672" />
 <p class="caption">
-Figure 11.1: A fitted sinusoidal model of lake surface temperature across a year, with the November prediction marked.
+Figure 11.4: A fitted sinusoidal model of lake surface temperature across a year, with the November prediction marked.
 </p>
 </div>
 <hr />

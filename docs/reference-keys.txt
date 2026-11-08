@@ -53,7 +53,13 @@ fig:trig-canopy-height
 fig:trig-unit-circle-coordinates
 fig:trig-pythagorean-identity
 fig:sin-cos-plot
+fig:trigfn-sinusoid-anatomy
 fig:daylight-plot
+fig:trigfn-arcsin-restriction
+fig:trigfn-daylight-two-solutions
+fig:sinmodel-symmetry-two-solutions
+fig:sinmodel-function-families
+fig:sinmodel-reading-parameters
 fig:lake-temp-model-plot
 why-precalculus
 why-this-book

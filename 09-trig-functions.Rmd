@@ -48,6 +48,44 @@ $$
 - **Phase shift (\(C\))**: how far the curve is shifted horizontally.
 - **Vertical shift (\(D\))**: the midline the curve oscillates around.
 
+```{r trigfn-sinusoid-anatomy, fig.cap="Reading the four parameters off a graph, for f(t) = 3sin(π/6 (t - 2)) + 8. The midline is the vertical shift D = 8. The amplitude A = 3 is the distance from the midline to a peak. The phase shift C = 2 is where the cycle starts, crossing the midline on the way up. The period 2π/B = 12 is the length of one full cycle.", fig.alt="Graph of a sine wave over t from 0 to 26. A dashed horizontal midline at y equals 8 is labeled midline, D equals 8. The wave oscillates between a peak of 11 and a trough of 5. A vertical double arrow from the midline up to a peak is labeled amplitude, A equals 3. A point at t equals 2 on the midline, where the wave starts rising, is marked and labeled phase shift, C equals 2, start of a cycle. A horizontal double arrow between t equals 2 and t equals 14, the start of the next cycle, is labeled period equals 2 pi over B equals 12.", cache=FALSE, echo=FALSE, message=FALSE, warning=FALSE}
+library(ggplot2)
+
+blue   <- "#003F7F"
+orange <- "#8A3B00"
+
+A <- 3; B <- pi / 6; C <- 2; D <- 8
+f <- function(t) A * sin(B * (t - C)) + D
+t <- seq(0, 26, length.out = 500)
+pk <- C + (pi / 2) / B          # first peak, t = 5
+
+ggplot(data.frame(t = t, y = f(t)), aes(t, y)) +
+  geom_hline(yintercept = D, linetype = "dashed", color = "grey35") +
+  annotate("text", x = 25.8, y = D + 0.35, hjust = 1, size = 3.9, color = "grey20",
+           label = "Midline: D = 8") +
+  geom_line(color = blue, linewidth = 1.4) +
+  # amplitude
+  annotate("segment", x = pk, xend = pk, y = D, yend = D + A, color = orange,
+           linewidth = 1, arrow = arrow(ends = "both", length = unit(0.2, "cm"))) +
+  annotate("text", x = pk + 0.35, y = D + A + 0.45, hjust = 0, size = 4, color = orange,
+           label = "Amplitude A = 3 (midline to peak)") +
+  # phase shift
+  annotate("point", x = C, y = D, size = 3.8, color = orange) +
+  annotate("text", x = C - 0.3, y = D - 1.3, hjust = 0, size = 3.9, color = orange,
+           label = "Phase shift C = 2:\ncycle starts here", lineheight = 0.9) +
+  # period
+  annotate("segment", x = C, xend = C + 12, y = 3.9, yend = 3.9, color = "black",
+           linewidth = 0.9, arrow = arrow(ends = "both", length = unit(0.2, "cm"))) +
+  annotate("segment", x = c(C, C + 12), xend = c(C, C + 12), y = 3.6, yend = D,
+           color = "grey55", linetype = "dotted") +
+  annotate("text", x = C + 6, y = 3.4, size = 4, label = "Period = 2π/B = 12") +
+  scale_x_continuous(breaks = seq(0, 26, by = 2)) +
+  coord_cartesian(ylim = c(3, 12)) +
+  labs(x = "t", y = "f(t)") +
+  theme_minimal(base_size = 13) +
+  theme(panel.grid.minor = element_blank())
+```
+
 ### Worked Example: Modeling Daylight Hours
 
 Suppose daylight hours in Seattle over the course of a year are approximately:
@@ -111,6 +149,61 @@ Highest: \(3+1.2 = 4.2\) m. Lowest: \(3-1.2 = 1.8\) m.
 
 Just as with the general inverses from Chapter 5, an inverse trig function undoes a trig function — but with a caveat: since sine, cosine, and tangent are *not* one-to-one (they repeat forever), their inverses are only defined by restricting to one cycle's worth of output. \(\sin^{-1}(x)\) (also written \(\arcsin(x)\)) returns an angle between \(-\pi/2\) and \(\pi/2\); \(\cos^{-1}(x)\) returns an angle between \(0\) and \(\pi\).
 
+```{r trigfn-arcsin-restriction, fig.cap="Why inverse sine needs a restricted domain. Left: sine repeats, so it is not one-to-one. Keeping only the solid piece from -π/2 to π/2 gives a stretch that passes the horizontal line test and still hits every output from -1 to 1. Right: reflecting that piece across y = x gives sin⁻¹(x), which takes inputs from -1 to 1 and returns angles between -π/2 and π/2.", fig.width=9, fig.height=4, fig.alt="Two side-by-side panels. Left panel, titled sine, keep one piece: a sine wave from negative 2 pi to 2 pi drawn as a faint dotted curve, with the section from negative pi over 2 to pi over 2 drawn solid and highlighted. That solid section rises steadily from negative 1 to 1. Right panel, titled inverse sine: on equal-scaled axes, the highlighted sine piece is shown dashed, a dotted line y equals x is drawn, and the solid curve inverse sine of x rises from (negative 1, negative pi over 2) to (1, pi over 2), the mirror image of the sine piece across the line y equals x.", cache=FALSE, echo=FALSE, message=FALSE, warning=FALSE}
+library(ggplot2)
+library(patchwork)
+
+blue   <- "#003F7F"
+orange <- "#8A3B00"
+
+pticks <- c(-2 * pi, -3 * pi / 2, -pi, -pi / 2, 0, pi / 2, pi, 3 * pi / 2, 2 * pi)
+plabs  <- c("-2π", "-3π/2", "-π", "-π/2", "0", "π/2",
+            "π", "3π/2", "2π")
+
+xa <- seq(-2 * pi, 2 * pi, length.out = 600)
+xk <- seq(-pi / 2, pi / 2, length.out = 200)
+
+p1 <- ggplot() +
+  geom_hline(yintercept = 0, color = "grey70") +
+  annotate("rect", xmin = -pi / 2, xmax = pi / 2, ymin = -Inf, ymax = Inf,
+           fill = orange, alpha = 0.08) +
+  geom_line(data = data.frame(x = xa, y = sin(xa)), aes(x, y),
+            color = "grey50", linetype = "dotted", linewidth = 1) +
+  geom_line(data = data.frame(x = xk, y = sin(xk)), aes(x, y),
+            color = orange, linewidth = 1.6) +
+  scale_x_continuous(breaks = pticks, labels = plabs) +
+  coord_cartesian(ylim = c(-1.3, 1.3)) +
+  labs(x = "x", y = "sin(x)", title = "Sine: keep one piece") +
+  theme_minimal(base_size = 11.5) +
+  theme(plot.title = element_text(face = "bold"), panel.grid.minor = element_blank())
+
+xi <- seq(-1, 1, length.out = 200)
+p2 <- ggplot() +
+  geom_hline(yintercept = 0, color = "grey70") +
+  geom_vline(xintercept = 0, color = "grey70") +
+  geom_abline(slope = 1, intercept = 0, linetype = "dotted", color = "grey45") +
+  geom_line(data = data.frame(x = xk, y = sin(xk)), aes(x, y),
+            color = orange, linetype = "dashed", linewidth = 1.1) +
+  geom_line(data = data.frame(x = xi, y = asin(xi)), aes(x, y),
+            color = blue, linewidth = 1.6) +
+  annotate("text", x = 0.15, y = 1.45, hjust = 0, size = 3.8, color = blue,
+           label = "sin⁻¹(x)") +
+  annotate("text", x = 1.05, y = 0.55, hjust = 0, size = 3.8, color = orange,
+           label = "sin(x)") +
+  annotate("text", x = 1.55, y = 1.3, size = 3.5, color = "grey25", label = "y = x",
+           angle = 45) +
+  scale_x_continuous(breaks = c(-pi / 2, -1, 0, 1, pi / 2),
+                     labels = c("-π/2", "-1", "0", "1", "π/2")) +
+  scale_y_continuous(breaks = c(-pi / 2, -1, 0, 1, pi / 2),
+                     labels = c("-π/2", "-1", "0", "1", "π/2")) +
+  coord_equal(xlim = c(-1.75, 1.75), ylim = c(-1.75, 1.75)) +
+  labs(x = "x", y = "y", title = "Inverse sine") +
+  theme_minimal(base_size = 11.5) +
+  theme(plot.title = element_text(face = "bold"), panel.grid.minor = element_blank())
+
+p1 + p2 + plot_layout(widths = c(1.5, 1))
+```
+
 ### Worked Example: Solving for Time-of-Year
 
 Using the daylight model \(H(t) = 3.5\sin\left(\frac{2\pi}{365}(t-80)\right)+12.2\), find a day of the year when daylight is exactly 14 hours.
@@ -134,6 +227,39 @@ t - 80 = 0.539 \times \frac{365}{2\pi} \approx 31.3 \quad \Rightarrow \quad t \a
 $$
 
 **Step 4 — Interpret.** Day 111 of the year (roughly late April) is predicted to have 14 hours of daylight. (Because sine repeats, there's a second day later in the year with the same daylight total, on the way back down — inverse sine only hands you one of the two solutions directly.)
+
+```{r trigfn-daylight-two-solutions, fig.cap="The 14-hour line crosses the daylight model twice. Inverse sine returns the first crossing, day ≈ 111 (late April). The second, on the way back down, is the mirror image across the peak at day ≈ 171: day ≈ 231 (mid-August).", fig.alt="Graph of modeled daylight hours against day of the year from 1 to 365. A smooth wave rises from about 8.7 hours in winter to a peak of 15.7 hours near day 171, then falls again. A dashed horizontal line at 14 hours crosses the curve at two marked points. The first, near day 111, is labeled day 111, late April, from inverse sine. The second, near day 231, is labeled day 231, mid-August, second solution. A dotted vertical line at the peak, day 171, shows that the two crossings are the same distance from it on either side.", cache=FALSE, echo=FALSE, message=FALSE, warning=FALSE}
+library(ggplot2)
+
+blue   <- "#003F7F"
+orange <- "#8A3B00"
+
+H  <- function(t) 3.5 * sin((2 * pi / 365) * (t - 80)) + 12.2
+t  <- 1:365
+k  <- asin(1.8 / 3.5) * 365 / (2 * pi)
+t1 <- 80 + k
+pk <- 80 + 365 / 4
+t2 <- 2 * pk - t1
+
+ggplot(data.frame(t = t, H = H(t)), aes(t, H)) +
+  geom_hline(yintercept = 14, linetype = "dashed", color = "grey35") +
+  annotate("text", x = 362, y = 13.7, hjust = 1, size = 3.9, color = "grey20",
+           label = "14 hours") +
+  geom_vline(xintercept = pk, linetype = "dotted", color = "grey50") +
+  annotate("text", x = pk, y = 16.15, size = 3.7, color = "grey25",
+           label = "Peak, day ≈ 171") +
+  geom_line(color = blue, linewidth = 1.3) +
+  annotate("point", x = c(t1, t2), y = 14, size = 3.8, color = orange) +
+  annotate("text", x = t1 - 4, y = 14.75, hjust = 1, size = 3.9, color = orange,
+           label = "Day ≈ 111 (late April)\nfrom inverse sine", lineheight = 0.9) +
+  annotate("text", x = t2 + 4, y = 14.75, hjust = 0, size = 3.9, color = orange,
+           label = "Day ≈ 231 (mid-August)\nsecond solution", lineheight = 0.9) +
+  scale_x_continuous(breaks = c(1, 60, 111, 171, 231, 300, 365)) +
+  coord_cartesian(ylim = c(8, 16.4)) +
+  labs(x = "Day of year", y = "Daylight (hours)") +
+  theme_minimal(base_size = 13) +
+  theme(panel.grid.minor = element_blank())
+```
 
 ---
 
