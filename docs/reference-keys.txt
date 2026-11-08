@@ -5,6 +5,7 @@ fig:tiered-rate-plot
 fig:yield-parabola-plot
 fig:decay-baseline-plot
 fig:dilution-asymptote-plot
+fig:circle-to-sine
 fig:sin-cos-plot
 fig:daylight-plot
 fig:lake-temp-model-plot

@@ -23,7 +23,7 @@
 <meta name="author" content="Gaj Sivandran" />
 
 
-<meta name="date" content="2026-11-06" />
+<meta name="date" content="2026-11-08" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -52,6 +52,13 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.10.4/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.2.1/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-2.11.1/plotly-latest.min.js"></script>
 
 
 
@@ -193,7 +200,6 @@
 <li class="chapter" data-level="4.7.1" data-path="functions-and-graphs.html"><a href="functions-and-graphs.html#evaluating-functions"><i class="fa fa-check"></i><b>4.7.1</b> Evaluating Functions</a></li>
 <li class="chapter" data-level="4.7.2" data-path="functions-and-graphs.html"><a href="functions-and-graphs.html#sketching-from-a-table"><i class="fa fa-check"></i><b>4.7.2</b> Sketching From a Table</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="functions-and-graphs.html"><a href="functions-and-graphs.html#test-1-preview-1"><i class="fa fa-check"></i>Test 1 Preview</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="quadratic-functions-optimization.html"><a href="quadratic-functions-optimization.html"><i class="fa fa-check"></i><b>5</b> Quadratic Functions &amp; Optimization</a>
 <ul>
@@ -221,7 +227,6 @@
 <li class="chapter" data-level="5.7.1" data-path="quadratic-functions-optimization.html"><a href="quadratic-functions-optimization.html#completing-the-square-1"><i class="fa fa-check"></i><b>5.7.1</b> Completing the Square</a></li>
 <li class="chapter" data-level="5.7.2" data-path="quadratic-functions-optimization.html"><a href="quadratic-functions-optimization.html#vertex-finding"><i class="fa fa-check"></i><b>5.7.2</b> Vertex-Finding</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="quadratic-functions-optimization.html"><a href="quadratic-functions-optimization.html#test-2-preview"><i class="fa fa-check"></i>Test 2 Preview</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="function-composition-inverse-functions.html"><a href="function-composition-inverse-functions.html"><i class="fa fa-check"></i><b>6</b> Function Composition &amp; Inverse Functions</a>
 <ul>
@@ -250,7 +255,7 @@
 <li class="chapter" data-level="6.6.1" data-path="function-composition-inverse-functions.html"><a href="function-composition-inverse-functions.html#finding-inverses-algebraically"><i class="fa fa-check"></i><b>6.6.1</b> Finding Inverses Algebraically</a></li>
 <li class="chapter" data-level="6.6.2" data-path="function-composition-inverse-functions.html"><a href="function-composition-inverse-functions.html#composition-practice"><i class="fa fa-check"></i><b>6.6.2</b> Composition Practice</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="function-composition-inverse-functions.html"><a href="function-composition-inverse-functions.html#test-2-preview-1"><i class="fa fa-check"></i>Test 2 Preview</a></li>
+<li class="chapter" data-level="" data-path="function-composition-inverse-functions.html"><a href="function-composition-inverse-functions.html#test-2-preview"><i class="fa fa-check"></i>Test 2 Preview</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="exponential-functions-and-logarithms.html"><a href="exponential-functions-and-logarithms.html"><i class="fa fa-check"></i><b>7</b> Exponential Functions and Logarithms</a>
 <ul>
@@ -629,6 +634,11 @@
 </div>
 <div id="exponential-growth-decay" class="section level2 hasAnchor" number="7.2">
 <h2><span class="header-section-number">7.2</span> Exponential Growth &amp; Decay<a href="exponential-functions-and-logarithms.html#exponential-growth-decay" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Under the right environmental conditions an algal bloom can double its biomass in a day. A piece of charcoal from an ancient fire pit loses half its carbon-14 every 5,730 years allowing us to carbon date it. The amount of sunlight fades as you travel down through a lake. These are very different systems that follow the same rule: the rate of change is proportional to the amount present.</p>
+<p>That rule is what makes something exponential. “Exponential” doesn’t mean fast, and it doesn’t mean big. It means proportional. A trout population of 1,000 growing at 5% per year gains 50 fish. At 10,000 trout, the same 5% adds 500. The percentage stays fixed, so the actual change grows with the system.</p>
+<p>Flip the sign and you get decay. A pesticide breaking down in soil, a radioactive isotope settling toward stability, light being absorbed with depth. Each loses a constant fraction (factor) for every unit of time, or every meter of water.</p>
+<p>In this chapter you will build the exponential function, convert between growth rates, doubling times, and half-lives, and work out when a system will cross a threshold.</p>
+<p>A caveat up front: no real population grows exponentially forever. Eventually something limits growth, food, space, and/or predators. Exponential models are where you start, and knowing when they stop working matters as much as knowing how they work.</p>
 <p>An <strong>exponential function</strong> has the form</p>
 <p><span class="math display">\[
 f(t) = a \cdot b^t
@@ -718,7 +728,7 @@ A(24) = 100\left(\frac{1}{2}\right)^{24/8} = 100\left(\frac{1}{2}\right)^3 = 100
 <p><span class="math display">\[
 \text{pH} = -(-6) = 6
 \]</span></p>
-<p><strong>Step 3 — Interpret a one-unit change.</strong> A sample with pH 5 has <span class="math inline">\([\text{H}^+] = 10^{-5}\)</span> mol/L — <strong>ten times</strong> the hydrogen ion concentration of the pH-6 sample above, not just “one more” unit of acidity. Every single step down the pH scale represents a <em>tenfold</em> increase in acidity, which is exactly what makes logarithmic scales powerful for compressing a huge range of values into a manageable number line.</p>
+<p><strong>Step 3 — Interpret a one-unit change.</strong> A sample with pH 5 has <span class="math inline">\([\text{H}^+] = 10^{-5}\)</span> mol/L — <strong>ten times</strong> the hydrogen ion concentration of the pH-6 sample above, not just “one more” unit of acidity. Every step down the pH scale represents a <em>tenfold</em> (factor of 10) increase in acidity, which is exactly what makes logarithmic scales powerful for compressing a huge range of values into a manageable number line.</p>
 </div>
 <div id="concept-check-log-properties-graph-transformations" class="section level3 unnumbered hasAnchor">
 <h3>Concept Check: Log Properties &amp; Graph Transformations<a href="exponential-functions-and-logarithms.html#concept-check-log-properties-graph-transformations" class="anchor-section" aria-label="Anchor link to header"></a></h3>

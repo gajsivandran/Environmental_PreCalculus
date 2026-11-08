@@ -15,11 +15,11 @@ By the end of this chapter, you will be able to:
 
 **Function composition** means feeding the output of one function into another as its input. We write this as \((g \circ f)(x) = g(f(x))\) — read "\(g\) of \(f\) of \(x\)," and evaluated from the inside out: first apply \(f\), then apply \(g\) to *that* result.
 
-Composition shows up constantly in environmental science because measurements are often separated by several converted steps: raw sensor voltage becomes a concentration, a concentration becomes a risk score, a risk score becomes a policy decision. Each of these steps is a function, and the whole pipeline is their composition.
+Composition shows up constantly in environmental science because measurements are often separated by several converted steps. For example, raw sensor voltage becomes a concentration, a concentration becomes a risk score, a risk score becomes a policy decision. Each of these steps is a function, and the whole pipeline is their composition.
 
 ### Worked Example: Depth, Pressure, and Oxygen Solubility
 
-In a lake, pressure increases with depth, and the amount of oxygen water can hold (its solubility) depends on that pressure. Suppose:
+In a lake, pressure increases with depth, and the amount of oxygen water can hold (its solubility) depends on pressure. Suppose:
 
 $$
 P(d) = 1 + 0.1d \qquad \text{(pressure in atm, as a function of depth \(d\) in meters)}

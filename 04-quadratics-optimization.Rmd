@@ -19,7 +19,7 @@ $$
 f(x) = ax^2 + bx + c
 $$
 
-Its graph is a **parabola** — it opens upward if \(a>0\) and downward if \(a<0\). The single highest or lowest point on the parabola is called the **vertex**, and in **vertex form**:
+Its graph is a **parabola** — it opens upward if \(a>0\) and downward if \(a<0\). The single highest (maxima) or lowest (minima) point on the parabola is called the **vertex**, and in **vertex form**:
 
 $$
 f(x) = a(x-h)^2 + k
@@ -241,6 +241,3 @@ Use the vertex formula to find the vertex of each function.
 
 ---
 
-## Test 2 Preview {-}
-
-This chapter is the first of two chapters covered on Test 2. See the Test 2 Review chapter in the back matter once Chapter 5 is complete.

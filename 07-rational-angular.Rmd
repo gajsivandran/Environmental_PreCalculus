@@ -13,10 +13,10 @@ By the end of this chapter, you will be able to:
 
 ## Rational Functions
 
-A **rational function** is a ratio of two polynomials, \(f(x) = \dfrac{p(x)}{q(x)}\). Two features matter most for interpretation:
+A **rational function** is a ratio of two polynomials, \(f(x) = \dfrac{p(x)}{q(x)}\). Two features of this form of function matter the most for interpretation:
 
-- **Domain restrictions:** \(f(x)\) is undefined wherever \(q(x) = 0\), since division by zero is undefined.
-- **Asymptotes:** a **vertical asymptote** occurs at an \(x\)-value where the denominator hits zero (and the numerator doesn't); a **horizontal asymptote** describes the value \(f(x)\) approaches as \(x\) grows very large in either direction.
+- **Domain restrictions:** \(f(x)\) is undefined wherever the denominator \(q(x) = 0\), since division by zero is undefined.
+- **Asymptotes:** a **vertical asymptote** occurs at an \(x\)-value where the denominator hits zero (as long as the numerator doesn't); a **horizontal asymptote** describes the value \(f(x)\) approaches as \(x\) grows very large in either direction.
 
 ### Worked Example: A Dilution / Equilibrium Model
 
@@ -79,7 +79,9 @@ As \(x\to\infty\), \(f(x) \to \dfrac{5x}{x} = 5\). If this models concentration 
 
 ## Angular Measure
 
-Angles can be measured in **degrees** (a full circle is \(360°\)) or **radians** (a full circle is \(2\pi\) radians). Radians are defined so that an angle's measure equals the arc length it sweeps out on a **unit circle** (radius 1) — which is why radians, not degrees, are the natural unit for the trigonometric work in Chapters 8–10.
+Angles can be measured in **degrees** (a full circle is \(360°\)) or in **radians** (a full circle is \(2\pi\) radians). Radians are defined so that an angle's measure equals the arc length it sweeps out on a **unit circle** (radius 1) — which is why radians, not degrees, are the natural unit for the trigonometric work in Chapters 8–10.
+
+Warning: Be sure you calculators are set to 'RAD' when evaluating trigonometric probelms.
 
 ### Converting Between Degrees and Radians
 

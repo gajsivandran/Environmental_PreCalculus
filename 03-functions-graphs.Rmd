@@ -239,6 +239,3 @@ For each table, state whether \(y\) is a function of \(x\), and explain why or w
 
 ---
 
-## Test 1 Preview {-}
-
-This chapter concludes the material covered on Test 1 (Chapters 1–3). See the Test 1 Review chapter in the back matter for practice materials.
