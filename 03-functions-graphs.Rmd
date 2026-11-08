@@ -15,7 +15,88 @@ By the end of this chapter, you will be able to:
 
 A **function** is a rule that assigns exactly one output to each input. If \(x\) is the input and \(y\) is the output, we write \(y = f(x)\), read "\(f\) of \(x\)." The name \(f\) is arbitrary — you'll often see functions named for what they represent, like \(C(t)\) for concentration as a function of time, or \(T(z)\) for temperature as a function of elevation.
 
+```{r functions-notation-temperature-elevation, fig.cap="Function notation on a graph. T(z) is air temperature as a function of elevation z, using a typical cooling rate of 6.5 °C per 1000 m and 15 °C at sea level. Pick an input z on the horizontal axis, go up to the line, then across to read the single output T(z).", fig.alt="Line graph of air temperature in degrees Celsius against elevation in meters, from 0 to 3000 meters. A straight line falls from 15 degrees at 0 meters to about negative 4.5 degrees at 3000 meters. An example input of z equals 1500 meters is marked on the horizontal axis. A dashed arrow goes up from 1500 meters to the line, then a second dashed arrow goes left to the vertical axis at 5.25 degrees. The point is labeled T of 1500 equals 5.25 degrees Celsius, showing one input producing one output.", cache=FALSE, echo=FALSE, message=FALSE, warning=FALSE}
+library(ggplot2)
+
+blue   <- "#003F7F"
+orange <- "#8A3B00"
+
+T_z <- function(z) 15 - 0.0065 * z
+z   <- c(0, 3000)
+z0  <- 1500
+
+ggplot(data.frame(z = z, T = T_z(z)), aes(z, T)) +
+  geom_hline(yintercept = 0, color = "grey60") +
+  geom_line(color = blue, linewidth = 1.3) +
+  annotate("segment", x = z0, xend = z0, y = -6, yend = T_z(z0),
+           color = orange, linewidth = 1, linetype = "dashed",
+           arrow = arrow(length = unit(0.25, "cm"), type = "closed")) +
+  annotate("segment", x = z0, xend = 0, y = T_z(z0), yend = T_z(z0),
+           color = orange, linewidth = 1, linetype = "dashed",
+           arrow = arrow(length = unit(0.25, "cm"), type = "closed")) +
+  annotate("point", x = z0, y = T_z(z0), size = 3.5) +
+  annotate("text", x = z0 + 60, y = T_z(z0) + 1.2, hjust = 0, size = 4.5,
+           label = "T(1500) = 5.25 °C") +
+  annotate("text", x = z0 + 60, y = -5, hjust = 0, size = 4.2, color = orange,
+           label = "input: z = 1500 m") +
+  annotate("text", x = 60, y = T_z(z0) - 1.2, hjust = 0, size = 4.2, color = orange,
+           label = "output") +
+  scale_x_continuous(breaks = seq(0, 3000, by = 500)) +
+  coord_cartesian(ylim = c(-6, 16)) +
+  labs(x = "Elevation, z (m)", y = "Air temperature, T(z) (°C)") +
+  theme_minimal(base_size = 13)
+```
+
 The defining rule — **exactly one output per input** — is what separates a function from a general relationship. If you can trace a vertical line through a graph and it crosses the curve more than once, the graph does *not* represent a function of \(x\), because that one input \(x\) would correspond to more than one output. This is refered to as the *vertical line test*. Note: if the vertical line passes through no points - that doesn't reveal anything. There are plenty of functions that have no output for specific \(x\) values.
+
+```{r functions-vertical-line-test, fig.cap="The vertical line test. Left: every vertical line crosses the curve at most once, so it is a function. Middle: the vertical line crosses twice, so it is not a function of x. Right: the vertical line passes through a gap in the domain and crosses nothing; that tells you only that x = 0 is not an input, not whether the graph is a function.", fig.width=9, fig.height=3.6, fig.alt="Three side-by-side panels, each with a curve and a dashed vertical test line. Left panel, titled passes, crossing once: a wavy curve rising from left to right, with the vertical line at x equals 1 crossing it at a single marked point. Middle panel, titled fails, crossing twice: a circle, with the vertical line at x equals 0.5 crossing it at two marked points, one above and one below. Right panel, titled no crossing, no information: the curve y equals 1 over x, with two branches separated at x equals 0; the vertical line at x equals 0 passes between the branches without touching either one.", cache=FALSE, echo=FALSE, message=FALSE, warning=FALSE}
+library(ggplot2)
+
+blue   <- "#003F7F"
+orange <- "#8A3B00"
+
+lv <- c("Passes: crosses once", "Fails: crosses twice",
+        "No crossing: no information")
+
+x  <- seq(-2, 2, length.out = 300)
+tt <- seq(0, 2 * pi, length.out = 300)
+xl <- seq(-2, -0.25, length.out = 150)
+xr <- seq(0.25, 2, length.out = 150)
+
+curves <- rbind(
+  data.frame(x = x, y = 0.6 * x + 0.5 * sin(2 * x), grp = "a", panel = lv[1]),
+  data.frame(x = 1.6 * cos(tt), y = 1.6 * sin(tt),  grp = "b", panel = lv[2]),
+  data.frame(x = xl, y = 1 / xl / 2, grp = "c1", panel = lv[3]),
+  data.frame(x = xr, y = 1 / xr / 2, grp = "c2", panel = lv[3])
+)
+
+vlines <- data.frame(x = c(1, 0.5, 0), panel = lv)
+
+hits <- rbind(
+  data.frame(x = 1,   y = 0.6 + 0.5 * sin(2),       panel = lv[1]),
+  data.frame(x = 0.5, y =  sqrt(1.6^2 - 0.5^2),     panel = lv[2]),
+  data.frame(x = 0.5, y = -sqrt(1.6^2 - 0.5^2),     panel = lv[2])
+)
+
+curves$panel <- factor(curves$panel, levels = lv)
+vlines$panel <- factor(vlines$panel, levels = lv)
+hits$panel   <- factor(hits$panel,   levels = lv)
+
+ggplot(curves, aes(x, y, group = grp)) +
+  geom_hline(yintercept = 0, color = "grey70") +
+  geom_vline(xintercept = 0, color = "grey70") +
+  geom_path(color = blue, linewidth = 1.2) +
+  geom_vline(data = vlines, aes(xintercept = x), color = orange,
+             linewidth = 1, linetype = "dashed") +
+  geom_point(data = hits, aes(x, y), inherit.aes = FALSE,
+             size = 3.5, color = orange) +
+  facet_wrap(~ panel, nrow = 1) +
+  coord_equal(xlim = c(-2, 2), ylim = c(-2, 2)) +
+  labs(x = "x", y = "y") +
+  theme_minimal(base_size = 12) +
+  theme(strip.text = element_text(face = "bold", size = 11),
+        panel.grid.minor = element_blank())
+```
 
 ::: promptbox
 
@@ -61,6 +142,45 @@ Suppose a model \(P(t) = 200 + 15t\) describes the population of a migratory bir
 
 Notice that the *domain* is a restriction we impose based on context (the birds are only present for part of the year), while the *range* is a consequence we compute from the domain and the function rule.
 
+```{r functions-bird-domain-range, fig.cap="Domain and range of P(t) = 200 + 15t. The domain (the 20-week season) is set by context; the range (200 to 500 birds) follows from evaluating the rule at the ends of the domain. Outside the season the formula still produces numbers, but they have no meaning.", fig.alt="Line graph of bird population against weeks since arrival, with the horizontal axis running from negative 5 to 25 weeks. A shaded vertical band from week 0 to week 20 is labeled domain, 0 to 20 weeks. Inside the band a solid line rises from 200 birds at week 0 to 500 birds at week 20, with both end points marked. Outside the band the same line continues as a faint dotted line, labeled no meaning outside the season. A bracket on the vertical axis from 200 to 500 is labeled range, 200 to 500 birds.", cache=FALSE, echo=FALSE, message=FALSE, warning=FALSE}
+library(ggplot2)
+
+blue   <- "#003F7F"
+orange <- "#8A3B00"
+
+P <- function(t) 200 + 15 * t
+
+ggplot() +
+  annotate("rect", xmin = 0, xmax = 20, ymin = -Inf, ymax = Inf,
+           fill = blue, alpha = 0.08) +
+  annotate("text", x = 10, y = 600, size = 4.3, color = blue,
+           label = "Domain: 0 ≤ t ≤ 20 weeks") +
+  # formula outside the domain (meaningless)
+  annotate("segment", x = -5, xend = 0, y = P(-5), yend = P(0),
+           color = "grey45", linetype = "dotted", linewidth = 1) +
+  annotate("segment", x = 20, xend = 25, y = P(20), yend = P(25),
+           color = "grey45", linetype = "dotted", linewidth = 1) +
+  annotate("text", x = 22.5, y = P(25) + 25, size = 3.8, color = "grey25",
+           label = "no meaning\noutside the season", lineheight = 0.9) +
+  # the model on its domain
+  annotate("segment", x = 0, xend = 20, y = P(0), yend = P(20),
+           color = blue, linewidth = 1.4) +
+  annotate("point", x = c(0, 20), y = c(P(0), P(20)), size = 3.5) +
+  annotate("text", x = 0.6, y = P(0) - 22, hjust = 0, size = 4, label = "P(0) = 200") +
+  annotate("text", x = 19.4, y = P(20) + 22, hjust = 1, size = 4, label = "P(20) = 500") +
+  # range bracket on the left
+  annotate("segment", x = -4.2, xend = -4.2, y = 200, yend = 500,
+           color = orange, linewidth = 1.2) +
+  annotate("segment", x = -4.6, xend = -3.8, y = c(200, 500), yend = c(200, 500),
+           color = orange, linewidth = 1.2) +
+  annotate("text", x = -3.6, y = 350, hjust = 0, size = 4.2, color = orange,
+           label = "Range:\n200 ≤ P ≤ 500", lineheight = 0.9) +
+  scale_x_continuous(breaks = seq(-5, 25, by = 5)) +
+  coord_cartesian(xlim = c(-5, 25), ylim = c(100, 620)) +
+  labs(x = "Weeks since arrival, t", y = "Bird population, P(t)") +
+  theme_minimal(base_size = 13)
+```
+
 ---
 
 ## Graph Reading & Transformations (Introduction)
@@ -72,6 +192,43 @@ Reading a graph well means being able to answer questions like:
 - Does it cross the x-axis, and if so, what does that mean in context?
 
 You'll also start noticing that many graphs are *shifted*, *stretched*, or *flipped* versions of a simpler graph — for example, a temperature curve shifted upward because of climate warming, or a dose-response curve stretched horizontally because a drug takes longer to act. We'll formalize these transformations with algebra in Chapter 6; for now, practice describing them in words.
+
+```{r functions-reading-a-graph, fig.cap="Reading a graph in context. h(t) is river level relative to flood stage during a storm, so h = 0 means the river is exactly at flood stage. The graph shows where h is increasing and decreasing, where it peaks, and the two times it crosses the t-axis: when the river goes over flood stage, and when it drops back below.", fig.alt="Line graph of river level relative to flood stage, in meters, against hours since the storm began, from 0 to 48 hours. A horizontal line at zero is labeled flood stage. The curve starts at about negative 1.6 meters, rises to a single peak of about 1.1 meters near hour 16, then falls back to about negative 0.35 meters by hour 48. The rising part is labeled increasing and the falling part is labeled decreasing. The peak is marked and labeled highest point. The two places where the curve crosses zero, near hour 5 and near hour 40, are marked and labeled crosses flood stage, rising and falling back below. The lowest point on this window is at the start, hour 0.", cache=FALSE, echo=FALSE, message=FALSE, warning=FALSE}
+library(ggplot2)
+
+blue   <- "#003F7F"
+orange <- "#8A3B00"
+
+# storm hydrograph shape, shifted so 0 = flood stage
+h <- function(t) 2.6 * (t / 16) * exp(1 - t / 16) - 1.6 + 0.004 * t
+t <- seq(0, 48, length.out = 400)
+df <- data.frame(t = t, h = h(t))
+
+roots <- c(uniroot(h, c(1, 16))$root, uniroot(h, c(16, 47))$root)
+tpk   <- optimize(h, c(5, 30), maximum = TRUE)$maximum
+
+ggplot(df, aes(t, h)) +
+  geom_hline(yintercept = 0, color = "black", linewidth = 0.7) +
+  annotate("text", x = 8, y = -0.12, hjust = 0, size = 4, label = "Flood stage (h = 0)") +
+  geom_line(color = blue, linewidth = 1.4) +
+  annotate("point", x = tpk, y = h(tpk), size = 3.5) +
+  annotate("text", x = tpk, y = h(tpk) + 0.22, size = 4.2, label = "Highest point") +
+  annotate("point", x = roots, y = 0, size = 3.5, color = orange, shape = 21,
+           fill = "white", stroke = 1.5) +
+  annotate("text", x = roots[1] + 1, y = -0.5, hjust = 0, size = 3.8, color = orange,
+           label = "Crosses flood stage\n(rising)", lineheight = 0.9) +
+  annotate("text", x = roots[2] - 1, y = -0.42, hjust = 1, size = 3.8, color = orange,
+           label = "Drops back below\nflood stage", lineheight = 0.9) +
+  annotate("text", x = 5.5, y = 0.45, size = 4.2, color = blue, label = "Increasing",
+           angle = 55) +
+  annotate("text", x = 31, y = 0.72, size = 4.2, color = blue, label = "Decreasing",
+           angle = -18) +
+  scale_x_continuous(breaks = seq(0, 48, by = 8)) +
+  coord_cartesian(ylim = c(-1.8, 1.5)) +
+  labs(x = "Hours since storm began, t",
+       y = "Level relative to flood stage, h(t) (m)") +
+  theme_minimal(base_size = 13)
+```
 
 ::: promptbox
 
@@ -102,6 +259,37 @@ C(x) = \begin{cases} 2.00x & 0 \le x \le 10 \\ 20.00 + 3.50(x-10) & x > 10 \end{
 $$
 
 Notice the second piece starts from \(20.00\) — the cost of the first 10 units at the first rate — and adds the higher rate only for units *beyond* the 10th.
+
+```{r functions-tiered-cost-breakdown, fig.cap="Where the cost comes from in each tier. Below 10 units, every unit is charged at $2.00. Above 10 units, the bill always includes the full $20.00 for the first tier, plus $3.50 for each unit beyond the 10th.", fig.alt="Stacked bar chart of total water cost in dollars for four usage levels: 5, 10, 15 and 20 units. Each bar is split into a first-tier portion at 2 dollars per unit, shown in blue, and a second-tier portion at 3.50 dollars per unit, shown in orange and stacked on top. At 5 units the bar is 10 dollars, all first tier. At 10 units it is 20 dollars, all first tier. At 15 units it is 20 dollars of first tier plus 17.50 dollars of second tier, totaling 37.50 dollars. At 20 units it is 20 dollars of first tier plus 35 dollars of second tier, totaling 55 dollars. Each bar's total is printed above it.", cache=FALSE, echo=FALSE, message=FALSE, warning=FALSE}
+library(ggplot2)
+
+blue   <- "#003F7F"
+orange <- "#8A3B00"
+
+units <- c(5, 10, 15, 20)
+tier1 <- 2.00 * pmin(units, 10)
+tier2 <- 3.50 * pmax(units - 10, 0)
+
+bars <- rbind(
+  data.frame(units = units, cost = tier1, tier = "First 10 units at $2.00"),
+  data.frame(units = units, cost = tier2, tier = "Units beyond 10 at $3.50")
+)
+bars$tier  <- factor(bars$tier, levels = rev(unique(bars$tier)))
+totals     <- data.frame(units = units, total = tier1 + tier2)
+
+ggplot(bars, aes(x = factor(units), y = cost, fill = tier)) +
+  geom_col(width = 0.6, color = "white") +
+  geom_text(data = totals, aes(x = factor(units), y = total,
+                               label = sprintf("$%.2f", total)),
+            inherit.aes = FALSE, vjust = -0.5, size = 4.3) +
+  scale_fill_manual(values = c(orange, blue),
+                    breaks = c("First 10 units at $2.00", "Units beyond 10 at $3.50")) +
+  scale_y_continuous(limits = c(0, 62), breaks = seq(0, 60, by = 10),
+                     labels = function(v) paste0("$", v)) +
+  labs(x = "Units used", y = "Total cost", fill = NULL) +
+  theme_minimal(base_size = 13) +
+  theme(legend.position = "bottom", panel.grid.major.x = element_blank())
+```
 
 **Evaluating the function:** How much does 15 units cost?
 

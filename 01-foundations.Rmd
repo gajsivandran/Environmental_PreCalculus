@@ -44,6 +44,28 @@ $$\frac{1 \text{ km}}{1000 \text{ m}} = 1$$
 
 You can multiply any measurement by this fraction (or its flip) without changing what it represents — only how it's expressed.
 
+```{r foundations-same-length-two-units, fig.cap="The same stream reach measured in two units. The length of the bar never changes; only the numbers on the scale do. Multiplying by 1 km / 1000 m swaps the bottom scale for the top one.", fig.height=2.6, fig.alt="A single horizontal bar representing a 2500 meter stream reach, drawn against two scales. The bottom axis is labeled in meters, from 0 to 3000 meters. The top axis, aligned with the same bar, is labeled in kilometers, from 0 to 3 kilometers. The right end of the bar is marked and labeled 2500 m equals 2.5 km, showing that one physical length corresponds to both numbers.", cache=FALSE, echo=FALSE, message=FALSE, warning=FALSE}
+library(ggplot2)
+
+blue <- "#003F7F"
+
+ggplot() +
+  annotate("rect", xmin = 0, xmax = 2500, ymin = 0.35, ymax = 0.65,
+           fill = blue, alpha = 0.85) +
+  annotate("segment", x = 2500, xend = 2500, y = 0.2, yend = 0.8,
+           linewidth = 1, color = "black") +
+  annotate("text", x = 2500, y = 0.92, size = 4.5,
+           label = "2500 m = 2.5 km") +
+  scale_x_continuous(name = "Meters (m)", limits = c(0, 3000),
+                     breaks = seq(0, 3000, by = 500),
+                     sec.axis = sec_axis(~ . / 1000, name = "Kilometers (km)",
+                                         breaks = seq(0, 3, by = 0.5))) +
+  scale_y_continuous(limits = c(0, 1), breaks = NULL) +
+  labs(y = NULL) +
+  theme_minimal(base_size = 13) +
+  theme(panel.grid.minor = element_blank())
+```
+
 ::: promptbox
 
 **Worked Example: Converting a Flow Rate**
@@ -66,6 +88,29 @@ $$
 <div class="writein"></div>
 :::
 
+```{r foundations-flow-rate-units, fig.cap="One flow rate, four ways to write it. Switching to a smaller volume unit (liters instead of cubic meters) or a longer time interval (per minute instead of per second) makes the number larger. The horizontal axis uses a log scale so all four fit.", fig.alt="Horizontal bar chart showing the same stream flow, 2.4 cubic meters per second, expressed in four unit combinations, on a logarithmic horizontal axis. Cubic meters per second gives 2.4. Cubic meters per minute gives 144. Liters per second gives 2,400. Liters per minute gives 144,000, the longest bar. Each bar is labeled with its value, showing that smaller volume units and longer time intervals produce larger numbers for the same flow.", cache=FALSE, echo=FALSE, message=FALSE, warning=FALSE}
+library(ggplot2)
+
+blue <- "#003F7F"
+
+flow <- data.frame(
+  unit  = c("m³/s", "m³/min", "L/s", "L/min"),
+  value = c(2.4, 2.4 * 60, 2.4 * 1000, 2.4 * 1000 * 60)
+)
+flow$unit  <- factor(flow$unit, levels = rev(flow$unit))
+flow$label <- formatC(flow$value, format = "fg", big.mark = ",")
+
+ggplot(flow, aes(x = value, y = unit)) +
+  geom_col(fill = blue, width = 0.6) +
+  geom_text(aes(label = label), hjust = -0.15, size = 4.5) +
+  scale_x_log10(limits = c(1, 2e6),
+                breaks = c(1, 10, 100, 1e3, 1e4, 1e5, 1e6),
+                labels = c("1", "10", "100", "1,000", "10,000", "100,000", "1,000,000")) +
+  labs(x = "Numeric value of the same flow (log scale)", y = NULL) +
+  theme_minimal(base_size = 13) +
+  theme(panel.grid.minor = element_blank())
+```
+
 ### A Subtlety: Concentration Units
 
 Environmental data often reports concentration in **mg/L** (milligrams per liter) or in **ppm** (parts per million). For dilute aqueous solutions — which describes most natural water — 1 liter of water has a mass of very close to 1000 grams (1 kg), so:
@@ -75,6 +120,43 @@ $$
 $$
 
 This is a convenient approximation, not a universal law — it relies on the density of the *solution* being close to that of pure water, which breaks down for very concentrated solutions, for other fluids like air or soil, or when working by mass fraction in a non-aqueous medium. Always double check which convention a dataset or regulation is using before assuming the shortcut applies.
+
+```{r foundations-mgL-vs-ppm-density, fig.cap="What a reading of 1000 mg/L means in ppm as the solution gets denser. Because ppm is mass of solute per mass of solution, ppm = (mg/L) / density in kg/L. Near fresh water the shortcut holds; for a saturated brine it is off by roughly 17%.", fig.alt="Line graph with solution density in kilograms per liter on the horizontal axis, from 1.00 to 1.22, and the equivalent concentration in parts per million on the vertical axis. A dashed horizontal line at 1000 ppm is labeled shortcut assumes 1 mg per L equals 1 ppm. A solid curve starts at about 1000 ppm at a density of 1.00 and falls steadily as density increases. Three points are marked on the curve: fresh water at density about 1.00 and about 1000 ppm, seawater at density about 1.025 and about 976 ppm, and saturated salt brine at density about 1.20 and about 833 ppm.", cache=FALSE, echo=FALSE, message=FALSE, warning=FALSE}
+library(ggplot2)
+
+blue   <- "#003F7F"
+orange <- "#8A3B00"
+
+reading <- 1000                               # mg/L
+rho     <- seq(1.00, 1.22, by = 0.002)        # solution density, kg/L
+curve   <- data.frame(rho = rho, ppm = reading / rho)
+
+pts <- data.frame(
+  rho  = c(1.000, 1.025, 1.20),
+  name = c("Fresh water", "Seawater", "Saturated salt brine")
+)
+pts$ppm <- reading / pts$rho
+pts$lab <- sprintf("%s\n(%.0f ppm)", pts$name, pts$ppm)
+pts$lx  <- c(1.012, 1.045, 1.200)        # hand-placed label positions
+pts$ly  <- c(1022,  905,   878)
+pts$hj  <- c(0, 0, 0.5)
+
+ggplot(curve, aes(rho, ppm)) +
+  geom_hline(yintercept = reading, linetype = "dashed", color = "grey25") +
+  annotate("text", x = 1.24, y = reading + 12, hjust = 1, size = 4,
+           label = "Shortcut assumes 1 mg/L = 1 ppm") +
+  geom_line(color = blue, linewidth = 1.3) +
+  geom_segment(data = pts, aes(x = rho, y = ppm, xend = lx, yend = ly),
+               color = "grey40", linewidth = 0.4) +
+  geom_point(data = pts, size = 3.5, color = orange) +
+  geom_label(data = pts, aes(x = lx, y = ly, label = lab, hjust = hj),
+             size = 3.8, lineheight = 0.9, fill = "white", label.size = 0) +
+  scale_x_continuous(limits = c(1.00, 1.24), breaks = seq(1.00, 1.24, by = 0.04)) +
+  scale_y_continuous(limits = c(780, 1030)) +
+  labs(x = "Solution density (kg/L)",
+       y = "Equivalent concentration (ppm)") +
+  theme_minimal(base_size = 13)
+```
 
 ### Worked Example: An Emissions Rate Conversion
 
@@ -98,11 +180,64 @@ $$
 
 **Step 4 — Interpret.** This facility emits roughly 49 kg of CO₂ every day — a way of expressing the same yearly total that's easier to compare against a daily operational limit.
 
+```{r foundations-emissions-per-day, fig.cap="The facility's cumulative CO2 emissions over one year. The yearly total (18 metric tons = 18,000 kg) and the daily rate (about 49.3 kg/day) describe the same line: the daily rate is how steeply it climbs.", fig.alt="Line graph of cumulative CO2 emitted, in kilograms, against day of the year from 0 to 365. A straight line rises from 0 kilograms on day 0 to 18,000 kilograms on day 365, and the end point is labeled 18,000 kg equals 18 metric tons after one year. Near the start of the line, a small right triangle spans 30 days horizontally and about 1,479 kilograms vertically, labeled 1,479 kg over 30 days, which is about 49.3 kg per day.", cache=FALSE, echo=FALSE, message=FALSE, warning=FALSE}
+library(ggplot2)
+
+blue   <- "#003F7F"
+orange <- "#8A3B00"
+
+rate <- 18000 / 365                     # kg per day
+yr   <- data.frame(day = c(0, 365), kg = c(0, 18000))
+
+d0 <- 60; d1 <- 90                      # 30-day window for the rate triangle
+
+ggplot(yr, aes(day, kg)) +
+  geom_line(color = blue, linewidth = 1.3) +
+  annotate("segment", x = d0, xend = d1, y = rate * d0, yend = rate * d0,
+           color = orange, linewidth = 1, linetype = "dashed") +
+  annotate("segment", x = d1, xend = d1, y = rate * d0, yend = rate * d1,
+           color = orange, linewidth = 1, linetype = "dashed") +
+  annotate("text", x = d1 + 6, y = rate * d0 + 300, hjust = 0, size = 4.2,
+           color = orange,
+           label = "1,479 kg over 30 days\n≈ 49.3 kg per day") +
+  annotate("point", x = 365, y = 18000, size = 3.5) +
+  annotate("text", x = 355, y = 18000, hjust = 1, vjust = -0.6, size = 4.2,
+           label = "18,000 kg = 18 metric tons after one year") +
+  scale_x_continuous(breaks = c(0, 60, 90, 120, 180, 240, 300, 365)) +
+  scale_y_continuous(labels = function(x) formatC(x, format = "d", big.mark = ","),
+                     limits = c(0, 19500)) +
+  labs(x = "Day of year", y = expression("Cumulative " * CO[2] * " emitted (kg)")) +
+  theme_minimal(base_size = 13)
+```
+
 ### A Famous Example: The Mars Climate Orbiter 🚀
 
 Mismatched units aren't just a classroom nuisance — they've caused real, expensive failures. In 1999, NASA's Mars Climate Orbiter burned up on entry into the Mars atmosphere. The investigation found that one engineering team had provided their thrust data in **pound-seconds** (an imperial unit), while the navigation software on the other end of the pipeline expected the value in **newton-seconds** (the metric unit). The software used the number as given, without converting it, and the resulted in a ~$240 million fireball (adjusted for today's dollars).
 
 No individual calculation was "wrong" — every team did their own math correctly. The failure was a **unit mismatch at the handoff** between two systems: a number changed hands without its units being checked. It's the same failure mode as forgetting to convert mg/L to ppm before comparing a reading to a regulatory limit — just with a much higher price tag. The lesson is simple: always track units through every step, and always double-check them at every handoff, not just within your own calculation.
+
+```{r foundations-mars-orbiter-mismatch, fig.cap="The same number, read in the wrong unit. A thruster report of 1.0 in pound-force seconds is an impulse of about 4.45 N·s. Read as 1.0 N·s, every firing looked about 4.45 times smaller than it really was.", fig.height=3, fig.alt="Horizontal bar chart comparing two readings of the same thruster report, the number 1.0, with impulse in newton-seconds on the horizontal axis. The top bar, labeled what the software assumed, 1.0 read as newton-seconds, extends to 1.0. The bottom bar, labeled what the thrusters actually delivered, 1.0 pound-force seconds, extends to about 4.45. The longer bar is labeled 4.45 newton-seconds, showing the impulse was underestimated by a factor of about 4.45.", cache=FALSE, echo=FALSE, message=FALSE, warning=FALSE}
+library(ggplot2)
+
+blue   <- "#003F7F"
+orange <- "#8A3B00"
+
+imp <- data.frame(
+  case  = c("What the software assumed\n(1.0 read as N·s)",
+            "What the thrusters delivered\n(1.0 lbf·s)"),
+  value = c(1.0, 4.448)
+)
+imp$case <- factor(imp$case, levels = imp$case)
+
+ggplot(imp, aes(x = value, y = case, fill = case)) +
+  geom_col(width = 0.55, show.legend = FALSE) +
+  geom_text(aes(label = sprintf("%.2f N·s", value)), hjust = -0.1, size = 4.5) +
+  scale_fill_manual(values = c(orange, blue)) +
+  scale_x_continuous(limits = c(0, 5.5), breaks = 0:5) +
+  labs(x = "Impulse (N·s)", y = NULL) +
+  theme_minimal(base_size = 13) +
+  theme(panel.grid.minor = element_blank())
+```
 
 ### Concept Check: Unit Conversion {-}
 
@@ -144,6 +279,52 @@ The shortcut relies on 1 liter of solution having a mass close to 1000 g (the de
 A **coordinate system** lets us assign a precise location to a point using numbers. In the **Cartesian plane**, every point is described by an ordered pair \((x, y)\): how far to move horizontally (\(x\)) and vertically (\(y\)) from a fixed reference point called the **origin**, \((0,0)\).
 
 For environmental work, the origin and axes are often chosen to make the numbers convenient — for instance, "meters east" and "meters north" of a reference stake at a field site, rather than raw latitude and longitude (we'll work with true geographic coordinates once we cover angular measure in Chapter 7).
+
+```{r foundations-cartesian-quadrants, fig.cap="The Cartesian plane on a local field grid. The reference stake is the origin; east and north are positive, west and south are negative. The signs of x and y tell you which quadrant a point is in.", fig.alt="A Cartesian coordinate plane with the origin labeled (0, 0) reference stake. The horizontal axis is labeled meters east, positive x, to the right and west, negative x, to the left. The vertical axis is labeled north, positive y, at the top and south, negative y, at the bottom. The four quadrants are labeled: Quadrant I at upper right with signs plus, plus; Quadrant II at upper left with minus, plus; Quadrant III at lower left with minus, minus; Quadrant IV at lower right with plus, minus. An example point at (3, 2) is marked, with dashed lines showing a move of 3 units east along the x-axis and then 2 units north.", cache=FALSE, echo=FALSE, message=FALSE, warning=FALSE}
+library(ggplot2)
+
+blue   <- "#003F7F"
+orange <- "#8A3B00"
+
+quads <- data.frame(
+  x   = c( 3.2, -3.2, -3.2,  3.2),
+  y   = c( 3.6,  3.6, -3.6, -3.6),
+  lab = c("Quadrant I\n(+, +)", "Quadrant II\n(−, +)",
+          "Quadrant III\n(−, −)", "Quadrant IV\n(+, −)")
+)
+
+ggplot() +
+  geom_hline(yintercept = 0, color = "black", linewidth = 0.8) +
+  geom_vline(xintercept = 0, color = "black", linewidth = 0.8) +
+  geom_text(data = quads, aes(x, y, label = lab), size = 4.4,
+            color = blue, lineheight = 0.95) +
+  # direction labels
+  annotate("text", x = 5, y = 0.35, label = "East (+x)", hjust = 1, size = 4) +
+  annotate("text", x = -5, y = 0.35, label = "West (−x)", hjust = 0, size = 4) +
+  annotate("text", x = 0.2, y = 5, label = "North (+y)", hjust = 0, size = 4) +
+  annotate("text", x = 0.2, y = -5, label = "South (−y)", hjust = 0, size = 4) +
+  # origin
+  annotate("point", x = 0, y = 0, size = 3.5) +
+  annotate("text", x = -0.2, y = -0.45, hjust = 1, size = 3.8,
+           label = "(0, 0) reference stake") +
+  # example point: 3 east, 2 north
+  annotate("segment", x = 0, xend = 3, y = 0, yend = 0, color = orange,
+           linewidth = 1.2, linetype = "dashed") +
+  annotate("segment", x = 3, xend = 3, y = 0, yend = 2, color = orange,
+           linewidth = 1.2, linetype = "dashed") +
+  annotate("point", x = 3, y = 2, size = 3.5, color = orange) +
+  annotate("text", x = 3.2, y = 2, hjust = 0, size = 4, color = orange,
+           label = "(3, 2)") +
+  annotate("text", x = 1.5, y = -0.4, size = 3.6, color = orange, label = "3 east") +
+  annotate("text", x = 3.15, y = 1, hjust = 0, size = 3.6, color = orange,
+           label = "2 north") +
+  coord_equal(xlim = c(-5, 5), ylim = c(-5, 5)) +
+  scale_x_continuous(breaks = -5:5) +
+  scale_y_continuous(breaks = -5:5) +
+  labs(x = "x", y = "y") +
+  theme_minimal(base_size = 13) +
+  theme(panel.grid.minor = element_blank())
+```
 
 ::: promptbox
 
@@ -205,6 +386,46 @@ d = \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}
 $$
 
 This is the **distance formula** — it's simply the Pythagorean theorem written in coordinate form.
+
+```{r foundations-distance-right-triangle, fig.cap="The distance formula as a right triangle. The east-west separation and north-south separation between the two wells are the legs; the straight-line distance d is the hypotenuse.", fig.alt="Map in meters east and north of the stream gauge, with equal scaling on both axes. The Upstream Well is marked at (negative 120, 80) and the Downstream Well at (180, negative 40). A right triangle connects them. The horizontal leg runs east from the Upstream Well to a right-angle corner at (180, 80) and is labeled x2 minus x1 equals 300 m. The vertical leg runs south from that corner to the Downstream Well and is labeled y2 minus y1 equals negative 120 m, a 120 m drop. The slanted hypotenuse joining the two wells directly is labeled d. A small square marks the right angle at the corner.", fig.height=4, cache=FALSE, echo=FALSE, message=FALSE, warning=FALSE}
+library(ggplot2)
+
+blue   <- "#003F7F"
+orange <- "#8A3B00"
+
+x1 <- -120; y1 <- 80     # Upstream Well
+x2 <-  180; y2 <- -40    # Downstream Well
+s  <- 12                 # size of the right-angle marker
+
+ggplot() +
+  geom_hline(yintercept = 0, color = "grey60") +
+  geom_vline(xintercept = 0, color = "grey60") +
+  # legs
+  annotate("segment", x = x1, xend = x2, y = y1, yend = y1,
+           color = orange, linewidth = 1.2) +
+  annotate("segment", x = x2, xend = x2, y = y1, yend = y2,
+           color = orange, linewidth = 1.2) +
+  # right-angle marker
+  annotate("path", x = c(x2 - s, x2 - s, x2), y = c(y1, y1 - s, y1 - s),
+           color = orange) +
+  # hypotenuse
+  annotate("segment", x = x1, xend = x2, y = y1, yend = y2,
+           color = blue, linewidth = 1.4) +
+  annotate("text", x = 55, y = 42,
+           label = "d", color = blue, size = 6, fontface = "italic") +
+  annotate("text", x = 95, y = y1 + 13, size = 4.2, color = orange,
+           label = "x[2] - x[1] == 300~m", parse = TRUE) +
+  annotate("text", x = x2 + 8, y = (y1 + y2) / 2, hjust = 0, size = 4.2,
+           color = orange, label = "y[2] - y[1] == -120~m", parse = TRUE) +
+  annotate("point", x = c(x1, x2), y = c(y1, y2), size = 3.8) +
+  annotate("text", x = x1, y = y1 + 30, size = 4.2,
+           label = "Upstream Well\n(−120, 80)", lineheight = 0.9) +
+  annotate("text", x = x2, y = y2 - 28, size = 4.2,
+           label = "Downstream Well\n(180, −40)", lineheight = 0.9) +
+  coord_equal(xlim = c(-170, 300), ylim = c(-85, 130)) +
+  labs(x = "Meters East of Gauge", y = "Meters North of Gauge") +
+  theme_minimal(base_size = 13)
+```
 
 ### Worked Example: Distance Between Two Wells
 

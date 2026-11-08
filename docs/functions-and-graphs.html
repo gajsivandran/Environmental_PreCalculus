@@ -635,7 +635,19 @@
 <div id="function-definition-notation" class="section level2 hasAnchor" number="4.2">
 <h2><span class="header-section-number">4.2</span> Function Definition &amp; Notation<a href="functions-and-graphs.html#function-definition-notation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>A <strong>function</strong> is a rule that assigns exactly one output to each input. If <span class="math inline">\(x\)</span> is the input and <span class="math inline">\(y\)</span> is the output, we write <span class="math inline">\(y = f(x)\)</span>, read “<span class="math inline">\(f\)</span> of <span class="math inline">\(x\)</span>.” The name <span class="math inline">\(f\)</span> is arbitrary — you’ll often see functions named for what they represent, like <span class="math inline">\(C(t)\)</span> for concentration as a function of time, or <span class="math inline">\(T(z)\)</span> for temperature as a function of elevation.</p>
+<div class="figure"><span style="display:block;" id="fig:functions-notation-temperature-elevation"></span>
+<img src="precalculus-environmental-science_files/figure-html/functions-notation-temperature-elevation-1.png" alt="Line graph of air temperature in degrees Celsius against elevation in meters, from 0 to 3000 meters. A straight line falls from 15 degrees at 0 meters to about negative 4.5 degrees at 3000 meters. An example input of z equals 1500 meters is marked on the horizontal axis. A dashed arrow goes up from 1500 meters to the line, then a second dashed arrow goes left to the vertical axis at 5.25 degrees. The point is labeled T of 1500 equals 5.25 degrees Celsius, showing one input producing one output." width="672" />
+<p class="caption">
+Figure 4.1: Function notation on a graph. T(z) is air temperature as a function of elevation z, using a typical cooling rate of 6.5 °C per 1000 m and 15 °C at sea level. Pick an input z on the horizontal axis, go up to the line, then across to read the single output T(z).
+</p>
+</div>
 <p>The defining rule — <strong>exactly one output per input</strong> — is what separates a function from a general relationship. If you can trace a vertical line through a graph and it crosses the curve more than once, the graph does <em>not</em> represent a function of <span class="math inline">\(x\)</span>, because that one input <span class="math inline">\(x\)</span> would correspond to more than one output. This is refered to as the <em>vertical line test</em>. Note: if the vertical line passes through no points - that doesn’t reveal anything. There are plenty of functions that have no output for specific <span class="math inline">\(x\)</span> values.</p>
+<div class="figure"><span style="display:block;" id="fig:functions-vertical-line-test"></span>
+<img src="precalculus-environmental-science_files/figure-html/functions-vertical-line-test-1.png" alt="Three side-by-side panels, each with a curve and a dashed vertical test line. Left panel, titled passes, crossing once: a wavy curve rising from left to right, with the vertical line at x equals 1 crossing it at a single marked point. Middle panel, titled fails, crossing twice: a circle, with the vertical line at x equals 0.5 crossing it at two marked points, one above and one below. Right panel, titled no crossing, no information: the curve y equals 1 over x, with two branches separated at x equals 0; the vertical line at x equals 0 passes between the branches without touching either one." width="864" />
+<p class="caption">
+Figure 4.2: The vertical line test. Left: every vertical line crosses the curve at most once, so it is a function. Middle: the vertical line crosses twice, so it is not a function of x. Right: the vertical line passes through a gap in the domain and crosses nothing; that tells you only that x = 0 is not an input, not whether the graph is a function.
+</p>
+</div>
 <div class="promptbox">
 <p><strong>Is It a Function?</strong></p>
 <p>A graph shows water depth in a tidal channel over the course of a day. Depth on the vertical axis, time of day on the horizontal axis. Could two different times of day have the exact same depth? Does that make it <em>not</em> a function? Discuss with a partner why or why not.</p>
@@ -673,6 +685,12 @@
 <li><strong>Range:</strong> at <span class="math inline">\(t=0\)</span>, <span class="math inline">\(P=200\)</span>; at <span class="math inline">\(t=20\)</span>, <span class="math inline">\(P=200+15(20)=500\)</span>. So the range is <span class="math inline">\(200 \le P \le 500\)</span>.</li>
 </ul>
 <p>Notice that the <em>domain</em> is a restriction we impose based on context (the birds are only present for part of the year), while the <em>range</em> is a consequence we compute from the domain and the function rule.</p>
+<div class="figure"><span style="display:block;" id="fig:functions-bird-domain-range"></span>
+<img src="precalculus-environmental-science_files/figure-html/functions-bird-domain-range-1.png" alt="Line graph of bird population against weeks since arrival, with the horizontal axis running from negative 5 to 25 weeks. A shaded vertical band from week 0 to week 20 is labeled domain, 0 to 20 weeks. Inside the band a solid line rises from 200 birds at week 0 to 500 birds at week 20, with both end points marked. Outside the band the same line continues as a faint dotted line, labeled no meaning outside the season. A bracket on the vertical axis from 200 to 500 is labeled range, 200 to 500 birds." width="672" />
+<p class="caption">
+Figure 4.3: Domain and range of P(t) = 200 + 15t. The domain (the 20-week season) is set by context; the range (200 to 500 birds) follows from evaluating the rule at the ends of the domain. Outside the season the formula still produces numbers, but they have no meaning.
+</p>
+</div>
 <hr />
 </div>
 </div>
@@ -685,6 +703,12 @@
 <li>Does it cross the x-axis, and if so, what does that mean in context?</li>
 </ul>
 <p>You’ll also start noticing that many graphs are <em>shifted</em>, <em>stretched</em>, or <em>flipped</em> versions of a simpler graph — for example, a temperature curve shifted upward because of climate warming, or a dose-response curve stretched horizontally because a drug takes longer to act. We’ll formalize these transformations with algebra in Chapter 6; for now, practice describing them in words.</p>
+<div class="figure"><span style="display:block;" id="fig:functions-reading-a-graph"></span>
+<img src="precalculus-environmental-science_files/figure-html/functions-reading-a-graph-1.png" alt="Line graph of river level relative to flood stage, in meters, against hours since the storm began, from 0 to 48 hours. A horizontal line at zero is labeled flood stage. The curve starts at about negative 1.6 meters, rises to a single peak of about 1.1 meters near hour 16, then falls back to about negative 0.35 meters by hour 48. The rising part is labeled increasing and the falling part is labeled decreasing. The peak is marked and labeled highest point. The two places where the curve crosses zero, near hour 5 and near hour 40, are marked and labeled crosses flood stage, rising and falling back below. The lowest point on this window is at the start, hour 0." width="672" />
+<p class="caption">
+Figure 4.4: Reading a graph in context. h(t) is river level relative to flood stage during a storm, so h = 0 means the river is exactly at flood stage. The graph shows where h is increasing and decreasing, where it peaks, and the two times it crosses the t-axis: when the river goes over flood stage, and when it drops back below.
+</p>
+</div>
 <div class="promptbox">
 <p><strong>Describing a Shift</strong></p>
 <p>Two years of daily temperature data are plotted on the same axes. The second year’s curve has exactly the same shape as the first year’s, just consistently 1.5°C higher at every point in time. How would you describe this transformation in one sentence?</p>
@@ -709,6 +733,12 @@
 C(x) = \begin{cases} 2.00x &amp; 0 \le x \le 10 \\ 20.00 + 3.50(x-10) &amp; x &gt; 10 \end{cases}
 \]</span></p>
 <p>Notice the second piece starts from <span class="math inline">\(20.00\)</span> — the cost of the first 10 units at the first rate — and adds the higher rate only for units <em>beyond</em> the 10th.</p>
+<div class="figure"><span style="display:block;" id="fig:functions-tiered-cost-breakdown"></span>
+<img src="precalculus-environmental-science_files/figure-html/functions-tiered-cost-breakdown-1.png" alt="Stacked bar chart of total water cost in dollars for four usage levels: 5, 10, 15 and 20 units. Each bar is split into a first-tier portion at 2 dollars per unit, shown in blue, and a second-tier portion at 3.50 dollars per unit, shown in orange and stacked on top. At 5 units the bar is 10 dollars, all first tier. At 10 units it is 20 dollars, all first tier. At 15 units it is 20 dollars of first tier plus 17.50 dollars of second tier, totaling 37.50 dollars. At 20 units it is 20 dollars of first tier plus 35 dollars of second tier, totaling 55 dollars. Each bar's total is printed above it." width="672" />
+<p class="caption">
+Figure 4.5: Where the cost comes from in each tier. Below 10 units, every unit is charged at $2.00. Above 10 units, the bill always includes the full $20.00 for the first tier, plus $3.50 for each unit beyond the 10th.
+</p>
+</div>
 <p><strong>Evaluating the function:</strong> How much does 15 units cost?</p>
 <p>Since <span class="math inline">\(15 &gt; 10\)</span>, use the second piece:</p>
 <p><span class="math display">\[
@@ -717,7 +747,7 @@ C(15) = 20.00 + 3.50(15-10) = 20.00 + 17.50 = 37.50
 <div class="figure"><span style="display:block;" id="fig:tiered-rate-plot"></span>
 <img src="precalculus-environmental-science_files/figure-html/tiered-rate-plot-1.png" alt="Line graph of total cost in dollars against water units used. The line is steeper past 10 units, showing a kink at the tier boundary where the per-unit rate increases from $2.00 to $3.50." width="672" />
 <p class="caption">
-Figure 4.1: A tiered water rate structure as a piecewise function of usage.
+Figure 4.6: A tiered water rate structure as a piecewise function of usage.
 </p>
 </div>
 </div>

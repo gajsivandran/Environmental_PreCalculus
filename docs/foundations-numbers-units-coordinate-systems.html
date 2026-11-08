@@ -658,6 +658,12 @@
 <p>For example, since <span class="math inline">\(1000 \text{ m} = 1 \text{ km}\)</span>, the fraction</p>
 <p><span class="math display">\[\frac{1 \text{ km}}{1000 \text{ m}} = 1\]</span></p>
 <p>You can multiply any measurement by this fraction (or its flip) without changing what it represents — only how it’s expressed.</p>
+<div class="figure"><span style="display:block;" id="fig:foundations-same-length-two-units"></span>
+<img src="precalculus-environmental-science_files/figure-html/foundations-same-length-two-units-1.png" alt="A single horizontal bar representing a 2500 meter stream reach, drawn against two scales. The bottom axis is labeled in meters, from 0 to 3000 meters. The top axis, aligned with the same bar, is labeled in kilometers, from 0 to 3 kilometers. The right end of the bar is marked and labeled 2500 m equals 2.5 km, showing that one physical length corresponds to both numbers." width="672" />
+<p class="caption">
+Figure 2.1: The same stream reach measured in two units. The length of the bar never changes; only the numbers on the scale do. Multiplying by 1 km / 1000 m swaps the bottom scale for the top one.
+</p>
+</div>
 <div class="promptbox">
 <p><strong>Worked Example: Converting a Flow Rate</strong></p>
 <p>A stream gauge reports a flow rate of <span class="math inline">\(2.4 \text{ m}^3/\text{s}\)</span>. What is this in liters per minute?</p>
@@ -675,6 +681,12 @@
 
 </div>
 </div>
+<div class="figure"><span style="display:block;" id="fig:foundations-flow-rate-units"></span>
+<img src="precalculus-environmental-science_files/figure-html/foundations-flow-rate-units-1.png" alt="Horizontal bar chart showing the same stream flow, 2.4 cubic meters per second, expressed in four unit combinations, on a logarithmic horizontal axis. Cubic meters per second gives 2.4. Cubic meters per minute gives 144. Liters per second gives 2,400. Liters per minute gives 144,000, the longest bar. Each bar is labeled with its value, showing that smaller volume units and longer time intervals produce larger numbers for the same flow." width="672" />
+<p class="caption">
+Figure 2.2: One flow rate, four ways to write it. Switching to a smaller volume unit (liters instead of cubic meters) or a longer time interval (per minute instead of per second) makes the number larger. The horizontal axis uses a log scale so all four fit.
+</p>
+</div>
 </div>
 <div id="a-subtlety-concentration-units" class="section level3 hasAnchor" number="2.3.2">
 <h3><span class="header-section-number">2.3.2</span> A Subtlety: Concentration Units<a href="foundations-numbers-units-coordinate-systems.html#a-subtlety-concentration-units" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -683,6 +695,12 @@
 1\ \frac{\text{mg}}{\text{L}} \approx 1\ \text{ppm} \quad \text{(dilute water only)}
 \]</span></p>
 <p>This is a convenient approximation, not a universal law — it relies on the density of the <em>solution</em> being close to that of pure water, which breaks down for very concentrated solutions, for other fluids like air or soil, or when working by mass fraction in a non-aqueous medium. Always double check which convention a dataset or regulation is using before assuming the shortcut applies.</p>
+<div class="figure"><span style="display:block;" id="fig:foundations-mgL-vs-ppm-density"></span>
+<img src="precalculus-environmental-science_files/figure-html/foundations-mgL-vs-ppm-density-1.png" alt="Line graph with solution density in kilograms per liter on the horizontal axis, from 1.00 to 1.22, and the equivalent concentration in parts per million on the vertical axis. A dashed horizontal line at 1000 ppm is labeled shortcut assumes 1 mg per L equals 1 ppm. A solid curve starts at about 1000 ppm at a density of 1.00 and falls steadily as density increases. Three points are marked on the curve: fresh water at density about 1.00 and about 1000 ppm, seawater at density about 1.025 and about 976 ppm, and saturated salt brine at density about 1.20 and about 833 ppm." width="672" />
+<p class="caption">
+Figure 2.3: What a reading of 1000 mg/L means in ppm as the solution gets denser. Because ppm is mass of solute per mass of solution, ppm = (mg/L) / density in kg/L. Near fresh water the shortcut holds; for a saturated brine it is off by roughly 17%.
+</p>
+</div>
 </div>
 <div id="worked-example-an-emissions-rate-conversion" class="section level3 hasAnchor" number="2.3.3">
 <h3><span class="header-section-number">2.3.3</span> Worked Example: An Emissions Rate Conversion<a href="foundations-numbers-units-coordinate-systems.html#worked-example-an-emissions-rate-conversion" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -702,11 +720,23 @@
 18\ \frac{\text{tons}}{\text{yr}} \times \frac{1000\ \text{kg}}{1\ \text{ton}} \times \frac{1\ \text{yr}}{365\ \text{days}} \approx 49.3\ \frac{\text{kg}}{\text{day}}
 \]</span></p>
 <p><strong>Step 4 — Interpret.</strong> This facility emits roughly 49 kg of CO₂ every day — a way of expressing the same yearly total that’s easier to compare against a daily operational limit.</p>
+<div class="figure"><span style="display:block;" id="fig:foundations-emissions-per-day"></span>
+<img src="precalculus-environmental-science_files/figure-html/foundations-emissions-per-day-1.png" alt="Line graph of cumulative CO2 emitted, in kilograms, against day of the year from 0 to 365. A straight line rises from 0 kilograms on day 0 to 18,000 kilograms on day 365, and the end point is labeled 18,000 kg equals 18 metric tons after one year. Near the start of the line, a small right triangle spans 30 days horizontally and about 1,479 kilograms vertically, labeled 1,479 kg over 30 days, which is about 49.3 kg per day." width="672" />
+<p class="caption">
+Figure 2.4: The facility’s cumulative CO2 emissions over one year. The yearly total (18 metric tons = 18,000 kg) and the daily rate (about 49.3 kg/day) describe the same line: the daily rate is how steeply it climbs.
+</p>
+</div>
 </div>
 <div id="a-famous-example-the-mars-climate-orbiter" class="section level3 hasAnchor" number="2.3.4">
 <h3><span class="header-section-number">2.3.4</span> A Famous Example: The Mars Climate Orbiter 🚀<a href="#a-famous-example-the-mars-climate-orbiter" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Mismatched units aren’t just a classroom nuisance — they’ve caused real, expensive failures. In 1999, NASA’s Mars Climate Orbiter burned up on entry into the Mars atmosphere. The investigation found that one engineering team had provided their thrust data in <strong>pound-seconds</strong> (an imperial unit), while the navigation software on the other end of the pipeline expected the value in <strong>newton-seconds</strong> (the metric unit). The software used the number as given, without converting it, and the resulted in a ~$240 million fireball (adjusted for today’s dollars).</p>
 <p>No individual calculation was “wrong” — every team did their own math correctly. The failure was a <strong>unit mismatch at the handoff</strong> between two systems: a number changed hands without its units being checked. It’s the same failure mode as forgetting to convert mg/L to ppm before comparing a reading to a regulatory limit — just with a much higher price tag. The lesson is simple: always track units through every step, and always double-check them at every handoff, not just within your own calculation.</p>
+<div class="figure"><span style="display:block;" id="fig:foundations-mars-orbiter-mismatch"></span>
+<img src="precalculus-environmental-science_files/figure-html/foundations-mars-orbiter-mismatch-1.png" alt="Horizontal bar chart comparing two readings of the same thruster report, the number 1.0, with impulse in newton-seconds on the horizontal axis. The top bar, labeled what the software assumed, 1.0 read as newton-seconds, extends to 1.0. The bottom bar, labeled what the thrusters actually delivered, 1.0 pound-force seconds, extends to about 4.45. The longer bar is labeled 4.45 newton-seconds, showing the impulse was underestimated by a factor of about 4.45." width="672" />
+<p class="caption">
+Figure 2.5: The same number, read in the wrong unit. A thruster report of 1.0 in pound-force seconds is an impulse of about 4.45 N·s. Read as 1.0 N·s, every firing looked about 4.45 times smaller than it really was.
+</p>
+</div>
 </div>
 <div id="concept-check-unit-conversion" class="section level3 unnumbered hasAnchor">
 <h3>Concept Check: Unit Conversion<a href="foundations-numbers-units-coordinate-systems.html#concept-check-unit-conversion" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -741,6 +771,12 @@
 <h3><span class="header-section-number">2.4.1</span> Locating Points in a Plane<a href="foundations-numbers-units-coordinate-systems.html#locating-points-in-a-plane" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>A <strong>coordinate system</strong> lets us assign a precise location to a point using numbers. In the <strong>Cartesian plane</strong>, every point is described by an ordered pair <span class="math inline">\((x, y)\)</span>: how far to move horizontally (<span class="math inline">\(x\)</span>) and vertically (<span class="math inline">\(y\)</span>) from a fixed reference point called the <strong>origin</strong>, <span class="math inline">\((0,0)\)</span>.</p>
 <p>For environmental work, the origin and axes are often chosen to make the numbers convenient — for instance, “meters east” and “meters north” of a reference stake at a field site, rather than raw latitude and longitude (we’ll work with true geographic coordinates once we cover angular measure in Chapter 7).</p>
+<div class="figure"><span style="display:block;" id="fig:foundations-cartesian-quadrants"></span>
+<img src="precalculus-environmental-science_files/figure-html/foundations-cartesian-quadrants-1.png" alt="A Cartesian coordinate plane with the origin labeled (0, 0) reference stake. The horizontal axis is labeled meters east, positive x, to the right and west, negative x, to the left. The vertical axis is labeled north, positive y, at the top and south, negative y, at the bottom. The four quadrants are labeled: Quadrant I at upper right with signs plus, plus; Quadrant II at upper left with minus, plus; Quadrant III at lower left with minus, minus; Quadrant IV at lower right with plus, minus. An example point at (3, 2) is marked, with dashed lines showing a move of 3 units east along the x-axis and then 2 units north." width="672" />
+<p class="caption">
+Figure 2.6: The Cartesian plane on a local field grid. The reference stake is the origin; east and north are positive, west and south are negative. The signs of x and y tell you which quadrant a point is in.
+</p>
+</div>
 <div class="promptbox">
 <p><strong>Setting Up a Local Grid</strong></p>
 <p>A field team sets up a reference stake at a wetland restoration site and calls it <span class="math inline">\((0, 0)\)</span>. They record each new sampling point as meters east (x) and meters north (y) of that stake.</p>
@@ -793,7 +829,7 @@
 <div class="figure"><span style="display:block;" id="fig:monitoring-stations-plot"></span>
 <img src="precalculus-environmental-science_files/figure-html/monitoring-stations-plot-1.png" alt="Scatter plot showing five labeled points on a coordinate grid with axes meters east and meters north. The gauge sits at the origin, with an upstream well to the northwest, a downstream well to the southeast, and a wetland inlet and outlet to the northeast." width="672" />
 <p class="caption">
-Figure 2.1: Sampling stations plotted on a local coordinate grid centered on the stream gauge.
+Figure 2.7: Sampling stations plotted on a local coordinate grid centered on the stream gauge.
 </p>
 </div>
 <p>Notice that a negative x-coordinate means “west of the gauge,” and a negative y-coordinate means “south of the gauge”. This is just like the four quadrants of a standard Cartesian plane.</p>
@@ -809,6 +845,12 @@ Figure 2.1: Sampling stations plotted on a local coordinate grid centered on the
 d = \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}
 \]</span></p>
 <p>This is the <strong>distance formula</strong> — it’s simply the Pythagorean theorem written in coordinate form.</p>
+<div class="figure"><span style="display:block;" id="fig:foundations-distance-right-triangle"></span>
+<img src="precalculus-environmental-science_files/figure-html/foundations-distance-right-triangle-1.png" alt="Map in meters east and north of the stream gauge, with equal scaling on both axes. The Upstream Well is marked at (negative 120, 80) and the Downstream Well at (180, negative 40). A right triangle connects them. The horizontal leg runs east from the Upstream Well to a right-angle corner at (180, 80) and is labeled x2 minus x1 equals 300 m. The vertical leg runs south from that corner to the Downstream Well and is labeled y2 minus y1 equals negative 120 m, a 120 m drop. The slanted hypotenuse joining the two wells directly is labeled d. A small square marks the right angle at the corner." width="672" />
+<p class="caption">
+Figure 2.8: The distance formula as a right triangle. The east-west separation and north-south separation between the two wells are the legs; the straight-line distance d is the hypotenuse.
+</p>
+</div>
 </div>
 <div id="worked-example-distance-between-two-wells" class="section level3 hasAnchor" number="2.5.2">
 <h3><span class="header-section-number">2.5.2</span> Worked Example: Distance Between Two Wells<a href="foundations-numbers-units-coordinate-systems.html#worked-example-distance-between-two-wells" class="anchor-section" aria-label="Anchor link to header"></a></h3>
