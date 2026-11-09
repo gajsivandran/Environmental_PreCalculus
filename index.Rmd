@@ -166,7 +166,8 @@ I used generative AI tools to:
 
 - edit for grammar and consistency. 
 - draft practice problems, concept checks and their worked solutions
-- format and convert material for html, including the reveal-answer blocks and the study guides
+- write the code blocks needed for graphs and other R generated images
+- format and convert material, including the reveal-answer blocks and the study guides to work within the bookdown framework
 - meet digital accessibility requirements (WCAG 2.1 AA): drafting alt text for figures, checking heading structure, color contrast and table markup, and producing accessible Word versions of course documents
 
 I reviewed and edited all AI-generated material before publishing.
